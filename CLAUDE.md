@@ -21,7 +21,11 @@ TBD — see the deployment plan doc. Likely Cloudflare Pages/Workers to match
 
 ## Structure
 
-Not yet built beyond this file, `README.md`, `.gitignore`, and `LICENSE`.
+- `content/` — publishable site content (session 7): `overview.md` (landing-page
+  protocol overview, canonical here), `spec/0.1/index.md` (publish copy of the
+  DRAFT v0.1 spec — canonical lives in `blygger-spec/docs/protocol-v0.1.md`,
+  never edit the copy). Publish mapping + source-of-truth rule: `content/README.md`.
+- No renderer or deploy yet — that's the deployment plan's job.
 
 ## Workflow Notes
 
