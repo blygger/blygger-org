@@ -4,10 +4,11 @@
 own and a feed anyone can read.**
 
 Blygger is a protocol, not a platform. A **blygg** is a directory of plain
-files — conventionally `/blygg/` on your own domain — holding your writing, its
-edit history, and an RSS feed. Anything that can serve files can host one.
-Anything that can read RSS can follow one. There is no company in the middle,
-no account to create, and no timeline you don't control.
+files — mounted anywhere on your own domain, conventionally `/blyg/` —
+holding your writing, its edit history, and an RSS feed. Anything that can
+serve files can host one. Anything that can read RSS can follow one. There is
+no company in the middle, no account to create, and no timeline you don't
+control.
 
 The design is a deliberate mashup of four ancestors: **blogs** (your domain,
 your archive), **Twitter** (short atomic posts), **wikis** (transclusion —
