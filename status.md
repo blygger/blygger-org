@@ -11,17 +11,17 @@
   not DNS-edit) — Venkat added the record by hand and it activated.
 - **Mid-build mount-convention sync:** while this was in progress,
   `blygger-spec` locked decision #14 (session 8, "mount independence") changed
-  the reference deployment's default mount from `/blygg` to `/blyg`. The
+  the reference deployment's default mount from `/blyg` to `/blyg`. The
   publish copy at `content/spec/0.1/index.md` and `content/overview.md`'s
   convention note were resynced from canonical `blygger-spec/docs/protocol-v0.1.md`
   before this deploy went live, so the published site reflects `/blyg`, not the
-  stale `/blygg`.
+  stale `/blyg`.
 
 ## Upcoming
 - Execute `blygger-spec/docs/deploy-stub-sites-plan.md`'s remaining scope: the
   `/blyg` reference-client test deployment (D1, R2, secrets, Workers Routes) —
   not part of this landing-page build. Note the plan doc itself still says
-  `/blygg` throughout (written session 6, predates decision #14) — resync it
+  `/blyg` throughout (written session 6, predates decision #14) — resync it
   from canonical before executing.
 
 ## Done

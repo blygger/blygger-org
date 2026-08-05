@@ -3,7 +3,33 @@
 **An AI-native, decentralized medium for writing in public — built on files you
 own and a feed anyone can read.**
 
-Blygger is a protocol, not a platform. A **blygg** is a directory of plain
+Social media had one argument about feeds: chronological vs. algorithmic —
+two ways of sequencing items that are already finished. Blygger is built on a
+different fault line, the one that actually matters for publishing:
+**absolute feeds vs. differential feeds.** An absolute feed announces
+finished items — it rewards posting something once and moving on, and makes
+editing it later look like backpedaling. A differential feed — a
+changelog — announces *changes* to items that stay alive after they
+publish, which rewards working a hard idea in public instead of declaring it
+and walking away. That distinction, not feed ordering, is the design problem
+Blygger exists to solve.
+
+The name is a small bet on that idea. **Blyg** is Swedish for *shy* — the
+reticence that keeps people from publishing before a thought is finished,
+which a changelog-native feed is built to dissolve. **Ygg** nods to
+Yggdrasil, the cosmic tree of Norse myth: roots and branches that are never
+finished, only ever still growing.
+
+Changelog-driven publishing has never really worked, and the reason is
+mundane: nobody wants to read a diff. Git's log gets away with this because
+nobody reads it for pleasure — the code is the deliverable, the log is for
+tooling. Prose doesn't have that luxury; a changelog that's just a wall of
+diffs is where readers stop. Blygger's bet is that AI can close that gap. It
+presumes, though it does not require, an AI in the authoring loop whose job
+is to take the accumulating versions of a piece and roll them up into
+something a reader actually wants to read — not a diff, a digest.
+
+Blygger is a protocol, not a platform. A **blyg** is a directory of plain
 files — mounted anywhere on your own domain, conventionally `/blyg/` —
 holding your writing, its edit history, and an RSS feed. Anything that can
 serve files can host one. Anything that can read RSS can follow one. There is
@@ -86,7 +112,7 @@ makes, like a masthead, not accounts in a system. **DNS is the namespace.**
 No follower counts, no follow requests, no social graph in the protocol.
 Discovery is deliberately old-school, with two optional surfaces:
 
-- **Blogrolls** — publish a curated list of the blyggs you read; the network is
+- **Blogrolls** — publish a curated list of the blygs you read; the network is
   crawlable from blogroll to blogroll and from quotation back to source.
 - **Mentions** — when someone stubs your work, their client can notify yours
   (using the standard Webmention mechanism), and the claim is verifiable: the

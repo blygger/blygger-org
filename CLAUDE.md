@@ -10,7 +10,7 @@ other is [`../blygger-com/`](../blygger-com/)).
 
 Scaffolded session 6 (2026-07-24), part of the brand-rename + scaffolding session
 that also produced `blygger-spec` and `blygger-com`. **Deployment plan (stack,
-content, /blygg wiring) lives in `blygger-spec/docs/deploy-stub-sites-plan.md`** —
+content, /blyg wiring) lives in `blygger-spec/docs/deploy-stub-sites-plan.md`** —
 read that before building anything here; nothing beyond this stub scaffold has
 been built yet.
 
