@@ -72,6 +72,49 @@ def build_page(md_path: Path, out_path: Path, title: str, description: str,
     print(f"  {md_path.relative_to(ROOT)}  ->  {out_path.relative_to(ROOT)}")
 
 
+def first_heading(md_path: Path, fallback: str) -> str:
+    for line in md_path.read_text("utf-8").splitlines():
+        line = line.strip()
+        if line.startswith("# "):
+            return line[2:].strip()
+    return fallback
+
+
+def build_spec_pages():
+    """Walk content/spec/ for every sync_spec.py-generated index.md — the
+    index page itself, each version's latest revision, and any dated
+    snapshots — and build each. Depth-driven since the tree shape is fixed
+    (spec/, spec/{version}/, spec/{version}/{date}/), not content-driven."""
+    spec_root = ROOT / "content" / "spec"
+    if not spec_root.is_dir():
+        return
+    for md_path in sorted(spec_root.rglob("index.md")):
+        parts = md_path.relative_to(spec_root).parent.parts
+        if parts == (".",) or parts == ():
+            parts = ()
+        url_path = "spec/" + "/".join(parts)
+        out_path = DIST / "spec" / Path(*parts) / "index.html" if parts else DIST / "spec" / "index.html"
+        prompt = f"~/blygger.org/{url_path}" + ("" if url_path.endswith("/") else "/")
+
+        if len(parts) == 0:
+            title = first_heading(md_path, "Blygger Protocol — Specification Index")
+            description = "Index of Blygger protocol spec versions and dated snapshots."
+            rail_label, numbered_rail = "Versions", False
+        elif len(parts) == 1:
+            version = parts[0]
+            title = first_heading(md_path, f"The Blygger Protocol — Version {version}")
+            description = f"Normative specification of the Blygger protocol, version {version}."
+            rail_label, numbered_rail = "Sections", True
+        else:
+            version, date = parts[0], parts[1]
+            title = first_heading(md_path, f"The Blygger Protocol — Version {version} ({date} snapshot)")
+            description = f"Blygger protocol version {version}, immutable snapshot from {date}."
+            rail_label, numbered_rail = "Sections", True
+
+        build_page(md_path, out_path, title=title, description=description,
+                   prompt=prompt, rail_label=rail_label, numbered_rail=numbered_rail)
+
+
 if __name__ == "__main__":
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -88,16 +131,7 @@ if __name__ == "__main__":
         rail_label="On this page",
         numbered_rail=False,
     )
-    build_page(
-        ROOT / "content" / "spec" / "0.1" / "index.md",
-        DIST / "spec" / "0.1" / "index.html",
-        title="The Blygger Protocol — Version 0.1 (DRAFT)",
-        description="Normative specification of the Blygger protocol, version 0.1: "
-                     "items, manifest, feed, pins, withdrawal, threads and transclusion.",
-        prompt="~/blygger.org/spec/0.1/",
-        rail_label="Sections",
-        numbered_rail=True,
-    )
+    build_spec_pages()
 
     shutil.copyfile(ROOT / "site.css", DIST / "site.css")
     print("  site.css  ->  dist/site.css")

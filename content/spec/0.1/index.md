@@ -1,3 +1,9 @@
+<!--
+  GENERATED FILE — do not edit directly.
+  Source: blygger-spec/docs/protocol-v0.1.md
+  Regenerate: blygger-org/sync_spec.py (see docs/spec-publishing-plan.md)
+-->
+
 # The Blygger Protocol — Version 0.1
 
 **Status: DRAFT.** This document specifies protocol version 0.1 at conformance
@@ -6,11 +12,14 @@ ships, and frozen at protocol 1.0. Until then, breaking changes are permitted bu
 must bump the manifest version and be recorded in the
 [project devlog](https://github.com/blygger/blygger-spec/blob/main/DEVLOG.md).
 
+<!-- spec-links:begin -->
 - **This version:** `https://blygger.org/spec/0.1/`
+- **Latest version:** `https://blygger.org/spec/0.1/`
 - **XML namespace:** `https://blygger.org/ns/0.1`
 - **Source of truth:** [`blygger/blygger-spec`](https://github.com/blygger/blygger-spec) — `docs/protocol-v0.1.md`
 - **Reference implementation:** same repository, `worker/`
 - **License:** CC-BY-4.0
+<!-- spec-links:end -->
 
 The key words MUST, MUST NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY are to be
 interpreted as described in RFC 2119.
@@ -530,3 +539,7 @@ Reserved or planned, so 0.1 implementations leave room:
 What will *never* appear: reply primitives (this is a network of soapboxes, not
 a conversation medium), follower graphs or any protocol "follow" object,
 addressable authors, AI constructs on the wire, and content-addressed identity.
+
+---
+
+*Published from [blygger/blygger-spec@da7bdf0](https://github.com/blygger/blygger-spec/commit/da7bdf0).*
