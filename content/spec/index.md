@@ -12,6 +12,10 @@ Source: [blygger/blygger-spec](https://github.com/blygger/blygger-spec)
 |---|---|---|
 | 0.1 | DRAFT | [/spec/0.1/](/spec/0.1/) |
 
+## 0.1 snapshots
+
+- [2026-08-10](/spec/0.1/2026-08-10/)
+
 ## Reference implementation
 
 No reference-implementation release has been tagged yet (will link to [blygger/blygger-spec/releases](https://github.com/blygger/blygger-spec/releases) once `ref-v0.1.0` is cut).

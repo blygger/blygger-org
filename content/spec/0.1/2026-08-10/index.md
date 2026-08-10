@@ -13,9 +13,8 @@ must bump the manifest version and be recorded in the
 [project devlog](https://github.com/blygger/blygger-spec/blob/main/DEVLOG.md).
 
 <!-- spec-links:begin -->
-- **This version:** `https://blygger.org/spec/0.1/`
+- **This version:** `https://blygger.org/spec/0.1/2026-08-10/`
 - **Latest version:** `https://blygger.org/spec/0.1/`
-- **Previous version:** `https://blygger.org/spec/0.1/2026-08-10/`
 - **XML namespace:** `https://blygger.org/ns/0.1`
 - **Source of truth:** [`blygger/blygger-spec`](https://github.com/blygger/blygger-spec) — `docs/protocol-v0.1.md`
 - **Reference implementation:** same repository, `worker/`
