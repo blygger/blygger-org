@@ -62,10 +62,10 @@ then run `./deploy.sh --no-build` (or plain `./deploy.sh`) to publish it.
 ## Workflow Notes
 
 - Git repo: `blygger/blygger-org` (public), branch `main`.
-- Deployed to: Cloudflare Pages, live at
-  [blygger-org.pages.dev](https://blygger-org.pages.dev). Custom domain
-  `blygger.org` registered against the Pages project but pending a manual DNS
-  step — see `status.md`.
+- Deployed to: Cloudflare Pages, live at both
+  [blygger.org](https://blygger.org) and
+  [blygger-org.pages.dev](https://blygger-org.pages.dev) — the custom domain's
+  DNS record was added by hand and activated 2026-08-04 (see `status.md`).
 
 ## Status
 
