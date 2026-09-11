@@ -24,6 +24,8 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SPEC_REPO = ROOT / ".." / "blygger-spec"
 CONTENT_SPEC = ROOT / "content" / "spec"
+NOTES_DIR = SPEC_REPO / "docs" / "notes"
+CONTENT_NOTES = ROOT / "content" / "notes"
 
 # Flip a version's status here when it's declared stable/frozen — the only
 # edit needed at that point. Keys are the versions this script knows how to
@@ -43,6 +45,11 @@ GITHUB_URL = f"https://github.com/{GITHUB_REPO}"
 MARKER_BEGIN = "<!-- spec-links:begin -->"
 MARKER_END = "<!-- spec-links:end -->"
 BULLET_RE = re.compile(r"^- \*\*([^:]+):\*\*\s?(.*)$")
+
+NOTE_FILENAME_RE = re.compile(r"^tn-(\d+)-(.+)\.md$")
+NOTE_TITLE_RE = re.compile(r"^#\s*TN-\d+\s*—\s*(.+)$")
+DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
+SUPERSEDED_RE = re.compile(r"superseded by (TN-\d+)", re.IGNORECASE)
 
 
 def run(*args: str, cwd: Path) -> str:
@@ -237,6 +244,75 @@ def build_spec_index() -> None:
     print(f"  wrote {out_path.relative_to(ROOT)}")
 
 
+def discover_notes() -> list[dict]:
+    """Parse every docs/notes/tn-*.md into a header record — the sync script
+    reads title/date/status off the note's own first lines (README.md's
+    documented convention), no separate front matter needed."""
+    if not NOTES_DIR.is_dir():
+        return []
+    notes = []
+    for path in sorted(NOTES_DIR.glob("tn-*.md")):
+        m = NOTE_FILENAME_RE.match(path.name)
+        if not m:
+            continue
+        number, slug = int(m.group(1)), m.group(2)
+        text = path.read_text("utf-8")
+        lines = text.splitlines()
+        title_m = NOTE_TITLE_RE.match(lines[0]) if lines else None
+        title = title_m.group(1).strip() if title_m else slug.replace("-", " ")
+        head = text[:1000]
+        date_m = DATE_RE.search(head)
+        date = date_m.group(0) if date_m else ""
+        sup_m = SUPERSEDED_RE.search(head)
+        status = f"superseded by {sup_m.group(1)}" if sup_m else "current"
+        notes.append({
+            "number": number, "slug": slug, "path": path,
+            "title": title, "date": date, "status": status, "text": text,
+        })
+    return notes
+
+
+def render_note_page(note: dict, sha: str) -> str:
+    return banner(f"blygger-spec/docs/notes/{note['path'].name}") + note["text"].rstrip("\n") + footer(sha)
+
+
+def build_notes_index(notes: list[dict]) -> None:
+    lines = [
+        banner("derived from content/notes/").rstrip("\n"),
+        "",
+        "# Blygger Technical Notes",
+        "",
+        "Numbered, non-normative documents recording design reasoning alongside "
+        "the spec — especially rejected designs and the rationale that closed "
+        "them. Notes constrain nothing; the spec is the only normative text.",
+        "",
+        "| Note | Date | Status |",
+        "|---|---|---|",
+    ]
+    for note in sorted(notes, key=lambda n: n["number"]):
+        url = f"/notes/tn-{note['number']}/"
+        lines.append(f"| [TN-{note['number']} — {note['title']}]({url}) | {note['date']} | {note['status']} |")
+
+    CONTENT_NOTES.mkdir(parents=True, exist_ok=True)
+    out_path = CONTENT_NOTES / "index.md"
+    out_path.write_text("\n".join(lines) + "\n", "utf-8")
+    print(f"  wrote {out_path.relative_to(ROOT)}")
+
+
+def sync_notes() -> None:
+    notes = discover_notes()
+    if not notes:
+        return
+    sha = spec_repo_sha()
+    for note in notes:
+        out_dir = CONTENT_NOTES / f"tn-{note['number']}"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out_path = out_dir / "index.md"
+        out_path.write_text(render_note_page(note, sha), "utf-8")
+        print(f"  wrote {out_path.relative_to(ROOT)}")
+    build_notes_index(notes)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", nargs="?", default="latest", choices=["latest", "snapshot"])
@@ -252,6 +328,7 @@ def main() -> None:
         sync_latest(args.version)
 
     build_spec_index()
+    sync_notes()
 
 
 if __name__ == "__main__":

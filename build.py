@@ -115,6 +115,35 @@ def build_spec_pages():
                    prompt=prompt, rail_label=rail_label, numbered_rail=numbered_rail)
 
 
+def build_notes_pages():
+    """Walk content/notes/ for every sync_spec.py-generated index.md — the
+    index page itself and each tn-{N}/ page. Depth-driven like build_spec_pages,
+    but shallower (notes/, notes/tn-{N}/ — no dated-snapshot tier)."""
+    notes_root = ROOT / "content" / "notes"
+    if not notes_root.is_dir():
+        return
+    for md_path in sorted(notes_root.rglob("index.md")):
+        parts = md_path.relative_to(notes_root).parent.parts
+        if parts == (".",) or parts == ():
+            parts = ()
+        url_path = "notes/" + "/".join(parts)
+        out_path = DIST / "notes" / Path(*parts) / "index.html" if parts else DIST / "notes" / "index.html"
+        prompt = f"~/blygger.org/{url_path}" + ("" if url_path.endswith("/") else "/")
+
+        if len(parts) == 0:
+            title = first_heading(md_path, "Blygger Technical Notes")
+            description = "Index of Blygger protocol technical notes — non-normative design-reasoning records."
+            rail_label, numbered_rail = "Notes", False
+        else:
+            tn = parts[0]
+            title = first_heading(md_path, f"Blygger Technical Note — {tn}")
+            description = f"Blygger technical note {tn}: non-normative design-reasoning record."
+            rail_label, numbered_rail = "Sections", True
+
+        build_page(md_path, out_path, title=title, description=description,
+                   prompt=prompt, rail_label=rail_label, numbered_rail=numbered_rail)
+
+
 if __name__ == "__main__":
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -148,6 +177,7 @@ if __name__ == "__main__":
         numbered_rail=False,
     )
     build_spec_pages()
+    build_notes_pages()
 
     shutil.copyfile(ROOT / "site.css", DIST / "site.css")
     print("  site.css  ->  dist/site.css")

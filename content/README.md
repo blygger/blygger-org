@@ -12,18 +12,25 @@ Source content for the blygger.org site, written session 7 (2026-08-03).
 | `spec/index.md` | `blygger.org/spec/` | Generated index of all spec versions + dated snapshots |
 | `spec/{version}/index.md` | `blygger.org/spec/{version}/` | Generated: latest revision of that protocol version |
 | `spec/{version}/{date}/index.md` | `blygger.org/spec/{version}/{date}/` | Generated: immutable dated snapshot |
+| `notes/index.md` | `blygger.org/notes/` | Generated index of all technical notes |
+| `notes/tn-{N}/index.md` | `blygger.org/notes/tn-{N}/` | Generated: technical note N, latest text from `main` (no dated snapshots — see `spec-publishing-plan.md` §5) |
 
 ## Source-of-truth rule
 
-**Everything under `spec/` is generated — `sync_spec.py` is the only writer.
-Hand-editing is prohibited** (session 11, 2026-08-09; retires the earlier
-hand-copy convention). The canonical spec lives in
-`../blygger-spec/docs/protocol-v0.1.md` — all edits happen there; run
-`/opt/homebrew/bin/python3 sync_spec.py` (latest mode) or `sync_spec.py
-snapshot` to republish. Every generated file carries a `GENERATED FILE — do
-not edit directly` banner comment and a footer provenance stamp naming the
-source commit. See `blygger-spec/docs/spec-publishing-plan.md` for the full
-design and `../CLAUDE.md` for the day-to-day how-to.
+**Everything under `spec/` and `notes/` is generated — `sync_spec.py` is the
+only writer. Hand-editing is prohibited** (session 11, 2026-08-09 for
+`spec/`; retires the earlier hand-copy convention; extended to `notes/`
+session 16). The canonical spec lives in
+`../blygger-spec/docs/protocol-v0.1.md`, canonical notes in
+`../blygger-spec/docs/notes/tn-*.md` — all edits happen there; run
+`/opt/homebrew/bin/python3 sync_spec.py` (latest mode, default) or
+`sync_spec.py snapshot` to republish. Every run of `sync_spec.py` refreshes
+both `spec/` and `notes/` — there is no separate notes CLI mode; notes have
+no dated-snapshot tier (design rationale: `spec-publishing-plan.md` §5).
+Every generated file carries a `GENERATED FILE — do not edit directly`
+banner comment and a footer provenance stamp naming the source commit. See
+`blygger-spec/docs/spec-publishing-plan.md` for the full design and
+`../CLAUDE.md` for the day-to-day how-to.
 
 `overview.md` is canonical *here* — it is site copy, not protocol doctrine; the
 spec and `blygger-spec` docs win on any conflict. The same applies to
