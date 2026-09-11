@@ -8,6 +8,7 @@ Source content for the blygger.org site, written session 7 (2026-08-03).
 | File | URL | Role |
 |---|---|---|
 | `overview.md` | `blygger.org/` | Human-readable high-level protocol overview — the landing-page content |
+| `ns/0.1/index.md` | `blygger.org/ns/0.1` | Descriptive note on the `blyg:` XML namespace, for implementors who dereference the namespace URI found in a feed. Written session 15 (2026-09-11); its "Versioning of this namespace" section is the public face of locked decision #22 (namespace URI is permanent, never tracks the protocol version). |
 | `spec/index.md` | `blygger.org/spec/` | Generated index of all spec versions + dated snapshots |
 | `spec/{version}/index.md` | `blygger.org/spec/{version}/` | Generated: latest revision of that protocol version |
 | `spec/{version}/{date}/index.md` | `blygger.org/spec/{version}/{date}/` | Generated: immutable dated snapshot |
@@ -25,4 +26,9 @@ source commit. See `blygger-spec/docs/spec-publishing-plan.md` for the full
 design and `../CLAUDE.md` for the day-to-day how-to.
 
 `overview.md` is canonical *here* — it is site copy, not protocol doctrine; the
-spec and `blygger-spec` docs win on any conflict.
+spec and `blygger-spec` docs win on any conflict. The same applies to
+`ns/0.1/index.md`: it restates wire constructs the spec defines normatively
+(feed elements, the GUID scheme) and says so on its face, so it must be
+re-checked against `protocol-v0.1.md` §7 whenever those change. It is
+hand-written, not generated — `sync_spec.py` does not touch anything outside
+`spec/`.

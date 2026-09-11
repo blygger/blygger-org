@@ -131,6 +131,22 @@ if __name__ == "__main__":
         rail_label="On this page",
         numbered_rail=False,
     )
+    # NOTE: written as ns/0.1.html (not ns/0.1/index.html) deliberately — the
+    # namespace URI as it appears in feed xmlns attributes is exactly
+    # "https://blygger.org/ns/0.1", no trailing slash, and Pages' clean-URL
+    # mapping serves /ns/0.1 from ns/0.1.html with a direct 200. The
+    # directory form would 308-redirect the canonical slashless spelling.
+    build_page(
+        ROOT / "content" / "ns" / "0.1" / "index.md",
+        DIST / "ns" / "0.1.html",
+        title="The blyg: XML Namespace — https://blygger.org/ns/0.1",
+        description="Descriptive note on the Blygger XML namespace: what the "
+                     "blyg: elements in a Blygger RSS feed mean, and where the "
+                     "normative specification lives.",
+        prompt="~/blygger.org/ns/0.1",
+        rail_label="On this page",
+        numbered_rail=False,
+    )
     build_spec_pages()
 
     shutil.copyfile(ROOT / "site.css", DIST / "site.css")
