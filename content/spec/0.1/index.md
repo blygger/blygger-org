@@ -6,6 +6,8 @@
 
 # The Blygger Protocol — Version 0.1
 
+> **Superseded by [version 0.2](https://blygger.org/spec/0.2/).** This document is no longer the living specification and receives no further revisions — the status line below is its final state. It stays permanently citable, and its dated snapshots are unchanged. Implementors should read [version 0.2](https://blygger.org/spec/0.2/), which is a standalone-complete superset of this text.
+
 **Status: DRAFT.** This document specifies protocol version 0.1 at conformance
 Level 1 (the publish side). **Every spec version numbered below 1.0 is a
 working draft**: the reference-implementation development phase is a testing
@@ -587,4 +589,4 @@ addressable authors, AI constructs on the wire, and content-addressed identity.
 
 ---
 
-*Published from [blygger/blygger-spec@8adfafc](https://github.com/blygger/blygger-spec/commit/8adfafc).*
+*Published from [blygger/blygger-spec@d3afe36](https://github.com/blygger/blygger-spec/commit/d3afe36).*

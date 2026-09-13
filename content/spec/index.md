@@ -8,9 +8,12 @@
 
 Source: [blygger/blygger-spec](https://github.com/blygger/blygger-spec)
 
+Each protocol version has its own standalone-complete document. The highest-numbered version is the living one, where revisions land; earlier versions are superseded — frozen, still citable, with their dated snapshots intact.
+
 | Version | Status | Latest revision |
 |---|---|---|
-| 0.1 | DRAFT | [/spec/0.1/](/spec/0.1/) |
+| 0.2 | DRAFT | [/spec/0.2/](/spec/0.2/) |
+| 0.1 | SUPERSEDED — see [0.2](/spec/0.2/) | [/spec/0.1/](/spec/0.1/) |
 
 ## 0.1 snapshots
 

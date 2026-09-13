@@ -3,12 +3,13 @@
 sync_spec.py — the only writer of content/spec/. Publishes the canonical spec
 from the sibling blygger-spec checkout into this site's content tree.
 
-Source of truth: ../blygger-spec/docs/protocol-v0.1.md. Never hand-edit files
-under content/spec/ — edit canonical there and rerun this script.
+Source of truth: ../blygger-spec/docs/protocol-v{X.Y}.md, one document per
+protocol version (decision #23). Never hand-edit files under content/spec/ —
+edit canonical there and rerun this script.
 
 Usage:
-    /opt/homebrew/bin/python3 sync_spec.py            # latest mode (default)
-    /opt/homebrew/bin/python3 sync_spec.py snapshot    # cut a dated snapshot
+    /opt/homebrew/bin/python3 sync_spec.py            # latest mode: every version (default)
+    /opt/homebrew/bin/python3 sync_spec.py snapshot    # cut a dated snapshot of the living version
     /opt/homebrew/bin/python3 sync_spec.py snapshot --version 0.1
 
 See docs/spec-publishing-plan.md (blygger-spec repo) for the full design.
@@ -27,15 +28,21 @@ CONTENT_SPEC = ROOT / "content" / "spec"
 NOTES_DIR = SPEC_REPO / "docs" / "notes"
 CONTENT_NOTES = ROOT / "content" / "notes"
 
-# Flip a version's status here when it's declared stable/frozen — the only
-# edit needed at that point. Keys are the versions this script knows how to
-# publish; add an entry (and the matching CANONICAL_FILES mapping) when 0.2
-# exists.
+# Per-version status. Two forms (decision #23, spec-publishing-plan.md §6):
+#   "DRAFT"                  — a version still receiving revisions.
+#   ("SUPERSEDED", "0.2")    — frozen; a higher-numbered document took over.
+# Publishing version N+1 means: add its row here as DRAFT, add its canonical
+# file below, and flip version N to ("SUPERSEDED", "N+1") in the same change.
+# The successor drives both the index row and the forward-linking banner on
+# the superseded version's latest page. Dated snapshots are never bannered —
+# immutability outranks supersession.
 SPEC_VERSIONS = {
-    "0.1": "DRAFT",
+    "0.1": ("SUPERSEDED", "0.2"),
+    "0.2": "DRAFT",
 }
 CANONICAL_FILES = {
     "0.1": SPEC_REPO / "docs" / "protocol-v0.1.md",
+    "0.2": SPEC_REPO / "docs" / "protocol-v0.2.md",
 }
 
 SITE_ORIGIN = "https://blygger.org"
@@ -50,6 +57,25 @@ NOTE_FILENAME_RE = re.compile(r"^tn-(\d+)-(.+)\.md$")
 NOTE_TITLE_RE = re.compile(r"^#\s*TN-\d+\s*—\s*(.+)$")
 DATE_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
 SUPERSEDED_RE = re.compile(r"superseded by (TN-\d+)", re.IGNORECASE)
+
+
+def version_key(version: str) -> tuple[int, ...]:
+    return tuple(int(part) for part in version.split("."))
+
+
+def sorted_versions(newest_first: bool = True) -> list[str]:
+    return sorted(SPEC_VERSIONS, key=version_key, reverse=newest_first)
+
+
+def status_of(version: str) -> tuple[str, str | None]:
+    """(status, superseding version or None) — normalizes the two SPEC_VERSIONS forms."""
+    entry = SPEC_VERSIONS[version]
+    return entry if isinstance(entry, tuple) else (entry, None)
+
+
+def living_version() -> str:
+    """The highest-numbered version — the living document by definition (decision #23)."""
+    return max(SPEC_VERSIONS, key=version_key)
 
 
 def run(*args: str, cwd: Path) -> str:
@@ -87,7 +113,7 @@ def rewrite_links_block(canonical_text: str, this_version_url: str, latest_url: 
     (XML namespace, Source of truth, Reference implementation, License, ...) through verbatim."""
     m = re.search(rf"{re.escape(MARKER_BEGIN)}\n(.*?)\n{re.escape(MARKER_END)}", canonical_text, re.DOTALL)
     if not m:
-        sys.exit(f"ERROR: {MARKER_BEGIN} / {MARKER_END} markers not found in {CANONICAL_FILES['0.1']}")
+        sys.exit(f"ERROR: {MARKER_BEGIN} / {MARKER_END} markers not found in the canonical spec text")
     block_lines = m.group(1).splitlines()
 
     managed = {"This version", "Latest version", "Previous version"}
@@ -125,7 +151,36 @@ def footer(sha: str) -> str:
     return f"\n\n---\n\n*Published from [{GITHUB_REPO}@{sha}]({GITHUB_URL}/commit/{sha}).*\n"
 
 
-def render_spec_page(version: str, this_version_url: str, latest_url: str, previous_url: str | None) -> str:
+def superseded_notice(successor: str) -> str:
+    """Forward-linking banner for a superseded version's latest page (decision #23).
+
+    Latest pages only — dated snapshots are immutable and never carry it."""
+    url = f"{SITE_ORIGIN}/spec/{successor}/"
+    return (
+        f"> **Superseded by [version {successor}]({url}).** This document is no longer the "
+        f"living specification and receives no further revisions — the status line below is "
+        f"its final state. It stays permanently citable, and its dated snapshots are "
+        f"unchanged. Implementors should read [version {successor}]({url}), which is a "
+        f"standalone-complete superset of this text."
+    )
+
+
+def insert_after_title(text: str, block: str) -> str:
+    """Place a block directly under the document's H1, above its status header."""
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if line.startswith("# "):
+            return "\n".join(lines[: i + 1] + ["", block] + lines[i + 1 :])
+    return block + "\n\n" + text
+
+
+def render_spec_page(
+    version: str,
+    this_version_url: str,
+    latest_url: str,
+    previous_url: str | None,
+    superseded_by: str | None = None,
+) -> str:
     canonical_path = CANONICAL_FILES[version]
     if not canonical_path.is_file():
         sys.exit(f"ERROR: canonical spec not found at {canonical_path} (is blygger-spec checked out as a sibling of this repo?)")
@@ -135,8 +190,10 @@ def render_spec_page(version: str, this_version_url: str, latest_url: str, previ
 
     text = canonical_path.read_text("utf-8")
     text = rewrite_links_block(text, this_version_url, latest_url, previous_url)
+    if superseded_by:
+        text = insert_after_title(text, superseded_notice(superseded_by))
     sha = spec_repo_sha()
-    return banner("blygger-spec/docs/protocol-v0.1.md") + text.rstrip("\n") + footer(sha)
+    return banner(f"blygger-spec/docs/{canonical_path.name}") + text.rstrip("\n") + footer(sha)
 
 
 def sync_latest(version: str) -> None:
@@ -144,14 +201,25 @@ def sync_latest(version: str) -> None:
     snapshots = existing_snapshots(version)
     previous_url = f"{SITE_ORIGIN}/spec/{version}/{snapshots[-1]}/" if snapshots else None
 
+    _, superseded_by = status_of(version)
+
     out_dir = CONTENT_SPEC / version
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "index.md"
-    out_path.write_text(render_spec_page(version, latest_url, latest_url, previous_url), "utf-8")
-    print(f"  wrote {out_path.relative_to(ROOT)}")
+    out_path.write_text(
+        render_spec_page(version, latest_url, latest_url, previous_url, superseded_by), "utf-8"
+    )
+    print(f"  wrote {out_path.relative_to(ROOT)}" + (f" (superseded by {superseded_by})" if superseded_by else ""))
 
 
 def cut_snapshot(version: str) -> None:
+    _, superseded_by = status_of(version)
+    if superseded_by:
+        sys.exit(
+            f"ERROR: {version} is superseded by {superseded_by} and receives no further "
+            f"revisions (decision #23) — there is nothing new to snapshot. Its existing "
+            f"snapshots stay citable; snapshot {superseded_by} instead."
+        )
     if spec_repo_is_dirty():
         sys.exit(f"ERROR: {SPEC_REPO} has uncommitted changes — a snapshot must correspond to a pushed commit. Commit/push first.")
     if not spec_repo_head_is_pushed():
@@ -200,13 +268,20 @@ def build_spec_index() -> None:
         "",
         f"Source: [{GITHUB_REPO}]({GITHUB_URL})",
         "",
+        "Each protocol version has its own standalone-complete document. The "
+        "highest-numbered version is the living one, where revisions land; earlier "
+        "versions are superseded — frozen, still citable, with their dated snapshots "
+        "intact.",
+        "",
         "| Version | Status | Latest revision |",
         "|---|---|---|",
     ]
-    for version, status in SPEC_VERSIONS.items():
-        lines.append(f"| {version} | {status} | [/spec/{version}/](/spec/{version}/) |")
+    for version in sorted_versions():
+        status, successor = status_of(version)
+        cell = f"{status} — see [{successor}](/spec/{successor}/)" if successor else status
+        lines.append(f"| {version} | {cell} | [/spec/{version}/](/spec/{version}/) |")
 
-    for version in SPEC_VERSIONS:
+    for version in sorted_versions():
         snapshots = existing_snapshots(version)  # ascending
         if not snapshots:
             continue
@@ -316,7 +391,12 @@ def sync_notes() -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", nargs="?", default="latest", choices=["latest", "snapshot"])
-    parser.add_argument("--version", default="0.1", choices=list(SPEC_VERSIONS))
+    parser.add_argument(
+        "--version",
+        default=living_version(),
+        choices=list(SPEC_VERSIONS),
+        help="snapshot mode only; defaults to the living version. Latest mode always syncs every version.",
+    )
     args = parser.parse_args()
 
     if not SPEC_REPO.is_dir():
@@ -325,7 +405,11 @@ def main() -> None:
     if args.mode == "snapshot":
         cut_snapshot(args.version)
     else:
-        sync_latest(args.version)
+        # Every version, not just the living one: a supersession flips an older
+        # version's page (it gains the forward-linking banner), so regenerating
+        # only the newest would leave that page stale.
+        for version in sorted_versions():
+            sync_latest(version)
 
     build_spec_index()
     sync_notes()

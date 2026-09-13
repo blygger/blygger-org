@@ -24,6 +24,44 @@ DIST = ROOT / "dist"
 TEMPLATE = (ROOT / "templates" / "page.html").read_text("utf-8")
 EXTENSIONS = ["extra", "toc", "sane_lists"]
 
+FENCE_RE = re.compile(r"^(\s*)(```+)(.*)$")
+
+
+def dedent_fenced_blocks(text: str) -> str:
+    """Shift indented ``` fences (and their contents) out to column 0.
+
+    Python-Markdown's fenced_code only recognizes a fence at column 0, so an
+    example indented under a list item is not treated as code: its first line
+    becomes inline code and the rest is parsed as markdown, which passes raw
+    HTML/XML through into the page. That silently emitted a live
+    `<blockquote class="blyg-transclusion">` on the published 0.1 spec page,
+    and a `<head><title>` inside the body on 0.2's OPML example.
+
+    Fixing this in the renderer rather than in the prose is deliberate: spec
+    documents freeze (a superseded version receives no revisions, and dated
+    snapshots are immutable), so their pages can only be corrected here.
+    Relative indentation inside a block is preserved; a fence already at
+    column 0 passes through untouched.
+    """
+    out: list[str] = []
+    fence_indent: str | None = None
+    for line in text.split("\n"):
+        m = FENCE_RE.match(line)
+        if fence_indent is None:
+            if m:
+                fence_indent = m.group(1)
+                out.append(m.group(2) + m.group(3))
+            else:
+                out.append(line)
+        elif m and m.group(1) == fence_indent:
+            out.append(m.group(2) + m.group(3))
+            fence_indent = None
+        elif fence_indent and line.startswith(fence_indent):
+            out.append(line[len(fence_indent):])
+        else:
+            out.append(line)
+    return "\n".join(out)
+
 
 def flatten_h2(tokens):
     out = []
@@ -36,7 +74,7 @@ def flatten_h2(tokens):
 
 def render_markdown(md_path: Path):
     md = markdown.Markdown(extensions=EXTENSIONS, extension_configs={"toc": {"permalink": False}})
-    content_html = md.convert(md_path.read_text("utf-8"))
+    content_html = md.convert(dedent_fenced_blocks(md_path.read_text("utf-8")))
     return content_html, flatten_h2(md.toc_tokens)
 
 
