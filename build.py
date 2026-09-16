@@ -19,6 +19,8 @@ try:
 except ImportError:
     sys.exit("markdown not installed.\nRun: /opt/homebrew/bin/python3 -m pip install markdown --break-system-packages")
 
+from build_talk import build_talks
+
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
 TEMPLATE = (ROOT / "templates" / "page.html").read_text("utf-8")
@@ -216,6 +218,10 @@ if __name__ == "__main__":
     )
     build_spec_pages()
     build_notes_pages()
+    # Talks (session 21) are a third genre alongside normative text and technical
+    # notes: slides + full narration, built from talks/<slug>/ rather than from
+    # content/, because the source is structured (slides.yaml) not prose.
+    build_talks(DIST, TEMPLATE, lambda md: markdown.markdown(md, extensions=EXTENSIONS))
 
     shutil.copyfile(ROOT / "site.css", DIST / "site.css")
     print("  site.css  ->  dist/site.css")

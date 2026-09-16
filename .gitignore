@@ -1,6 +1,7 @@
+__pycache__/
 .DS_Store
 .env
-node_modules/
 .wrangler/
-dist/
 /deploy.sh
+dist/
+node_modules/

@@ -14,6 +14,33 @@ job settled into being the stable citable home of the normative text. The releva
 plan doc is [`blygger-spec/docs/spec-publishing-plan.md`](../blygger-spec/docs/spec-publishing-plan.md)
 (executed sessions 11–12, 20), not `deploy-stub-sites-plan.md`.
 
+## Talks
+
+A third published genre alongside normative spec text and technical notes, added
+session 21 (2026-09-16). Sources live in `talks/<slug>/`:
+
+| File | Role |
+|---|---|
+| `slides.yaml` | What is **projected** — `meta` plus per-slide `title`/`section`/`bullets`/`image`/`notes`. |
+| `track.md` | What is **said** — `## NN — Title` sections. Cues for an improvised talk, not a script. |
+| `brief.md` | Operator input. Deliberately **not** published. |
+| `images/` | Copied to `dist/talks/<slug>/images/`. |
+
+`build_talk.py` renders these into a deck (16:9 stage, prev/next, fullscreen, deep
+links to `#slide-NN`) plus a readable transcript below it. Ported from
+`protocol-institute/humboldt/humboldt-site/build.py::_build_talk`, minus the audio
+machinery — humboldt gates its whole player on audio existing, which had to be
+inverted here since an operator drives the deck.
+
+**Everything inside the stage is sized in `cqh`** (the stage is a `container-type:
+size` container), so the embedded preview and the fullscreen presentation are one
+composition at two scales. Anything added to the stage should be in `cqh` too — sizing
+in `rem`/`vw` is what left a 2-pixel screenshot on one slide while fullscreen looked
+fine.
+
+The build fails on duplicate slide ids or cue sections with no slide, and warns on
+missing images and unwritten placeholders.
+
 ## Stack
 
 Static site: Python (`build.py` + `markdown` package) renders `content/*.md`
