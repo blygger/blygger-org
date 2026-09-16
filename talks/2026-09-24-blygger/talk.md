@@ -244,23 +244,34 @@ its least comfortable.
 
 ## Writing it
 
-![The blygger studio composer with a TK scope open.](images/studio-composer.png)
+![The blygger studio editing the same thread: markdown source on the left showing two TK scopes with their instructions and source references, a live preview on the right with the generated blocks tinted, and a TK scopes panel listing both instructions with regenerate buttons.](images/studio-composer.png)
 
-- Studio (private, unconstrained) and page (public, protocol-governed) are different things
-- The protocol governs only the page — everything here is this client's choice
-- Scope highlighting, a `![[` palette, live preview, Generate/Regenerate
+- The same thread you just saw published — the other side of it
+- **The preview tints the generated blocks. The published page doesn't.**
+- The protocol governs only the page. Everything else here is my client's choice.
 
 **Cues**
 
-- That's what a reader gets; this is what I get.
-- Point isn't the interface — it's the **split**. Private studio, public page.
-- Everything on this screen is my client's choice and no part of the standard.
-- So a completely different client isn't non-compliant, it's just a different studio.
+- Same thread as the last two slides, seen from the author's side.
+- Walk the shape before the detail: source left, preview right, scope panel below.
+  Nobody can read the text from the room and they don't need to.
+- Point at the scope panel: instructions survive generating. Nothing is thrown away,
+  and regenerate is one click.
+- Left pane, if anyone asks: `[TK] Summarize this ![[id]] [=] …output… [/TK]`.
+- **The tinting is the punchline.** The studio highlights what was generated because
+  I'm the author and I need to see it. The published page doesn't, because a reader
+  can't verify the claim. Same bytes, two surfaces, different obligations.
+- Everything on this screen is my client's choice and no part of the standard. A
+  completely different studio isn't non-compliant — it's just a different studio.
 
 **Notes**
 
-NEEDS A SCREENSHOT — `images/studio-composer.png` does not exist yet; the slide renders
-without an image until it does. Grab the fragment or thread editor with a TK scope open.
+The strongest argument for the studio/page split, because it's visible rather than
+asserted: put this slide next to slide 09 and the same paragraph is tinted in one and
+plain in the other. That contrast was not planned — it fell out of decision #25 and the
+studio's own preview highlighting, and it does the explaining better than the prose
+did. The original bullets here described the interface instead, which was the weaker
+slide.
 
 # How it works
 

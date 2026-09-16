@@ -71,11 +71,12 @@ unhedged ("eventual consistency", "AP under partition", "enshrined"). The UX sec
 
 ## Open / needs Venkat
 
-- **Slide 11 needs a composition-UI screenshot.** The studio is behind a login and the
-  agent cannot enter a password, so `images/studio-composer.png` is missing and the
-  slide currently renders without an image. Grab one of the fragment or thread editor
-  with a TK scope open and drop it in at that filename.
 - **Event date, slot length, and whether Q&A is separate** — see above.
+- **Slide 11's screenshot is deliberately unreadable at presentation size.** It is a
+  wide two-pane capture in a short slot, so the room sees the *shape* — source left,
+  preview right, generated blocks tinted blue — and not the text. The cues say so. If
+  the detail turns out to matter, the fix is a second slide cropped to one pane, not a
+  bigger version of this one.
 - **Whether this belongs on blygger.org at all.** Session 20 settled the site's genres
   as normative text + technical notes; a talk is a third. Built under `/talks/` on the
   assumption that Venkat asking for it settles it, but it is one directory to delete.

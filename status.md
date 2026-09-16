@@ -6,9 +6,9 @@
   `/talks/<slug>/`. First one is `2026-09-24-blygger` for the Protocol Symposium.
   Source is a single editable `talk.md` (frontmatter + `## slide` blocks); the
   original `slides.yaml`/`track.md` pair was collapsed into it after one round.
-  **Still needs from Venkat:** a composition-UI screenshot at
-  `images/studio-composer.png`, and the real event date — the date is the slug, so
-  changing it renames the directory and the URL.
+  All four screenshots are in and are of real live content. **Still needs from
+  Venkat:** the real event date — it is the slug, so changing it renames the
+  directory and the URL.
 - **Nav corrected** (session 21): the header `spec` link pointed at `/spec/0.1/`,
   which session 20 flipped to SUPERSEDED — every visitor was landing on the frozen
   document. Now `/spec/0.2/`.
