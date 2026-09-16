@@ -5,14 +5,14 @@ an AI-native decentralized public writing medium (fragments + threads + TK-trans
 over static files + RSS).
 
 `blygger.org` is the protocol's namespace-URI domain and its public-facing spec/docs
-home. It will also run a live `/blyg` deployment — one of the two initial
-cross-client test instances (the other lives at [blygger.com](https://blygger.com),
-[`blygger-com`](https://github.com/blygger/blygger-com)).
+home: the normative spec at `/spec/`, technical notes at `/notes/`, and the namespace
+page at `/ns/0.1`.
 
-**Status: landing page live** at [blygger.org](https://blygger.org). The `/blyg`
-reference-client deployment is not yet done. See
-[`blygger-spec/docs/deploy-stub-sites-plan.md`](https://github.com/blygger/blygger-spec/blob/main/docs/deploy-stub-sites-plan.md)
-for that plan.
+**Status: live** at [blygger.org](https://blygger.org), publishing the spec via
+`sync_spec.py`. It does **not** run a blyg. The two live test nodes went elsewhere in
+session 11 — `venkateshrao.com/blyg/` and `blyg.protocol-institute.org` — because
+`blygger.org`'s job is to be the stable, citable home of the normative text, which is a
+different job from being a test deployment.
 
 ## Build & deploy
 

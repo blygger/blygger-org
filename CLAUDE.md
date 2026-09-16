@@ -4,15 +4,15 @@
 > **Protocol spec + reference implementation:** [`../blygger-spec/`](../blygger-spec/) — read `blygger-spec/CLAUDE.md` and `blygger-spec/docs/` before touching anything that isn't purely presentational; this repo is a *client* of the protocol, not where protocol decisions get made.
 
 The public face of the Blygger protocol at **blygger.org**: commons/spec-adjacent —
-the namespace-URI domain, protocol documentation for humans, and a live `/blyg`
-deployment that doubles as one of the two initial cross-client test instances (the
-other is [`../blygger-com/`](../blygger-com/)).
+the namespace-URI domain and the published home of the normative spec (`/spec/`),
+technical notes (`/notes/`) and the namespace page (`/ns/0.1`).
 
-Scaffolded session 6 (2026-07-24), part of the brand-rename + scaffolding session
-that also produced `blygger-spec` and `blygger-com`. **Deployment plan (stack,
-content, /blyg wiring) lives in `blygger-spec/docs/deploy-stub-sites-plan.md`** —
-read that before building anything here; nothing beyond this stub scaffold has
-been built yet.
+**It does not run a blyg, and is not a test node.** The session-6 scaffold said it
+would be one of the two initial cross-client test instances; session 11 put those on
+`venkateshrao.com/blyg/` and `blyg.protocol-institute.org` instead, and this site's
+job settled into being the stable citable home of the normative text. The relevant
+plan doc is [`blygger-spec/docs/spec-publishing-plan.md`](../blygger-spec/docs/spec-publishing-plan.md)
+(executed sessions 11–12, 20), not `deploy-stub-sites-plan.md`.
 
 ## Stack
 
