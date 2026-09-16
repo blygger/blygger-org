@@ -173,9 +173,13 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
     speaker = meta.get("speaker", "")
     date_s = str(meta.get("date", ""))
     try:
-        date_h = datetime.strptime(date_s, "%Y-%m-%d").strftime("%-d %B %Y")
+        # Weekday included: a conference runs several days and "Thursday" is how
+        # anyone actually holds which slot this is.
+        date_h = datetime.strptime(date_s, "%Y-%m-%d").strftime("%A, %-d %B %Y")
     except ValueError:
         date_h = date_s
+    if meta.get("time"):
+        date_h = f"{date_h} &middot; {html.escape(str(meta['time']))}"
 
     # ── TOC + per-slide sections ──
     toc_rows, sections, deck = [], [], []
@@ -274,7 +278,7 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
     body = f"""\
     <div class="talk-header">
       <h1>{html.escape(title)}</h1>
-      <p class="talk-tagline">{html.escape(event)} &nbsp;&middot;&nbsp; {html.escape(date_h)}
+      <p class="talk-tagline">{html.escape(event)} &nbsp;&middot;&nbsp; {date_h}
          &nbsp;&middot;&nbsp; {html.escape(speaker)}</p>
     </div>
 
@@ -385,8 +389,8 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
     page = (
         template
         .replace("{{TITLE}}", html.escape(f"{title} — blygger"))
-        .replace("{{DESCRIPTION}}", _attr(f"{title}. {event}, {date_h}. Slides and full narration."))
-        .replace("{{PROMPT}}", f"{html.escape(event)} &middot; {html.escape(date_h)}")
+        .replace("{{DESCRIPTION}}", _attr(f"{title}. {event}, {date_s}. Slides and speaker cues."))
+        .replace("{{PROMPT}}", f"{html.escape(event)} &middot; {date_h}")
         .replace("{{RAIL_LABEL}}", "Slides")
         .replace("{{RAIL_ITEMS}}", "\n".join(
             f'      <li><a href="#slide-{d["id"]}">{html.escape(d["title"])}</a></li>' for d in deck))

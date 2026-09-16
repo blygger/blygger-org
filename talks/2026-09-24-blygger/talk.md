@@ -2,8 +2,8 @@
 title: "Blygger: an AI-native medium made of static files"
 event: "Protocol Symposium 2026"
 date: "2026-09-24"
+time: "23:00 UTC (4:00 PM PDT)"
 speaker: "Venkatesh Rao"
-slot: "~20 min"
 review_round: 1
 review_opened: "2026-09-16"
 ---

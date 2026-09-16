@@ -8,20 +8,20 @@ collateral: `blygger-spec/docs/protocol-v0.2.md`, the 25 locked decisions in
 `blygger-spec/CLAUDE.md`, `docs/notes/tn-1-versioning-and-pins.md`, `docs/roadmap.md`,
 and the two live nodes.
 
-## Event — TO CONFIRM
+## Event
 
-- **Conference:** Protocol Symposium 2026 (assumed — same event as the Humboldt talk)
-- **Date:** 2026-09-24 **(placeholder — the slug and `meta.date` both need the real slot)**
-- **Duration:** assumed ~20 min + Q&A **(placeholder — drives how much gets cut)**
+- **Conference:** Protocol Symposium 2026
+- **Slot:** Thursday 2026-09-24, 23:00 UTC (4:00 PM PDT) — confirmed by Venkat 2026-09-16
+- **Duration:** still unstated. 22 slides is the length control; at a brisk
+  improvised pace that is roughly 20 minutes, and the deck cuts cleanly at three
+  places if the slot is shorter — the technical pair (16–17), the participation
+  split (19–21 collapsing to one), and slide 05.
 - **Delivery:** assumed Zoom screen share, slides advanced manually, no audio track
 - **Speaker:** Venkatesh Rao
 
-Everything above marked placeholder is guessed. Correcting the date means renaming the
-directory (the slug is the URL) and editing `date:` in `talk.md`'s frontmatter.
-
-There are deliberately no word budgets or spoken-time estimates: the talk is improvised
-to the slides, so both would be measuring the wrong thing. 22 slides is the length
-control.
+The date is the directory name and therefore the URL, so it is now fixed:
+`/talks/2026-09-24-blygger/`. There are deliberately no word budgets or spoken-time
+estimates — the talk is improvised to the slides, so both would measure the wrong thing.
 
 ## Audience
 
