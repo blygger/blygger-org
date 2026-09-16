@@ -122,13 +122,33 @@ Following someone is just subscribing to their feed — private, unilateral,
 invisible, exactly like RSS. What's public is what you *made*: your writing,
 your reading list, and the visible trail of who quoted whom.
 
+## A talk about all this
+
+**[Blygger: an AI-native medium made of static files](/talks/2026-09-24-blygger/)**
+— Protocol Symposium 2026, Thursday 24 September, 23:00 UTC. The slides, plus the
+speaker's cues, published before delivery.
+
 ## Status
 
 The protocol and its reference implementation (a small Cloudflare Worker; the
-published output is pure static files) are in active development. Version 0.1 —
-fragments, threads, transclusion, pins, withdrawal, the full publish side — is
-built and heading toward its first deployments, including one at this domain.
+published output is pure static files) are in active development, and two live
+nodes have been running and subscribed to each other since August 2026:
+[venkateshrao.com/blyg/](https://venkateshrao.com/blyg/) and
+[blyg.protocol-institute.org](https://blyg.protocol-institute.org). *(This domain
+is the protocol's namespace and documentation host — it does not run a blyg.)*
 
-- **Spec:** [blygger.org/spec/0.1/](/spec/0.1/) *(draft)*
+Version 0.1 — fragments, threads, transclusion, pins, withdrawal, the whole
+publish side — shipped first. **Version 0.2 is the current document**: it adds the
+subscribe side (resolution, importers, blogrolls, curated lists) and the wire
+members for instructed generation. Next is 0.3 — threads across clients, and
+Webmention for discovery.
+
+**No version before 1.0 will be declared stable, including the wire format.**
+Building the reference client is how the protocol gets tested, so the spec changes
+when building finds something. Read and implement freely; don't build on it
+expecting promises yet.
+
+- **Spec:** [blygger.org/spec/0.2/](/spec/0.2/) *(draft — the living document)*
+- **Technical notes:** [blygger.org/notes/](/notes/)
 - **Source:** [github.com/blygger](https://github.com/blygger)
 - **License:** MIT (code), CC-BY-4.0 (docs)
