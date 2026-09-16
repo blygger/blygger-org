@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_talk.py — render talks/<slug>/{slides.yaml,track.md} into dist/talks/<slug>/.
+build_talk.py — render talks/<slug>/talk.md into dist/talks/<slug>/.
 
 Ported from humboldt-site/build.py::_build_talk (Protocol Institute's Humboldt
 project, same symposium), minus the audio machinery: no per-slide narration audio,
@@ -12,13 +12,30 @@ advance. Here the deck is driven by the operator, so the stage is *always* built
 only the transport controls are conditional — which means the gate had to be
 inverted rather than deleted.
 
-Two source files per talk:
+**One source file per talk**, so content can be iterated without touching structure:
 
-    talks/<slug>/slides.yaml   what is PROJECTED — meta + per-slide bullets
-    talks/<slug>/track.md      what is SAID — "## NN — Title" sections
+    talks/<slug>/talk.md     YAML frontmatter + the whole deck
+    talks/<slug>/images/     copied alongside
+    talks/<slug>/brief.md    operator input, deliberately NOT published
 
-and optionally talks/<slug>/images/, copied alongside. brief.md is operator input
-and is deliberately not published.
+This replaced a slides.yaml/track.md pair. Splitting "what is projected" from "what
+is said" across two files meant every edit to a slide touched two places and kept
+them in sync by hand — which is exactly how a renumber once produced two slides
+sharing an id. Here a slide is one contiguous block of markdown.
+
+Format inside talk.md:
+
+    # Heading        starts a SECTION (applies to the slides that follow)
+    ## Heading       starts a SLIDE
+    ![alt](path)     the slide's image — ordinary markdown, alt text included
+    - a list         what is PROJECTED; nest with two spaces for sub-bullets
+    **Cues**         speaker prompts, rendered below the fold, never projected
+    **Notes**        "why this slide exists", collapsed on the page
+
+Slides are numbered by position, so inserting or reordering renumbers the rest and
+there are no ids to keep in sync. Bullets are rendered through the markdown pipeline
+rather than escaped as plain strings, which is what buys sub-bullets and inline
+`code`/**emphasis** on the stage.
 
 Install once:
     /opt/homebrew/bin/python3 -m pip install pyyaml --break-system-packages
@@ -40,25 +57,102 @@ except ImportError:
 ROOT = Path(__file__).parent
 TALKS = ROOT / "talks"
 
-_TRACK_SECTION_RE = re.compile(r"^## (\d{2}) — (.*)$", re.M)
+_FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n", re.S)
+_IMAGE_RE = re.compile(r"^!\[(?P<alt>[^\]]*)\]\((?P<src>[^)\s]+)\)\s*$", re.M)
+# A block label on its own line: **Cues** / **Notes**. Case-insensitive so the file
+# stays forgiving to edit by hand.
+_LABEL_RE = re.compile(r"^\*\*(Cues|Notes)\*\*\s*$", re.M | re.I)
 
 
 def _attr(s: str) -> str:
-    """Collapse whitespace and escape for an HTML attribute. YAML block scalars keep
-    their newlines, which are legal in an attribute but make the source unreadable and
-    break naive alt-text extraction."""
+    """Collapse whitespace and escape for an HTML attribute — alt text taken from a
+    markdown image may wrap across lines in the source."""
     return html.escape(" ".join(str(s or "").split()), quote=True)
 
 
-def read_track(path: Path) -> dict[str, str]:
-    """Parse track.md into {slide_id: narration}."""
+_LIST_ITEM_RE = re.compile(r"^(?P<indent>[ \t]*)(?P<marker>[-*+]|\d+[.)])\s")
+
+
+def normalize_list_indent(md: str) -> str:
+    """Re-indent nested list items to 4 spaces per level.
+
+    Python-Markdown (with sane_lists, which build.py enables) only recognises a
+    nested list at 4-space indentation. Nobody hand-writing a slide types four
+    spaces — two is the natural thing, and two silently produced a flat list with
+    no error anywhere. Rather than make the source file awkward, map whatever
+    indent steps the author actually used onto levels and re-emit at 4 per level,
+    so 2-, 3- and 4-space nesting all work.
+    """
+    widths = sorted({len(m.group("indent").expandtabs(4))
+                     for m in (_LIST_ITEM_RE.match(l) for l in md.splitlines()) if m})
+    if len(widths) < 2:
+        return md
+    level = {w: i for i, w in enumerate(widths)}
+
+    out, cur = [], 0
+    for line in md.splitlines():
+        m = _LIST_ITEM_RE.match(line)
+        if m:
+            cur = level[len(m.group("indent").expandtabs(4))]
+            out.append(" " * (cur * 4) + line.strip())
+        elif line.strip():
+            # A continuation line belongs to the item above it.
+            out.append(" " * (cur * 4 + 2) + line.strip() if cur else line)
+        else:
+            out.append(line)
+    return "\n".join(out)
+
+
+def parse_talk(path: Path) -> tuple[dict, list[dict]]:
+    """Parse talk.md into (meta, slides). Each slide is a dict with title, section,
+    image, image_alt, and the raw markdown for projected / cues / notes."""
     text = path.read_text("utf-8")
-    out: dict[str, str] = {}
-    matches = list(_TRACK_SECTION_RE.finditer(text))
-    for i, m in enumerate(matches):
-        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
-        out[m.group(1)] = text[m.end():end].strip()
-    return out
+
+    m = _FRONTMATTER_RE.match(text)
+    if not m:
+        sys.exit(f"{path}: missing YAML frontmatter (--- ... --- at the top of the file)")
+    meta = yaml.safe_load(m.group(1)) or {}
+    body = text[m.end():]
+
+    # Strip HTML comments before splitting: the format documentation lives in one at
+    # the top of the file and contains literal "## Heading" examples.
+    body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
+
+    slides: list[dict] = []
+    section = ""
+    # Split on headings, keeping the level and the text.
+    parts = re.split(r"^(#{1,2}) +(.+?)\s*$", body, flags=re.M)
+    # parts[0] is any preamble; then repeating (hashes, title, content).
+    for i in range(1, len(parts), 3):
+        level, title, content = parts[i], parts[i + 1], parts[i + 2]
+        if level == "#":
+            section = title
+            continue
+
+        img_m = _IMAGE_RE.search(content)
+        image = image_alt = None
+        if img_m:
+            image, image_alt = img_m.group("src"), img_m.group("alt")
+            content = content[:img_m.start()] + content[img_m.end():]
+
+        blocks = {"projected": "", "cues": "", "notes": ""}
+        label_ms = list(_LABEL_RE.finditer(content))
+        blocks["projected"] = content[:label_ms[0].start()] if label_ms else content
+        for j, lm in enumerate(label_ms):
+            end = label_ms[j + 1].start() if j + 1 < len(label_ms) else len(content)
+            blocks[lm.group(1).lower()] = content[lm.end():end]
+
+        slides.append({
+            "title": title,
+            "section": section,
+            "image": image,
+            "image_alt": image_alt,
+            **{k: v.strip() for k, v in blocks.items()},
+        })
+
+    if not slides:
+        sys.exit(f"{path}: no slides found (a slide is a '## Heading')")
+    return meta, slides
 
 
 def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | None:
@@ -67,49 +161,35 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
     `md_render` is build.py's markdown renderer, passed in rather than imported so
     this module stays independent of build.py's module-level state.
     """
-    slides_path, track_path = talk_dir / "slides.yaml", talk_dir / "track.md"
-    if not (slides_path.exists() and track_path.exists()):
-        print(f"  talk {talk_dir.name} -> skipped (no slides.yaml/track.md)")
+    talk_path = talk_dir / "talk.md"
+    if not talk_path.exists():
+        print(f"  talk {talk_dir.name} -> skipped (no talk.md)")
         return None
 
-    spec = yaml.safe_load(slides_path.read_text("utf-8"))
-    meta = spec.get("meta", {})
-    slides = spec.get("slides", [])
-    track = read_track(track_path)
+    meta, slides = parse_talk(talk_path)
 
     title = meta.get("title", "Talk")
     event = meta.get("event", "")
     speaker = meta.get("speaker", "")
-    date_s = meta.get("date", "")
+    date_s = str(meta.get("date", ""))
     try:
         date_h = datetime.strptime(date_s, "%Y-%m-%d").strftime("%-d %B %Y")
     except ValueError:
         date_h = date_s
 
-    # Structural checks before anything renders. Both of these have already gone
-    # wrong once: a hand renumber left two slides sharing an id, which produced two
-    # #slide-10 anchors and a deck that silently skipped a position, and the build
-    # said nothing. Cheap to check, invisible when it breaks.
-    ids = [str(x.get("id", "")).zfill(2) for x in slides]
-    dupes = sorted({i for i in ids if ids.count(i) > 1})
-    if dupes:
-        sys.exit(f"{talk_dir.name}/slides.yaml: duplicate slide ids {dupes}")
-    orphans = sorted(set(track) - set(ids))
-    if orphans:
-        sys.exit(f"{talk_dir.name}/track.md: cue sections with no slide: {orphans}")
-
     # ── TOC + per-slide sections ──
     toc_rows, sections, deck = [], [], []
     missing_images: list[str] = []
 
-    for s in slides:
-        sid = str(s.get("id", "")).zfill(2)
-        s_title = s.get("title", "")
-        section = s.get("section") or ""
-        is_stub = bool(s.get("placeholder"))
-        narration = track.get(sid, "").strip()
+    for n, s in enumerate(slides, start=1):
+        sid = f"{n:02d}"
+        s_title = s["title"]
+        section = s["section"]
+        # A slide with nothing to project has not been written yet. Derived rather
+        # than declared, so the flag cannot go stale against the content.
+        is_stub = not s["projected"].strip()
 
-        img = s.get("image")
+        img = s["image"]
         if img and not (talk_dir / img).exists():
             missing_images.append(f"{sid}: {img}")
             img = None
@@ -122,27 +202,29 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
             f'<td class="toc-stub">{stub_tag}</td></tr>'
         )
 
-        bullets = "".join(f"<li>{html.escape(str(b))}</li>" for b in s.get("bullets") or [])
+        # Bullets go through markdown, which is what buys sub-bullets and inline
+        # code/emphasis on the stage. The source is the author's own file, trusted
+        # here the same way content/*.md already is.
+        bullets_html = md_render(normalize_list_indent(s["projected"])) if s["projected"] else ""
         visual = ""
         if img:
             visual = (f'<div class="slide-image"><img src="{html.escape(img)}" '
-                      f'alt="{_attr(s.get("image_alt"))}" loading="lazy"></div>')
+                      f'alt="{_attr(s["image_alt"])}" loading="lazy"></div>')
 
         if is_stub:
-            narr_html = ('<p class="stub-note"><em>Placeholder — cues to be written '
-                         'by the speaker.</em></p>')
-        elif narration:
-            narr_html = md_render(narration)
+            cues_html = ('<p class="stub-note"><em>Placeholder — nothing to project '
+                         'on this slide yet.</em></p>')
+        elif s["cues"]:
+            cues_html = md_render(normalize_list_indent(s["cues"]))
         else:
-            narr_html = "<p><em>No cues yet.</em></p>"
+            cues_html = "<p><em>No cues yet.</em></p>"
 
-        note = (s.get("notes") or "").strip()
         note_html = ""
-        if note:
+        if s["notes"]:
             note_html = (
                 '        <details class="slide-note">\n'
                 "          <summary>Why this slide exists</summary>\n"
-                f"          {md_render(note)}\n"
+                f"          {md_render(s['notes'])}\n"
                 "        </details>\n"
             )
 
@@ -157,11 +239,11 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
       <div class="slide-projected">
         <span class="projected-label">On screen</span>
         {visual}
-        <ul>{bullets}</ul>
+        {bullets_html}
       </div>
       <div class="slide-cues">
         <span class="cues-label">Cues</span>
-{narr_html}
+{cues_html}
       </div>
 {note_html}    </section>""")
 
@@ -169,9 +251,9 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
             "id": sid,
             "title": s_title,
             "section": section,
-            "bullets": [str(b) for b in (s.get("bullets") or [])],
+            "bulletsHtml": bullets_html,
             "image": img,
-            "imageAlt": " ".join(str(s.get("image_alt") or "").split()),
+            "imageAlt": " ".join(str(s["image_alt"] or "").split()),
             "stub": is_stub,
         })
 
@@ -205,7 +287,7 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
           </div>
           <h2 id="stage-title"></h2>
           <div id="stage-visual" class="stage-visual" hidden></div>
-          <ul id="stage-bullets"></ul>
+          <div id="stage-bullets"></div>
         </div>
       </div>
       <div class="player-bar">
@@ -257,13 +339,10 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
       vis.innerHTML = '';
       vis.hidden = true;
     }
-    var ul = document.getElementById('stage-bullets');
-    ul.innerHTML = '';
-    d.bullets.forEach(function (b) {
-      var li = document.createElement('li');
-      li.textContent = b;
-      ul.appendChild(li);
-    });
+    // Rendered markdown, built and escaped at build time — which is what lets a
+    // slide carry sub-bullets and inline code, neither of which survives a
+    // textContent-per-bullet loop.
+    document.getElementById('stage-bullets').innerHTML = d.bulletsHtml || '';
     stage.classList.toggle('stage-stub', !!d.stub);
     pos.textContent = String(i + 1);
     fill.style.width = ((i + 1) / DECK.length * 100) + '%';
@@ -397,10 +476,18 @@ TALK_CSS = """
    silently truncated four bullets to one, which is the worse failure: a squeezed
    screenshot is visibly squeezed, whereas a clipped list looks like a short list.
    If the image ends up tiny, the slide has too many bullets — say so by showing it. */
-#stage-bullets { margin: 0; padding-left: 3.5cqh; flex: 0 0 auto; }
+#stage-bullets { flex: 0 0 auto; }
+#stage-bullets ul { margin: 0; padding-left: 3.5cqh; }
 #stage-bullets li { color: #d8dade; max-width: none; margin-bottom: 1.6cqh;
   font-size: 4.1cqh; line-height: 1.35; }
+/* Sub-bullets: a step down in size and colour, so nesting reads as subordination
+   from the back of a room rather than as two lists at the same rank. */
+#stage-bullets ul ul { margin: 1cqh 0 0; padding-left: 3cqh; }
+#stage-bullets ul ul li { font-size: 3.4cqh; color: #aeb4bd; margin-bottom: 0.9cqh; }
 #stage-bullets li::marker { color: #6f7780; }
+#stage-bullets strong { color: #fafaf7; }
+#stage-bullets code { font-size: 0.92em; background: #2a2f36; padding: 0.1em 0.35em;
+  border-radius: 3px; }
 /* Takes the leftover room, never more; the image scales to fit what it is given. */
 .stage-visual { flex: 1 1 auto; min-height: 0; display: flex;
   align-items: center; justify-content: center; margin: 0 0 2.5cqh; }
@@ -465,6 +552,11 @@ TALK_CSS = """
 .projected-label { display: block; font-size: 0.68rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: #7f8790; margin-bottom: 0.6rem; }
 .slide-projected ul { margin: 0; padding-left: 1.1rem; }
+.slide-projected ul ul { margin: 0.35rem 0 0.5rem; }
+.slide-projected ul ul li { color: #b9bdc4; font-size: 0.88rem; }
+.slide-projected strong { color: #fafaf7; }
+.slide-projected code { background: #2a2f36; padding: 0.1em 0.35em; border-radius: 3px;
+  font-size: 0.9em; }
 .slide-projected ul:empty { display: none; }
 .slide-projected li { color: #e8e8e4; font-size: 0.95rem; line-height: 1.5;
   margin-bottom: 0.35rem; max-width: none; }

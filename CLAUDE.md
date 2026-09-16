@@ -17,29 +17,44 @@ plan doc is [`blygger-spec/docs/spec-publishing-plan.md`](../blygger-spec/docs/s
 ## Talks
 
 A third published genre alongside normative spec text and technical notes, added
-session 21 (2026-09-16). Sources live in `talks/<slug>/`:
+session 21 (2026-09-16). One editable source file per talk:
 
-| File | Role |
+| Path | Role |
 |---|---|
-| `slides.yaml` | What is **projected** — `meta` plus per-slide `title`/`section`/`bullets`/`image`/`notes`. |
-| `track.md` | What is **said** — `## NN — Title` sections. Cues for an improvised talk, not a script. |
-| `brief.md` | Operator input. Deliberately **not** published. |
-| `images/` | Copied to `dist/talks/<slug>/images/`. |
+| `talks/<slug>/talk.md` | **The whole deck.** YAML frontmatter + every slide. |
+| `talks/<slug>/images/` | Copied to `dist/talks/<slug>/images/`. |
+| `talks/<slug>/brief.md` | Operator input. Deliberately **not** published. |
 
-`build_talk.py` renders these into a deck (16:9 stage, prev/next, fullscreen, deep
-links to `#slide-NN`) plus a readable transcript below it. Ported from
+`talk.md` format: `# Heading` starts a section, `## Heading` starts a slide, a
+markdown `![alt](path)` is the slide's image, the list is what gets projected, and
+`**Cues**` / `**Notes**` blocks are the speaker's prompts and the why-this-slide note.
+Slides are numbered **by position**, so inserting or reordering renumbers the rest —
+there are no ids to keep in sync.
+
+This started as a `slides.yaml` + `track.md` pair and was collapsed after one round:
+splitting "what is projected" from "what is said" meant every content edit touched two
+files and kept them aligned by hand, which is how a renumber once produced two slides
+sharing an id. Positional numbering makes that class of bug unrepresentable rather than
+guarded against.
+
+Bullets are rendered through the markdown pipeline, which is what buys sub-bullets and
+inline `code`/**emphasis** on the stage. `normalize_list_indent()` re-indents nested
+items to the 4 spaces Python-Markdown's `sane_lists` requires, so 2-space nesting — the
+thing anyone actually types — works instead of silently flattening.
+
+`build_talk.py` renders this into a deck (16:9 stage, prev/next, fullscreen, deep links
+to `#slide-NN`) plus a readable transcript. Ported from
 `protocol-institute/humboldt/humboldt-site/build.py::_build_talk`, minus the audio
-machinery — humboldt gates its whole player on audio existing, which had to be
-inverted here since an operator drives the deck.
+machinery — humboldt gates its whole player on audio existing, which had to be inverted
+here since an operator drives the deck.
 
-**Everything inside the stage is sized in `cqh`** (the stage is a `container-type:
-size` container), so the embedded preview and the fullscreen presentation are one
-composition at two scales. Anything added to the stage should be in `cqh` too — sizing
-in `rem`/`vw` is what left a 2-pixel screenshot on one slide while fullscreen looked
-fine.
+**Everything inside the stage is sized in `cqh`** (the stage is a `container-type: size`
+container), so the embedded preview and the fullscreen presentation are one composition
+at two scales. Anything added to the stage should be in `cqh` too — sizing in `rem`/`vw`
+is what left a 2-pixel screenshot on one slide while fullscreen looked fine.
 
-The build fails on duplicate slide ids or cue sections with no slide, and warns on
-missing images and unwritten placeholders.
+A slide with no bullets is treated as a placeholder and marked on the page; missing
+images warn at build time.
 
 ## Stack
 
