@@ -216,6 +216,16 @@ if __name__ == "__main__":
         rail_label="On this page",
         numbered_rail=False,
     )
+    build_page(
+        ROOT / "content" / "start" / "index.md",
+        DIST / "start" / "index.html",
+        title="Build a blyg — Blygger",
+        description="Three ways into the Blygger medium: publish a feed you already have, "
+                    "host the reference client, or build your own client from the spec.",
+        prompt="~/blygger.org/start/",
+        rail_label="On this page",
+        numbered_rail=True,
+    )
     build_spec_pages()
     build_notes_pages()
     # Talks (session 21) are a third genre alongside normative text and technical

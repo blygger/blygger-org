@@ -122,6 +122,12 @@ Following someone is just subscribing to their feed — private, unilateral,
 invisible, exactly like RSS. What's public is what you *made*: your writing,
 your reading list, and the visible trail of who quoted whom.
 
+## Getting started
+
+**[Build a blyg](/start/)** — three ways in: publish a feed you already have,
+host the reference client on Cloudflare, or build your own client from the spec.
+A directory of existing blygs lives at [blygger.com](https://blygger.com).
+
 ## A talk about all this
 
 **[Blygger: an AI-native medium made of static files](/talks/2026-09-24-blygger/)**
