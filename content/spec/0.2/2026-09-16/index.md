@@ -26,9 +26,8 @@ revisions when this document is published, and stays citable with its
 snapshots intact.
 
 <!-- spec-links:begin -->
-- **This version:** `https://blygger.org/spec/0.2/`
+- **This version:** `https://blygger.org/spec/0.2/2026-09-16/`
 - **Latest version:** `https://blygger.org/spec/0.2/`
-- **Previous version:** `https://blygger.org/spec/0.2/2026-09-16/`
 - **Supersedes:** `https://blygger.org/spec/0.1/`
 - **XML namespace:** `https://blygger.org/ns/0.1`
 - **Source of truth:** [`blygger/blygger-spec`](https://github.com/blygger/blygger-spec) — `docs/protocol-v0.2.md`
