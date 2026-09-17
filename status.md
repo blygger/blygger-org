@@ -29,19 +29,27 @@
   domain needed a manual DNS step the deploy token couldn't do (zone-read only,
   not DNS-edit) — Venkat added the record by hand and it activated.
 - **Mid-build mount-convention sync:** while this was in progress,
-  `blygger-spec` locked decision #14 (session 8, "mount independence") changed
-  the reference deployment's default mount from `/blyg` to `/blyg`. The
+  `blygger-spec` locked decision #14 (session 8, "mount independence"), which
+  settled the reference deployment's default mount. (This bullet used to name
+  both the old and new mount; the session-9 `blygg`→`blyg` rename rewrote both
+  spellings to the same token and left the sentence saying a path changed to
+  itself. Reworded session 22 — see decisions #14 and #16 for the real history.) The
   publish copy at `content/spec/0.1/index.md` and `content/overview.md`'s
   convention note were resynced from canonical `blygger-spec/docs/protocol-v0.1.md`
   before this deploy went live, so the published site reflects `/blyg`, not the
   stale `/blyg`.
 
 ## Upcoming
-- Execute `blygger-spec/docs/deploy-stub-sites-plan.md`'s remaining scope: the
-  `/blyg` reference-client test deployment (D1, R2, secrets, Workers Routes) —
-  not part of this landing-page build. Note the plan doc itself still says
-  `/blyg` throughout (written session 6, predates decision #14) — resync it
-  from canonical before executing.
+- ~~Execute `blygger-spec/docs/deploy-stub-sites-plan.md`'s remaining scope: the
+  `/blyg` reference-client test deployment.~~ **Superseded session 11, corrected
+  here session 22 (2026-09-16):** the two-node test network went to
+  `venkateshrao.com/blyg/` + `blyg.protocol-institute.org` instead and has been
+  complete since. Nothing in that plan is still open for this repo. (The same
+  correction was made in `blygger-com/status.md` in session 21; this copy was
+  missed — the eighth instance of recorded-status decay in this project.)
+- Nothing else open. The site carries the 0.2 spec, `/notes/`, `/start/`, and the
+  2026-09-24 symposium talk; substantive protocol work is behind the v0.3 Fable
+  pass.
 
 ## Done
 - **2026-08-04** — Landing page designed, built (`build.py`, `templates/`,
