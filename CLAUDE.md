@@ -56,6 +56,31 @@ is what left a 2-pixel screenshot on one slide while fullscreen looked fine.
 A slide with no bullets is treated as a placeholder and marked on the page; missing
 images warn at build time.
 
+## Presentation style — owned by `talk-kit`
+
+The deck's **visual theme and content limits are shared** with the other symposium
+talks and are **not maintained here**. They live in
+[`Code/talk-kit/`](../talk-kit/) (`../../talk-kit/` from here):
+
+| File in this project | Canonical source |
+|---|---|
+| `talk-theme.css` | `talk-kit/theme/talk-theme.css` |
+| `talk-content-guide.md` | `talk-kit/theme/talk-content-guide.md` |
+
+**Both are synced copies. Do not edit them here.** `talk-kit/sync.py` is their only
+writer and will overwrite local edits without warning; each file carries a banner
+saying so. A style change belongs in talk-kit, then `./sync.py`, then rebuild here.
+
+What *does* belong here is **content**: slides, bullets, cues, diagrams. The split is
+the point — style is shared across three decks, slides are this talk's alone.
+
+`talk-content-guide.md` is the one to read before writing slides. It is measured, not
+opinion: **14 lines of bullet text** with a one-line title, 11 if every bullet is
+short, **6 with a diagram**, ~37 characters of title, 9 table rows. Over-budget
+content is **clipped silently** — no scrollbar, no warning, and a clipped list looks
+exactly like a short list. `talk-kit/reference/check-deck.js`, pasted into the console
+on a built deck, is the only thing that catches it.
+
 ## Stack
 
 Static site: Python (`build.py` + `markdown` package) renders `content/*.md`

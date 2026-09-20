@@ -56,6 +56,12 @@ except ImportError:
 
 ROOT = Path(__file__).parent
 TALKS = ROOT / "talks"
+# The presentation theme is a plain CSS file, not a string in this module, because
+# it is SHARED across the symposium decks (artisanal-bots, blygger-org, humboldt)
+# and a stylesheet is the artifact all three can hold identically. It is read here
+# and inlined into the page: no extra request, so fullscreen never waits on the
+# network, and the built index.html stays a single self-contained file.
+THEME = ROOT / "talk-theme.css"
 
 _FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n", re.S)
 _IMAGE_RE = re.compile(r"^!\[(?P<alt>[^\]]*)\]\((?P<src>[^)\s]+)\)\s*$", re.M)
@@ -263,6 +269,35 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
 
     n_stub = sum(1 for d in deck if d["stub"])
 
+    # ── the cover slide ──
+    # Generated from frontmatter rather than authored, for two reasons. It is the
+    # same three facts on every deck (title, speaker, event), so hand-writing it in
+    # each talk.md would be three chances to let it drift from the page header that
+    # states the same thing; and it makes the cover free for any talk that adopts
+    # this pipeline, which is the point of sharing the theme at all.
+    #
+    # It is slide **00**, so it does not renumber the deck: slides stay 01..NN and
+    # every #slide-NN permalink already published still lands where it did. It is
+    # player-only — there is no transcript section for it, because the page header
+    # immediately above the player already says all three things in running text,
+    # and a cues block under a cover would have nothing to hold.
+    try:
+        cover_date = datetime.strptime(date_s, "%Y-%m-%d").strftime("%-d %B %Y")
+    except ValueError:
+        cover_date = date_s
+    cover_html = f"""\
+        <div class="stage-cover" id="stage-cover" hidden>
+          <p class="cover-event">{html.escape(event)}</p>
+          <h2 class="cover-title">{html.escape(title)}</h2>
+          <hr class="cover-rule">
+          <p class="cover-speaker">{html.escape(speaker)}</p>
+          <p class="cover-meta">{html.escape(cover_date)}</p>
+        </div>"""
+    deck.insert(0, {
+        "id": "00", "title": title, "section": "", "bulletsHtml": "",
+        "image": None, "imageAlt": "", "stub": False, "cover": True,
+    })
+
     banner = ""
     if meta.get("review_round"):
         opened = meta.get("review_opened", "")
@@ -284,6 +319,7 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
 
     <div class="talk-player" id="talk-player">
       <div class="stage" id="stage">
+{cover_html}
         <div class="stage-inner">
           <div class="stage-meta">
             <span id="stage-num">Slide 01</span>
@@ -326,8 +362,23 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
   var pos = document.getElementById('pos');
   var fill = document.getElementById('pfill');
 
+  var inner = document.querySelector('.stage-inner');
+  var cover = document.getElementById('stage-cover');
+
   function render() {
     var d = DECK[i];
+    // The cover is a different composition, not a slide with empty fields, so it
+    // swaps the whole stage body rather than blanking the title and bullets.
+    if (cover) {
+      cover.hidden = !d.cover;
+      inner.hidden = !!d.cover;
+    }
+    if (d.cover) {
+      stage.classList.remove('stage-stub');
+      pos.textContent = String(i + 1);
+      fill.style.width = ((i + 1) / DECK.length * 100) + '%';
+      return;
+    }
     document.getElementById('stage-num').textContent = 'Slide ' + d.id;
     document.getElementById('stage-section').textContent = d.section || '';
     document.getElementById('stage-title').textContent = d.title;
@@ -393,10 +444,11 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
         .replace("{{PROMPT}}", f"{html.escape(event)} &middot; {date_h}")
         .replace("{{RAIL_LABEL}}", "Slides")
         .replace("{{RAIL_ITEMS}}", "\n".join(
-            f'      <li><a href="#slide-{d["id"]}">{html.escape(d["title"])}</a></li>' for d in deck))
+            f'      <li><a href="#slide-{d["id"]}">{html.escape(d["title"])}</a></li>'
+            for d in deck if not d.get("cover")))
         .replace("{{CONTENT}}", body)
     )
-    page = page.replace("</body>", f"<style>{TALK_CSS}</style>\n<script>{js}</script>\n</body>")
+    page = page.replace("</body>", f"<style>{_talk_css()}</style>\n<script>{js}</script>\n</body>")
 
     out = dist / "talks" / talk_dir.name / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -437,158 +489,15 @@ def build_talks(dist: Path, template: str, md_render) -> list[str]:
     return built
 
 
-TALK_CSS = """
-.talk-header { margin-bottom: 1.6rem; }
-.talk-header h1 { margin-bottom: 0.3rem; }
-.talk-tagline { color: #6b6b66; font-size: 0.95rem; margin: 0; }
+def _talk_css() -> str:
+    """The shared presentation theme, read at build time.
 
-/* The deck breaks out of the prose column: a 16:9 stage inside a reading measure
-   is a postage stamp, and this page's primary job is the deck. */
-.talk-player { margin: 0 0 2.2rem; width: min(100%, 60rem); }
-@media (min-width: 1200px) { .talk-player { width: 52rem; } }
-/* The stage is a fixed 16:9 box and its contents must fit inside it, which rules
-   out letting anything size itself from its own content. It is therefore a flex
-   column: meta and title take what they need, bullets take what they need, and the
-   image gets whatever is left over and no more.
-
-   The `min-height: 0` is load-bearing. A flex item's default `min-height: auto`
-   refuses to shrink below its content, so an image slide would push the bullets out
-   of the bottom of the stage. (A percentage `max-height` does not work here either:
-   the parent has no definite height, so it resolves to `none` — which is exactly the
-   bug this replaced, where a tall screenshot pushed the title off the top.) */
-/* The stage is a SIZE CONTAINER and everything inside it is sized in cqh — 1% of
-   the stage's own height. That is what makes the composition resolution-independent:
-   the embedded 16:9 preview and the fullscreen presentation are the same slide at
-   two scales, rather than two layouts that each need tuning.
-
-   Sizing in rem/vw instead is what produced the bug this replaced — the embedded
-   stage is only ~350px tall inside a 64rem column, so absolute type left a 2-pixel
-   screenshot on one slide and pushed two bullets off the bottom of another, while
-   the same CSS looked fine fullscreen. Anything added here should be in cqh too. */
-.stage { background: #1d2024; border-radius: 5px; aspect-ratio: 16 / 9;
-  display: flex; align-items: stretch; overflow: hidden;
-  container-type: size; }
-.stage-inner { padding: 5cqh 5cqh 4cqh; width: 100%;
-  display: flex; flex-direction: column; min-height: 0; }
-.stage-meta { display: flex; gap: 1.6cqh; align-items: baseline; font-size: 2.6cqh;
-  letter-spacing: 0.1em; text-transform: uppercase; color: #7f8790;
-  margin-bottom: 2cqh; flex: 0 0 auto; }
-#stage-title { font-size: 7.2cqh; color: #fafaf7;
-  margin: 0 0 3cqh; line-height: 1.18; flex: 0 0 auto; }
-/* Bullets are the slide's content and the image is support, so the bullets take
-   their natural height and the image gets the remainder. The reverse ordering
-   silently truncated four bullets to one, which is the worse failure: a squeezed
-   screenshot is visibly squeezed, whereas a clipped list looks like a short list.
-   If the image ends up tiny, the slide has too many bullets — say so by showing it. */
-#stage-bullets { flex: 0 0 auto; }
-#stage-bullets ul { margin: 0; padding-left: 3.5cqh; }
-#stage-bullets li { color: #d8dade; max-width: none; margin-bottom: 1.6cqh;
-  font-size: 4.1cqh; line-height: 1.35; }
-/* Sub-bullets: a step down in size and colour, so nesting reads as subordination
-   from the back of a room rather than as two lists at the same rank. */
-#stage-bullets ul ul { margin: 1cqh 0 0; padding-left: 3cqh; }
-#stage-bullets ul ul li { font-size: 3.4cqh; color: #aeb4bd; margin-bottom: 0.9cqh; }
-#stage-bullets li::marker { color: #6f7780; }
-#stage-bullets strong { color: #fafaf7; }
-#stage-bullets code { font-size: 0.92em; background: #2a2f36; padding: 0.1em 0.35em;
-  border-radius: 3px; }
-/* Takes the leftover room, never more; the image scales to fit what it is given. */
-.stage-visual { flex: 1 1 auto; min-height: 0; display: flex;
-  align-items: center; justify-content: center; margin: 0 0 2.5cqh; }
-/* `display: flex` above is a class rule and outranks the UA's [hidden] { display:
-   none }, so without this an image-less slide still reserved the flex space and the
-   bullets sat pinned to the bottom of the stage with a hole above them. */
-.stage-visual[hidden] { display: none !important; }
-.stage-visual img { max-width: 100%; max-height: 100%; width: auto; height: auto;
-  object-fit: contain; border-radius: 3px; border: 1px solid #333a42; }
-/* A placeholder slide should be unmistakable from the back of a room. */
-.stage.stage-stub { background: #2a2118; outline: 2px dashed #6b5a3e; outline-offset: -8px; }
-
-.player-bar { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.85rem;
-  flex-wrap: wrap; }
-.pbtn { font-family: inherit; font-size: 0.82rem; color: #3a3a36; background: #f0f0ec;
-  border: 1px solid #e0e0da; border-radius: 3px; padding: 0.42rem 0.7rem;
-  cursor: pointer; line-height: 1; }
-.pbtn:hover { background: #f6ebe4; color: #d95a1f; border-color: #e8cdb9; }
-.ptime { font-size: 0.78rem; color: #888; font-variant-numeric: tabular-nums;
-  white-space: nowrap; }
-.pprogress { flex: 1 1 6rem; height: 3px; background: #e8e8e4; border-radius: 2px;
-  overflow: hidden; min-width: 4rem; }
-.pprogress-fill { height: 100%; width: 0; background: #d95a1f; transition: width 0.2s linear; }
-.player-hint { font-size: 0.76rem; color: #9a9a94; margin: 0.5rem 0 0; }
-
-/* Fullscreen only changes the container's size; cqh carries the rest. */
-.stage:fullscreen { border-radius: 0; aspect-ratio: auto; height: 100%; }
-
-.talk-review { background: #fbf4ef; border-left: 3px solid #d95a1f; padding: 1rem 1.3rem;
-  margin-bottom: 1.8rem; border-radius: 0 3px 3px 0; }
-.talk-review p { font-size: 0.92rem; margin-bottom: 0.6rem; }
-.talk-review p:last-child { margin-bottom: 0; }
-
-.talk-meta { display: flex; flex-wrap: wrap; gap: 1.6rem; font-size: 0.85rem; color: #666;
-  padding-bottom: 1.1rem; border-bottom: 1px solid #e8e8e4; margin-bottom: 1.4rem; }
-.talk-meta strong { font-weight: 600; color: #1a1a1a; }
-
-.talk-toc { font-size: 0.88rem; margin-bottom: 3rem; width: 100%; border-collapse: collapse; }
-.talk-toc td { padding: 0.3rem 0.75rem 0.3rem 0; border-bottom: 1px solid #f0f0ec; }
-.talk-toc .toc-num { width: 2.5rem; color: #999; font-variant-numeric: tabular-nums; }
-.talk-toc .toc-num a { color: #999; }
-.talk-toc .toc-section { width: 11rem; color: #9a9a94; font-size: 0.8rem; }
-.talk-toc .toc-stub { width: 5rem; text-align: right; }
-
-.stub-tag { font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase;
-  color: #8a6a2b; background: #faf2e4; padding: 0.1rem 0.4rem; border-radius: 2px; }
-
-.talk-slide { margin-bottom: 3.2rem; scroll-margin-top: 2rem; }
-.talk-slide h2 { margin-top: 0.35rem; margin-bottom: 1rem; }
-.slide-head { display: flex; align-items: baseline; gap: 0.75rem; font-size: 0.75rem;
-  letter-spacing: 0.05em; text-transform: uppercase; color: #999; }
-.slide-num { font-weight: 600; }
-.slide-section { color: #b5b5ae; }
-.slide-words { margin-left: auto; text-transform: none; letter-spacing: 0;
-  font-variant-numeric: tabular-nums; }
-.slide-words.over { color: #a4552f; }
-.slide-permalink { color: #ccc; text-decoration: none; }
-.slide-permalink:hover { color: #d95a1f; }
-
-.slide-projected { background: #1d2024; border-radius: 4px; padding: 1.1rem 1.4rem 1.2rem;
-  margin-bottom: 1.3rem; }
-.projected-label { display: block; font-size: 0.68rem; letter-spacing: 0.1em;
-  text-transform: uppercase; color: #7f8790; margin-bottom: 0.6rem; }
-.slide-projected ul { margin: 0; padding-left: 1.1rem; }
-.slide-projected ul ul { margin: 0.35rem 0 0.5rem; }
-.slide-projected ul ul li { color: #b9bdc4; font-size: 0.88rem; }
-.slide-projected strong { color: #fafaf7; }
-.slide-projected code { background: #2a2f36; padding: 0.1em 0.35em; border-radius: 3px;
-  font-size: 0.9em; }
-.slide-projected ul:empty { display: none; }
-.slide-projected li { color: #e8e8e4; font-size: 0.95rem; line-height: 1.5;
-  margin-bottom: 0.35rem; max-width: none; }
-.slide-projected li::marker { color: #6f7780; }
-.slide-image { margin: 0 0 0.8rem; text-align: center; }
-.slide-image img { max-width: 100%; height: auto; border-radius: 4px;
-  border: 1px solid #333a42; }
-
-.talk-slide.is-stub .slide-projected { background: #2a2118; }
-.stub-note { color: #8a6a2b; }
-
-.slide-cues { border-left: 2px solid #ece7e2; padding-left: 1rem; }
-.cues-label { display: block; font-size: 0.68rem; letter-spacing: 0.1em;
-  text-transform: uppercase; color: #b5b5ae; margin-bottom: 0.5rem; }
-.slide-cues ul { margin: 0; padding-left: 1.1rem; }
-.slide-cues li { font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.35rem; }
-.slide-cues p { font-size: 0.95rem; line-height: 1.6; }
-.slide-note { margin-top: 1rem; font-size: 0.86rem; }
-.slide-note summary { cursor: pointer; color: #888; font-size: 0.75rem;
-  letter-spacing: 0.05em; text-transform: uppercase; }
-.slide-note summary:hover { color: #d95a1f; }
-.slide-note p { margin-top: 0.6rem; color: #555; padding-left: 0.9rem;
-  border-left: 2px solid #e8e8e4; }
-
-@media (max-width: 640px) {
-  .talk-meta { gap: 1rem; }
-  .slide-head { flex-wrap: wrap; gap: 0.5rem; }
-  .slide-words { margin-left: 0; }
-  .talk-toc .toc-section { display: none; }
-}
-"""
+    Deliberately not cached in a module global: a build is a one-shot process, and
+    reading it per build means editing talk-theme.css and re-running is enough —
+    no stale copy survives in an interactive session.
+    """
+    if not THEME.exists():
+        sys.exit(f"missing {THEME.name} — the shared presentation theme, which "
+                 "lives beside this file. Copy it from whichever sibling talk "
+                 "project has it (artisanal-bots, blygger-org); they are identical.")
+    return THEME.read_text("utf-8")
