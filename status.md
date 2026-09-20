@@ -1,6 +1,13 @@
 # Status — blygger-org
 
 ## Active
+- **Talk style is no longer maintained here** (2026-09-20): `talk-theme.css` and
+  `talk-content-guide.md` are synced copies owned by `Code/talk-kit/` and are
+  overwritten by its `sync.py`. Slides stay here. The deck was restyled
+  dark-on-light and gained a cover slide generated from this talk's own
+  frontmatter, numbered 00 so existing `#slide-NN` permalinks did not move. The
+  deck sits inside the shared content limits — no slide clips, none at the
+  ceiling, one over the 10-line target, one two-line title. Not yet pushed.
 - **Talk deck published** (session 21, 2026-09-16): `talks/<slug>/` +
   `build_talk.py` render a presentable 16:9 deck with a readable transcript at
   `/talks/<slug>/`. First one is `2026-09-24-blygger` for the Protocol Symposium.
