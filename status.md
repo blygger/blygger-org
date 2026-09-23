@@ -59,6 +59,16 @@
   pass.
 
 ## Done
+- **2026-09-22** — Session 24: talk deck **round 2, a currency pass**. The deck was
+  drafted at session 21, when v0.3 was still "next"; Phase A went live on both nodes
+  2026-09-20, so the deck's biggest claim had gone stale in the author's favour. Two
+  new slides (08 "Quoting across origins", 09 "A list, never a count") with new
+  screenshots of the *live* cross-node stub stack, taken today — the
+  every-example-is-real rule holds. Roadmap slide rewritten (v0.3 shipped; the
+  implementation-then-document ordering stated as the method, not as a status line);
+  test count, the 0.3-wire-vs-0.2-document gap, and blygger.com corrected. 24 slides;
+  cut order for a short slot recorded in `brief.md`. **Not deployed** — `deploy.sh`
+  is Venkat's call.
 - **2026-08-04** — Landing page designed, built (`build.py`, `templates/`,
   `site.css`), deployed to Cloudflare Pages (`blygger-org` project), and made
   live at `blygger.org` (custom domain DNS added by Venkat). Spec publish copy

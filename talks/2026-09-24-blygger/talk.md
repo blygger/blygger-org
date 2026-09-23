@@ -4,8 +4,8 @@ event: "Protocol Symposium 2026"
 date: "2026-09-24"
 time: "23:00 UTC (4:00 PM PDT)"
 speaker: "Venkatesh Rao"
-review_round: 1
-review_opened: "2026-09-16"
+review_round: 2
+review_opened: "2026-09-22"
 ---
 
 <!--
@@ -178,6 +178,62 @@ page furniture.
 difference between transclusion-as-embed (which breaks) and transclusion-as-snapshot
 (which doesn't). Real example: venkateshrao.com/blyg/t/1vgtgz0g25ztpdsn9hq23x5pxk/
 
+## Quoting across origins
+
+![A thread on the Protocol Institute blyg. A citation block headed "In response to" names Venkatesh Rao's Blyg, the item id, version 1, its full URL and a retrieval date; below it a quoted paragraph from that other blyg, captioned "from Venkatesh Rao's Blyg, snapshot of v1"; below that the author's own paragraph.](images/cross-client-stub.png)
+
+- Same `![[id]]`, now pointing at an item on **someone else's** blyg
+- The directive names an *identity*, not an address — resolved against what you've read
+- Still a snapshot, taken from your local copy: publishing never touches the network
+- A **stub** is a thread that declares what it answers — one target, on the wire
+- Then a Webmention tells them, and they check the claim rather than believe it
+
+**Cues**
+
+- This is the same mechanism as two slides ago, across a network boundary. Live,
+  between my two nodes, right now.
+- **The snapshot is local.** I quote what I read. Their server being down can't stop me
+  publishing, and their later edit can't rewrite my quote.
+- The header block is the citation — what it answers, at which version, with the URL
+  and the date I read it. Frozen at publish, so it still reads when the link dies.
+- **Structural verification, if they're engineers:** the receiver fetches my item
+  document and checks it actually names them, in a field with a defined meaning.
+  Link-presence is the trackback check that spam beat.
+
+**Notes**
+
+The v0.3 headline and the one thing the deck could not show when it was drafted. Real
+example, both halves live: `blyg.protocol-institute.org/t/5tt6adc88s2hacnh68h94t1vsf/`
+answers `venkateshrao.com/blyg/t/608ay1bz03z3wg58deg787kgvv/`, which answers a fragment
+back on the first node. The image is the middle of that stack, which is why the quote
+inside it has its own provenance line.
+
+## A list, never a count
+
+![The same fragment's public page, with a section headed "Responses" containing one line: Venkatesh Rao, at venkateshrao.com, stubbed this, Sep 20 2026.](images/responses.png)
+
+- Verified responses can appear on the item they answer — off by default, per item
+- A **list**: who, at which origin, what relation, when. No number, anywhere.
+- A row costs a real item, on a real origin, that passed verification
+- The origin is the load-bearing half — it's the only part the protocol vouches for
+- Nothing a stranger publishes ever changes your bytes: this is chrome, not content
+
+**Cues**
+
+- **Plant this; it pays off in "You don't get a username".** This is the one place a
+  count could have crept back into the design, and it didn't.
+- **Why a list and not a count:** a count is the one thing on your page a stranger can
+  move. A row costs them a real published item on a real domain.
+- Last bullet for engineers: a responses list *inside* the versioned document would mean
+  someone else's publish changes my bytes, which every subscriber reads as a stealth
+  edit. Rendered at request time, in no item document, no feed, no hash.
+
+**Notes**
+
+Sits here rather than in the protocol section because it is the visible half of the
+stub mechanism — the other end of the slide before it. The no-count argument is the
+medium's whole stance on metrics in one design detail, and it pairs with slide 14.
+
 ## [TK]: leave an instruction in the draft
 
 - `[TK]expand this into a paragraph[/TK]` — an instruction, not yet run
@@ -330,7 +386,8 @@ better manners. The graceful-degradation claim from slide 1, cashed out.
 
 - **The argument:** every namespace is a registry, every registry has an owner, and the
   owner is the thing we were trying not to have.
-- Follow it through: there is no number to go up.
+- Follow it through: there is no number to go up. Collect the responses slide here —
+  even the one public list of other people's names is deliberately uncounted.
 - Expect pushback here. This is the slide they'll argue with.
 
 **Notes**
@@ -414,18 +471,22 @@ will recognise the discipline.
 ## Where it is, where it's going
 
 - Shipped: publish (v0.1), subscribe + blogroll + curation (v0.2), instructed
-  generation (TK-core)
-- Running: two live nodes, real cross-node pub-sub, a legacy-RSS subscription
-- Next: v0.3 — threads across clients, Webmention with structural verification
-- Then: filter plugins, staleness over the DAG, local RAG, then 1.0 freeze
+  generation (TK-core), and **v0.3 — threads across clients** (live two days ago)
+- Running: two live nodes, real cross-node pub-sub, a legacy-RSS subscription, and the
+  stub stack you saw — published across two Cloudflare accounts over real HTTP
+- Writing now: the normative 0.3 document, from shapes that were tested before
+  they were specified
+- Then: a self-host template, filter plugins, staleness over the DAG, local RAG, 1.0
 - Pre-1.0 means no promises — including the wire. Nothing is stable until 1.0.
 
 **Cues**
 
-- Webmention: reused not invented, with structural verification (receiver checks the
-  source actually names the target).
-- **Say the last bullet plainly before asking for involvement:** building the client is
-  how the protocol gets tested; twice last month that changed the spec.
+- The v0.3 line is the one to land: everything in the cross-origin section is running,
+  not planned. Two nodes, two accounts, real network.
+- **Order matters and it's the method:** the document follows the implementation.
+  Building the client is how the protocol gets tested — three times this month that
+  changed the spec before it was written down.
+- **Say the last bullet plainly before asking for involvement.**
 
 **Notes**
 
@@ -474,7 +535,8 @@ this stage, negative signal is scarcer and more useful than positive.
 ## If you build
 
 - Spec: blygger.org/spec/0.2/ — standalone, complete, no deltas to chase
-- Reference client: MIT, Cloudflare Workers, ~420 tests
+- The wire is already at 0.3; that document is being written now, from what's running
+- Reference client: MIT, Cloudflare Workers, ~500 tests
 - Documented CSS contract — which classes are wire-visible and what you owe them
 - The open gap: a **second reference implementation**. Local-first, folder-based,
   static-host deploy.
@@ -484,6 +546,8 @@ this stage, negative signal is scarcer and more useful than positive.
 
 - One implementation isn't a protocol, it's a program with a spec next to it.
 - Undesigned. Unstarted. Highest-leverage thing in the room.
+- If asked why 0.3 isn't published yet: because it's still being tested. Publishing a
+  document for a wire nobody has run is how specs get written that nobody implements.
 
 **Notes**
 
@@ -496,9 +560,9 @@ a named gate rather than a nice-to-have.
 ## Resources
 
 - Live: venkateshrao.com/blyg/ · blyg.protocol-institute.org
+- Directory: blygger.com — submit a feed; it's validated by running the resolver at it
 - Spec: blygger.org/spec/0.2/ · Notes: blygger.org/notes/ · Namespace: blygger.org/ns/0.1
 - Code: github.com/blygger — MIT (code), CC-BY-4.0 (docs)
-- blygger.com — commercial-adjacent, not yet built
 - This deck, with cues, is at the URL on screen
 
 **Cues**
