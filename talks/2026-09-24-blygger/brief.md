@@ -89,6 +89,24 @@ single biggest claim in the deck had gone stale in the author's favour. What cha
   failure the every-example-is-real rule exists to prevent. The question is now "**How
   much of this did a model write?**", the answer moved onto slide 12's cues, and the
   slide got stronger: the room will assume the long confident paragraph is human.
+- **Retitled** (Venkat): "Blygger: AI-intertwingled diachronic-synchronic social
+  publishing". Cover renders at 3 lines, no overflow — the guide's stated maximum for a
+  cover title, within it. The landing-page link on `blygger.org` carried the old title
+  as anchor text and was updated with it.
+- **"Intertwingled" is threaded, not sprinkled** (Venkat: use it later too). Three
+  touches, in an order that sets up and pays off:
+  - **07 (transclusion), cue** — both of the cover's odd words are Ted Nelson's,
+    *Computer Lib / Dream Machines*, 1974. Provenance, so a cue rather than a bullet;
+    this is the one idea in the deck that is fifty years old, and a protocol audience
+    will recognise it.
+  - **10 (TK), bullet** — the payoff, and the reason the word is not a slogan: *the
+    instruction lives in the draft*. Not a chat window beside the editor, not a mode you
+    switch into. A cue says to land the callback out loud.
+  - **19 (not enshrined), cue** — the apparent contradiction, pre-answered. A sharp room
+    will notice the title says AI-intertwingled while the slide says AI is never in the
+    protocol. They are one claim from two sides: intertwingled in the *medium*, at
+    authoring time, at the block level; absent from the *wire*. That gap is the
+    studio/page split, which makes this the best possible place to be challenged.
 - **One cue direction fixed:** the no-counts point is now *planted* on slide 09 and
   *collected* on slide 16 ("You don't get a username"), not described as a callback on
   the earlier slide — it comes first now, so it sets the beat up rather than paying

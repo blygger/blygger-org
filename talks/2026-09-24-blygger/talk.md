@@ -170,6 +170,9 @@ page furniture.
 - Embeds break or drift. This can't do either.
 - If there's a line worth landing: quoting is the load-bearing act in written culture
   and most media made it worse.
+- **Both of the odd words on the cover are Ted Nelson's** — "transclusion" and
+  "intertwingled", *Computer Lib / Dream Machines*, 1974. Name him if the room looks
+  like it knows. This is the one idea in the talk that is genuinely fifty years old.
 
 **Notes**
 
@@ -242,6 +245,7 @@ medium's whole stance on metrics in one design detail, and it pairs with slide 1
 
 - `[TK]expand this into a paragraph[/TK]` — an instruction, not yet run
 - `[TK]expand this[=]…generated prose…[/TK]` — after you run it
+- **This is the intertwingling** — the instruction lives *in* the draft
 - Inside a TK scope, `![[id]]` means **source**, not quote — material to work from
 - Generation is always an explicit act you review. Publishing never generates.
 - The markers are studio-private. They never reach the wire.
@@ -254,6 +258,9 @@ medium's whole stance on metrics in one design detail, and it pairs with slide 1
 - **The subtle bit, say it slowly:** inside a TK scope, `![[id]]` means *source*, not
   quote. Same syntax, two meanings, decided by whether it's inside a scope.
 - This is the "block-level generative AI" claim from slide 1, cashed out.
+- **Cover callback — say the word.** This is what "AI-intertwingled" means: not a chat
+  window next to the editor, not a mode you switch into. An instruction is something
+  you type in the middle of a sentence, and it stays there after it runs.
 
 **Notes**
 
@@ -474,6 +481,10 @@ what makes plain RSS a sufficient notification layer, and therefore what makes s
 - I didn't notice the pattern until the fourth one.
 - **Principle:** anything the protocol can't verify, it declines to represent — because
   a field that looks authoritative and isn't corrupts the fields that are.
+- **If someone catches the title, this is the answer:** "AI-intertwingled" and "AI is
+  never in the protocol" are one claim from two sides. Intertwingled in the *medium*,
+  at authoring time, at the block level; absent from the *wire*. That gap is the
+  studio/page split, and it is the reason the split exists.
 
 **Notes**
 

@@ -84,6 +84,13 @@
   same day, was nowhere in the deck (the new slides were written before it existed).
   Added as one bullet on the pins slide — forking is what a pin's promise is *for* —
   with a cue saying not to offer a demo, since it is the only claim in the deck with
+  Retitled to "Blygger: AI-intertwingled diachronic-synchronic social publishing"
+  (Venkat), with the landing-page link updated to match, and "intertwingled" threaded
+  through three later slides rather than left on the cover: Nelson's authorship named
+  at transclusion, the word cashed out mechanically at the TK slide (the instruction
+  lives *in* the draft), and the apparent contradiction with "AI is never in the
+  protocol" pre-answered at the thesis slide as the studio/page split.
+
   Then a **screenshot pass** (Venkat: the screenshot slides were hard to read). Every
   image re-shot live at 1.35–1.6× zoom and cropped to the artifact — roughly 3× the
   apparent size, against a guide floor of 24px at 1080p that the old full-page captures
