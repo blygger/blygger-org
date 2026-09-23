@@ -72,18 +72,17 @@ subject.
 
 ## Two kinds of time
 
-- **Diachronic** — time as a *sequence of states*. The thing changes, and the record
-  of it changing is the point.
-  - a git log: every commit carries a message about what changed
-  - a blog series; a book's editions; a changelog
-- **Synchronic** — time as a *present moment*. The thing is a snapshot, and the
-  moment is the point.
-  - a Twitter feed: hot takes, all now, never revised
-  - a group chat; a livestream
+- **Diachronic** — time as a *sequence of states*; the changing is the point
+  - a git log, a blog series, a book's editions, a changelog
+- **Synchronic** — time as a *present moment*; the snapshot is the point
+  - a Twitter feed, a group chat, a livestream
 
 **Cues**
 
 - Define both properly — this is the conceptual spine and the room needs the words.
+- Diachronic: the thing changes, and the *record* of it changing is the point. A git
+  commit carries a message about what changed.
+- Synchronic: hot takes, all now, never revised. The moment is the point.
 - GitHub time vs. Twitter time as the handles; the Greek is the precision.
 - Neither is better. They're different things media are for.
 
@@ -182,16 +181,17 @@ difference between transclusion-as-embed (which breaks) and transclusion-as-snap
 
 ![A thread on the Protocol Institute blyg. A citation block headed "In response to" names Venkatesh Rao's Blyg, the item id, version 1, its full URL and a retrieval date; below it a quoted paragraph from that other blyg, captioned "from Venkatesh Rao's Blyg, snapshot of v1"; below that the author's own paragraph.](images/cross-client-stub.png)
 
-- Same `![[id]]`, now pointing at an item on **someone else's** blyg
-- The directive names an *identity*, not an address — resolved against what you've read
-- Still a snapshot, taken from your local copy: publishing never touches the network
-- A **stub** is a thread that declares what it answers — one target, on the wire
-- Then a Webmention tells them, and they check the claim rather than believe it
+- Same `![[id]]`, now naming an item on **someone else's** blyg
+- It names an *identity*, not an address — resolved against what you've read
+- **The snapshot is local**: publishing never touches the network
+- A **stub** declares what it answers; a Webmention tells them, and they check
 
 **Cues**
 
 - This is the same mechanism as two slides ago, across a network boundary. Live,
   between my two nodes, right now.
+- **Nobody can read this from the room — walk the shape:** citation block at the top,
+  their paragraph quoted inside it, my own text below. Three layers, one page.
 - **The snapshot is local.** I quote what I read. Their server being down can't stop me
   publishing, and their later edit can't rewrite my quote.
 - The header block is the citation — what it answers, at which version, with the URL
@@ -212,11 +212,10 @@ inside it has its own provenance line.
 
 ![The same fragment's public page, with a section headed "Responses" containing one line: Venkatesh Rao, at venkateshrao.com, stubbed this, Sep 20 2026.](images/responses.png)
 
-- Verified responses can appear on the item they answer — off by default, per item
-- A **list**: who, at which origin, what relation, when. No number, anywhere.
-- A row costs a real item, on a real origin, that passed verification
-- The origin is the load-bearing half — it's the only part the protocol vouches for
-- Nothing a stranger publishes ever changes your bytes: this is chrome, not content
+- Verified responses can show on the item they answer — off by default, per item
+- A **list**: who, which origin, what relation, when. **No number, anywhere.**
+- A row costs a real item on a real origin that passed verification
+- Nothing a stranger publishes changes your bytes — chrome, not content
 
 **Cues**
 
@@ -224,6 +223,8 @@ inside it has its own provenance line.
   count could have crept back into the design, and it didn't.
 - **Why a list and not a count:** a count is the one thing on your page a stranger can
   move. A row costs them a real published item on a real domain.
+- The origin is the load-bearing half of a row — it is the only part the protocol
+  vouches for. The name beside it is theirs to assert.
 - Last bullet for engineers: a responses list *inside* the versioned document would mean
   someone else's publish changes my bytes, which every subscriber reads as a stealth
   edit. Rendered at request time, in no item document, no feed, no hash.
@@ -395,7 +396,7 @@ better manners. The graceful-degradation claim from slide 1, cashed out.
 The section's load-bearing slide and the one most likely to be argued with. Identity,
 like AI, is deliberately never in the protocol.
 
-## Nothing is deleted. Some things are promised forever.
+## Nothing is deleted. Pins are forever.
 
 - No hard delete. The single exit is **withdraw** — a permanent, visible endcap.
 - A **pin** is an irrevocable promise to host one exact version, forever
@@ -421,24 +422,22 @@ from being expensive.
 
 ## The wire, for protocol people
 
-- Two planes: `items/{id}.json` is state (ground truth, full archive); `feed.xml` is
-  notification (lossy, just a signal)
-- AP under partition. Convergence is poll-driven and eventual — ~25 min observed,
-  ~45 worst case.
-- The archive index is the reconciliation surface; the feed is a cheap trigger.
-  Gaps degrade to an index diff, never to loss.
-- Version watermarks never silently regress — a lower version is surfaced as a
-  suspected history rewrite, not applied
-- IDs are stable random 128-bit. Never content-addressed — identity must survive editing.
-- Conformance L0–L3, strict supersets. Unknown constructs ignored, not rejected.
+- Two planes: `items/{id}.json` is state, `feed.xml` is only notification
+- **The index reconciles, not the feed** — a gap degrades to a diff, not loss
+- AP under partition: convergence ~25 min observed, ~45 worst case
+- Version watermarks never silently regress — a drop is surfaced, not applied
+- IDs: stable random 128-bit, never content-addressed — identity survives edits
+- Conformance L0–L3, strict supersets. Unknown constructs ignored.
 
 **Cues**
 
 - Gear change — jargon is fine here.
+- Plane one is ground truth and the full archive; plane two is lossy and just a signal.
 - **The inversion worth explaining:** reconciliation surface is the index, not the feed.
   So a dropped entry / clock skew / malformed feed degrades to a slower sync, not data
   loss — which is what lets the notification plane be as lossy as RSS actually is.
-- Watermarks: loud, not prevented.
+- Watermarks: a lower version is surfaced as a *suspected history rewrite*, not applied.
+  Loud, not prevented.
 
 **Notes**
 
@@ -470,19 +469,18 @@ will recognise the discipline.
 
 ## Where it is, where it's going
 
-- Shipped: publish (v0.1), subscribe + blogroll + curation (v0.2), instructed
-  generation (TK-core), and **v0.3 — threads across clients** (live two days ago)
-- Running: two live nodes, real cross-node pub-sub, a legacy-RSS subscription, and the
-  stub stack you saw — published across two Cloudflare accounts over real HTTP
-- Writing now: the normative 0.3 document, from shapes that were tested before
-  they were specified
-- Then: a self-host template, filter plugins, staleness over the DAG, local RAG, 1.0
-- Pre-1.0 means no promises — including the wire. Nothing is stable until 1.0.
+- Shipped: publish, subscribe, generation, and **cross-client threads (v0.3)**
+- Running: two live nodes, real pub-sub, legacy RSS — and the stub stack you saw
+- Writing now: the normative 0.3 document, from shapes already tested in public
+- Then: self-host template, filter plugins, staleness over the DAG, then 1.0
+- **Pre-1.0 means no promises** — including the wire. Nothing is stable yet.
 
 **Cues**
 
 - The v0.3 line is the one to land: everything in the cross-origin section is running,
-  not planned. Two nodes, two accounts, real network.
+  not planned. Live two days ago — two nodes, two Cloudflare accounts, real HTTP.
+- "Shipped" unpacks as: publish 0.1, subscribe + blogroll + curation 0.2, instructed
+  generation, cross-client threads 0.3.
 - **Order matters and it's the method:** the document follows the implementation.
   Building the client is how the protocol gets tested — three times this month that
   changed the spec before it was written down.
@@ -535,16 +533,15 @@ this stage, negative signal is scarcer and more useful than positive.
 ## If you build
 
 - Spec: blygger.org/spec/0.2/ — standalone, complete, no deltas to chase
-- The wire is already at 0.3; that document is being written now, from what's running
-- Reference client: MIT, Cloudflare Workers, ~500 tests
-- Documented CSS contract — which classes are wire-visible and what you owe them
-- The open gap: a **second reference implementation**. Local-first, folder-based,
-  static-host deploy.
-- That second implementation is the 1.0 gate. It is undesigned. It could be yours.
+- The wire is already at 0.3; that document is being written now
+- Reference client: MIT, Cloudflare Workers, ~500 tests, documented CSS contract
+- The open gap: a **second implementation** — local-first, folder-based, static
+- **It is the 1.0 gate. It is undesigned. It could be yours.**
 
 **Cues**
 
 - One implementation isn't a protocol, it's a program with a spec next to it.
+- The CSS contract says which classes are wire-visible and what you owe them.
 - Undesigned. Unstarted. Highest-leverage thing in the room.
 - If asked why 0.3 isn't published yet: because it's still being tested. Publishing a
   document for a wire nobody has run is how specs get written that nobody implements.

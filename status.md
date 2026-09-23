@@ -67,8 +67,19 @@
   every-example-is-real rule holds. Roadmap slide rewritten (v0.3 shipped; the
   implementation-then-document ordering stated as the method, not as a status line);
   test count, the 0.3-wire-vs-0.2-document gap, and blygger.com corrected. 24 slides;
-  cut order for a short slot recorded in `brief.md`. **Not deployed** — `deploy.sh`
-  is Venkat's call.
+  cut order for a short slot recorded in `brief.md`.
+
+  Then a **content-guide pass** — the theme was already in sync (`talk-kit/sync.py
+  --check` clean), so the visual style had landed but the *content* limits in
+  `talk-kit/theme/talk-content-guide.md` never had. Measured with
+  `reference/check-deck.js` at 1536×864: nothing was clipping, but six slides missed
+  the design targets, two of them from this session's own additions. Slide 18 (12
+  lines, the worst) is now six one-line bullets; the two new diagram slides came down
+  to the 4 bullets a diagram slide gets; slide 03's two paragraph-with-a-dot bullets
+  were restructured; slides 20 and 23 went back to 5 lines; the deck's one two-line
+  title was shortened. Detail that left a slide went to its cues, where it was always
+  going to be spoken. **All 24 slides now within target.** **Not deployed** —
+  `deploy.sh` is Venkat's call.
 - **2026-08-04** — Landing page designed, built (`build.py`, `templates/`,
   `site.css`), deployed to Cloudflare Pages (`blygger-org` project), and made
   live at `blygger.org` (custom domain DNS added by Venkat). Spec publish copy

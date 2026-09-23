@@ -25,6 +25,28 @@ single biggest claim in the deck had gone stale in the author's favour. What cha
 - **Slide 24 (resources):** added blygger.com, and deleted the line saying blygger.com
   was not yet built — it shipped at session 21, in the same session this brief was
   written.
+- **Content-guide pass, same session.** `talk-kit/sync.py --check` reports the theme in
+  sync, so the visual style was already applied; what had never been applied were the
+  *content* limits in `talk-kit/theme/talk-content-guide.md`. Measured with
+  `reference/check-deck.js` at 1536×864: **nothing was clipping**, but six slides missed
+  the design targets, two of them because of this session's own additions. Fixed:
+  - **18 "The wire, for protocol people"** — 12 lines, the worst in the deck, six bullets
+    that all wrapped. Now six one-line bullets; the dropped detail ("ground truth, full
+    archive", "suspected history rewrite") moved to the cues, where it was always going
+    to be spoken anyway.
+  - **08 and 09** — 5 bullets each over a screenshot. The guide gives a diagram slide 4
+    free lines before the image starts shrinking, and asks for 3–4 bullets. Both now 4.
+  - **03 "Two kinds of time"** — 9 lines from *two* bullets, i.e. two paragraphs with
+    dots on them. Same content as short bullets plus one sub-bullet each; the prose
+    definitions moved to the cues. Venkat's opening content, so the substance and the
+    title are unchanged.
+  - **20 (roadmap)** and **23 (if you build)** — 9 lines each, both inflated earlier in
+    this same session. Back to 5 lines.
+  - **17** — the only two-line title in the deck (53 chars), which costs two bullet lines
+    of budget. Now "Nothing is deleted. Pins are forever." at 37.
+  After: **all 24 slides within target, no clipping, no two-line titles.** Slide 01 (9
+  lines) is the densest and is deliberate — it is Venkat's opening and the brief already
+  calls it "a dense opening list rather than a slow build".
 - **One cue direction fixed:** the no-counts point is now *planted* on slide 09 and
   *collected* on slide 16 ("You don't get a username"), not described as a callback on
   the earlier slide — it comes first now, so it sets the beat up rather than paying
@@ -97,11 +119,16 @@ unhedged ("eventual consistency", "AP under partition", "enshrined"). The UX sec
 ## Open / needs Venkat
 
 - **Event date, slot length, and whether Q&A is separate** — see above.
-- **Slide 11's screenshot is deliberately unreadable at presentation size.** It is a
+- **Slide 13's screenshot is deliberately unreadable at presentation size.** It is a
   wide two-pane capture in a short slot, so the room sees the *shape* — source left,
   preview right, generated blocks tinted blue — and not the text. The cues say so. If
   the detail turns out to matter, the fix is a second slide cropped to one pane, not a
   bigger version of this one.
+- **Slide 08's screenshot is the same case** (round 2). Its fine print — the citation's
+  item id, version and retrieval date — will not read from the room, and does not need
+  to: what the room reads is the three-layer shape (citation block, their quoted
+  paragraph inside it, my text below). The cues now say so explicitly rather than
+  leaving the speaker to discover it at the lectern.
 - **Whether this belongs on blygger.org at all.** Session 20 settled the site's genres
   as normative text + technical notes; a talk is a third. Built under `/talks/` on the
   assumption that Venkat asking for it settles it, but it is one directory to delete.
