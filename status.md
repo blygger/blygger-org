@@ -78,7 +78,13 @@
   to the 4 bullets a diagram slide gets; slide 03's two paragraph-with-a-dot bullets
   were restructured; slides 20 and 23 went back to 5 lines; the deck's one two-line
   title was shortened. Detail that left a slide went to its cues, where it was always
-  going to be spoken. **All 24 slides now within target.** **Not deployed** —
+  going to be spoken. **All 24 slides now within target.**
+
+  Then an audit for missed work found one real gap: `forked_from`, built earlier the
+  same day, was nowhere in the deck (the new slides were written before it existed).
+  Added as one bullet on the pins slide — forking is what a pin's promise is *for* —
+  with a cue saying not to offer a demo, since it is the only claim in the deck with
+  no live artifact behind it. **Not deployed** —
   `deploy.sh` is Venkat's call.
 - **2026-08-04** — Landing page designed, built (`build.py`, `templates/`,
   `site.css`), deployed to Cloudflare Pages (`blygger-org` project), and made

@@ -403,6 +403,7 @@ like AI, is deliberately never in the protocol.
 - Pins survive withdrawal. That is the point of a pin.
 - Unpinned history is unreachable in every representation — no route serves it
 - Version numbers are a bare counter. Significance is the pin, not the number.
+- **You can fork a pinned version** — anyone's — and your item says so, permanently
 
 **Cues**
 
@@ -410,6 +411,11 @@ like AI, is deliberately never in the protocol.
 - Pins survive withdrawal. Withdraw the piece, the cited version still resolves.
 - Unpinned versions served by no route, or withdrawal would be theatre.
 - **The line:** an edition bump is cheap talk; a pin is a costly signal.
+- **Forking is what the promise is for.** Only a pinned version is guaranteed to still
+  be there, so it is the only thing you can safely descend from. The fork carries
+  `forked_from` — a permanent citation of exactly which frozen version it came from.
+- Landed this week and **not yet on the live nodes**, so this one is the mechanism
+  rather than a demo. Don't offer to show it.
 - **Call back to slide 5:** this is the book's edition, at conversation speed.
 
 **Notes**

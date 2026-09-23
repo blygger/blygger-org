@@ -47,6 +47,16 @@ single biggest claim in the deck had gone stale in the author's favour. What cha
   After: **all 24 slides within target, no clipping, no two-line titles.** Slide 01 (9
   lines) is the densest and is deliberate — it is Venkat's opening and the brief already
   calls it "a dense opening list rather than a slow build".
+- **Fork lineage on slide 17** (added after an audit found it missing — the two new
+  slides were written before `forked_from` was built the same day, and nothing went
+  back for it). It belongs on the pins slide rather than a new one: that slide already
+  says a pin is "an irrevocable promise to host one exact version, forever" and never
+  said what the promise is *for*. Forking is the answer — only a pinned version is
+  guaranteed to still be there, so it is the only thing anyone can safely descend from.
+  One bullet, six now on that slide, still inside target. **The cue tells the speaker
+  not to offer a demo:** this landed the same week and is not on the live nodes, so it
+  is the one claim in the deck with no live artifact behind it. Deploying it
+  (`npm run deploy:all -- --migrate`) would remove that caveat.
 - **One cue direction fixed:** the no-counts point is now *planted* on slide 09 and
   *collected* on slide 16 ("You don't get a username"), not described as a callback on
   the earlier slide — it comes first now, so it sets the beat up rather than paying
