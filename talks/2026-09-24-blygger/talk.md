@@ -1,5 +1,5 @@
 ---
-title: "Blygger: an AI-native medium made of static files"
+title: "Blygger: AI-intertwingled diachronic-synchronic social publishing"
 event: "Protocol Symposium 2026"
 date: "2026-09-24"
 time: "23:00 UTC (4:00 PM PDT)"

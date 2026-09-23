@@ -130,7 +130,7 @@ A directory of existing blygs lives at [blygger.com](https://blygger.com).
 
 ## A talk about all this
 
-**[Blygger: an AI-native medium made of static files](/talks/2026-09-24-blygger/)**
+**[Blygger: AI-intertwingled diachronic-synchronic social publishing](/talks/2026-09-24-blygger/)**
 — Protocol Symposium 2026, Thursday 24 September, 23:00 UTC. The slides, plus the
 speaker's cues, published before delivery.
 
