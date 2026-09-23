@@ -55,8 +55,11 @@ single biggest claim in the deck had gone stale in the author's favour. What cha
   guaranteed to still be there, so it is the only thing anyone can safely descend from.
   One bullet, six now on that slide, still inside target. **The cue tells the speaker
   not to offer a demo:** this landed the same week and is not on the live nodes, so it
-  is the one claim in the deck with no live artifact behind it. Deploying it
-  (`npm run deploy:all -- --migrate`) would remove that caveat.
+  is the one claim in the deck with no live artifact behind it. **Deployed to both
+  nodes the same evening**, so the cue now says the opposite: the mechanism is live and
+  can be shown from the studio, but nothing has been forked in public yet, so there is
+  no finished example on a page. Publishing one is Venkat's call — it is content on his
+  own blyg, not a deploy.
 - **One cue direction fixed:** the no-counts point is now *planted* on slide 09 and
   *collected* on slide 16 ("You don't get a username"), not described as a callback on
   the earlier slide — it comes first now, so it sets the beat up rather than paying

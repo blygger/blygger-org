@@ -414,8 +414,9 @@ like AI, is deliberately never in the protocol.
 - **Forking is what the promise is for.** Only a pinned version is guaranteed to still
   be there, so it is the only thing you can safely descend from. The fork carries
   `forked_from` — a permanent citation of exactly which frozen version it came from.
-- Landed this week and **not yet on the live nodes**, so this one is the mechanism
-  rather than a demo. Don't offer to show it.
+- Live on both nodes since 2026-09-22, but **nothing has been forked in public yet** —
+  so the studio affordance is real if anyone wants to see it, and there is no finished
+  example on a page to point at. Don't promise one.
 - **Call back to slide 5:** this is the book's edition, at conversation speed.
 
 **Notes**

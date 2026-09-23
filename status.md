@@ -84,8 +84,10 @@
   same day, was nowhere in the deck (the new slides were written before it existed).
   Added as one bullet on the pins slide — forking is what a pin's promise is *for* —
   with a cue saying not to offer a demo, since it is the only claim in the deck with
-  no live artifact behind it. **Not deployed** —
-  `deploy.sh` is Venkat's call.
+  no live artifact behind it — which stopped being true
+  the same evening: task 11 went to both nodes, so the cue was corrected to say the
+  mechanism is live but no public fork exists yet. **Deployed** — site live at
+  `blygger.org/talks/2026-09-24-blygger/`.
 - **2026-08-04** — Landing page designed, built (`build.py`, `templates/`,
   `site.css`), deployed to Cloudflare Pages (`blygger-org` project), and made
   live at `blygger.org` (custom domain DNS added by Venkat). Spec publish copy
