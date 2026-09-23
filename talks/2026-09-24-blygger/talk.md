@@ -133,7 +133,7 @@ naming its cost. Sets up pins (slide 15) as the answer without spending the word
 
 ## A blyg is fragments and threads
 
-![The public page of Venkatesh Rao's Blyg, showing a fragment titled Shopping List with a version line reading v3, pinned v1 and v3.](images/public-feed.jpg)
+![A fragment on Venkatesh Rao's Blyg, in his chosen dark theme: the heading "Shopping List", a nine-item numbered list, and beneath it a version line reading "v3 · pinned: v1, v3" followed by created and most-recent dates.](images/public-feed.png)
 
 - Two units, not one: a **fragment** (a note) and a **thread** (fragments composed)
 - Every item wears its own revision history in public — `v3 · pinned: v1, v3`
@@ -155,7 +155,7 @@ page furniture.
 
 ## Transclusion: quote by reference
 
-![A thread page showing a quoted fragment in a blockquote with a blue rule, captioned "fragment, snapshot of v2".](images/transclusion.jpg)
+![A thread on Venkatesh Rao's Blyg: one line of the author's own text, then a quoted fragment set off by a blue vertical rule, captioned "fragment ↗ · snapshot of v2".](images/transclusion.png)
 
 - Write `![[id]]` on its own line — you get the fragment, not a link to it
 - Snapshotted at publish: the reader gets the bytes you saw, forever
@@ -190,8 +190,11 @@ difference between transclusion-as-embed (which breaks) and transclusion-as-snap
 
 - This is the same mechanism as two slides ago, across a network boundary. Live,
   between my two nodes, right now.
-- **Nobody can read this from the room — walk the shape:** citation block at the top,
-  their paragraph quoted inside it, my own text below. Three layers, one page.
+- Three layers, top to bottom: the citation, their paragraph quoted inside it, my own
+  text below. Point at each.
+- **The colour is not a slide mistake** — it's a different person's blyg, and themes
+  are the author's. The protocol has no opinion about them; the CSS contract only says
+  which classes a quote must keep.
 - **The snapshot is local.** I quote what I read. Their server being down can't stop me
   publishing, and their later edit can't rewrite my quote.
 - The header block is the citation — what it answers, at which version, with the URL
@@ -260,14 +263,15 @@ and then demonstrated on the next two slides.
 
 ## Which paragraph was generated?
 
-![A published thread on the Protocol Institute blyg. Two paragraphs of prose about the origins of life, with no visual marking distinguishing generated text.](images/tk-published.jpg)
+![A published thread on the Protocol Institute blyg: a one-line heading, then two paragraphs of prose about the origins of life, with nothing visually distinguishing any of it as generated.](images/tk-published.png)
 
-- A real published page. One of these I wrote. One a model wrote.
+- A real published page. **How much of this did a model write?**
 
 **Cues**
 
-- Real published page from the other node. Two paragraphs. One mine, one a model's.
+- Real published page from the other node. A heading and two paragraphs.
 - **Ask the room. Let it sit.** Take a guess or two. Do not answer on this slide.
+- Expect someone to pick the short one. The long confident paragraph reads as human.
 
 **Notes**
 
@@ -285,7 +289,8 @@ two, then advance.
 
 **Cues**
 
-- Answer: you can't tell. Nothing on the page marks it.
+- **Answer: both paragraphs.** The only thing I wrote is the one-line heading.
+- You couldn't tell. Nothing on the page marks it.
 - Show what the page *does* carry: JSON provenance; the class, visible in view-source
   in three seconds.
 - **Why no tint:** provenance is self-asserted, nothing verifies it, a colour would
@@ -301,34 +306,37 @@ its least comfortable.
 
 ## Writing it
 
-![The blygger studio editing the same thread: markdown source on the left showing two TK scopes with their instructions and source references, a live preview on the right with the generated blocks tinted, and a TK scopes panel listing both instructions with regenerate buttons.](images/studio-composer.png)
+![The live preview pane inside the blygger studio, showing the same page as two slides ago — the same heading and the same two paragraphs — except that both paragraphs now sit in tinted blue blocks marking them as generated.](images/studio-preview.png)
 
-- The same thread you just saw published — the other side of it
-- **The preview tints the generated blocks. The published page doesn't.**
+- The same page you just saw, in my editor — **the same bytes**
+- The studio tints what was generated. The published page doesn't.
+- I need to see it. A reader can't verify it. Two surfaces, two obligations.
 - The protocol governs only the page. Everything else here is my client's choice.
 
 **Cues**
 
-- Same thread as the last two slides, seen from the author's side.
-- Walk the shape before the detail: source left, preview right, scope panel below.
-  Nobody can read the text from the room and they don't need to.
-- Point at the scope panel: instructions survive generating. Nothing is thrown away,
-  and regenerate is one click.
-- Left pane, if anyone asks: `[TK] Summarize this ![[id]] [=] …output… [/TK]`.
-- **The tinting is the punchline.** The studio highlights what was generated because
-  I'm the author and I need to see it. The published page doesn't, because a reader
-  can't verify the claim. Same bytes, two surfaces, different obligations.
+- Flip back one slide if you can. Same heading, same two paragraphs, tinted here and
+  plain there. **That contrast is the whole slide.**
+- Why the studio marks it: I am the author and I have to know what I still owe a read.
+- Why the page doesn't: nothing verifies the claim, so a colour would start meaning
+  "verified" — and a badge that looks authoritative and isn't is worse than no badge.
+- Not shown, mention it: the editor keeps the *instructions* beside the output, so
+  regenerating is one click and nothing is thrown away.
 - Everything on this screen is my client's choice and no part of the standard. A
   completely different studio isn't non-compliant — it's just a different studio.
 
 **Notes**
 
 The strongest argument for the studio/page split, because it's visible rather than
-asserted: put this slide next to slide 09 and the same paragraph is tinted in one and
+asserted: put this slide next to slide 11 and the same paragraphs are tinted in one and
 plain in the other. That contrast was not planned — it fell out of decision #25 and the
-studio's own preview highlighting, and it does the explaining better than the prose
-did. The original bullets here described the interface instead, which was the weaker
-slide.
+studio's own preview highlighting, and it does the explaining better than the prose did.
+
+Round 2 cropped the image from a three-pane capture of the whole editor to the preview
+pane alone. The wide shot was unreadable from a room, and worse, it spent the slide on
+interface furniture when the argument is one visual fact: *these blocks are blue here
+and not blue there*. The source pane's content is already covered as code on slide 10,
+where it is set in type the room can actually read.
 
 # How it works
 

@@ -84,6 +84,18 @@
   same day, was nowhere in the deck (the new slides were written before it existed).
   Added as one bullet on the pins slide — forking is what a pin's promise is *for* —
   with a cue saying not to offer a demo, since it is the only claim in the deck with
+  Then a **screenshot pass** (Venkat: the screenshot slides were hard to read). Every
+  image re-shot live at 1.35–1.6× zoom and cropped to the artifact — roughly 3× the
+  apparent size, against a guide floor of 24px at 1080p that the old full-page captures
+  missed by half. Slide 13 changed shape rather than scale: a three-pane editor capture
+  became the preview pane alone, because the argument is one visual fact. Two findings
+  fell out of it: the venkateshrao node's theme is now **dark**, so its session-21
+  screenshots were stale as well as small (both nodes now shot as they render, with a
+  cue turning the mismatch into the themes-are-the-author's point); and **slide 11 was
+  factually wrong** — it claimed one of two paragraphs was human-written, but the live
+  item document has two generated scopes and both paragraphs carry `blyg-tk-gen`. The
+  slide now asks "how much of this did a model write", which is both true and better.
+
   no live artifact behind it — which stopped being true
   the same evening: task 11 went to both nodes, so the cue was corrected to say the
   mechanism is live but no public fork exists yet. **Deployed** — site live at

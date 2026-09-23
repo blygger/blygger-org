@@ -60,6 +60,35 @@ single biggest claim in the deck had gone stale in the author's favour. What cha
   can be shown from the studio, but nothing has been forked in public yet, so there is
   no finished example on a page. Publishing one is Venkat's call — it is content on his
   own blyg, not a deploy.
+- **Every screenshot re-shot or re-cropped** (Venkat: the screenshot slides were
+  hard to read). The old captures were full-page shots at 100% zoom with the content
+  column occupying about a third of the frame, so the thing each slide pointed at —
+  the version line, the provenance caption, the citation's fine print — rendered
+  around 10px at 1080p, against the guide's 24px floor. Re-captured live at 1.35–1.6×
+  browser zoom in an 860px window and cropped to the artifact, which is roughly a 3×
+  gain in apparent size. `images/` is now all PNG; the old JPEGs are gone.
+  - **Slide 13 changed shape, not just size.** It was a three-pane capture of the whole
+    editor, and the brief already admitted nobody could read it. The argument is one
+    visual fact — *these blocks are blue here and not blue there* — so it is now the
+    preview pane alone, croppable to a landscape strip that the stage sizes on width.
+    The source pane's content is already covered as code on slide 10, in type the room
+    can read. Bullets and cues rewritten to match; a portrait first attempt was
+    rejected after measuring, because a tall image is height-constrained and starved
+    at four bullets exactly as the guide warns.
+- **The venkateshrao screenshots were stale, not just small.** That node's theme is now
+  dark; the session-21 captures are light. Both nodes are now shot as they actually
+  render, which means slides 06/07 are dark and 08/09/11 are light. That is a real
+  difference between two people's sites, so slide 08 gets a cue that says so —
+  themes are the author's, and the protocol's only claim about them is the CSS
+  contract. If the mixed palette reads as an accident from the room, the fix is to
+  set both nodes to the same theme and re-shoot, not to fake one.
+- **Slide 11 was factually wrong and is fixed.** It said "One of these I wrote. One a
+  model wrote." The live item document says two generated scopes, both paragraphs
+  carrying `blyg-tk-gen`, `claude-opus-5` — the only thing Venkat wrote is the one-line
+  heading. This is a page the audience can inspect in three seconds, which is the exact
+  failure the every-example-is-real rule exists to prevent. The question is now "**How
+  much of this did a model write?**", the answer moved onto slide 12's cues, and the
+  slide got stronger: the room will assume the long confident paragraph is human.
 - **One cue direction fixed:** the no-counts point is now *planted* on slide 09 and
   *collected* on slide 16 ("You don't get a username"), not described as a callback on
   the earlier slide — it comes first now, so it sets the beat up rather than paying
@@ -145,6 +174,14 @@ unhedged ("eventual consistency", "AP under partition", "enshrined"). The UX sec
 - **Whether this belongs on blygger.org at all.** Session 20 settled the site's genres
   as normative text + technical notes; a talk is a third. Built under `/talks/` on the
   assumption that Venkat asking for it settles it, but it is one directory to delete.
+- **Slide 07's example is still scratch content.** The only *local* transclusion
+  published on either node is `venkateshrao.com/blyg/t/1vgtgz0g…`, whose prose is
+  "The famous blyg" / "This is NOT the most famous blyg ever" / "Heading test" /
+  "Quick brown fox". Round 2 cropped to the first quoted block, which hides most of it
+  and shows the mechanism cleanly — but the two visible lines are still obviously a
+  test fixture, in a deck whose stated rule is that every example is real. Every other
+  thread on that node has `transclusions: []`. Ten minutes of authoring would fix it;
+  it is content on the live blyg, so it is Venkat's call, same as the fork example.
 - **Round 2: is 24 slides too many for an unstated slot?** The cut order above is a
   recommendation, not a decision. If the slot turns out to be 15 minutes the deck needs
   a real edit rather than four cuts, and the section to compress is the opening (05) plus
