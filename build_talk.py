@@ -195,9 +195,13 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
         sid = f"{n:02d}"
         s_title = s["title"]
         section = s["section"]
-        # A slide with nothing to project has not been written yet. Derived rather
-        # than declared, so the flag cannot go stale against the content.
-        is_stub = not s["projected"].strip()
+        # A slide with nothing to project AND no cues has not been written yet.
+        # Derived rather than declared, so the flag cannot go stale against the
+        # content. Cues are what distinguish an unwritten slide from a
+        # deliberately bare one: a title-only slide the speaker breaks away from
+        # (a demo, an interlude) projects nothing on purpose, and the cues are
+        # where that purpose is written down.
+        is_stub = not s["projected"].strip() and not s["cues"].strip()
 
         img = s["image"]
         if img and not (talk_dir / img).exists():

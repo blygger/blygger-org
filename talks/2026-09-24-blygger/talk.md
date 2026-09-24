@@ -58,17 +58,42 @@ block-level generation) each get their own section later.
 - **Blyg** — Swedish for "shy", and nearly homophonic with "blog"
 - **Blygger** — a hat-tip to Blogger
 - **ygg** — a gesture at Yggdrasil, the Norse cosmic tree of life
+- **Why these two** — near-miss spellings of blog/blogger, and both domains were free
+- **blygger.org** is the protocol home; **blygger.com** is a future directory
 
 **Cues**
 
 - Quick slide. Don't over-explain the joke.
 - If it lands, the shy/blog homophony is the one worth pausing on.
+- The domains being available is not a footnote — it is why these spellings and
+  not the dozen other near-misses. Naming a protocol is partly a squatting check.
+- Don't promise a date for the directory. blygger.com is a stub today (slide 27).
 
 **Notes**
 
 Three readings stacked in one word, which is the right amount of etymology for a
 protocol talk: enough that the name is memorable, not so much that it becomes the
 subject.
+
+## Demo
+
+**Cues**
+
+- Break away here. Nothing is projected — the slide is a marker, not a slide.
+- Live nodes: `venkateshrao.com/blyg/` and `blyg.protocol-institute.org`.
+- Forking across nodes: **resync** on the subscriptions page first, then `fork ↗`
+  in reading. Don't wait on the 30-minute importer cron.
+- Pin and fork both raise a browser confirm dialog, and a pin is irrevocable —
+  worth saying that out loud rather than clicking past it.
+- Public pages cache for 60s. Hard-reload after publishing, or show a fresh tab.
+- Come back in on **Two kinds of time** — the conceptual spine follows the demo.
+
+**Notes**
+
+A deliberately bare slide: projecting a bullet list while demoing live would
+split the room's attention between the screen and the thing being shown. The
+title holds the place in the deck and the permalink sequence; everything the
+speaker needs is in the cues, which are not projected.
 
 ## Two kinds of time
 
@@ -98,18 +123,22 @@ fast.
 - **Editable tweets break provenance** — if it can change silently, what did you
   actually say?
 - **Nobody reads changelogs** — a diachronic record with no synchronic surface
+- **Citation messiness** — diachronic documents make synchronic citation messy
 - Each fix for one property damages the other
 
 **Cues**
 
-- These are three failed attempts at the same problem, not three separate gripes.
+- These are four failed attempts at the same problem, not four separate gripes.
 - The provenance point is the one this audience will already have opinions about.
+- Citation messiness is the scholarly end of the same complaint: if the document
+  moves, a citation to it either rots or silently means something else. Cite a
+  version or cite a moving target — pick one. This is what pins answer later.
 - Land: nobody has made one medium do both well.
 
 **Notes**
 
-Three concrete, familiar failures rather than an abstract statement of the tension —
-everyone in the room has been annoyed by all three, which does the persuading for you.
+Four concrete, familiar failures rather than an abstract statement of the tension —
+everyone in the room has been annoyed by all of them, which does the persuading for you.
 
 ## Books solve this by being very, very slow
 
@@ -127,7 +156,7 @@ everyone in the room has been annoyed by all three, which does the persuading fo
 **Notes**
 
 Closes the opening by naming the one medium that genuinely solves the tension, then
-naming its cost. Sets up pins (slide 15) as the answer without spending the word yet.
+naming its cost. Sets up pins (slide 20) as the answer without spending the word yet.
 
 # How it feels to use
 
@@ -214,6 +243,41 @@ answers `venkateshrao.com/blyg/t/608ay1bz03z3wg58deg787kgvv/`, which answers a f
 back on the first node. The image is the middle of that stack, which is why the quote
 inside it has its own provenance line.
 
+## Quoting what you've already read
+
+- **Ids are global** — 128 random bits, so an id needs no address to be unique
+- You can only quote what you have **already imported** from a subscription
+- Resolution: your own items first, then your imported copies. Never a fetch
+- Same id from two origins → **publish fails**, rather than guessing
+- On the wire, one difference: `transclusions[]` gains an `origin`
+- **Not a fork** — a fork starts *from* their bytes; this quotes them
+
+**Cues**
+
+- The precondition is the whole answer: **no subscription, no quote.** You cannot
+  transclude a blyg you have not read. There is no fetch-by-URL, ever.
+- **Asked directly, this is how it differs from forking:** a fork reaches over the
+  network for their *pinned file* and starts a new draft from those bytes —
+  `forked_from`. This bakes a copy you already hold and quotes it —
+  `transclusions[]`. Different act, different field, different promise.
+- The origin recorded is the **subscription's own fetch origin**, post-redirect —
+  never the manifest's self-asserted `site`. That is what stops a mirror or an
+  impostor claiming to be someone else's blyg.
+- Plain RSS can't be transcluded: no item documents, no versions, nothing to
+  snapshot. The publish error says exactly that rather than failing vaguely.
+- Why never-fetch matters, twice over: their host being down cannot block my
+  publish, and their later edit cannot rewrite my quote.
+- The Webmention tells them afterwards. It is not part of resolution — quoting
+  works whether or not they ever hear about it.
+
+**Notes**
+
+Added because the previous slide asserts the same `![[id]]` works across origins and
+a protocol audience immediately asks *how* — and the honest answer is a precondition,
+not a lookup trick. Also the natural place to kill the assumption that this must be
+the fork mechanism, since both point at someone else's item and only one of them
+touches the network.
+
 ## A list, never a count
 
 ![The same fragment's public page, with a section headed "Responses" containing one line: Venkatesh Rao, at venkateshrao.com, stubbed this, Sep 20 2026.](images/responses.png)
@@ -239,7 +303,37 @@ inside it has its own provenance line.
 
 Sits here rather than in the protocol section because it is the visible half of the
 stub mechanism — the other end of the slide before it. The no-count argument is the
-medium's whole stance on metrics in one design detail, and it pairs with slide 14.
+medium's whole stance on metrics in one design detail, and it pairs with slide 19.
+
+## Glossary
+
+- **blyg** — one author's published surface: files, feed, manifest
+- **fragment** — the small unit; one note, versioned, its own id
+- **thread** — fragments composed into one item; the only kind that transcludes
+- **transclusion** — quote by reference; their bytes baked in at publish
+- **TK** — an instruction left in the draft for a model to fill
+- **stub** — a thread declaring the one thing it responds to
+- **fork** — a new draft descending from a pinned version
+- **webmention** — a W3C ping saying "I referenced you"; then they verify
+- **RSS** — the feed; a legacy reader sees it and loses nothing
+
+**Cues**
+
+- A reference slide, not an argument. Don't read it out — let the room scan it
+  and move on, or leave it up if you're taking questions here.
+- Ordered by build-up, not alphabetically: units, then composition, then the
+  acts, then the network. It doubles as the shape of the talk so far.
+- Only two of these are ours to define. **Transclusion** is Ted Nelson's, 1974;
+  **webmention** and **RSS** are other people's standards we reused rather than
+  reinvented — which is the point worth making if anyone asks why so little is new.
+- "TK" is the journalism marker for copy still to come — that is where the name
+  is from, and it is the one term here that predates computing.
+
+**Notes**
+
+Requested as a plain glossary. Sits after the response/curation material so every
+term on it has already appeared in context — a glossary of words the room has not
+yet heard would be a vocabulary test, not a reference.
 
 ## [TK]: leave an instruction in the draft
 
@@ -335,14 +429,14 @@ its least comfortable.
 **Notes**
 
 The strongest argument for the studio/page split, because it's visible rather than
-asserted: put this slide next to slide 11 and the same paragraphs are tinted in one and
+asserted: put this slide next to slide 14 and the same paragraphs are tinted in one and
 plain in the other. That contrast was not planned — it fell out of decision #25 and the
 studio's own preview highlighting, and it does the explaining better than the prose did.
 
 Round 2 cropped the image from a three-pane capture of the whole editor to the preview
 pane alone. The wide shot was unreadable from a room, and worse, it spent the slide on
 interface furniture when the argument is one visual fact: *these blocks are blue here
-and not blue there*. The source pane's content is already covered as code on slide 10,
+and not blue there*. The source pane's content is already covered as code on slide 13,
 where it is set in type the room can actually read.
 
 # How it works
@@ -432,7 +526,7 @@ like AI, is deliberately never in the protocol.
 - Live on both nodes since 2026-09-22, but **nothing has been forked in public yet** —
   so the studio affordance is real if anyone wants to see it, and there is no finished
   example on a page to point at. Don't promise one.
-- **Call back to slide 5:** this is the book's edition, at conversation speed.
+- **Call back to slide 6:** this is the book's edition, at conversation speed.
 
 **Notes**
 
