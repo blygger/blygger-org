@@ -67,13 +67,46 @@ block-level generation) each get their own section later.
 - If it lands, the shy/blog homophony is the one worth pausing on.
 - The domains being available is not a footnote — it is why these spellings and
   not the dozen other near-misses. Naming a protocol is partly a squatting check.
-- Don't promise a date for the directory. blygger.com is a stub today (slide 28).
+- Don't promise a date for the directory. blygger.com is a stub today (slide 29).
 
 **Notes**
 
 Three readings stacked in one word, which is the right amount of etymology for a
 protocol talk: enough that the name is memorable, not so much that it becomes the
 subject.
+
+## Intelligence media, in time
+
+- **From destination AI to intelligence media** — intelligence stops being a place you
+  visit and starts circulating as work-in-progress artifacts, metabolized as they move
+  ([Protocolized](https://protocolized.io/p/from-destination-ai-to-intelligence))
+- **AI today lacks liveness.** Blygger is an attempt to add it
+- **AI is atemporal and superhistorical. Blygger brings it into time**
+  ([Superhistory, Not Superintelligence](https://contraptions.venkateshrao.com/p/superhistory-not-superintelligence), 2021)
+
+**Cues**
+
+- The philosophical frame. Don't linger — this is the *why*; the rest of the talk
+  is the *how*.
+- **Liveness is the load-bearing word.** A chat transcript is dead on arrival:
+  nothing cites it, nothing revises it, nobody else can build on it. A blyg item
+  is live — versioned, quotable by id, forkable, subscribed to.
+- **"Into time" is mechanical, not poetic.** Models are trained on the past and
+  answer from outside time. Publishing puts generated text back into a dated,
+  versioned, citable record: a TK scope's output lands in an item with a version
+  number, a timestamp and a provenance record naming the model.
+- Superhistory is mine, 2021 — machines digesting centuries of experience per week
+  while human lives stay mostly informationally empty. Name it as the older idea
+  this is downstream of, not as a citation of yourself.
+- **If it reads as AI hype, the answer is slide 24:** the philosophy motivates the
+  medium; the wire has no AI in it at all.
+
+**Notes**
+
+Requested as a philosophy slide after the etymology. Two essays do the work — one
+from Protocolized on intelligence as something that circulates rather than
+somewhere you go, one from 2021 on AI as artificial time. Placed before the demo
+so the room has the motivation in hand before seeing the mechanism.
 
 ## Demo
 
@@ -156,7 +189,7 @@ everyone in the room has been annoyed by all of them, which does the persuading 
 **Notes**
 
 Closes the opening by naming the one medium that genuinely solves the tension, then
-naming its cost. Sets up pins (slide 21) as the answer without spending the word yet.
+naming its cost. Sets up pins (slide 22) as the answer without spending the word yet.
 
 # How it feels to use
 
@@ -303,7 +336,7 @@ touches the network.
 
 Sits here rather than in the protocol section because it is the visible half of the
 stub mechanism — the other end of the slide before it. The no-count argument is the
-medium's whole stance on metrics in one design detail, and it pairs with slide 20.
+medium's whole stance on metrics in one design detail, and it pairs with slide 21.
 
 ## Glossary: structure
 
@@ -351,7 +384,7 @@ was already a line over target. Structure here, acts and network on the next.
 - **studio / page is the load-bearing one.** It is the whole answer to "you said
   AI is never in the protocol, but the title says AI-intertwingled" — generation
   happens in the studio, at authoring time; the page carries output and
-  provenance. Slide 23 makes the argument; this line just names the split.
+  provenance. Slide 24 makes the argument; this line just names the split.
 
 **Notes**
 
@@ -453,14 +486,14 @@ its least comfortable.
 **Notes**
 
 The strongest argument for the studio/page split, because it's visible rather than
-asserted: put this slide next to slide 15 and the same paragraphs are tinted in one and
+asserted: put this slide next to slide 16 and the same paragraphs are tinted in one and
 plain in the other. That contrast was not planned — it fell out of decision #25 and the
 studio's own preview highlighting, and it does the explaining better than the prose did.
 
 Round 2 cropped the image from a three-pane capture of the whole editor to the preview
 pane alone. The wide shot was unreadable from a room, and worse, it spent the slide on
 interface furniture when the argument is one visual fact: *these blocks are blue here
-and not blue there*. The source pane's content is already covered as code on slide 14,
+and not blue there*. The source pane's content is already covered as code on slide 15,
 where it is set in type the room can actually read.
 
 # How it works
@@ -550,7 +583,7 @@ like AI, is deliberately never in the protocol.
 - Live on both nodes since 2026-09-22, but **nothing has been forked in public yet** —
   so the studio affordance is real if anyone wants to see it, and there is no finished
   example on a page to point at. Don't promise one.
-- **Call back to slide 6:** this is the book's edition, at conversation speed.
+- **Call back to slide 7:** this is the book's edition, at conversation speed.
 
 **Notes**
 

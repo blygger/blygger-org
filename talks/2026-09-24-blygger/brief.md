@@ -9,9 +9,10 @@ collateral: `blygger-spec/docs/protocol-v0.2.md`, the locked decisions in
 and the two live nodes.
 
 > **Numbering note (round 3, 2026-09-24):** everything in the round-2 section below
-> uses the 24-slide numbering of that round. Three slides were inserted afterwards
-> (Demo at 03, "Quoting what you've already read" at 10, and the glossary pair at
-> 12–13), so those numbers no longer address the slides they name. They are left as
+> uses the 24-slide numbering of that round. Four slides were inserted afterwards
+> ("Intelligence media, in time" at 03, Demo at 04, "Quoting what you've already
+> read" at 11, and the glossary pair at 13–14), so those numbers no longer address
+> the slides they name. They are left as
 > written because they are a record of what was measured at the time. **The cut order
 > under "Event" below is the one that is current** — it is the only operational list
 > here, and it is maintained.
@@ -124,19 +125,22 @@ single biggest claim in the deck had gone stale in the author's favour. What cha
 
 - **Conference:** Protocol Symposium 2026
 - **Slot:** Thursday 2026-09-24, 23:00 UTC (4:00 PM PDT) — confirmed by Venkat 2026-09-16
-- **Duration:** still unstated. **28 slides** as of round 3 (2026-09-24); at a brisk
-  improvised pace that is roughly 26 minutes. **Cut order, in the numbering of the
+- **Duration:** still unstated. **29 slides** as of round 3 (2026-09-24); at a brisk
+  improvised pace that is roughly 27 minutes. **Cut order, in the numbering of the
   current deck** — take them in this order if the slot is short:
-    1. **11** ("A list, never a count") — the cheapest cut. Slide 10 stands alone and
-       slide 20 makes the no-counts argument anyway. **Cut 11 before 10:** the
+    1. **12** ("A list, never a count") — the cheapest cut. Slide 11 stands alone and
+       slide 21 makes the no-counts argument anyway. **Cut 12 before 11:** the
        cross-origin mechanism is the v0.3 headline and the rest of the deck refers to it.
-    2. **13** ("Glossary: acts and network") — every term on it is defined in context
-       on the slide that uses it; the structure half (12) is the one worth keeping.
-    3. The technical pair, **22–23** ("The wire" / "What is deliberately not enshrined").
-    4. The participation split, **25–27**, collapsing to one slide.
-    5. **06** ("Books solve this by being very, very slow").
-  **Slide 03 ("Demo") is not a cut** — it is a break in the deck, and the time it
+    2. **14** ("Glossary: acts and network") — every term on it is defined in context
+       on the slide that uses it; the structure half (13) is the one worth keeping.
+    3. The technical pair, **23–24** ("The wire" / "What is deliberately not enshrined").
+    4. The participation split, **26–28**, collapsing to one slide.
+    5. **07** ("Books solve this by being very, very slow").
+  **Slide 04 ("Demo") is not a cut** — it is a break in the deck, and the time it
   costs is the demo's, not the deck's. Decide the demo's length separately.
+  **Slide 03 ("Intelligence media, in time") is a poor cut** despite being early: it
+  is the only slide carrying the philosophical motivation, and the participation
+  slides repeat each other far more than it repeats anything.
 - **Delivery:** assumed Zoom screen share, slides advanced manually, no audio track
 - **Speaker:** Venkatesh Rao
 
