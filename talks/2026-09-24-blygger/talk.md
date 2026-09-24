@@ -219,7 +219,7 @@ page furniture.
 
 ![A thread on Venkatesh Rao's Blyg: one line of the author's own text, then a quoted fragment set off by a blue vertical rule, captioned "fragment ↗ · snapshot of v2".](images/transclusion.png)
 
-- Write `![[id]]` on its own line — you get the fragment, not a link to it
+- Write `![[id]]` on its own line — you get the item, not a link to it
 - Snapshotted at publish: the reader gets the bytes you saw, forever
 - Provenance under every quote: which item, which version
 - Editing the source later never rewrites the quote
@@ -227,6 +227,9 @@ page furniture.
 **Cues**
 
 - The blue-ruled block is not copy-paste. I wrote `![[id]]` on its own line.
+- **Any item, either kind.** A thread can quote a fragment or another thread —
+  one id namespace, no type sigil. Quoting a thread nests it, and because what
+  is baked is a snapshot, its own quotes arrive already rendered inside yours.
 - **Snapshotted at publish.** Reader gets the bytes I saw. Editing the source later
   never rewrites this quote.
 - Embeds break or drift. This can't do either.
@@ -624,12 +627,20 @@ what makes plain RSS a sufficient notification layer, and therefore what makes s
 - **AI.** Generation is studio-side; the wire gets output plus provenance.
 - **Identity.** Opaque, client-asserted, never addressable.
 - **Editorial convenience.** No reply primitive, ever — transclusion is the primitive.
+  - Effectively equivalent to "quote dunking" as the only response
 - **Significance markup.** No semver, no edition field. Pins carry weight instead.
 - Four separate decisions, months apart, same sentence each time.
 
 **Cues**
 
 - I didn't notice the pattern until the fourth one.
+- **The quote-dunk line is a concession, not a boast** — say it before someone
+  else does. If transclusion is the only response, every response is structurally
+  a quote-tweet, which is the shape of one of the internet's worst habits.
+- What is different is what is missing around it: no counts, no ratio, no
+  reply-guy surface, and the quote is a frozen snapshot rather than a live embed
+  that can be edited under you. The gesture stays; the incentive to perform it
+  for an audience does not.
 - **Principle:** anything the protocol can't verify, it declines to represent — because
   a field that looks authoritative and isn't corrupts the fields that are.
 - **If someone catches the title, this is the answer:** "AI-intertwingled" and "AI is
