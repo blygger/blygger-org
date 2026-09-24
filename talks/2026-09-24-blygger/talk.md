@@ -67,7 +67,7 @@ block-level generation) each get their own section later.
 - If it lands, the shy/blog homophony is the one worth pausing on.
 - The domains being available is not a footnote — it is why these spellings and
   not the dozen other near-misses. Naming a protocol is partly a squatting check.
-- Don't promise a date for the directory. blygger.com is a stub today (slide 27).
+- Don't promise a date for the directory. blygger.com is a stub today (slide 28).
 
 **Notes**
 
@@ -156,7 +156,7 @@ everyone in the room has been annoyed by all of them, which does the persuading 
 **Notes**
 
 Closes the opening by naming the one medium that genuinely solves the tension, then
-naming its cost. Sets up pins (slide 20) as the answer without spending the word yet.
+naming its cost. Sets up pins (slide 21) as the answer without spending the word yet.
 
 # How it feels to use
 
@@ -303,37 +303,61 @@ touches the network.
 
 Sits here rather than in the protocol section because it is the visible half of the
 stub mechanism — the other end of the slide before it. The no-count argument is the
-medium's whole stance on metrics in one design detail, and it pairs with slide 19.
+medium's whole stance on metrics in one design detail, and it pairs with slide 20.
 
-## Glossary
+## Glossary: structure
 
 - **blyg** — one author's published surface: files, feed, manifest
-- **fragment** — the small unit; one note, versioned, its own id
+- **item** — the umbrella; a fragment or a thread, each with one id
+- **fragment** — the small unit; one note
 - **thread** — fragments composed into one item; the only kind that transcludes
+- **id** — 128 random bits; names an *identity*, never an address
+- **version** — a bare counter, +1 per publish. No semver, ever
+- **pin** — an irrevocable promise to serve one version's bytes forever
+- **withdrawal** — the content taken back; the id, history and pins remain
+
+**Cues**
+
+- Reference slides, not an argument. Don't read them out — let the room scan.
+- **Pin is the one to dwell on** if you dwell on any: it is the only thing here
+  that costs the author something, and the only thing a fork can descend from.
+- Two things people expect and won't find: no author namespace, and no semver.
+  Both are deliberate, and both get their own slide later.
+
+**Notes**
+
+Split from one glossary slide because the terms the deck actually leans on —
+`item`, `id`, `pin`, `version` — were never defined anywhere, and nine entries
+was already a line over target. Structure here, acts and network on the next.
+
+## Glossary: acts and network
+
 - **transclusion** — quote by reference; their bytes baked in at publish
 - **TK** — an instruction left in the draft for a model to fill
 - **stub** — a thread declaring the one thing it responds to
 - **fork** — a new draft descending from a pinned version
+- **origin** — the base URL a blyg is served from; part of every citation
 - **webmention** — a W3C ping saying "I referenced you"; then they verify
 - **RSS** — the feed; a legacy reader sees it and loses nothing
+- **studio / page** — private tool vs public artifact; only the page is governed
 
 **Cues**
 
-- A reference slide, not an argument. Don't read it out — let the room scan it
-  and move on, or leave it up if you're taking questions here.
-- Ordered by build-up, not alphabetically: units, then composition, then the
-  acts, then the network. It doubles as the shape of the talk so far.
-- Only two of these are ours to define. **Transclusion** is Ted Nelson's, 1974;
-  **webmention** and **RSS** are other people's standards we reused rather than
-  reinvented — which is the point worth making if anyone asks why so little is new.
+- **Only three of these are ours to define.** Transclusion is Ted Nelson's, 1974;
+  webmention and RSS are other people's standards, reused rather than reinvented.
+  Worth saying if anyone asks why so little here is new.
 - "TK" is the journalism marker for copy still to come — that is where the name
-  is from, and it is the one term here that predates computing.
+  comes from, and it is the one term here that predates computing.
+- **studio / page is the load-bearing one.** It is the whole answer to "you said
+  AI is never in the protocol, but the title says AI-intertwingled" — generation
+  happens in the studio, at authoring time; the page carries output and
+  provenance. Slide 23 makes the argument; this line just names the split.
 
 **Notes**
 
-Requested as a plain glossary. Sits after the response/curation material so every
-term on it has already appeared in context — a glossary of words the room has not
-yet heard would be a vocabulary test, not a reference.
+The acts a blyg supports, plus the two borrowed standards and the one
+architectural distinction the deck keeps relying on. `studio / page` earns a slot
+here because it is named on several slides and defined on none of them.
 
 ## [TK]: leave an instruction in the draft
 
@@ -429,14 +453,14 @@ its least comfortable.
 **Notes**
 
 The strongest argument for the studio/page split, because it's visible rather than
-asserted: put this slide next to slide 14 and the same paragraphs are tinted in one and
+asserted: put this slide next to slide 15 and the same paragraphs are tinted in one and
 plain in the other. That contrast was not planned — it fell out of decision #25 and the
 studio's own preview highlighting, and it does the explaining better than the prose did.
 
 Round 2 cropped the image from a three-pane capture of the whole editor to the preview
 pane alone. The wide shot was unreadable from a room, and worse, it spent the slide on
 interface furniture when the argument is one visual fact: *these blocks are blue here
-and not blue there*. The source pane's content is already covered as code on slide 13,
+and not blue there*. The source pane's content is already covered as code on slide 14,
 where it is set in type the room can actually read.
 
 # How it works
