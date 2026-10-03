@@ -104,6 +104,15 @@ def flatten_h2(tokens):
 def render_markdown(md_path: Path):
     md = markdown.Markdown(extensions=EXTENSIONS, extension_configs={"toc": {"permalink": False}})
     content_html = md.convert(dedent_fenced_blocks(md_path.read_text("utf-8")))
+    # Each table gets its own horizontal scroller. The page clips sideways
+    # overflow on narrow screens (site.css), so a table wider than the phone —
+    # spec tables keep inline code unwrapped — would otherwise lose its right
+    # edge with no way to reach it. Markdown tables never nest.
+    content_html = (
+        content_html
+        .replace("<table>", '<div class="table-scroll"><table>')
+        .replace("</table>", "</table></div>")
+    )
     return content_html, flatten_h2(md.toc_tokens)
 
 

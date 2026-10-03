@@ -47,7 +47,9 @@
     drawer.querySelector(`[${CLOSE_ATTR}]`)?.focus({ preventScroll: true });
   }
 
-  function closeDrawer(drawer) {
+  // restoreFocus=false when a section link closes the drawer: focus should
+  // follow the reader to that section, not jump back to the Contents pill.
+  function closeDrawer(drawer, restoreFocus = true) {
     clearCloseTimeout();
     dragState = null;
     drawer.classList.remove(OPEN_CLASS);
@@ -61,7 +63,7 @@
       drawer.toggleAttribute("inert", true);
       closeTimeoutId = null;
     }, TRANSITION_MS);
-    trigger?.focus({ preventScroll: true });
+    if (restoreFocus) trigger?.focus({ preventScroll: true });
   }
 
   function flickVelocity() {
@@ -109,7 +111,7 @@
 
     drawer.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener("click", () => {
-        closeDrawer(drawer);
+        closeDrawer(drawer, false);
       });
     });
 

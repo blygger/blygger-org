@@ -282,6 +282,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--rss); outline-o
   margin: 0 0 1.5rem;
   font-size: 0.92rem;
 }
+/* build.py wraps every table; the wrapper scrolls so the clipped page doesn't. */
+.content .table-scroll {
+  overflow-x: auto;
+  margin: 0 0 1.5rem;
+}
+.content .table-scroll > table { margin: 0; }
 .content th, .content td {
   text-align: left;
   padding: 0.5rem 0.75rem;
