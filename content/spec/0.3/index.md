@@ -369,6 +369,15 @@ Threads additionally carry `transclusions` (§10.3) and MAY carry `stub_of`
 - `updated` MUST equal the latest changelog entry's `at`. All timestamps are
   self-asserted by the origin; readers order events per their own policy
   (§13.7).
+- **`content_html` is self-contained** (revision of 2026-10-03, decision
+  #53): every URL in it — media, links, the anchors `[[id]]` renders to,
+  anything an `href` or `src` can carry — MUST be absolute. The same bytes
+  travel three ways with no origin to resolve against: as the feed
+  `<description>` (§7), into an importer's store (§13), and baked verbatim
+  into other origins' threads (§10.2). Readers MAY resolve a relative URL
+  against the document's origin on import as a defensive measure and MUST
+  NOT depend on one being present. `media[].url` (§5.4) is unaffected: it is
+  a structured field readers resolve.
 
 ### 5.3 Kinds
 
@@ -557,6 +566,16 @@ URL of the item's human-readable permalink**, resolved against the origin
   `<link rel="alternate" type="application/json" href="{origin}items/{id}.json">`.
   This is the way back: from a page, which is what a Webmention names, to the
   document, which is what a receiver verifies (§15.4).
+- **`page` SHOULD be stable for the life of the item** (revision of
+  2026-10-03, decision #56). A slug is a promise the moment anyone links to
+  it: a reader holds the `page` it imported, `cited.url` (§5.9) is frozen at
+  the moment a reference was made, and a Webmention's target is a URL
+  (§15.2) — none of them signals a rename, and `version` says only that
+  something changed. A publisher that must move a page SHOULD serve a
+  redirect from the old path. Readers MAY refresh `page` from the item
+  document on any fetch (the staleness check fetches it anyway), and a
+  frozen `cited.url` naming the old path remains correct: it names what was
+  seen.
 
 ### 5.9 The reference shape
 
@@ -767,8 +786,9 @@ Rules:
   or lineage line to `<description>` so that plain RSS readers see what the
   item answers or descends from; that line is presentation, exactly like the
   injected transclusion-provenance line, and is not part of `content_html`.
-- `<description>` HTML MUST be self-contained: absolute media URLs, no
-  dependence on the origin's stylesheets or scripts. (Baked transclusion and
+- `<description>` HTML MUST be self-contained — which `content_html` already
+  is (§5.2: every URL absolute) — with no dependence on the origin's
+  stylesheets or scripts. (Baked transclusion and
   generation wrappers, §10.2/§5.7, ride along automatically — they are part of
   `content_html`.)
 - When an item's `author.name` is present, the publisher SHOULD emit
@@ -939,16 +959,34 @@ fetch.
 - A line consisting solely of `![[` + a 26-character item id + `]]`
   (surrounding whitespace allowed) is a **transclusion directive**:
   `![[7c9wk2mhq0v3xj8tn5rzfd41bg]]`
-- Anywhere else — inline, inside code blocks — the same character sequence is
-  inert text.
+- A transclusion directive immediately followed, with no blank line, by a
+  markdown blockquote is a **partial transclusion** (revision of 2026-10-03,
+  decision #49): the blockquote's text is the **selection**, and §10.2 says
+  what is checked and what is baked. A blank line detaches the blockquote,
+  so a whole transclusion followed by the author's own quotation stays
+  writable:
+
+  ```
+  ![[7c9wk2mhq0v3xj8tn5rzfd41bg]]
+  > Stigmergy is what a protocol looks like from inside, and the
+  > reason it looks like nothing at all is the point.
+
+  Commentary begins after a blank line.
+  ```
+
+- Anywhere else — inline, inside code spans and code blocks — the directive
+  sequence is inert text.
 - `![[id@vN]]` (explicit version) is **reserved**: 0.3 publishers MUST reject
   it at publish time; readers MUST tolerate it as an unknown construct.
 - The directive names an **identity**, not an origin: there is no origin
   spelling in the grammar, and none is planned. That is what lets a thread be
   moved, mirrored, or re-hosted without rewriting its source; which origin a
   directive resolved to is recorded in provenance (§10.3), not in the text.
-- The unprefixed inline form `[[` + id + `]]`, anywhere in `content_md`, is
-  a **plain internal link** (new in 0.3). It resolves at publish time by the
+- The unprefixed inline form `[[` + id + `]]`, anywhere in `content_md`
+  outside code, is a **plain internal link** (new in 0.3; *outside code*
+  added 2026-10-03, decision #54: inside code spans and code blocks the link
+  form is inert text exactly as the directive is — one rule for both forms,
+  so the grammar can be quoted). It resolves at publish time by the
   same order as a directive (§10.2) and renders in `content_html` as an
   ordinary anchor whose `href` is the **absolute** URL of the target's page
   (§5.8) — absolute because `content_html` travels to subscribers (§7); the
@@ -1006,6 +1044,38 @@ shown on an HTML page is presentation, not part of the published
 through, §5.5). The class name `blyg-transclusion` is a **permanent wire
 token**, baked into published `content_html`; its styling is presentation.
 
+**Partial transclusion** (revision of 2026-10-03, decision #49). A directive
+with an attached blockquote (§10.1) resolves exactly as a whole directive —
+same order, same snapshot rule — and adds one check: at publish, the
+selection MUST be a substring of the target snapshot's **text content** —
+its `content_html` with tags stripped, whitespace collapsed within a block,
+block boundaries kept as line breaks — at the version being baked; otherwise
+a publish error, as for an unresolvable directive. Any reader MAY re-check
+by the same test while the origin serves that version, live or pinned.
+Misrepresentation by elision is not fixed by this and is not claimed to be;
+the second class below is what discloses that a quote is partial. There is
+**no cap** on a selection's length: a substring test does not care, and a
+cap would be editorial convenience in the protocol. The bake is
+
+```html
+<blockquote class="blyg-transclusion blyg-partial"
+            data-blyg-id="{id}"
+            data-blyg-version="{n}">
+  <p>…one line of the selection's plain text…</p>
+</blockquote>
+```
+
+with `data-blyg-origin` for remote sources exactly as above. The content is
+the selection's **plain text, one `<p>` per line of it**, escaped — not a
+carved sub-range of the source's inline HTML: the selection is defined on
+text, and cutting an HTML range faithfully is a second project. Emphasis in
+the source does not survive into the quote; that is the visible cost.
+`blyg-partial` is a **permanent wire token** beside `blyg-transclusion`, so
+partiality is visible to any reader and survives import. A **plain-web
+target gets nothing**: quoting an ordinary web page under a `{url}` stub
+(§10.6) is an ordinary markdown blockquote, because there is no versioned
+document to verify against.
+
 Consequences of the snapshot rule, all deliberate:
 
 - **Publish never depends on the network.** A publisher can only transclude
@@ -1034,7 +1104,15 @@ not pin-retained, is a publish error on republish — exactly as a withdrawn
 local fragment is — and the author removes the directive or leaves the
 thread at its current version. The protocol does not offer "freeze this
 quote at the withdrawn version": that would be the first place withdrawal
-failed to roll to null, and it is deliberately not offered here.
+failed to roll to null, and it is deliberately not offered here. The
+consequence for a long-lived composed work — a book as a thread of threads,
+a serial republished for years — is that every unpinned remote quote is a
+veto held by a stranger: one withdrawal and the work cannot be republished
+until the directive is removed. The mitigation is already in the rules and
+is stated here so an author meets it where it matters: **quote pinned
+versions if you want your work to survive** — a pinned snapshot is retained
+(§13.4) and stays quotable through withdrawal (step 2 above). A studio
+SHOULD say at publish when a directive resolves to an unpinned remote item.
 
 ### 10.3 Provenance
 
@@ -1054,6 +1132,24 @@ version:
   is therefore a valid 0.3 document unchanged — and for remote sources is the
   subscription's identity origin (§12.2), never the source manifest's
   self-asserted `site`.
+- A partial transclusion's entry (§10.1, §10.2) additionally carries an
+  OPTIONAL `selector` (revision of 2026-10-03, decision #49): `exact`
+  REQUIRED — the selection, normalized by §10.2's text-content rule —
+  `prefix` and `suffix` OPTIONAL and short; the W3C Web Annotation
+  text-quote shape.
+
+  ```json
+  { "id": "1vgtgz0gq5b2c9k7d3m8r4n6xy", "version": 1,
+    "origin": "https://blyg.protocol-institute.org/",
+    "selector": { "exact": "Stigmergy is what a protocol looks like from inside",
+                  "prefix": "is the whole point. ", "suffix": ", and the reason" } }
+  ```
+
+  Mention verification (§15.4) ignores it, as it ignores `cited`; a reader
+  that ignores it entirely remains conformant, because readers display baked
+  HTML and never resolve. The relation is `transclusion` and staleness is
+  §5.9's check, unchanged — which is why this entered the 0.3 text as a
+  revision rather than opening 0.4 (§16.4).
 - Fragments omit the key entirely; threads always carry it (a withdrawn
   thread's endcap carries `[]`). Generation sources are disclosed separately
   and never appear here (§5.7), and a plain internal link (§10.1) produces
@@ -1695,6 +1791,25 @@ stub's mention verified on the bare reference with the citation ignored), and
 promoted into §5.9 in the first published revision. The normative text is
 there; this number is kept only so that earlier citations of §16.1 resolve.
 
+### 16.1a `cited` on a plain-web stub (ruled 2026-10-03; next revision)
+
+**Ruled: a `{url}` stub (§10.6) MAY carry the same `cited` object**, under
+§5.9's rules unchanged — `retrieved` REQUIRED, self-asserted, frozen when the
+stub was created, ignored by verification, never baked, ignorable by any
+reader, `excerpt` a caption capped near 200 characters — entering §10.6 once
+a client emits it and an import across nodes retains it (decision #55, on
+[blygger-spec#7](https://github.com/blygger/blygger-spec/issues/7)).
+§10.2's "plain-web targets get nothing" is about *verification*: a selector
+promises a faithfulness test that cannot run against a page with no
+versioned document. `cited` promises no test — §15.4 MUST ignore it and a
+reader that drops it stays conformant — and §5.9's own argument is
+*stronger* for a target that cannot be re-fetched at any version: the citing
+publisher's frozen label is the only record of what was read. The cap stays,
+because the quotation channel for the plain web is an ordinary markdown
+blockquote and `cited` is a caption there too. Four reference sites instead
+of three; the object is the one §5.9 describes, attached to a reference
+whose identity is a `url` rather than `origin`/`id`/`version`.
+
 ### 16.2 Plain internal links — `[[id]]` (promoted to §10.1, 2026-09-28)
 
 Ruled 2026-09-28, rendered by blygger-studio 0.6.0 the same day, exercised
@@ -1745,59 +1860,19 @@ project's build-then-prose rule is inverted on purpose — the wire had to be
 able to say this before any client could build it — and it enters normative
 text only after a client has built it and two nodes have exercised it.
 
-### 16.4 Partial quotation (ruled 2026-09-28; next revision) and titles (closed)
+### 16.4 Partial quotation (promoted to §10.1–§10.3, 2026-10-03) and titles (closed)
 
-**Partial quotation — ruled: a partial *transclusion*, same construct as §10
-with a selector, entering the normative text once a client builds it and two
-nodes have exercised it.** The medium has three registers of borrowing:
-quote a passage as the inspiration, transclude the whole item for
-commentary (the stub, §10.6), fork from a pin for a derivative (§5.6). The
-first is the common blogging norm and was the missing rung. Its ruled shape:
-
-- **Grammar.** A transclusion directive immediately followed, with no blank
-  line, by a markdown blockquote is a partial transclusion; the blockquote's
-  text is the **selection**. A blank line detaches the blockquote, so a
-  whole transclusion followed by the author's own quotation stays writable.
-
-  ```
-  ![[7c9wk2mhq0v3xj8tn5rzfd41bg]]
-  > Stigmergy is what a protocol looks like from inside, and the
-  > reason it looks like nothing at all is the point.
-
-  Commentary begins after a blank line.
-  ```
-
-- **Faithfulness.** At publish the selection MUST be a substring of the
-  target snapshot's *text content* — its `content_html` with tags stripped,
-  whitespace collapsed within a block, block boundaries kept as line breaks
-  — at the version being baked; otherwise a publish error, as for an
-  unresolvable directive. Any reader MAY re-check by the same test while the
-  origin serves that version, live or pinned. This is exactly the whole
-  form's condition plus a substring test. Misrepresentation by elision is
-  not fixed by this and is not claimed to be; the second class below is
-  what discloses that a quote is partial.
-- **Wire.** The `transclusions[]` entry (§10.3) gains an OPTIONAL
-  `selector`: `exact` REQUIRED (the selection), `prefix` and `suffix`
-  OPTIONAL and short — the W3C Web Annotation text-quote shape. Mention
-  verification (§15.4) ignores it, as it ignores `cited`; a reader that
-  ignores it entirely remains conformant. The relation is `transclusion`;
-  staleness is §5.9's check, unchanged.
-- **Bake.** The blockquote carries `class="blyg-transclusion blyg-partial"`
-  with the usual data attributes; `blyg-partial` becomes a permanent wire
-  token when this enters normative text. Whether the bake carries the
-  passage's inline formatting from the source HTML or its plain text in
-  paragraphs is an implementation finding for the build to settle.
-- **No cap** on a partial quote's length: a substring test does not care,
-  and a cap would be editorial convenience in the protocol.
-- **A revision, not a new version.** Readers never resolve; they display
-  baked HTML. A reader that ignores `selector` displays the passage
-  correctly, runs the same staleness check and receives the same relation,
-  so nothing a reader or receiver does changes, and this enters the 0.3
-  text when built.
-- **Plain-web targets get nothing.** Quoting an ordinary web page under a
-  `{url}` stub is an ordinary markdown blockquote: there is no versioned
-  document to verify against, and a construct there would promise what it
-  cannot check.
+**Partial quotation — promoted.** Ruled 2026-09-28 as a partial *transclusion*
+(decision #49), built by blygger-studio 0.8.1 the next day, exercised across
+both live nodes (a PI stub quoting one paragraph of a venkateshrao thread:
+`selector` and the `blyg-partial` bake on the document, the mention verified
+as `stub` on the far side, the quote intact through import, a wrong quote
+refused at publish), and promoted into §10.1 (grammar), §10.2 (faithfulness
+and the bake) and §10.3 (`selector`) in the fifth published revision. The
+normative text is there; this number is kept so that earlier citations of
+§16.4 resolve. One implementation finding was left to the build and is now
+the rule: the bake carries the selection's **plain text in paragraphs**, not
+a carved sub-range of the source's inline HTML.
 
 - *(Imported generated text was on this list and is resolved: §5.7 rule 7
   discloses it through the existing construct. The authoring grammar for it
@@ -1841,6 +1916,20 @@ with per-tool, scoped, revocable credentials and used by at least one
 third-party tool. Tools discover a write endpoint through an HTML `rel` link
 on the studio's page, never through the manifest; the manifest is wire and
 stays clean.
+
+**Clarified 2026-10-03 (decision #52), as the reference client's write
+surface is being built by a contributor.** An OAuth-style authorization
+flow, in which a tool sends the owner to their own studio to approve a
+scoped token, is one way of *minting* the per-tool, scoped, revocable
+credential this section describes — the IndieAuth shape Micropub itself
+uses — and so stays within what was ruled; a paste-a-token path must exist
+beside it, for tools with no browser. Nothing about authorization touches
+the manifest, a `.well-known` path (host-rooted, so it would break a
+path-mounted blyg, §4), or this document: discovery remains the HTML `rel`
+link on the studio page, and whatever metadata it points at lives under the
+mount. An MCP server over the same operations and scopes is a transport for
+the client's contract, not a second contract; text an agent writes through
+it is disclosed through `generated[]` like any other generated text (§5.7).
 
 ### 16.6a Client source discovery — `generator_url` (promoted to §6.1, 2026-09-28)
 
@@ -1991,6 +2080,19 @@ One line per published change to this document, newest first. Snapshots are
 cut at `blygger.org/spec/0.3/{date}/` and each carries a diff link to the one
 before it.
 
+- **2026-10-03, fifth revision** — Partial transclusion promoted from §16.4
+  into §10.1 (grammar), §10.2 (the faithfulness check and the `blyg-partial`
+  bake: plain text in paragraphs) and §10.3 (`selector`), after
+  blygger-studio 0.8.1 and a cross-node exercise — the first normative
+  addition since the first published revision. Also: `content_html` MUST be
+  self-contained, every URL absolute (§5.2, cross-referenced from §7;
+  decision #53); `[[id]]` is inert inside code, as the directive already was
+  (§10.1; #54, on blygger-spec#4); `page` SHOULD be stable for the life of
+  an item (§5.8; #56, on blygger-spec#9); `cited` on a `{url}` stub ruled as
+  a shape, §16.1a (#55, on blygger-spec#7); §10.2 names the republication
+  veto an unpinned remote quote hands a stranger and the quote-a-pin
+  mitigation (on blygger-spec#8); §16.6 clarified for an OAuth-style minting
+  flow (#52). Not snapshotted.
 - **2026-09-28, fourth revision** — §16.6e: the manifest locates the surface
   (authoritative `feed`/`items`, `item`/`pin` URI templates, discovery via the
   existing `rel="blyg"` link, identity as the manifest URL minus its last
@@ -2030,4 +2132,4 @@ before it.
 
 ---
 
-*Published from [blygger/blygger-spec@4fb29cf](https://github.com/blygger/blygger-spec/commit/4fb29cf).*
+*Published from [blygger/blygger-spec@e6740e8](https://github.com/blygger/blygger-spec/commit/e6740e8).*

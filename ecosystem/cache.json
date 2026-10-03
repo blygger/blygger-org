@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-03T00:58:03+00:00",
+ "checked": "2026-10-03T17:53:39+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -8,8 +8,59 @@
      "origin": "https://ammdi.hyperphor.com/blyg/",
      "title": "AMMDI Blyg",
      "protocol": "0.3",
-     "updated": "2026-10-01T18:03:23Z",
+     "updated": "2026-10-03T03:40:55Z",
      "generator_seen": "goddinpotty-blyg/0.1"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "astro-gyoza/0.0.2": {
+   "generator": "astro-gyoza/0.0.2",
+   "nodes": [
+    {
+     "origin": "https://artlu.xyz/",
+     "title": "artlu99's personal blog + website",
+     "protocol": "0.3",
+     "updated": "2026-10-03T01:36:11Z",
+     "generator_seen": "astro-gyoza/0.0.2"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "blygger-studio/0.11.0": {
+   "generator": "blygger-studio/0.11.0",
+   "nodes": [
+    {
+     "origin": "https://blyg.aneeshsathe.com/",
+     "title": "And Yet Here We Are \ud83d\ude80",
+     "protocol": "0.3",
+     "updated": "2026-10-03T16:27:18Z",
+     "generator_seen": "blygger-studio/0.11.0"
+    },
+    {
+     "origin": "https://blyg.bricolage.io/",
+     "title": "Kyle's blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-02T20:24:24Z",
+     "generator_seen": "blygger-studio/0.11.0"
+    },
+    {
+     "origin": "https://blyg.protocol-institute.org/",
+     "title": "Protocol Institute Blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-03T04:55:26Z",
+     "generator_seen": "blygger-studio/0.11.0"
+    },
+    {
+     "origin": "https://venkateshrao.com/blyg/",
+     "title": "Venkatesh Rao's Blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-03T16:33:18Z",
+     "generator_seen": "blygger-studio/0.11.0"
     }
    ],
    "protocols": [
@@ -20,31 +71,10 @@
    "generator": "blygger-studio/0.8.3",
    "nodes": [
     {
-     "origin": "https://blyg.aneeshsathe.com/",
-     "title": "And Yet Here We Are",
-     "protocol": "0.3",
-     "updated": "2026-10-03T00:07:27Z",
-     "generator_seen": "blygger-studio/0.8.3"
-    },
-    {
-     "origin": "https://blyg.bricolage.io/",
-     "title": "Kyle's blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-02T20:24:24Z",
-     "generator_seen": "blygger-studio/0.8.3"
-    },
-    {
      "origin": "https://blyg.jdbb.net/",
      "title": "[jdbb] studio blyg",
      "protocol": "0.3",
-     "updated": "2026-09-28T01:04:21Z",
-     "generator_seen": "blygger-studio/0.8.3"
-    },
-    {
-     "origin": "https://blyg.protocol-institute.org/",
-     "title": "Protocol Institute Blyg",
-     "protocol": "0.3",
-     "updated": "2026-09-29T20:56:24Z",
+     "updated": "2026-10-03T13:28:53Z",
      "generator_seen": "blygger-studio/0.8.3"
     },
     {
@@ -58,14 +88,7 @@
      "origin": "https://jd-blyg.exe.xyz/",
      "title": "[jdbb] studio blyg",
      "protocol": "0.3",
-     "updated": "2026-09-28T01:04:21Z",
-     "generator_seen": "blygger-studio/0.8.3"
-    },
-    {
-     "origin": "https://venkateshrao.com/blyg/",
-     "title": "Venkatesh Rao's Blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-02T19:01:30Z",
+     "updated": "2026-10-03T13:28:53Z",
      "generator_seen": "blygger-studio/0.8.3"
     }
    ],
@@ -88,15 +111,15 @@
     "0.3"
    ]
   },
-  "Blynger/0.9.6": {
-   "generator": "Blynger/0.9.6",
+  "Blynger/0.9.16": {
+   "generator": "Blynger/0.9.16",
    "nodes": [
     {
      "origin": "https://bradydale.com/blyg/",
      "title": "Brady Dale's blyg",
      "protocol": "0.3",
-     "updated": "2026-10-02T23:13:05Z",
-     "generator_seen": "Blynger/0.9.6"
+     "updated": "2026-10-03T17:27:07Z",
+     "generator_seen": "Blynger/0.9.16"
     }
    ],
    "protocols": [
@@ -125,7 +148,7 @@
      "origin": "https://florianlohse.com/blyg/",
      "title": "florianlohse",
      "protocol": "0.3",
-     "updated": "2026-10-01T10:42:06.836Z",
+     "updated": "2026-10-03T14:51:55.591Z",
      "generator_seen": "my-garden-site/0.1.0"
     }
    ],
@@ -177,6 +200,21 @@
    "protocols": [
     "0.2"
    ]
+  },
+  "msn-build/0.1": {
+   "generator": "msn-build/0.1",
+   "nodes": [
+    {
+     "origin": "https://www.msweet.net/notes/",
+     "title": "Notes | Matthew McDowell-Sweet",
+     "protocol": "0.3",
+     "updated": "2026-10-03T14:49:29Z",
+     "generator_seen": "msn-build/0.1"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
   }
  },
  "repos": {
@@ -187,7 +225,7 @@
    "license": "NOASSERTION",
    "stars": 0,
    "forks": 3,
-   "pushed_at": "2026-09-30T02:28:23Z",
+   "pushed_at": "2026-10-03T17:53:09Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -243,7 +281,7 @@
    "license": "MIT",
    "stars": 2,
    "forks": 1,
-   "pushed_at": "2026-09-30T08:44:40Z",
+   "pushed_at": "2026-10-03T04:11:53Z",
    "created_at": "2026-09-25T15:44:30Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -295,10 +333,6 @@
   {
    "repo": "halcyonic-systems/protocols-are-systems-talk",
    "via": "name/desc/readme"
-  },
-  {
-   "repo": "msmsim/msn",
-   "via": "code: blyg.json"
   },
   {
    "repo": "mtravers/goddinpotty",

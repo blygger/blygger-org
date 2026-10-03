@@ -9,8 +9,8 @@ Built something? **[Submit it](https://github.com/blygger/blygger-org/issues/new
 
 ## Where things stand
 
-- **9 client implementations** publishing **15 live blygs** — 8 of those clients are not ours.
-- Protocol versions in the wild: **0.3** (12 nodes), **0.2** (3 nodes).
+- **12 client implementations** publishing **17 live blygs** — 10 of those clients are not ours.
+- Protocol versions in the wild: **0.3** (14 nodes), **0.2** (3 nodes).
 - **11 projects listed** below.
 
 The client counts come from reading every manifest in [blygger.com's directory](https://blygger.com), which is how a client becomes visible at all: `generator` is a public key in a file the protocol requires, so publishing announces you whether or not your source is anywhere we can see. Five of the clients below have no locatable repository.
@@ -25,9 +25,11 @@ Publish a blyg of their own, and so carry their own `generator` string. A client
 
 The reference client. A Cloudflare Worker that publishes a blyg, subscribes to others, and threads, transcludes and responds across them. Named blyg-ref until 2026-09-28.
 
-`blygger-studio/0.8.3` · TypeScript · updated 2 days ago
+`blygger-studio/0.11.1` · TypeScript · updated today
 
-Live: [And Yet Here We Are](https://blyg.aneeshsathe.com/) (protocol 0.3), [Kyle's blyg](https://blyg.bricolage.io/) (protocol 0.3), [\[jdbb\] studio blyg](https://blyg.jdbb.net/) (protocol 0.3), [Protocol Institute Blyg](https://blyg.protocol-institute.org/) (protocol 0.3), and 3 more
+**7 of 7 live nodes run an older build** `blygger-studio/0.11.0`, `blygger-studio/0.8.3` rather than `blygger-studio/0.11.1`.
+
+Live: [And Yet Here We Are 🚀](https://blyg.aneeshsathe.com/) (protocol 0.3), [Kyle's blyg](https://blyg.bricolage.io/) (protocol 0.3), [\[jdbb\] studio blyg](https://blyg.jdbb.net/) (protocol 0.3), [Protocol Institute Blyg](https://blyg.protocol-institute.org/) (protocol 0.3), and 3 more
 
 ### [Blynger](https://bradydale.com/blyg/)
 
@@ -97,13 +99,13 @@ Author *into* a blyg that already exists, rather than producing one. They carry 
 
 A native, Notational-Velocity-fast macOS studio for Blygger blogs (blygs). Rust + GPUI. Vibecoded, no warranty.
 
-Rust · MIT · updated 2 days ago
+Rust · MIT · updated today
 
 ### [drafts-blyg](https://github.com/miguelito4/drafts-blyg)
 
 One-tap Blygger fragments from your phone via Drafts
 
-JavaScript · MIT · updated 4 days ago
+JavaScript · MIT · updated 5 days ago
 
 
 ## Libraries and unclassified
@@ -121,8 +123,10 @@ TypeScript · updated 2 days ago
 
 These `generator` strings appear on live blygs and are not matched to any project above. If one is yours, [say so](https://github.com/blygger/blygger-org/issues/new/choose) and it gets a proper entry.
 
-- `Blynger/0.9.6` — [bradydale.com/blyg](https://bradydale.com/blyg/)
+- `Blynger/0.9.16` — [bradydale.com/blyg](https://bradydale.com/blyg/)
+- `astro-gyoza/0.0.2` — [artlu.xyz](https://artlu.xyz/)
 - `hugo-blyg/0.2.0` — [newschematic.org/blyg](https://newschematic.org/blyg/)
+- `msn-build/0.1` — [www.msweet.net/notes](https://www.msweet.net/notes/)
 - `my-garden-site/0.1.0` — [florianlohse.com/blyg](https://florianlohse.com/blyg/)
 - `sachin-blyg/0.2.0` — [blyg.sachinbenny.xyz](https://blyg.sachinbenny.xyz/)
 
@@ -131,7 +135,6 @@ These `generator` strings appear on live blygs and are not matched to any projec
        chrisbodhi/newschematic  (via code: blyg.json)
        djinna/jdbbs  (via code: blyg.json)
        halcyonic-systems/protocols-are-systems-talk  (via name/desc/readme)
-       msmsim/msn  (via code: blyg.json)
        mtravers/goddinpotty  (via code: blyg.json)
        patwater/burrow-blyg-windows-  (via name/desc/readme)
        protocolvision/sig-p4b  (via name/desc/readme)
