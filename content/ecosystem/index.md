@@ -9,7 +9,7 @@ Built something? **[Submit it](https://github.com/blygger/blygger-org/issues/new
 
 ## Where things stand
 
-- **12 client implementations** publishing **17 live blygs** — 10 of those clients are not ours.
+- **13 client implementations** publishing **17 live blygs** — 11 of those clients are not ours.
 - Protocol versions in the wild: **0.3** (14 nodes), **0.2** (3 nodes).
 - **11 projects listed** below.
 
@@ -25,11 +25,11 @@ Publish a blyg of their own, and so carry their own `generator` string. A client
 
 The reference client. A Cloudflare Worker that publishes a blyg, subscribes to others, and threads, transcludes and responds across them. Named blyg-ref until 2026-09-28.
 
-`blygger-studio/0.11.1` · TypeScript · updated today
+`blygger-studio/0.18.0` · TypeScript · updated today
 
-**7 of 7 live nodes run an older build** `blygger-studio/0.11.0`, `blygger-studio/0.8.3` rather than `blygger-studio/0.11.1`.
+**5 of 5 live nodes run an older build** `blygger-studio/0.11.0`, `blygger-studio/0.8.3` rather than `blygger-studio/0.18.0`.
 
-Live: [And Yet Here We Are 🚀](https://blyg.aneeshsathe.com/) (protocol 0.3), [Kyle's blyg](https://blyg.bricolage.io/) (protocol 0.3), [\[jdbb\] studio blyg](https://blyg.jdbb.net/) (protocol 0.3), [Protocol Institute Blyg](https://blyg.protocol-institute.org/) (protocol 0.3), and 3 more
+Live: [And Yet Here We Are 🚀](https://blyg.aneeshsathe.com/) (protocol 0.3), [Kyle's blyg](https://blyg.bricolage.io/) (protocol 0.3), [\[jdbb\] studio blyg](https://blyg.jdbb.net/) (protocol 0.3), [Sean Stevenson](https://blyg.seanstevenson.org/) (protocol 0.3), and 1 more
 
 ### [Blynger](https://bradydale.com/blyg/)
 
@@ -72,7 +72,7 @@ Teach an existing publishing system — Hugo, Obsidian, a note-taking tool — t
 
 Obsidian plugin that publishes a Blygger blyg from one folder of your vault to a static host. Local-first. Includes an AI-agent setup runbook (AGENTS.md).
 
-`blyg-publisher/0.0.1` · TypeScript · MIT · updated 5 days ago
+`blyg-publisher/0.0.1` · TypeScript · MIT · updated 6 days ago
 
 Live: [Lightsong](https://lightsong.ink/blyg/) (protocol 0.2)
 
@@ -80,7 +80,7 @@ Live: [Lightsong](https://lightsong.ink/blyg/) (protocol 0.2)
 
 build a Blygger feed with Hugo & publish with GH Actions
 
-Python · updated 4 days ago
+Python · updated 5 days ago
 
 ### [goddinpotty-blyg](https://github.com/mtravers/goddinpotty)
 
@@ -105,7 +105,7 @@ Rust · MIT · updated today
 
 One-tap Blygger fragments from your phone via Drafts
 
-JavaScript · MIT · updated 5 days ago
+JavaScript · MIT · updated 6 days ago
 
 
 ## Libraries and unclassified
@@ -116,15 +116,16 @@ Building blocks, and projects whose shape we have not yet confirmed with their a
 
 Found by GitHub search; purpose not yet confirmed with its author, and no live blyg located. Listed so it is not lost.
 
-TypeScript · updated 2 days ago
+TypeScript · updated 3 days ago
 
 
 ## Publishing, but unidentified
 
 These `generator` strings appear on live blygs and are not matched to any project above. If one is yours, [say so](https://github.com/blygger/blygger-org/issues/new/choose) and it gets a proper entry.
 
-- `Blynger/0.9.16` — [bradydale.com/blyg](https://bradydale.com/blyg/)
+- `Blynger/0.9.19` — [bradydale.com/blyg](https://bradydale.com/blyg/)
 - `astro-gyoza/0.0.2` — [artlu.xyz](https://artlu.xyz/)
+- `blygger-studio/0.18.0` — [blyg.protocol-institute.org](https://blyg.protocol-institute.org/), [venkateshrao.com/blyg](https://venkateshrao.com/blyg/)
 - `hugo-blyg/0.2.0` — [newschematic.org/blyg](https://newschematic.org/blyg/)
 - `msn-build/0.1` — [www.msweet.net/notes](https://www.msweet.net/notes/)
 - `my-garden-site/0.1.0` — [florianlohse.com/blyg](https://florianlohse.com/blyg/)
@@ -142,4 +143,4 @@ These `generator` strings appear on live blygs and are not matched to any projec
 
 ---
 
-*Checked 2026-10-03. This page is regenerated, not hand-maintained: repository facts and live-blyg data are re-read on each run, so a stale entry here means the check has not run, not that nothing changed.*
+*Checked 2026-10-04. This page is regenerated, not hand-maintained: repository facts and live-blyg data are re-read on each run, so a stale entry here means the check has not run, not that nothing changed.*
