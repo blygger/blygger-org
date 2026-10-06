@@ -532,3 +532,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--rss); outline-o
     transition: none;
   }
 }
+
+/* Tabs (tabs.js). Without the script every .tab-panel shows, stacked. */
+.tablist { display: flex; gap: 1.6rem; border-bottom: 1px solid var(--rule);
+  margin: 0 0 1.5rem; flex-wrap: wrap; }
+.tablist [role=tab] { background: none; border: 0; border-bottom: 2px solid transparent;
+  padding: 0.5rem 0; margin-bottom: -1px; cursor: pointer; color: var(--ink-soft);
+  font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.02em; }
+.tablist [role=tab][aria-selected=true] { color: var(--ink); border-bottom-color: var(--rss); }
+.tablist [role=tab]:hover { color: var(--rss); }
+.tablist [role=tab]:focus-visible { outline: 2px solid var(--rss); outline-offset: 2px; }
+.tab-panel > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }

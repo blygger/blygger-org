@@ -102,7 +102,11 @@ ecosystem directory of community-built clients, tools, integrations and mods.
   **entirely generated**, see below). Publish mapping + source-of-truth rule:
   `content/README.md`.
 - `templates/page.html`, `site.css`, `jump-links.js` — shared page shell +
-  stylesheet + Contents drawer script. Signature design element: a monospace
+  stylesheet + Contents drawer script. `tabs.js` (session 38): any page can put
+  `<section class="tab-panel" data-tab data-label markdown="1">` blocks in a
+  `<div class="tabset" markdown="1">`; without JS they stack. Used by
+  `content/contributors/index.md`, which is hand-written — update it when a PR
+  lands or a client appears on the ecosystem page. Signature design element: a monospace
   "log rail" in the left margin turning each page's headings into a numbered
   index (real section numbers on the spec page, positional on the overview
   page) — echoes the protocol's own "your feed is the changelog" idea. The
