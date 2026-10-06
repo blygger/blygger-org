@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-04T02:37:02+00:00",
+ "checked": "2026-10-06T17:11:05+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -8,7 +8,7 @@
      "origin": "https://ammdi.hyperphor.com/blyg/",
      "title": "AMMDI Blyg",
      "protocol": "0.3",
-     "updated": "2026-10-03T03:40:55Z",
+     "updated": "2026-10-04T17:56:22Z",
      "generator_seen": "goddinpotty-blyg/0.1"
     }
    ],
@@ -31,73 +31,66 @@
     "0.3"
    ]
   },
-  "blygger-studio/0.11.0": {
-   "generator": "blygger-studio/0.11.0",
+  "blygger-studio/0.26.0": {
+   "generator": "blygger-studio/0.26.0",
    "nodes": [
     {
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.3",
-     "updated": "2026-10-04T00:12:58Z",
-     "generator_seen": "blygger-studio/0.11.0"
+     "updated": "2026-10-06T03:27:43Z",
+     "generator_seen": "blygger-studio/0.26.0"
     },
-    {
-     "origin": "https://blyg.bricolage.io/",
-     "title": "Kyle's blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-02T20:24:24Z",
-     "generator_seen": "blygger-studio/0.11.0"
-    }
-   ],
-   "protocols": [
-    "0.3"
-   ]
-  },
-  "blygger-studio/0.8.3": {
-   "generator": "blygger-studio/0.8.3",
-   "nodes": [
     {
      "origin": "https://blyg.jdbb.net/",
      "title": "[jdbb] studio blyg",
      "protocol": "0.3",
-     "updated": "2026-10-03T13:28:53Z",
-     "generator_seen": "blygger-studio/0.8.3"
-    },
-    {
-     "origin": "https://blyg.seanstevenson.org/",
-     "title": "Sean Stevenson",
-     "protocol": "0.3",
-     "updated": "2026-10-01T21:01:23Z",
-     "generator_seen": "blygger-studio/0.8.3"
+     "updated": "2026-10-05T11:33:50Z",
+     "generator_seen": "blygger-studio/0.26.0"
     },
     {
      "origin": "https://jd-blyg.exe.xyz/",
      "title": "[jdbb] studio blyg",
      "protocol": "0.3",
-     "updated": "2026-10-03T13:28:53Z",
-     "generator_seen": "blygger-studio/0.8.3"
+     "updated": "2026-10-05T11:33:50Z",
+     "generator_seen": "blygger-studio/0.26.0"
     }
    ],
    "protocols": [
     "0.3"
    ]
   },
-  "blygger-studio/0.18.0": {
-   "generator": "blygger-studio/0.18.0",
+  "blygger-studio/0.27.2": {
+   "generator": "blygger-studio/0.27.2",
+   "nodes": [
+    {
+     "origin": "https://blyg.bricolage.io/",
+     "title": "Kyle's blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-06T16:24:22Z",
+     "generator_seen": "blygger-studio/0.27.2"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "blygger-studio/0.30.1": {
+   "generator": "blygger-studio/0.30.1",
    "nodes": [
     {
      "origin": "https://blyg.protocol-institute.org/",
      "title": "Protocol Institute Blyg",
      "protocol": "0.3",
-     "updated": "2026-10-04T02:30:32Z",
-     "generator_seen": "blygger-studio/0.18.0"
+     "updated": "2026-10-05T23:32:19Z",
+     "generator_seen": "blygger-studio/0.30.1"
     },
     {
      "origin": "https://venkateshrao.com/blyg/",
      "title": "Venkatesh Rao's Blyg",
      "protocol": "0.3",
-     "updated": "2026-10-04T02:05:56Z",
-     "generator_seen": "blygger-studio/0.18.0"
+     "updated": "2026-10-06T02:23:15Z",
+     "generator_seen": "blygger-studio/0.30.1"
     }
    ],
    "protocols": [
@@ -119,30 +112,45 @@
     "0.3"
    ]
   },
-  "Blynger/0.9.19": {
-   "generator": "Blynger/0.9.19",
+  "blygger-studio/0.20.0": {
+   "generator": "blygger-studio/0.20.0",
    "nodes": [
     {
-     "origin": "https://bradydale.com/blyg/",
-     "title": "Brady Dale's blyg",
+     "origin": "https://blyg.seanstevenson.org/",
+     "title": "Sean Stevenson",
      "protocol": "0.3",
-     "updated": "2026-10-04T01:14:41Z",
-     "generator_seen": "Blynger/0.9.19"
+     "updated": "2026-10-01T21:01:23Z",
+     "generator_seen": "blygger-studio/0.20.0"
     }
    ],
    "protocols": [
     "0.3"
    ]
   },
-  "caseyjr-blyg/0.1.0": {
-   "generator": "caseyjr-blyg/0.1.0",
+  "Blynger/0.9.31": {
+   "generator": "Blynger/0.9.31",
+   "nodes": [
+    {
+     "origin": "https://bradydale.com/blyg/",
+     "title": "Brady Dale's blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-06T15:36:37Z",
+     "generator_seen": "Blynger/0.9.31"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "blygger-studio/0.20.2": {
+   "generator": "blygger-studio/0.20.2",
    "nodes": [
     {
      "origin": "https://caseyjr.org/blyg/",
-     "title": "Mike Casey",
+     "title": "Mike Casey's blyg",
      "protocol": "0.3",
-     "updated": "2026-09-30T23:49:21Z",
-     "generator_seen": "caseyjr-blyg/0.1.0"
+     "updated": "2026-10-05T15:29:37Z",
+     "generator_seen": "blygger-studio/0.20.2"
     }
    ],
    "protocols": [
@@ -194,19 +202,64 @@
     "0.2"
    ]
   },
-  "thinking.drwip.com": {
-   "generator": "thinking.drwip.com",
+  "blyg-ref/0.3.0": {
+   "generator": "blyg-ref/0.3.0",
+   "nodes": [
+    {
+     "origin": "https://pioneering-spirit-blyg.patrickatwater.workers.dev/",
+     "title": "Pioneering Spirit (Blyg)",
+     "protocol": "0.3",
+     "updated": "2026-10-05T19:04:36Z",
+     "generator_seen": "blyg-ref/0.3.0"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "sig-p4b-blyg/0.1 (static, git-versioned)": {
+   "generator": "sig-p4b-blyg/0.1 (static, git-versioned)",
+   "nodes": [
+    {
+     "origin": "https://protocolsforbusiness.com/blyg/",
+     "title": "Protocols for Business",
+     "protocol": "0.3",
+     "updated": "2026-10-06T07:50:17Z",
+     "generator_seen": "sig-p4b-blyg/0.1 (static, git-versioned)"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)": {
+   "generator": "rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)",
+   "nodes": [
+    {
+     "origin": "https://rafael.fyi/blyg/",
+     "title": "Rafael Fern\u00e1ndez",
+     "protocol": "0.3",
+     "updated": "2026-10-06T09:08:22Z",
+     "generator_seen": "rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "thinking.drwip.com/1.0.0": {
+   "generator": "thinking.drwip.com/1.0.0",
    "nodes": [
     {
      "origin": "https://thinking.drwip.com/blyg/",
      "title": "Dr Wip \u00b7 Landscape of Thought",
-     "protocol": "0.2",
-     "updated": "2026-08-31T07:29:30Z",
-     "generator_seen": "thinking.drwip.com"
+     "protocol": "0.3",
+     "updated": "2026-10-06T09:09:18Z",
+     "generator_seen": "thinking.drwip.com/1.0.0"
     }
    ],
    "protocols": [
-    "0.2"
+    "0.3"
    ]
   },
   "msn-build/0.1": {
@@ -216,7 +269,7 @@
      "origin": "https://www.msweet.net/notes/",
      "title": "Notes | Matthew McDowell-Sweet",
      "protocol": "0.3",
-     "updated": "2026-10-03T21:46:56Z",
+     "updated": "2026-10-05T21:25:57Z",
      "generator_seen": "msn-build/0.1"
     }
    ],
@@ -231,9 +284,9 @@
    "description": "Blygger Studio \u2014 the reference client for the Blygger protocol. Publish, subscribe, thread, transclude, respond. Cloudflare Worker + D1 + R2.",
    "language": "TypeScript",
    "license": "NOASSERTION",
-   "stars": 0,
-   "forks": 3,
-   "pushed_at": "2026-10-04T02:29:36Z",
+   "stars": 1,
+   "forks": 6,
+   "pushed_at": "2026-10-06T17:09:53Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -289,10 +342,10 @@
    "license": "MIT",
    "stars": 2,
    "forks": 1,
-   "pushed_at": "2026-10-03T04:11:53Z",
+   "pushed_at": "2026-10-05T06:01:54Z",
    "created_at": "2026-09-25T15:44:30Z",
    "archived": false,
-   "homepage": "https://blygger.org",
+   "homepage": "https://aneeshsathe.github.io/blygger-desktop/",
    "topics": [],
    "default_branch": "main"
   },
@@ -303,7 +356,7 @@
    "license": "MIT",
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-09-28T01:14:35Z",
+   "pushed_at": "2026-10-04T20:40:24Z",
    "created_at": "2026-09-28T01:05:16Z",
    "archived": false,
    "homepage": null,
@@ -320,7 +373,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-09-30T22:18:12Z",
+   "pushed_at": "2026-10-05T04:09:53Z",
    "created_at": "2026-09-25T22:53:42Z",
    "archived": false,
    "homepage": null,
@@ -331,15 +384,15 @@
  "summaries": {},
  "discovered": [
   {
+   "repo": "BradyDale/Blynger",
+   "via": "name/desc/readme"
+  },
+  {
    "repo": "chrisbodhi/newschematic",
    "via": "code: blyg.json"
   },
   {
-   "repo": "djinna/jdbbs",
-   "via": "code: blyg.json"
-  },
-  {
-   "repo": "halcyonic-systems/protocols-are-systems-talk",
+   "repo": "miguelito4/static-to-studio",
    "via": "name/desc/readme"
   },
   {
