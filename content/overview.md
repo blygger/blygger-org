@@ -1,45 +1,51 @@
 # Blygger
 
-**An AI-native, decentralized medium for writing in public — built on files you
-own and a feed anyone can read.**
+**An AI-native, decentralized medium for writing in public — a small update to
+blogging and old Twitter, built on files you own and feeds anyone can read.**
 
-Social media had one argument about feeds: chronological vs. algorithmic —
-two ways of sequencing items that are already finished. Blygger is built on a
-different fault line, the one that actually matters for publishing:
-**absolute feeds vs. differential feeds.** An absolute feed announces
-finished items — it rewards posting something once and moving on, and makes
-editing it later look like backpedaling. A differential feed — a
-changelog — announces *changes* to items that stay alive after they
-publish, which rewards working a hard idea in public instead of declaring it
-and walking away. That distinction, not feed ordering, is the design problem
-Blygger exists to solve.
+Media keep time in two ways. **Synchronic** media are about the present
+moment: a Twitter feed, a group chat, a livestream — everything now, nothing
+revised. **Diachronic** media are about how things change: a git log, a blog
+series, a book's editions — the record of the changing is the point. Twitter
+time and GitHub time. Neither is better, and nobody has made one medium do
+both well. Threads are a synchronic medium doing an impression of a diachronic
+one. Editable posts break provenance: if a thing can change silently, what did
+you actually say? And nobody reads changelogs.
 
-The name is a small bet on that idea. **Blyg** is Swedish for *shy* — the
-reticence that keeps people from publishing before a thought is finished,
-which a changelog-native feed is built to dissolve. **Ygg** nods to
-Yggdrasil, the cosmic tree of Norse myth: roots and branches that are never
-finished, only ever still growing.
+Books are the one medium that solves this, by being very, very slow. An
+edition is a change a reader can actually see, and it works because editions
+come years apart. Blygger keeps the edition and drops the latency. Every item
+carries its version history in public, and any version can be **pinned** —
+frozen and citable forever — so you can keep working an idea after publishing
+it without pulling the ground out from under anyone who quoted it.
 
-Changelog-driven publishing has never really worked, and the reason is
-mundane: nobody wants to read a diff. Git's log gets away with this because
-nobody reads it for pleasure — the code is the deliverable, the log is for
-tooling. Prose doesn't have that luxury; a changelog that's just a wall of
-diffs is where readers stop. Blygger's bet is that AI can close that gap. It
-presumes, though it does not require, an AI in the authoring loop whose job
-is to take the accumulating versions of a piece and roll them up into
-something a reader actually wants to read — not a diff, a digest.
+Quoting is the other half. You quote by reference: name an item and its
+content is snapshotted into yours, with a record of exactly which version you
+saw — from your own blyg or anyone else's. Editing the source later never
+rewrites the quote. The idea is Ted Nelson's, and fifty years old; he called it
+**transclusion**.
+
+And Blygger assumes AI. Generated text today is mostly dead on arrival — a chat
+transcript nothing cites, revises, or builds on. In a blyg, a model's output
+lands block by block inside an item with a version, a date, and a disclosure
+of what wrote it: AI brought into time, and into a public record. The protocol
+itself has no AI in it at all.
 
 Blygger is a protocol, not a platform. A **blyg** is a directory of plain
 files — mounted anywhere on your own domain, conventionally `/blyg/` —
 holding your writing, its edit history, and an RSS feed. Anything that can
-serve files can host one. Anything that can read RSS can follow one. There is
-no company in the middle, no account to create, and no timeline you don't
-control.
+serve files can host one. Anything that can read RSS can follow one, and a
+reader that knows nothing of Blygger sees an ordinary feed and loses nothing.
+There is no company in the middle, no account to create, and no timeline you
+don't control.
 
 The design is a deliberate mashup of four ancestors: **blogs** (your domain,
 your archive), **Twitter** (short atomic posts), **wikis** (transclusion —
 composing big texts out of small ones), and **git** (versions, changelogs, and
-an edit culture borrowed from how software treats code).
+an edit culture borrowed from how software treats code). The name stacks three
+readings: **blyg** is Swedish for *shy*, and nearly a homophone of *blog*;
+**Blygger** tips its hat to Blogger; and **ygg** gestures at Yggdrasil, the
+Norse tree whose roots and branches are never finished, only still growing.
 
 ## Two kinds of writing
 
