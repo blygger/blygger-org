@@ -109,6 +109,55 @@ def normalize_list_indent(md: str) -> str:
     return "\n".join(out)
 
 
+def youtube_id(url: str) -> str | None:
+    """The video id from any of YouTube's URL shapes, or None. Only YouTube for
+    now — the one recording host in use — and anything else fails the build
+    loudly rather than embedding a URL we have not checked the shape of."""
+    m = re.search(r"(?:youtube(?:-nocookie)?\.com/(?:watch\?(?:.*&)?v=|embed/|live/)|youtu\.be/)([A-Za-z0-9_-]{11})", url)
+    return m.group(1) if m else None
+
+
+def recording_html(meta: dict, title: str) -> str:
+    """The recorded talk, above the deck, when frontmatter names one.
+
+    `video:` is the YouTube URL; `recording_page:` (optional) is where the
+    event hosts it. Embedded from youtube-nocookie.com and lazy-loaded, so
+    the page sets no YouTube cookies and fetches nothing until scrolled to.
+
+    Its styles are page-local rather than in talk-theme.css, which talk-kit
+    owns and only its sync.py writes; they use the theme's variables.
+    """
+    url = meta.get("video")
+    if not url:
+        return ""
+    vid = youtube_id(str(url))
+    if not vid:
+        sys.exit(f"video: {url!r} is not a YouTube URL this builder recognises")
+    page = meta.get("recording_page")
+    src = f"https://www.youtube-nocookie.com/embed/{vid}?rel=0"
+    links = [f'<a href="https://www.youtube.com/watch?v={vid}">YouTube</a>']
+    if page:
+        links.insert(0, f'<a href="{_attr(str(page))}">{html.escape(str(meta.get("event") or "event"))} recordings</a>')
+    return f"""\
+    <style>
+      .talk-recording {{ margin: 0 0 2rem; }}
+      .talk-recording .frame {{ position: relative; aspect-ratio: 16 / 9; background: var(--tk-ink);
+        border: 1px solid var(--tk-rule); border-radius: 4px; overflow: hidden; }}
+      .talk-recording iframe {{ position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }}
+      .talk-recording .caption {{ font-size: 0.88rem; margin: 0.5rem 0 0; opacity: 0.8; }}
+    </style>
+    <div class="talk-recording" id="recording">
+      <div class="frame">
+        <iframe src="{src}" title="{_attr("Recording: " + title)}" loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="caption">The recorded talk. Also on {" &middot; ".join(links)}. The slides and
+        the speaker&rsquo;s cues follow below.</p>
+    </div>
+"""
+
+
 def parse_talk(path: Path) -> tuple[dict, list[dict]]:
     """Parse talk.md into (meta, slides). Each slide is a dict with title, section,
     image, image_alt, and the raw markdown for projected / cues / notes."""
@@ -321,6 +370,7 @@ def build_talk(talk_dir: Path, dist: Path, template: str, md_render) -> str | No
          &nbsp;&middot;&nbsp; {html.escape(speaker)}</p>
     </div>
 
+{recording_html(meta, title)}
     <div class="talk-player" id="talk-player">
       <div class="stage" id="stage">
 {cover_html}

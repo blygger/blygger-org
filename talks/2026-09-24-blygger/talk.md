@@ -4,8 +4,8 @@ event: "Protocol Symposium 2026"
 date: "2026-09-24"
 time: "23:00 UTC (4:00 PM PDT)"
 speaker: "Venkatesh Rao"
-review_round: 2
-review_opened: "2026-09-22"
+video: "https://www.youtube.com/watch?v=_fX0oiYQ5kk"
+recording_page: "https://protocol-institute.org/events/protocol-symposium-2026/recordings/talk-venkatesh-blygger-ai-native-decentralized/"
 ---
 
 <!--
