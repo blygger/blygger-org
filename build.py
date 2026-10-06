@@ -16,6 +16,7 @@ from pathlib import Path
 
 try:
     import markdown
+    import markdown.extensions
 except ImportError:
     sys.exit("markdown not installed.\nRun: /opt/homebrew/bin/python3 -m pip install markdown --break-system-packages")
 
@@ -51,7 +52,23 @@ def latest_spec_version() -> str | None:
 
 
 SPEC_LINK = f"/spec/{latest_spec_version()}/" if latest_spec_version() else "/spec/"
-EXTENSIONS = ["extra", "toc", "sane_lists"]
+class StrictHashHeadings(markdown.extensions.Extension):
+    """ATX headings need a space after the hashes, as in CommonMark.
+
+    Python-Markdown accepts `#11 refuses …` as a heading, so a decision number
+    that wraps to the start of a source line became an <h1> in the middle of a
+    paragraph — on TN-3 twice and in the published 0.3 spec twice (reported by
+    Venkat). Those pages are generated copies and the spec snapshot is frozen,
+    so the fix is here, for every page, rather than in the prose.
+    """
+
+    RE = re.compile(r"(?:^|\n)(?P<level>#{1,6})[ \t]+(?P<header>(?:\\.|[^\\])*?)#*(?:\n|$)")
+
+    def extendMarkdown(self, md):
+        md.parser.blockprocessors["hashheader"].RE = self.RE
+
+
+EXTENSIONS = ["extra", "toc", "sane_lists", StrictHashHeadings()]
 
 FENCE_RE = re.compile(r"^(\s*)(```+)(.*)$")
 
