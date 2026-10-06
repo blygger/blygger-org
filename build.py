@@ -129,6 +129,11 @@ def render_markdown(md_path: Path):
         content_html
         .replace("<table>", '<div class="table-scroll"><table>')
         .replace("</table>", "</table></div>")
+        # The same derived pointers the template gets, for prose. The home page
+        # linked /spec/0.2/ by hand for a week after 0.3 was published — the
+        # nav's old failure, one file over.
+        .replace("{{SPEC_LINK}}", SPEC_LINK)
+        .replace("{{SPEC_VERSION}}", latest_spec_version() or "")
     )
     return content_html, flatten_h2(md.toc_tokens)
 

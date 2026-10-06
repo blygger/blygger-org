@@ -44,10 +44,12 @@ an edit culture borrowed from how software treats code).
 ## Two kinds of writing
 
 - **Fragments** — short, atomic pieces. A thought, a claim, a paragraph.
-- **Threads** — long-form pieces *composed out of fragments* by transclusion:
-  write `![[fragment-id]]` on its own line and the fragment's content is baked
-  into the thread at publish time, with a provenance record of exactly which
-  version was included.
+- **Threads** — long-form pieces *composed out of other pieces* by
+  transclusion: write `![[id]]` on its own line and that item's content is
+  baked into the thread at publish time, with a provenance record of exactly
+  which version was included. The source can be a fragment or a thread, yours
+  or from any blyg you read, and you can quote the whole of it or just a
+  passage.
 
 Your feed is the changelog: it announces new items *and* new versions of old
 ones, newest activity first. Editing in public is a first-class act, not a
@@ -70,8 +72,9 @@ publish software:
 That last row is the point. Blygger is **a network of soapboxes, not a
 conversation medium**. There is no reply primitive in the protocol and there
 never will be. The only way to respond to someone is to *publish*: quote their
-fragment into a thread of your own, with your editorial framing around it (we
-call this **stubbing**), or fork a pinned version and take it somewhere new.
+work into a thread of your own, with your editorial framing around it — a
+**stub**, a thread that declares itself a response to exactly one item — or
+fork a pinned version and take it somewhere new.
 Responding costs the same thing publishing costs — putting your name on a
 thing you made. Conversation is what other media are for; blygger posts
 cross-post anywhere.
@@ -96,15 +99,17 @@ you change your mind about everything else.
 ## AI-native, AI-free wire
 
 Blygger assumes writers work with AI — and keeps AI entirely out of the
-protocol. The flagship mechanism is **TK-transclusion**: wrap transcluded
-fragments in a `[TK]…[/TK]` scope and your own model, with your own key,
-generates the connective text that contextualizes them — at authoring time, in
-your private studio, under your editing hand. What gets published is ordinary
-markdown and HTML plus provenance. Readers need no models, no keys, and can't
-even tell from the wire which parts you typed.
+protocol. The flagship mechanism is **TK-transclusion**: in the reference client, wrap
+transcluded items in a `[TK]…[/TK]` scope and your own model, with your own
+key, generates the connective text that contextualizes them — at authoring
+time, in your private studio, under your editing hand. What gets published is
+ordinary markdown and HTML plus provenance. Readers need no models and no
+keys, and your instructions never leave the studio. What the wire does carry
+is **disclosure**: a publisher marks which spans a model wrote, from which
+sources, so a reader can tell.
 
 The same boundary holds for identity: the protocol authenticates exactly one
-thing — the domain publishing the feed. Bylines are assertions a publication
+thing — the origin publishing the feed, a domain or a path on one. Bylines are assertions a publication
 makes, like a masthead, not accounts in a system. **DNS is the namespace.**
 
 ## Finding each other
@@ -126,7 +131,8 @@ your reading list, and the visible trail of who quoted whom.
 
 **[Build a blyg](/start/)** — three ways in: publish a feed you already have,
 host the reference client on Cloudflare, or build your own client from the spec.
-A directory of existing blygs lives at [blygger.com](https://blygger.com).
+A directory of existing blygs lives at [blygger.com](https://blygger.com), and
+the [ecosystem page](/ecosystem/) lists every client and tool we know of.
 
 ## A talk about all this
 
@@ -136,25 +142,31 @@ speaker's cues.
 
 ## Status
 
-The protocol and its reference implementation (a small Cloudflare Worker; the
-published output is pure static files) are in active development, and two live
-nodes have been running and subscribed to each other since August 2026:
+The first two live nodes,
 [venkateshrao.com/blyg/](https://venkateshrao.com/blyg/) and
-[blyg.protocol-institute.org](https://blyg.protocol-institute.org). *(This domain
+[blyg.protocol-institute.org](https://blyg.protocol-institute.org), have been
+subscribed to each other since August 2026. Since the September 2026 talk,
+strangers have built more clients than we have: the
+[ecosystem census](/ecosystem/) reads every manifest in the
+[blygger.com directory](https://blygger.com) and counts them. *(This domain
 is the protocol's namespace and documentation host — it does not run a blyg.)*
 
-Version 0.1 — fragments, threads, transclusion, pins, withdrawal, the whole
-publish side — shipped first. **Version 0.2 is the current document**: it adds the
-subscribe side (resolution, importers, blogrolls, curated lists) and the wire
-members for instructed generation. Next is 0.3 — threads across clients, and
-Webmention for discovery.
+Version 0.1 shipped the publish side — fragments, threads, transclusion, pins,
+withdrawal. 0.2 added the subscribe side — resolution, importers, blogrolls,
+and the wire members for instructed generation. **Version {{SPEC_VERSION}} is
+the current document**: threads that quote across clients and origins, stubs,
+forks, quoting a passage rather than a whole item, Webmention with structural
+verification, and generation disclosure. Next is 0.4, defined but not yet
+opened: generating from items at other origins, and blygs whose files live
+behind URL templates — the shape a WordPress plugin needs.
 
 **No version before 1.0 will be declared stable, including the wire format.**
-Building the reference client is how the protocol gets tested, so the spec changes
-when building finds something. Read and implement freely; don't build on it
-expecting promises yet.
+Building clients — ours and, increasingly, other people's — is how the protocol
+gets tested, so the spec changes when building finds something. Read and
+implement freely; don't build on it expecting promises yet.
 
-- **Spec:** [blygger.org/spec/0.2/](/spec/0.2/) *(draft — the living document)*
+- **Spec:** [blygger.org{{SPEC_LINK}}]({{SPEC_LINK}}) *(draft — the living document)*
 - **Technical notes:** [blygger.org/notes/](/notes/)
+- **Reference client:** [Blygger Studio](https://github.com/blygger/blygger-studio)
 - **Source:** [github.com/blygger](https://github.com/blygger)
 - **License:** MIT (code), CC-BY-4.0 (docs)
