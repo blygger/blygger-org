@@ -52,7 +52,9 @@ def footer(entry: dict) -> str:
 
 def content(entry: dict) -> str:
     body = (SPEC / entry["file"]).read_text("utf-8")
-    return wrap(entry["model"], body) + "\n\n" + wrap(FOOTER_MODEL, footer(entry)) + "\n"
+    # No trailing newline: blygger-studio 0.34.0 renders a final impyrt scope
+    # followed by a single newline as an inline span instead of a block.
+    return wrap(entry["model"], body) + "\n\n" + wrap(FOOTER_MODEL, footer(entry))
 
 
 class Blyg:
