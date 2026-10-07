@@ -5,8 +5,8 @@ them in two groups. The first tab is for work on
 the protocol itself and on the reference client, [Blygger
 Studio](https://github.com/blygger/blygger-studio): pull requests, bug
 reports, proposals. The second is for people building **their own** clients,
-integrations and tools, which is how a protocol finds out whether it can
-be implemented by anyone but its authors.
+integrations and tools — the independent implementations that show the
+protocol works from its spec alone.
 
 Everything here is drawn from the public record: pull requests and issues in
 the [blygger](https://github.com/blygger) repositories, and the
@@ -28,8 +28,7 @@ the decision log behind it; maintains Blygger Studio, this site, and the
 
 ### Kyle Mathews — [@KyleAMathews](https://github.com/KyleAMathews)
 
-The largest outside contribution to the reference client so far, most of it
-architecture:
+Much of the reference client's current architecture:
 
 - **Rebuilt Studio** as a React single-page app on a validated resource API
   with a generated SDK
@@ -53,8 +52,8 @@ Runs [blyg.bricolage.io](https://blyg.bricolage.io/).
 
 ### Aneesh Sathe — [@aneeshsathe](https://github.com/aneeshsathe)
 
-The most thorough outside reader of the protocol so far, and the first to
-test it systematically:
+The protocol's most thorough reader so far, and the first to test it
+systematically:
 
 - **A conformance and intent toolkit**, with a first-round report
   ([blygger-spec#11](https://github.com/blygger/blygger-spec/pull/11), in
@@ -116,8 +115,8 @@ Also builds [blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)
 
 ## Ecosystem contributors
 
-People building their own clients, integrations and tools rather than
-working on ours. The [ecosystem page](/ecosystem/) indexes the projects and
+People building their own clients, integrations and tools, alongside the
+reference client. The [ecosystem page](/ecosystem/) indexes the projects and
 the live blygs they serve.
 
 - **Brady Dale** — [@BradyDale](https://github.com/BradyDale).
@@ -159,10 +158,10 @@ the live blygs they serve.
   [sig-p4b](https://github.com/protocolvision/sig-p4b), publishing at
   [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/).
 
-### Clients we know only by their blygs
+### Clients known only by their blygs
 
-These publish with clients of their own whose authors we have not matched to
-a profile. If one is yours, [tell us](https://github.com/blygger/blygger-org/issues/new/choose).
+These publish with clients of their own whose authors haven't been matched to
+a profile yet. If one is yours, [say so](https://github.com/blygger/blygger-org/issues/new/choose).
 
 - [thinking.drwip.com/blyg](https://thinking.drwip.com/blyg/) — the first
   independent implementation, before the September 2026 talk.

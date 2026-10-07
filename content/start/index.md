@@ -73,7 +73,7 @@ line, which is the one line to read before upgrading.
 clear about why it is only a suggestion: nothing in the protocol needs a
 registry, and an unlisted blyg works exactly as well as a listed one — people
 reach it by its URL, its feed, and the blogrolls of people who read it.
-The directory is how *strangers* find you, and nothing else. It also runs the
+The directory is how readers who don't know you yet find you, and nothing else. It also runs the
 real resolution algorithm against your URL when you submit, so it doubles as a
 free conformance check on a blyg you have just stood up.
 
@@ -94,22 +94,21 @@ against the spec, unless another client would have to change too.
 
 ## 3. Build a client
 
-**People are doing this, and it turns out to be the most interesting thing
-happening here.** As of 2026-09-28 there are **seven** client implementations
-publishing live blygs, and six of them are not ours:
-`Blynger`, `sachin-blyg`, `caseyjr-blyg`, `blyg-publisher` (an Obsidian plugin),
-`goddinpotty-blyg` (a digital-garden generator for Logseq graphs, taught to emit a blyg), and one
-hand-rolled client at `thinking.drwip.com` that predates our talk. Alongside them
-are tools that author *into* an existing blyg rather than producing one — a native
-macOS studio, a Drafts action.
+**This is where most of the protocol's life now is.** Independent clients publish
+a large share of the live blygs — standalone clients like `Blynger` and the one
+behind `thinking.drwip.com`, which predates the September 2026 talk; integrations
+that teach Obsidian, Hugo and Logseq-based gardens to emit a blyg; and tools that
+author *into* an existing blyg, like a native desktop studio and a Drafts action.
+The [ecosystem index](/ecosystem/) lists every known one, with the blygs each
+serves.
 
-If you build one, **[tell us](https://github.com/blygger/blygger-org/issues/new/choose)**
-and it gets listed. Nobody has forked our repos — people read the spec and write
-their own — which means we cannot see your work unless you say so.
+If you build one, **[add it to the index](https://github.com/blygger/blygger-org/issues/new/choose)**.
+Clients are written from the spec rather than forked from the reference client,
+so a new one is invisible to everyone else until its author says so.
 
 ### Advisory: do not ship a generic default title
 
-**This is our mistake, offered so you can skip it.** Blygger Studio shipped
+**This is Blygger Studio's mistake, written up so other clients can skip it.** Studio shipped
 `"blyg"` as the default value of a blyg's title. It is the obvious placeholder,
 it reads fine in a settings form, and it is wrong — because a default that every
 deployment shares is a name that every deployment shares.
@@ -117,8 +116,8 @@ deployment shares is a name that every deployment shares.
 By 2026-09-29 two unrelated live blygs were publishing `"title": "blyg"` in
 their manifests, neither operator having done anything but skip a form field.
 The directory at blygger.com listed both under that name, and briefly held a
-third submission as a suspected impersonation — a stranger queued for review
-because of *our* default. `title` is the one identity field the protocol gives a
+third submission as a suspected impersonation — a newcomer's blyg queued for
+review because of the reference client's default. `title` is the one identity field the protocol gives a
 blyg (§5.2), so a client that fills it with a constant has quietly decided that
 its users are indistinguishable.
 
@@ -169,9 +168,9 @@ on, pin.
 
 **3. The living document's final section — not normative, and this is the trap.**
 Every living spec ends with a section carrying constructs that have been
-*decided* but not yet *built*. They are there on purpose and clearly labelled: we
-write the ruling down before anyone implements it, so the reasoning is public
-while it can still be argued with. But a construct sitting there has not been
+*decided* but not yet *built*. They are there on purpose and clearly labelled:
+rulings are written down before anyone implements them, so the reasoning is
+public while it can still be argued with. But a construct sitting there has not been
 exercised across two implementations yet, and its shape can still move.
 **Do not build from that section unless you mean to** — see below, because
 sometimes you should.
@@ -190,7 +189,7 @@ deadline and nothing stops working.
 ### If you *want* to build against unfrozen text
 
 Please do, and say so. Implementing a decided-but-unbuilt construct before it
-freezes is the most useful thing anyone outside this project can do: it is how a
+freezes is the most useful thing any implementer can do: it is how a
 shape gets found to be wrong while changing it is still cheap. Two rules make it
 work rather than hurt:
 
@@ -206,6 +205,9 @@ work rather than hurt:
 **Pre-1.0, no version makes a wire promise** — including the living one. That is
 stated here rather than buried in a status page, because it is the thing you are
 actually deciding about.
+
+### Also worth reading
+
 - **[Technical notes](/notes/)** — non-normative records of *why*, especially of
   designs that were rejected.
 - **[The CSS contract](https://github.com/blygger/blygger-spec/blob/main/docs/css-contract.md)**
@@ -216,8 +218,8 @@ actually deciding about.
 
 **The open gap, and the 1.0 gate.** This section used to say there was exactly
 one implementation, and that one implementation is not a protocol but a program
-with a spec next to it. That stopped being true in September 2026, and the gate it
-guarded has largely been met from the outside rather than by us.
+with a spec next to it. That stopped being true in September 2026: the gate it
+guarded has largely been met by independent implementations.
 
 What is still genuinely missing is a client on a deliberately different
 substrate: **local-first — a folder on a laptop, authoring on-device, deploying to
@@ -227,16 +229,16 @@ of the static-files-and-RSS claim, because it is the one where nothing dynamic
 exists to paper over a gap in the spec.
 
 A second thing now wanted, which the first version of this page could not have
-anticipated: **a conformance checker anyone can run.** With seven implementations
+anticipated: **a conformance checker anyone can run.** With many implementations
 and live nodes split across protocol 0.2 and 0.3, "conformant" can no longer mean
-"passes our tests".
+"passes the reference client's tests". One is in review:
+[blygger-spec#11](https://github.com/blygger/blygger-spec/pull/11).
 
 ## What you're signing up for
 
 **No version before 1.0 is stable, including the wire format.** Building clients
 is how this protocol gets tested, so the spec changes when building finds
-something — twice in the last month it did, and now six other implementations are
-finding things too.
+something — and with every new implementation, building finds more.
 
 That is a real cost and it is stated here rather than buried: read it,
 implement it, argue with it, but don't build something load-bearing on it yet

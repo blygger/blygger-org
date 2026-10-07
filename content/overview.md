@@ -138,7 +138,7 @@ your reading list, and the visible trail of who quoted whom.
 **[Build a blyg](/start/)** — three ways in: publish a feed you already have,
 host the reference client on Cloudflare, or build your own client from the spec.
 A directory of existing blygs lives at [blygger.com](https://blygger.com), and
-the [ecosystem page](/ecosystem/) lists every client and tool we know of.
+the [ecosystem page](/ecosystem/) lists every known client and tool.
 
 ## A talk about all this
 
@@ -152,7 +152,7 @@ The first two live nodes,
 [venkateshrao.com/blyg/](https://venkateshrao.com/blyg/) and
 [blyg.protocol-institute.org](https://blyg.protocol-institute.org), have been
 subscribed to each other since August 2026. Since the September 2026 talk,
-strangers have built more clients than we have: the
+independent builders have written most of the clients in use: the
 [ecosystem page](/ecosystem/) indexes them, with the live blygs each one
 serves. *(This domain
 is the protocol's namespace and documentation host — it does not run a blyg.)*
@@ -167,8 +167,7 @@ opened: generating from items at other origins, and blygs whose files live
 behind URL templates — the shape a WordPress plugin needs.
 
 **No version before 1.0 will be declared stable, including the wire format.**
-Building clients — ours and, increasingly, other people's — is how the protocol
-gets tested, so the spec changes when building finds something. Read and
+Building clients is how the protocol gets tested, so the spec changes when building finds something. Read and
 implement freely; don't build on it expecting promises yet.
 
 - **Spec:** [blygger.org{{SPEC_LINK}}]({{SPEC_LINK}}) *(draft — the living document)*
