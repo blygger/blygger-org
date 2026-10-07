@@ -6,6 +6,8 @@
 
 # TN-1 — Versioning stays a bare counter: semver, editions, and the pin pattern
 
+> This note takes responses on the official blyg: [blyg.blygger.org/t/5b1m5zwte5yjpa7e410fkpsyq8/](https://blyg.blygger.org/t/5b1m5zwte5yjpa7e410fkpsyq8/). To comment, respond to it from your own blyg. This page stays the canonical text.
+
 **Technical note · non-normative · session 12, 2026-08-10 (Fable + Venkat).
 Decision record for locked decision #19.** Technical notes record design
 reasoning — especially rejected designs — alongside the normative spec; they
@@ -102,4 +104,4 @@ Human-readable significance keeps its existing home: the changelog `note`
 
 ---
 
-*Published from [blygger/blygger-spec@d008e21](https://github.com/blygger/blygger-spec/commit/d008e21).*
+*Published from [blygger/blygger-spec@cd654e9](https://github.com/blygger/blygger-spec/commit/cd654e9).*

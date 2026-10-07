@@ -6,6 +6,8 @@
 
 # TN-3 — Groups need no new construct: N origins, one masthead, and the stubbing anti-pattern
 
+> This note takes responses on the official blyg: [blyg.blygger.org/t/0v96x743shpy68yjamqdxrnaxk/](https://blyg.blygger.org/t/0v96x743shpy68yjamqdxrnaxk/). To comment, respond to it from your own blyg. This page stays the canonical text.
+
 **Technical note · non-normative · session 28, 2026-09-28 (Opus 5, writing up
 decision #36 — ruled session 27 by Fable + Venkat). Decision record for locked
 decision #36.** Technical notes record design reasoning — especially rejected
@@ -340,4 +342,4 @@ Recorded because each will be re-proposed.
 
 ---
 
-*Published from [blygger/blygger-spec@d008e21](https://github.com/blygger/blygger-spec/commit/d008e21).*
+*Published from [blygger/blygger-spec@cd654e9](https://github.com/blygger/blygger-spec/commit/cd654e9).*

@@ -16,6 +16,7 @@ See docs/spec-publishing-plan.md (blygger-spec repo) for the full design.
 """
 
 import argparse
+import json
 import re
 import subprocess
 import sys
@@ -384,8 +385,33 @@ def discover_notes() -> list[dict]:
     return notes
 
 
+BLYG_MAP = SPEC_REPO / "docs" / "blyg-published.json"
+BLYG_ORIGIN = "https://blyg.blygger.org"
+
+
+def blyg_item_url(note: dict) -> str | None:
+    """The note's item on the official blyg, if it has been ported (decision #66).
+
+    The page here stays canonical — the spec cites it — and links the blyg copy,
+    which is where the note takes responses. publish_blyg.py writes the map."""
+    if not BLYG_MAP.is_file():
+        return None
+    rel = f"docs/notes/{note['path'].name}"
+    for entry in json.loads(BLYG_MAP.read_text("utf-8")).get("items", []):
+        if entry.get("file") == rel and entry.get("id") and entry.get("version"):
+            return f"{BLYG_ORIGIN}/t/{entry['id']}/"
+    return None
+
+
 def render_note_page(note: dict, sha: str) -> str:
-    return banner(f"blygger-spec/docs/notes/{note['path'].name}") + note["text"].rstrip("\n") + footer(sha)
+    text = note["text"].rstrip("\n")
+    url = blyg_item_url(note)
+    if url:
+        title, _, rest = text.partition("\n")
+        text = (f"{title}\n\n> This note takes responses on the official blyg: "
+                f"[{url.removeprefix('https://')}]({url}). To comment, respond to it from your own blyg. "
+                f"This page stays the canonical text.\n{rest}")
+    return banner(f"blygger-spec/docs/notes/{note['path'].name}") + text + footer(sha)
 
 
 def build_notes_index(notes: list[dict]) -> None:
@@ -397,6 +423,9 @@ def build_notes_index(notes: list[dict]) -> None:
         "Numbered, non-normative documents recording design reasoning alongside "
         "the spec — especially rejected designs and the rationale that closed "
         "them. Notes constrain nothing; the spec is the only normative text.",
+        "",
+        f"Notes are also published on the official blyg, [blyg.blygger.org]({BLYG_ORIGIN}/), "
+        "where they take responses. The pages here stay canonical.",
         "",
         "| Note | Date | Status |",
         "|---|---|---|",

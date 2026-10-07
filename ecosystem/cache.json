@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-07T06:02:09+00:00",
+ "checked": "2026-10-07T20:14:14+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -38,7 +38,7 @@
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.3",
-     "updated": "2026-10-07T04:06:24Z",
+     "updated": "2026-10-07T16:31:14Z",
      "generator_seen": "blygger-studio/0.32.2"
     }
    ],
@@ -46,15 +46,29 @@
     "0.3"
    ]
   },
-  "blygger-studio/0.30.1": {
-   "generator": "blygger-studio/0.30.1",
+  "blygger-studio/0.34.0": {
+   "generator": "blygger-studio/0.34.0",
    "nodes": [
     {
      "origin": "https://blyg.bricolage.io/",
      "title": "Kyle's blyg",
      "protocol": "0.3",
-     "updated": "2026-10-07T02:47:43Z",
-     "generator_seen": "blygger-studio/0.30.1"
+     "updated": "2026-10-07T15:59:45Z",
+     "generator_seen": "blygger-studio/0.34.0"
+    },
+    {
+     "origin": "https://blyg.jdbb.net/",
+     "title": "[jdbb] studio blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-07T12:46:21Z",
+     "generator_seen": "blygger-studio/0.34.0"
+    },
+    {
+     "origin": "https://venkateshrao.com/blyg/",
+     "title": "Venkatesh Rao's Blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-07T20:07:01Z",
+     "generator_seen": "blygger-studio/0.34.0"
     }
    ],
    "protocols": [
@@ -64,13 +78,6 @@
   "blygger-studio/0.26.0": {
    "generator": "blygger-studio/0.26.0",
    "nodes": [
-    {
-     "origin": "https://blyg.jdbb.net/",
-     "title": "[jdbb] studio blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-05T11:33:50Z",
-     "generator_seen": "blygger-studio/0.26.0"
-    },
     {
      "origin": "https://blyg.pioneeringspirit.xyz/",
      "title": "Pioneering Spirit (Blyg)",
@@ -83,22 +90,15 @@
     "0.3"
    ]
   },
-  "blygger-studio/0.32.3": {
-   "generator": "blygger-studio/0.32.3",
+  "blygger-studio/0.33.0": {
+   "generator": "blygger-studio/0.33.0",
    "nodes": [
     {
      "origin": "https://blyg.protocol-institute.org/",
      "title": "Protocol Institute Blyg",
      "protocol": "0.3",
      "updated": "2026-10-05T23:32:19Z",
-     "generator_seen": "blygger-studio/0.32.3"
-    },
-    {
-     "origin": "https://venkateshrao.com/blyg/",
-     "title": "Venkatesh Rao's Blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-07T05:53:57Z",
-     "generator_seen": "blygger-studio/0.32.3"
+     "generator_seen": "blygger-studio/0.33.0"
     }
    ],
    "protocols": [
@@ -142,7 +142,7 @@
      "origin": "https://bradydale.com/blyg/",
      "title": "Brady Dale's blyg",
      "protocol": "0.3",
-     "updated": "2026-10-06T15:36:37Z",
+     "updated": "2026-10-07T17:50:13Z",
      "generator_seen": "Blynger/0.9.31"
     }
    ],
@@ -172,7 +172,7 @@
      "origin": "https://florianlohse.com/blyg/",
      "title": "florianlohse",
      "protocol": "0.3",
-     "updated": "2026-10-03T14:51:55.591Z",
+     "updated": "2026-10-07T08:31:36.274Z",
      "generator_seen": "my-garden-site/0.1.0"
     }
    ],
@@ -202,7 +202,7 @@
      "origin": "https://newschematic.org/blyg/",
      "title": "New Schematic",
      "protocol": "0.2",
-     "updated": "2026-10-01T16:14:32Z",
+     "updated": "2026-10-07T17:45:03Z",
      "generator_seen": "hugo-blyg/0.2.0"
     }
    ],
@@ -262,7 +262,7 @@
      "origin": "https://www.msweet.net/notes/",
      "title": "Notes | Matthew McDowell-Sweet",
      "protocol": "0.3",
-     "updated": "2026-10-07T04:57:41Z",
+     "updated": "2026-10-07T16:10:41Z",
      "generator_seen": "msn-build/0.1"
     }
    ],
@@ -278,8 +278,8 @@
    "language": "TypeScript",
    "license": "NOASSERTION",
    "stars": 1,
-   "forks": 6,
-   "pushed_at": "2026-10-07T05:41:27Z",
+   "forks": 7,
+   "pushed_at": "2026-10-07T06:31:55Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -334,7 +334,7 @@
    "language": "Rust",
    "license": "MIT",
    "stars": 3,
-   "forks": 1,
+   "forks": 2,
    "pushed_at": "2026-10-07T03:45:39Z",
    "created_at": "2026-09-25T15:44:30Z",
    "archived": false,
@@ -408,7 +408,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-10-06T15:34:01Z",
+   "pushed_at": "2026-10-07T07:14:25Z",
    "created_at": "2026-09-25T11:01:47Z",
    "archived": false,
    "homepage": null,
