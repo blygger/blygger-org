@@ -98,7 +98,7 @@ against the spec, unless another client would have to change too.
 happening here.** As of 2026-09-28 there are **seven** client implementations
 publishing live blygs, and six of them are not ours:
 `Blynger`, `sachin-blyg`, `caseyjr-blyg`, `blyg-publisher` (an Obsidian plugin),
-`goddinpotty-blyg` (a Roam-to-static publisher taught to emit a blyg), and one
+`goddinpotty-blyg` (a digital-garden generator for Logseq graphs, taught to emit a blyg), and one
 hand-rolled client at `thinking.drwip.com` that predates our talk. Alongside them
 are tools that author *into* an existing blyg rather than producing one — a native
 macOS studio, a Drafts action.

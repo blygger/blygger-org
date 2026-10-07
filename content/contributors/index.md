@@ -143,8 +143,9 @@ the live blygs they serve.
   [hugo-blyg](https://github.com/chrisbodhi/hugo-blyg), a blyg from a Hugo
   site, published at [newschematic.org/blyg](https://newschematic.org/blyg/).
 - **Mike Travers** — [@mtravers](https://github.com/mtravers). Taught
-  [goddinpotty](https://github.com/mtravers/goddinpotty), a Roam-to-static
-  publisher, to emit a blyg: [AMMDI](https://ammdi.hyperphor.com/blyg/).
+  [goddinpotty](https://github.com/mtravers/goddinpotty), a digital-garden
+  generator for Logseq graphs, to emit a blyg:
+  [AMMDI](https://ammdi.hyperphor.com/blyg/).
 - **Patrick Atwater** — [@patwater](https://github.com/patwater).
   [pioneering-spirit-blyg](https://github.com/patwater/pioneering-spirit-blyg),
   Blygger Studio extended to run [Pioneering Spirit](https://blyg.pioneeringspirit.xyz/)

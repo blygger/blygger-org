@@ -140,7 +140,7 @@ category = "integration"
 generator = "goddinpotty-blyg/0.1"
 live = "https://ammdi.hyperphor.com/blyg/"
 submitted = "census 2026-09-28"
-summary = "A Roam-to-static publisher taught to emit a blyg. Publishes protocol 0.2. The repo link is goddinpotty itself; we have not located the blyg-emitting fork."
+summary = "A digital-garden generator for Logseq graphs (it began as a fork of a Roam publisher, and its README says it probably no longer works with Roam), taught to emit a blyg. The blyg code is in goddinpotty itself."
 
 # ─── Tools — author into a blyg that already exists ────────────────────────────
 
