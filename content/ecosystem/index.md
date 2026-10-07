@@ -3,146 +3,41 @@
 
 # The Blygger ecosystem
 
-Everything we know of that speaks Blygger, whoever built it. **Listing is not endorsement and not a conformance claim** — several of these we have only read the manifest of, and one describes itself as "vibecoded, no warranty".
-
-Built something? **[Submit it](https://github.com/blygger/blygger-org/issues/new/choose)** — or tell us about someone else's, and we will check with them.
-
-## Where things stand
-
-- **17 client implementations** publishing **20 live blygs** — 11 of those clients are not ours.
-- Protocol versions in the wild: **0.3** (18 nodes), **0.2** (2 nodes).
-- **11 projects listed** below.
-
-The client counts come from reading every manifest in [blygger.com's directory](https://blygger.com), which is how a client becomes visible at all: `generator` is a public key in a file the protocol requires, so publishing announces you whether or not your source is anywhere we can see. Five of the clients below have no locatable repository.
-
-**Tools and mods do not work that way.** They carry no `generator`, and nobody has forked our repositories — people read the spec and write their own — so there is no fork graph to walk. If you built one and did not tell us, it is not on this page.
+Every known project that implements or extends Blygger. Listing is not endorsement. **[Add a project](https://github.com/blygger/blygger-org/issues/new/choose)**.
 
 ## Clients
 
-Publish a blyg of their own, and so carry their own `generator` string. A client is discoverable the moment it publishes — this is the one category we can census without being told.
-
-### [Blygger Studio](https://github.com/blygger/blygger-studio) — ours
-
-The reference client. A Cloudflare Worker that publishes a blyg, subscribes to others, and threads, transcludes and responds across them. Named blyg-ref until 2026-09-28.
-
-`blygger-studio/0.30.1` · TypeScript · updated today
-
-**7 of 9 live nodes run an older build** `blyg-ref/0.3.0`, `blygger-studio/0.20.0`, `blygger-studio/0.20.2`, `blygger-studio/0.26.0`, `blygger-studio/0.27.2` rather than `blygger-studio/0.30.1`.
-
-Live: [And Yet Here We Are 🚀](https://blyg.aneeshsathe.com/) (protocol 0.3), [Kyle's blyg](https://blyg.bricolage.io/) (protocol 0.3), [\[jdbb\] studio blyg](https://blyg.jdbb.net/) (protocol 0.3), [Protocol Institute Blyg](https://blyg.protocol-institute.org/) (protocol 0.3), and 5 more
-
-### [Blynger](https://bradydale.com/blyg/)
-
-An independent client on its own version line, already at 0.8.2. Publishes protocol 0.3. Source not located — if this is yours, tell us where it lives.
-
-`Blynger/0.8.2`
-
-Live: [bradydale.com/blyg](https://bradydale.com/blyg/)
-
-### [caseyjr-blyg](https://caseyjr.org/blyg/)
-
-An independent client publishing protocol 0.2. Source not located.
-
-`caseyjr-blyg/0.1.0`
-
-Live: [caseyjr.org/blyg](https://caseyjr.org/blyg/)
-
-### [sachin-blyg](https://blyg.sachinbenny.xyz/)
-
-An independent client publishing protocol 0.3. Source not located.
-
-`sachin-blyg/0.1.0`
-
-Live: [blyg.sachinbenny.xyz](https://blyg.sachinbenny.xyz/)
-
-### [thinking.drwip.com's client](https://thinking.drwip.com/blyg/)
-
-The first independent implementation, and the first blyg on a path mount rather than a subdomain — its manifest predates the September 2026 talk. Publishes protocol 0.2. Source not located.
-
-`thinking.drwip.com`
-
-Live: [thinking.drwip.com/blyg](https://thinking.drwip.com/blyg/)
-
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.bricolage.io](https://blyg.bricolage.io/), [blyg.jdbb.net](https://blyg.jdbb.net/) and 7 more
+- **[Blynger](https://github.com/BradyDale/Blynger)** — [@BradyDale](https://github.com/BradyDale) · live: [bradydale.com/blyg](https://bradydale.com/blyg/)
+- **[caseyjr-blyg](https://caseyjr.org/blyg/)** · retired
+- **[msn](https://github.com/msmsim/msn)** — [@msmsim](https://github.com/msmsim) · live: [www.msweet.net/notes](https://www.msweet.net/notes/)
+- **[sachin-blyg](https://blyg.sachinbenny.xyz/)** · live: [blyg.sachinbenny.xyz](https://blyg.sachinbenny.xyz/)
+- **[sig-p4b-blyg](https://github.com/protocolvision/sig-p4b)** — [@protocolvision](https://github.com/protocolvision) · live: [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/)
+- **[thinking.drwip.com's client](https://thinking.drwip.com/blyg/)** · live: [thinking.drwip.com/blyg](https://thinking.drwip.com/blyg/)
 
 ## Integrations
 
-Teach an existing publishing system — Hugo, Obsidian, a note-taking tool — to emit a conformant blyg.
-
-### [blyg-publisher](https://github.com/brndnpink/blyg-publisher)
-
-Obsidian plugin that publishes a Blygger blyg from one folder of your vault to a static host. Local-first. Includes an AI-agent setup runbook (AGENTS.md).
-
-`blyg-publisher/0.0.1` · TypeScript · MIT · updated 8 days ago
-
-Live: [Lightsong](https://lightsong.ink/blyg/) (protocol 0.2)
-
-### [hugo-blyg](https://github.com/chrisbodhi/hugo-blyg)
-
-build a Blygger feed with Hugo & publish with GH Actions
-
-Python · updated 7 days ago
-
-### [goddinpotty-blyg](https://github.com/mtravers/goddinpotty)
-
-A Roam-to-static publisher taught to emit a blyg. Publishes protocol 0.2. The repo link is goddinpotty itself; we have not located the blyg-emitting fork.
-
-`goddinpotty-blyg/0.1`
-
-Live: [AMMDI Blyg](https://ammdi.hyperphor.com/blyg/) (protocol 0.3)
-
+- **[blyg-publisher](https://github.com/brndnpink/blyg-publisher)** — [@brndnpink](https://github.com/brndnpink) · live: [lightsong.ink/blyg](https://lightsong.ink/blyg/)
+- **[goddinpotty-blyg](https://github.com/mtravers/goddinpotty)** — [@mtravers](https://github.com/mtravers) · live: [ammdi.hyperphor.com/blyg](https://ammdi.hyperphor.com/blyg/)
+- **[hugo-blyg](https://github.com/chrisbodhi/hugo-blyg)** — [@chrisbodhi](https://github.com/chrisbodhi) · live: [newschematic.org/blyg](https://newschematic.org/blyg/)
 
 ## Authoring tools
 
-Author *into* a blyg that already exists, rather than producing one. They carry no `generator`, so they are invisible to the census and are here because someone told us.
+- **[blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)** — [@aneeshsathe](https://github.com/aneeshsathe)
+- **[blygger-desktop for Windows](https://github.com/patwater/burrow-blyg-windows-)** — [@patwater](https://github.com/patwater)
+- **[drafts-blyg](https://github.com/miguelito4/drafts-blyg)** — [@miguelito4](https://github.com/miguelito4)
+- **[static-to-studio](https://github.com/miguelito4/static-to-studio)** — [@miguelito4](https://github.com/miguelito4)
 
-### [blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)
+## Mods of Blygger Studio
 
-A native, Notational-Velocity-fast macOS studio for Blygger blogs (blygs). Rust + GPUI. Vibecoded, no warranty.
+- **[pioneering-spirit-blyg](https://github.com/patwater/pioneering-spirit-blyg)** — [@patwater](https://github.com/patwater) · live: [blyg.pioneeringspirit.xyz](https://blyg.pioneeringspirit.xyz/)
 
-Rust · MIT · updated yesterday
+## Unidentified clients
 
-### [drafts-blyg](https://github.com/miguelito4/drafts-blyg)
-
-One-tap Blygger fragments from your phone via Drafts
-
-JavaScript · MIT · updated yesterday
-
-
-## Libraries and unclassified
-
-Building blocks, and projects whose shape we have not yet confirmed with their author.
-
-### [pioneering-spirit-blyg](https://github.com/patwater/pioneering-spirit-blyg)
-
-Found by GitHub search; purpose not yet confirmed with its author, and no live blyg located. Listed so it is not lost.
-
-TypeScript · updated yesterday
-
-
-## Publishing, but unidentified
-
-These `generator` strings appear on live blygs and are not matched to any project above. If one is yours, [say so](https://github.com/blygger/blygger-org/issues/new/choose) and it gets a proper entry.
-
-- `Blynger/0.9.31` — [bradydale.com/blyg](https://bradydale.com/blyg/)
-- `astro-gyoza/0.0.2` — [artlu.xyz](https://artlu.xyz/)
-- `hugo-blyg/0.2.0` — [newschematic.org/blyg](https://newschematic.org/blyg/)
-- `msn-build/0.1` — [www.msweet.net/notes](https://www.msweet.net/notes/)
-- `my-garden-site/0.1.0` — [florianlohse.com/blyg](https://florianlohse.com/blyg/)
-- `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` — [rafael.fyi/blyg](https://rafael.fyi/blyg/)
-- `sachin-blyg/0.2.0` — [blyg.sachinbenny.xyz](https://blyg.sachinbenny.xyz/)
-- `sig-p4b-blyg/0.1 (static, git-versioned)` — [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/)
-- `thinking.drwip.com/1.0.0` — [thinking.drwip.com/blyg](https://thinking.drwip.com/blyg/)
-
-<!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
-     then add or deliberately skip each one:
-       BradyDale/Blynger  (via name/desc/readme)
-       chrisbodhi/newschematic  (via code: blyg.json)
-       miguelito4/static-to-studio  (via name/desc/readme)
-       mtravers/goddinpotty  (via code: blyg.json)
-       patwater/burrow-blyg-windows-  (via name/desc/readme)
-       protocolvision/sig-p4b  (via name/desc/readme)
--->
+- `astro-gyoza/0.0.2` · live: [artlu.xyz](https://artlu.xyz/)
+- `my-garden-site/0.1.0` · live: [florianlohse.com/blyg](https://florianlohse.com/blyg/)
+- `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
 
 ---
 
-*Checked 2026-10-06. This page is regenerated, not hand-maintained: repository facts and live-blyg data are re-read on each run, so a stale entry here means the check has not run, not that nothing changed.*
+*Checked 2026-10-07.*

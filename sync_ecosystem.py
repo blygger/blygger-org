@@ -122,6 +122,24 @@ def gen_keys(p: dict) -> list[str]:
     return list(dict.fromkeys(keys))
 
 
+def gen_base(g: str) -> str:
+    """A generator's client name: `Blynger/0.9.31` -> `Blynger`,
+    `thinking.drwip.com/1.0.0` -> `thinking.drwip.com`, and a parenthetical
+    ignored. The join falls back to this so a version bump does not orphan a
+    client — sachin-blyg and thinking.drwip.com both bumped and read as
+    unidentified beside their own entries (session 38)."""
+    return g.split(" ")[0].split("/")[0]
+
+
+def project_nodes(p: dict, cen: dict) -> list[dict]:
+    """Live nodes credited to a project: exact generator or alias first, then
+    any generator with the same client name."""
+    keys = gen_keys(p)
+    bases = {gen_base(k) for k in keys}
+    return [n for g, row in cen.items() if g in keys or gen_base(g) in bases
+            for n in row["nodes"]]
+
+
 def display_name(p: dict) -> str:
     """A human name. Falls back to the generator with its version stripped, since
     `Blynger/0.8.2` is a build identifier and `Blynger` is what to call it."""
@@ -353,14 +371,22 @@ def rel_age(iso: str | None) -> str:
     return f"{days // 365} year{'s' if days // 365 > 1 else ''} ago"
 
 
+def host_of(origin: str) -> str:
+    return origin.split("//")[-1].rstrip("/")
+
+
 def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at: str) -> str:
-    live_nodes = sum(len(r["nodes"]) for r in cen.values())
-    protocols: dict[str, int] = {}
-    for r in cen.values():
-        for n in r["nodes"]:
-            protocols[str(n["protocol"])] = protocols.get(str(n["protocol"]), 0) + 1
-    listed_gens = {g for p in projects for g in gen_keys(p)}
-    uncredited = sorted(set(cen) - listed_gens)
+    """A bare index: every known project, segmented by category, with links.
+
+    Venkat, session 38: "a bare index without editorial commentary. Just a
+    properly segmented list of all known projects with links to them." So no
+    summaries, blurbs or counts — a name, where it lives, who made it, and the
+    live blygs it serves. `summary` in projects.toml is no longer rendered.
+    The version-drift signal this page used to print is reported on the
+    console by main() instead, where the person running the sync sees it.
+    """
+    listed_bases = {gen_base(g) for p in projects for g in gen_keys(p)}
+    uncredited = sorted(g for g in cen if gen_base(g) not in listed_bases)
 
     L: list[str] = []
     A = L.append
@@ -369,38 +395,8 @@ def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at
     A("")
     A("# The Blygger ecosystem")
     A("")
-    A("Everything we know of that speaks Blygger, whoever built it. "
-      "**Listing is not endorsement and not a conformance claim** — several of these "
-      "we have only read the manifest of, and one describes itself as "
-      "\"vibecoded, no warranty\".")
-    A("")
-    A("Built something? "
-      "**[Submit it](https://github.com/blygger/blygger-org/issues/new/choose)** — "
-      "or tell us about someone else's, and we will check with them.")
-    A("")
-
-    A("## Where things stand")
-    A("")
-    if cen:
-        ours_keys = {g for p in projects if p.get("ours") for g in gen_keys(p)}
-        A(f"- **{len(cen)} client implementations** publishing **{live_nodes} live blygs**"
-          f" — {len([g for g in cen if g not in ours_keys])} of those clients are not ours.")
-        if protocols:
-            A("- Protocol versions in the wild: "
-              + ", ".join(f"**{v}** ({n} node{'s' if n != 1 else ''})"
-                          for v, n in sorted(protocols.items(), reverse=True)) + ".")
-    A(f"- **{len(projects)} projects listed** below.")
-    A("")
-    A("The client counts come from reading every manifest in "
-      "[blygger.com's directory](https://blygger.com), which is how a client becomes "
-      "visible at all: `generator` is a public key in a file the protocol requires, so "
-      "publishing announces you whether or not your source is anywhere we can see. "
-      "Five of the clients below have no locatable repository.")
-    A("")
-    A("**Tools and mods do not work that way.** They carry no `generator`, and nobody "
-      "has forked our repositories — people read the spec and write their own — so "
-      "there is no fork graph to walk. If you built one and did not tell us, it is not "
-      "on this page.")
+    A("Every known project that implements or extends Blygger. Listing is not "
+      "endorsement. **[Add a project](https://github.com/blygger/blygger-org/issues/new/choose)**.")
     A("")
 
     for cat in CATEGORY_ORDER:
@@ -409,85 +405,34 @@ def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at
             continue
         A(f"## {CATEGORY_TITLE[cat]}")
         A("")
-        A(CATEGORY_BLURB[cat])
-        A("")
-        group.sort(key=lambda p: (not p.get("ours"), (p.get("repo") or p.get("generator") or "").lower()))
+        group.sort(key=lambda p: (not p.get("ours"), display_name(p).lower()))
         for p in group:
-            meta = p.get("meta") or {}
             name = display_name(p)
             link = (f"https://github.com/{p['repo']}" if p.get("repo") else p.get("url") or p.get("live"))
-            A(f"### {f'[{name}]({link})' if link else name}" + (" — ours" if p.get("ours") else ""))
-            A("")
-            summary = p.get("summary") or meta.get("description") or p.get("generated_summary")
-            if summary:
-                A(summary + ("  \n*Summary generated from the project's README.*"
-                             if not p.get("summary") and not meta.get("description")
-                             and p.get("generated_summary") else ""))
-                A("")
-            facts = []
-            # The version this project's operators should be on — derived from
-            # the repo for our own client, not the `projects.toml` literal.
-            #
-            # Session 28 made the *alert* below derive its "current" version and
-            # left this line on the literal, so the card printed a stale version
-            # directly above a sentence naming a newer one as current:
-            #
-            #   `blygger-studio/0.7.0` · TypeScript · updated today
-            #   **3 of 5 live nodes run an older build** … rather than
-            #   `blygger-studio/0.8.0`.
-            #
-            # Two sources for one fact, one line apart. Read plainly, the card
-            # said 0.7.0 was current and had been updated today. Same source as
-            # the alert now, so they cannot disagree again.
-            card_generator = current_generator(p)
-            if card_generator:
-                facts.append(f"`{card_generator}`")
-            if meta.get("language"):
-                facts.append(meta["language"])
-            if meta.get("license") and meta["license"] not in ("NOASSERTION", None):
-                facts.append(meta["license"])
-            if meta.get("pushed_at"):
-                facts.append(f"updated {rel_age(meta['pushed_at'])}")
-            if meta.get("archived"):
-                facts.append("**archived**")
-            if facts:
-                A(" · ".join(facts))
-                A("")
-            nodes = [n for g in gen_keys(p) for n in (cen.get(g, {}).get("nodes") or [])]
-            nodes.sort(key=lambda n: n["origin"])
-            current = current_generator(p)
-            if nodes and current:
-                behind = [n for n in nodes if n.get("generator_seen")
-                          and n["generator_seen"] != current]
-                if behind:
-                    A(f"**{len(behind)} of {len(nodes)} live nodes run an older build** "
-                      + ", ".join(sorted({f'`{n["generator_seen"]}`' for n in behind}))
-                      + f" rather than `{current}`.")
-                    A("")
-            if nodes:
-                shown = nodes[:4]
-                A("Live: " + ", ".join(
-                    f"[{md_text(n['title']) or n['origin'].split('//')[-1].rstrip('/')}]({n['origin']})"
-                    f" (protocol {n['protocol']})" for n in shown)
-                  + (f", and {len(nodes) - len(shown)} more" if len(nodes) > len(shown) else ""))
-                A("")
-            elif p.get("live"):
-                A(f"Live: [{p['live'].split('//')[-1].rstrip('/')}]({p['live']})")
-                A("")
+            line = f"- **[{name}]({link})**" if link else f"- **{name}**"
+            if p.get("repo"):
+                owner = p["repo"].split("/")[0]
+                line += f" — [@{owner}](https://github.com/{owner})"
+            origins = sorted({n["origin"] for n in project_nodes(p, cen)})
+            if not origins and p.get("live"):
+                origins = [p["live"]]
+            if p.get("retired"):
+                line += " · retired"
+            if origins:
+                shown = origins[:3]
+                line += " · live: " + ", ".join(f"[{host_of(o)}]({o})" for o in shown)
+                if len(origins) > len(shown):
+                    line += f" and {len(origins) - len(shown)} more"
+            A(line)
         A("")
 
     if uncredited:
-        A("## Publishing, but unidentified")
-        A("")
-        A("These `generator` strings appear on live blygs and are not matched to any "
-          "project above. If one is yours, "
-          "[say so](https://github.com/blygger/blygger-org/issues/new/choose) and it "
-          "gets a proper entry.")
+        A("## Unidentified clients")
         A("")
         for g in uncredited:
             nodes = cen[g]["nodes"]
-            A(f"- `{g}` — " + ", ".join(f"[{n['origin'].split('//')[-1].rstrip('/')}]({n['origin']})"
-                                        for n in nodes[:3]))
+            A(f"- `{g}` · live: " + ", ".join(f"[{host_of(n['origin'])}]({n['origin']})"
+                                              for n in nodes[:3]))
         A("")
 
     if discovered:
@@ -500,10 +445,23 @@ def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at
 
     A("---")
     A("")
-    A(f"*Checked {generated_at}. This page is regenerated, not hand-maintained: "
-      "repository facts and live-blyg data are re-read on each run, so a stale entry "
-      "here means the check has not run, not that nothing changed.*")
+    A(f"*Checked {generated_at}.*")
     return "\n".join(L) + "\n"
+
+
+def report_drift(projects: list[dict], cen: dict) -> None:
+    """Live nodes running an older build than their project's current one — the
+    version-alert signal (roadmap-tracks 3.1). It used to be printed on the
+    public page; it is operator information, so it goes to the console."""
+    for p in projects:
+        current = current_generator(p)
+        if not current:
+            continue
+        nodes = project_nodes(p, cen)
+        behind = [n for n in nodes if n.get("generator_seen") and n["generator_seen"] != current]
+        if behind:
+            print(f"  ~ {display_name(p)}: {len(behind)} of {len(nodes)} live node(s) behind {current}: "
+                  + ", ".join(f"{host_of(n['origin'])} ({n['generator_seen']})" for n in behind))
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -512,7 +470,9 @@ def main() -> int:
     offline = "--offline" in sys.argv
     do_summaries = "--summaries" in sys.argv
 
-    curated = tomllib.load(CURATED.open("rb")).get("project", [])
+    data = tomllib.load(CURATED.open("rb"))
+    curated = data.get("project", [])
+    skipped = set(data.get("skip", []))
     cache = json.loads(CACHE.read_text()) if CACHE.exists() else {}
     repo_cache = cache.get("repos", {})
     summary_cache = cache.get("summaries", {})
@@ -551,7 +511,7 @@ def main() -> int:
                     p["generated_summary"] = cached["text"]
         projects.append(p)
 
-    known = {p["repo"] for p in curated if p.get("repo")}
+    known = {p["repo"] for p in curated if p.get("repo")} | skipped
     # Offline reuses the cached discovery list rather than dropping it: the triage
     # comment it produces is the only record that an uncurated repo was ever seen.
     discovered = cache.get("discovered", []) if offline else discover(known)
@@ -560,6 +520,8 @@ def main() -> int:
         print(f"  ! {len(discovered)} repo(s) found and NOT curated:")
         for d in discovered:
             print(f"      {d['repo']}  (via {d['via']})")
+
+    report_drift(projects, cen)
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     OUT.parent.mkdir(parents=True, exist_ok=True)

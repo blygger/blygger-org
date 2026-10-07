@@ -134,7 +134,11 @@ ecosystem directory of community-built clients, tools, integrations and mods.
   project's own nodes read as an unidentified third-party client — which is exactly
   what happened to all five of ours the moment `blyg-ref` became `blygger-studio`.
   The same join is what prints "N of M live nodes run an older build", which is the
-  version-alert signal (roadmap-tracks Track 3.1).
+  version-alert signal (roadmap-tracks Track 3.1) — **on the console only** since
+  session 38, when the page became a bare index (name, link, author, live blygs; no
+  summaries or counts) at Venkat's request. The join also falls back to the client
+  name before "/", so a version bump no longer orphans a client; `skip` in the TOML
+  silences repos the search finds that are deliberately not listed.
 - `build.py` — renders `content/` → `dist/` (gitignored); walks `content/spec/`
   recursively so it picks up the index page, each version's latest revision,
   and any dated snapshots without needing per-page edits. `deploy.sh`

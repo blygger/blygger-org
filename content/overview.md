@@ -153,8 +153,8 @@ The first two live nodes,
 [blyg.protocol-institute.org](https://blyg.protocol-institute.org), have been
 subscribed to each other since August 2026. Since the September 2026 talk,
 strangers have built more clients than we have: the
-[ecosystem census](/ecosystem/) reads every manifest in the
-[blygger.com directory](https://blygger.com) and counts them. *(This domain
+[ecosystem page](/ecosystem/) indexes them, with the live blygs each one
+serves. *(This domain
 is the protocol's namespace and documentation host — it does not run a blyg.)*
 
 Version 0.1 shipped the publish side — fragments, threads, transclusion, pins,

@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-06T17:11:05+00:00",
+ "checked": "2026-10-07T00:04:48+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -38,7 +38,7 @@
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.3",
-     "updated": "2026-10-06T03:27:43Z",
+     "updated": "2026-10-06T20:33:06Z",
      "generator_seen": "blygger-studio/0.26.0"
     },
     {
@@ -49,26 +49,25 @@
      "generator_seen": "blygger-studio/0.26.0"
     },
     {
+     "origin": "https://blyg.pioneeringspirit.xyz/",
+     "title": "Pioneering Spirit (Blyg)",
+     "protocol": "0.3",
+     "updated": "2026-10-06T23:43:51Z",
+     "generator_seen": "blygger-studio/0.26.0"
+    },
+    {
      "origin": "https://jd-blyg.exe.xyz/",
      "title": "[jdbb] studio blyg",
      "protocol": "0.3",
      "updated": "2026-10-05T11:33:50Z",
      "generator_seen": "blygger-studio/0.26.0"
-    }
-   ],
-   "protocols": [
-    "0.3"
-   ]
-  },
-  "blygger-studio/0.27.2": {
-   "generator": "blygger-studio/0.27.2",
-   "nodes": [
+    },
     {
-     "origin": "https://blyg.bricolage.io/",
-     "title": "Kyle's blyg",
+     "origin": "https://pioneering-spirit-blyg.patrickatwater.workers.dev/",
+     "title": "Pioneering Spirit (Blyg)",
      "protocol": "0.3",
-     "updated": "2026-10-06T16:24:22Z",
-     "generator_seen": "blygger-studio/0.27.2"
+     "updated": "2026-10-06T23:43:51Z",
+     "generator_seen": "blygger-studio/0.26.0"
     }
    ],
    "protocols": [
@@ -79,18 +78,33 @@
    "generator": "blygger-studio/0.30.1",
    "nodes": [
     {
+     "origin": "https://blyg.bricolage.io/",
+     "title": "Kyle's blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-06T21:47:35Z",
+     "generator_seen": "blygger-studio/0.30.1"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "blygger-studio/0.32.1": {
+   "generator": "blygger-studio/0.32.1",
+   "nodes": [
+    {
      "origin": "https://blyg.protocol-institute.org/",
      "title": "Protocol Institute Blyg",
      "protocol": "0.3",
      "updated": "2026-10-05T23:32:19Z",
-     "generator_seen": "blygger-studio/0.30.1"
+     "generator_seen": "blygger-studio/0.32.1"
     },
     {
      "origin": "https://venkateshrao.com/blyg/",
      "title": "Venkatesh Rao's Blyg",
      "protocol": "0.3",
-     "updated": "2026-10-06T02:23:15Z",
-     "generator_seen": "blygger-studio/0.30.1"
+     "updated": "2026-10-07T00:00:09Z",
+     "generator_seen": "blygger-studio/0.32.1"
     }
    ],
    "protocols": [
@@ -104,7 +118,7 @@
      "origin": "https://blyg.sachinbenny.xyz/",
      "title": "Summer Lightning",
      "protocol": "0.3",
-     "updated": "2026-10-02T20:37:46Z",
+     "updated": "2026-10-06T23:49:51Z",
      "generator_seen": "sachin-blyg/0.2.0"
     }
    ],
@@ -149,7 +163,7 @@
      "origin": "https://caseyjr.org/blyg/",
      "title": "Mike Casey's blyg",
      "protocol": "0.3",
-     "updated": "2026-10-05T15:29:37Z",
+     "updated": "2026-10-06T23:21:48Z",
      "generator_seen": "blygger-studio/0.20.2"
     }
    ],
@@ -200,21 +214,6 @@
    ],
    "protocols": [
     "0.2"
-   ]
-  },
-  "blyg-ref/0.3.0": {
-   "generator": "blyg-ref/0.3.0",
-   "nodes": [
-    {
-     "origin": "https://pioneering-spirit-blyg.patrickatwater.workers.dev/",
-     "title": "Pioneering Spirit (Blyg)",
-     "protocol": "0.3",
-     "updated": "2026-10-05T19:04:36Z",
-     "generator_seen": "blyg-ref/0.3.0"
-    }
-   ],
-   "protocols": [
-    "0.3"
    ]
   },
   "sig-p4b-blyg/0.1 (static, git-versioned)": {
@@ -269,7 +268,7 @@
      "origin": "https://www.msweet.net/notes/",
      "title": "Notes | Matthew McDowell-Sweet",
      "protocol": "0.3",
-     "updated": "2026-10-05T21:25:57Z",
+     "updated": "2026-10-06T21:34:31Z",
      "generator_seen": "msn-build/0.1"
     }
    ],
@@ -286,7 +285,7 @@
    "license": "NOASSERTION",
    "stars": 1,
    "forks": 6,
-   "pushed_at": "2026-10-06T17:09:53Z",
+   "pushed_at": "2026-10-06T23:07:56Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -340,7 +339,7 @@
    "description": "A native, Notational-Velocity-fast macOS studio for Blygger blogs (blygs). Rust + GPUI. Vibecoded, no warranty.",
    "language": "Rust",
    "license": "MIT",
-   "stars": 2,
+   "stars": 3,
    "forks": 1,
    "pushed_at": "2026-10-05T06:01:54Z",
    "created_at": "2026-09-25T15:44:30Z",
@@ -373,39 +372,84 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-10-05T04:09:53Z",
+   "pushed_at": "2026-10-06T23:50:43Z",
    "created_at": "2026-09-25T22:53:42Z",
    "archived": false,
    "homepage": null,
    "topics": [],
    "default_branch": "main"
+  },
+  "BradyDale/Blynger": {
+   "repo": "BradyDale/Blynger",
+   "description": null,
+   "language": "Python",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-10-05T19:12:59Z",
+   "created_at": "2026-10-04T00:56:46Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "miguelito4/static-to-studio": {
+   "repo": "miguelito4/static-to-studio",
+   "description": "Move a static Blygger blyg into Blygger Studio at the same address, byte-for-byte.",
+   "language": "JavaScript",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-10-04T21:00:35Z",
+   "created_at": "2026-10-04T20:59:36Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "protocolvision/sig-p4b": {
+   "repo": "protocolvision/sig-p4b",
+   "description": "Protocols for Business SIG (Protocol Institute) \u2014 AI Native Data Operations: syllabus, case studies. Live at npc.here.now/protocolvision",
+   "language": "HTML",
+   "license": null,
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-10-06T15:34:01Z",
+   "created_at": "2026-09-25T11:01:47Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "patwater/burrow-blyg-windows-": {
+   "repo": "patwater/burrow-blyg-windows-",
+   "description": "desktop client for blygging on windows forking from Aneesh's mac version ",
+   "language": "Rust",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-10-01T22:48:43Z",
+   "created_at": "2026-09-30T17:54:56Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "mtravers/goddinpotty": {
+   "repo": "mtravers/goddinpotty",
+   "description": "A digital garden generator and toolkit for graph-based PKMs",
+   "language": "Clojure",
+   "license": "EPL-1.0",
+   "stars": 16,
+   "forks": 0,
+   "pushed_at": "2026-10-03T04:28:09Z",
+   "created_at": "2020-12-29T23:47:50Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "master"
   }
  },
  "summaries": {},
- "discovered": [
-  {
-   "repo": "BradyDale/Blynger",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "chrisbodhi/newschematic",
-   "via": "code: blyg.json"
-  },
-  {
-   "repo": "miguelito4/static-to-studio",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "mtravers/goddinpotty",
-   "via": "code: blyg.json"
-  },
-  {
-   "repo": "patwater/burrow-blyg-windows-",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "protocolvision/sig-p4b",
-   "via": "name/desc/readme"
-  }
- ]
+ "discovered": []
 }

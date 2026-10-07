@@ -22,10 +22,21 @@
 #             Historical generator strings. REQUIRED after any rename or version
 #             bump, or the project's own live nodes read as an unidentified client.
 #   live      A blyg it produced, if one is public.
-#   summary   Our own one-liner. When absent, the page falls back to the repo's
-#             GitHub description, and then to a generated summary (marked as such).
+#   summary   A curator's note. NOT rendered since 2026-10-06, when the page became a
+#             bare index (name, link, author, live blygs) at Venkat's request.
 #   ours      true for the three artifacts we maintain.
 #   submitted Who told us, and when. "census" means we found it in a manifest.
+#   retired   true for a client no live blyg runs any more; rendered as "retired".
+#
+# The census join matches exact generator strings and aliases first, then any
+# generator with the same client name (the part before "/"), so a version bump
+# no longer needs an alias to stay credited.
+
+# Repos the GitHub search finds that are deliberately NOT listed, so the sync
+# stops reporting them. Each needs a reason.
+skip = [
+  "chrisbodhi/newschematic",  # a site built with hugo-blyg (listed), not a project
+]
 
 # ─── Ours ──────────────────────────────────────────────────────────────────────
 
@@ -49,18 +60,22 @@ summary = "The reference client. A Cloudflare Worker that publishes a blyg, subs
 # ─── Clients — publish a blyg of their own ─────────────────────────────────────
 
 [[project]]
+repo = "BradyDale/Blynger"
 name = "Blynger"
 category = "client"
-generator = "Blynger/0.8.2"
+generator = "Blynger/0.9.31"
+# Every version a live node has been seen reporting. Blynger bumps often, so
+# each new release needs its old string added here or it reads as unidentified.
+generator_aliases = ["Blynger/0.9.21", "Blynger/0.8.2"]
 live = "https://bradydale.com/blyg/"
-url = "https://bradydale.com/blyg/"
-submitted = "census 2026-09-28"
-summary = "An independent client on its own version line, already at 0.8.2. Publishes protocol 0.3. Source not located — if this is yours, tell us where it lives."
+submitted = "census 2026-09-28; repo from Brady Dale, blygger-org#2 (2026-10-04)"
+summary = "Brady Dale's independent client, on its own version line. Publishes protocol 0.3. Its robot badge for generated text is the convention Blygger Studio adopted in 0.27.0."
 
 [[project]]
 name = "sachin-blyg"
 category = "client"
-generator = "sachin-blyg/0.1.0"
+generator = "sachin-blyg/0.2.0"
+generator_aliases = ["sachin-blyg/0.1.0"]
 live = "https://blyg.sachinbenny.xyz/"
 submitted = "census 2026-09-28"
 summary = "An independent client publishing protocol 0.3. Source not located."
@@ -69,17 +84,38 @@ summary = "An independent client publishing protocol 0.3. Source not located."
 name = "caseyjr-blyg"
 category = "client"
 generator = "caseyjr-blyg/0.1.0"
-live = "https://caseyjr.org/blyg/"
-submitted = "census 2026-09-28"
-summary = "An independent client publishing protocol 0.2. Source not located."
+url = "https://caseyjr.org/blyg/"
+submitted = "census 2026-09-28; author identified 2026-10-06"
+retired = true
+# No `live`: caseyjr.org/blyg/ now reports blygger-studio/0.20.2. Kept as the
+# record of a client that existed and was retired by migrating, which is itself
+# the thing static-to-studio (below) was built for.
+summary = "Mike Casey's static client, publishing protocol 0.2. Retired: caseyjr.org/blyg/ moved into Blygger Studio at the same address, with static-to-studio."
 
 [[project]]
 name = "thinking.drwip.com's client"
 category = "client"
-generator = "thinking.drwip.com"
+generator = "thinking.drwip.com/1.0.0"
+generator_aliases = ["thinking.drwip.com"]
 live = "https://thinking.drwip.com/blyg/"
 submitted = "census 2026-09-28"
 summary = "The first independent implementation, and the first blyg on a path mount rather than a subdomain — its manifest predates the September 2026 talk. Publishes protocol 0.2. Source not located."
+
+[[project]]
+repo = "msmsim/msn"
+name = "msn"
+category = "client"
+generator = "msn-build/0.1"
+live = "https://www.msweet.net/notes/"
+submitted = "census 2026-09-28; repo from its manifest's generator_url 2026-10-06"
+
+[[project]]
+repo = "protocolvision/sig-p4b"
+name = "sig-p4b-blyg"
+category = "client"
+generator = "sig-p4b-blyg/0.1 (static, git-versioned)"
+live = "https://protocolsforbusiness.com/blyg/"
+submitted = "census 2026-09-28; repo found by sync_ecosystem.py search, confirmed 2026-10-06 (tools/build_blyg.py)"
 
 # ─── Integrations — teach an existing system to emit a blyg ────────────────────
 
@@ -93,14 +129,16 @@ submitted = "Venkat 2026-09-28"
 [[project]]
 repo = "chrisbodhi/hugo-blyg"
 category = "integration"
-submitted = "Venkat 2026-09-28"
+generator = "hugo-blyg/0.2.0"
+live = "https://newschematic.org/blyg/"
+submitted = "Venkat 2026-09-28; generator matched 2026-10-06"
 
 [[project]]
+repo = "mtravers/goddinpotty"
 name = "goddinpotty-blyg"
 category = "integration"
 generator = "goddinpotty-blyg/0.1"
 live = "https://ammdi.hyperphor.com/blyg/"
-url = "https://github.com/mtravers/goddinpotty"
 submitted = "census 2026-09-28"
 summary = "A Roam-to-static publisher taught to emit a blyg. Publishes protocol 0.2. The repo link is goddinpotty itself; we have not located the blyg-emitting fork."
 
@@ -116,10 +154,22 @@ repo = "miguelito4/drafts-blyg"
 category = "tool"
 submitted = "Venkat 2026-09-28"
 
-# ─── Unclassified — found by search, not yet checked with the author ───────────
+[[project]]
+repo = "patwater/burrow-blyg-windows-"
+name = "blygger-desktop for Windows"
+category = "tool"
+submitted = "found by sync_ecosystem.py search 2026-10-06"
+
+[[project]]
+repo = "miguelito4/static-to-studio"
+category = "tool"
+submitted = "search 2026-09-28; confirmed in use 2026-10-06"
+
+# ─── Mods — a modified copy of blygger-studio ──────────────────────────────────
 
 [[project]]
 repo = "patwater/pioneering-spirit-blyg"
-category = "library"
-submitted = "search 2026-09-28"
-summary = "Found by GitHub search; purpose not yet confirmed with its author, and no live blyg located. Listed so it is not lost."
+category = "mod"
+live = "https://blyg.pioneeringspirit.xyz/"
+submitted = "search 2026-09-28; classified 2026-10-06 from its README and upstream.json"
+summary = "Runs Pioneering Spirit as a blyg: Blygger Studio vendored verbatim at a pinned release, with a server extension and the old Paragraph archive served alongside at its original addresses."

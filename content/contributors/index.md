@@ -10,7 +10,7 @@ be implemented by anyone but its authors.
 
 Everything here is drawn from the public record: pull requests and issues in
 the [blygger](https://github.com/blygger) repositories, and the
-[ecosystem census](/ecosystem/). If you are missing, or described wrongly,
+[ecosystem index](/ecosystem/). If you are missing, or described wrongly,
 [open an issue](https://github.com/blygger/blygger-org/issues/new/choose).
 
 <div class="tabset" markdown="1">
@@ -117,8 +117,8 @@ Also builds [blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)
 ## Ecosystem contributors
 
 People building their own clients, integrations and tools rather than
-working on ours. The [ecosystem page](/ecosystem/) has the projects
-themselves, and the census of which client serves each live blyg.
+working on ours. The [ecosystem page](/ecosystem/) indexes the projects and
+the live blygs they serve.
 
 - **Brady Dale** — [@BradyDale](https://github.com/BradyDale).
   [Blynger](https://github.com/BradyDale/Blynger), an independent client on
@@ -131,8 +131,11 @@ themselves, and the census of which client serves each live blyg.
   macOS studio for blygs in Rust.
 - **Mike Casey** — [@miguelito4](https://github.com/miguelito4).
   [drafts-blyg](https://github.com/miguelito4/drafts-blyg), one-tap fragments
-  from a phone via Drafts; also publishes a blyg at
-  [caseyjr.org/blyg](https://caseyjr.org/blyg/).
+  from a phone via Drafts, and
+  [static-to-studio](https://github.com/miguelito4/static-to-studio), which
+  moves a static blyg into Blygger Studio at the same address. Wrote a static
+  client, `caseyjr-blyg`, before moving
+  [caseyjr.org/blyg](https://caseyjr.org/blyg/) into Studio with it.
 - **Brandon Pink** — [@brndnpink](https://github.com/brndnpink).
   [blyg-publisher](https://github.com/brndnpink/blyg-publisher), an Obsidian
   plugin that publishes a blyg from a folder of your vault.
@@ -144,9 +147,16 @@ themselves, and the census of which client serves each live blyg.
   publisher, to emit a blyg: [AMMDI](https://ammdi.hyperphor.com/blyg/).
 - **Patrick Atwater** — [@patwater](https://github.com/patwater).
   [pioneering-spirit-blyg](https://github.com/patwater/pioneering-spirit-blyg),
-  publishing at [blyg.pioneeringspirit.xyz](https://blyg.pioneeringspirit.xyz/).
-- **MS** — [@msmsim](https://github.com/msmsim). `msn-build`, an independent
-  client, publishing at [msweet.net/notes](https://www.msweet.net/notes/).
+  Blygger Studio extended to run [Pioneering Spirit](https://blyg.pioneeringspirit.xyz/)
+  beside its old archive, and
+  [a Windows port](https://github.com/patwater/burrow-blyg-windows-) of
+  blygger-desktop.
+- **MS** — [@msmsim](https://github.com/msmsim). [msn](https://github.com/msmsim/msn),
+  an independent client, publishing at [msweet.net/notes](https://www.msweet.net/notes/).
+- **Protocols for Business** — [@protocolvision](https://github.com/protocolvision).
+  The Protocol Institute research group's own static client,
+  [sig-p4b](https://github.com/protocolvision/sig-p4b), publishing at
+  [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/).
 
 ### Clients we know only by their blygs
 
@@ -158,9 +168,8 @@ a profile. If one is yours, [tell us](https://github.com/blygger/blygger-org/iss
 - [blyg.sachinbenny.xyz](https://blyg.sachinbenny.xyz/) — `sachin-blyg`.
 - [artlu.xyz](https://artlu.xyz/) — `astro-gyoza`.
 - [florianlohse.com/blyg](https://florianlohse.com/blyg/) — `my-garden-site`.
-- [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/) and
-  [rafael.fyi/blyg](https://rafael.fyi/blyg/) — `sig-p4b-blyg`, and a client
-  adapted from it.
+- [rafael.fyi/blyg](https://rafael.fyi/blyg/) — `rafael-fyi-blyg`, adapted
+  from Protocols for Business's client.
 
 </section>
 
