@@ -97,7 +97,7 @@ Also builds [blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)
 - **Anuraj R** — [@anuraj-rp](https://github.com/anuraj-rp). An RFC for an
   optional content identifier on pinned versions, for mirroring pins to IPFS
   ([blygger-spec#13](https://github.com/blygger/blygger-spec/issues/13)).
-- **MS** — [@msmsim](https://github.com/msmsim). A proposed extension for
+- **Matthew Sweet** — [@msmsim](https://github.com/msmsim). A proposed extension for
   Glass Bead Games
   ([blygger-spec#12](https://github.com/blygger/blygger-spec/issues/12)).
 - **Mike Casey** — [@miguelito4](https://github.com/miguelito4). A custom
@@ -152,7 +152,7 @@ the live blygs they serve.
   beside its old archive, and
   [a Windows port](https://github.com/patwater/burrow-blyg-windows-) of
   blygger-desktop.
-- **MS** — [@msmsim](https://github.com/msmsim). [msn](https://github.com/msmsim/msn),
+- **Matthew Sweet** — [@msmsim](https://github.com/msmsim). [msn](https://github.com/msmsim/msn),
   an independent client, publishing at [msweet.net/notes](https://www.msweet.net/notes/).
 - **Protocols for Business** — [@protocolvision](https://github.com/protocolvision).
   The Protocol Institute research group's own static client,
