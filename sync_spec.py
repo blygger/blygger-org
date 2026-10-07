@@ -454,6 +454,24 @@ def sync_notes() -> None:
     build_notes_index(notes)
 
 
+ROADMAP_SRC = SPEC_REPO / "ROADMAP.md"
+CONTENT_ROADMAP = ROOT / "content" / "roadmap"
+
+
+def sync_roadmap() -> None:
+    """Publish blygger-spec's ROADMAP.md at /roadmap/ — the one public list
+    across all four repositories. Links relative to the spec repo are made
+    absolute GitHub links, since the page lives on another site."""
+    if not ROADMAP_SRC.is_file():
+        return
+    text = ROADMAP_SRC.read_text("utf-8").rstrip("\n")
+    text = re.sub(r"\]\((?!https?://|#)([^)]+)\)", lambda m: f"]({GITHUB_URL}/blob/main/{m.group(1)})", text)
+    CONTENT_ROADMAP.mkdir(parents=True, exist_ok=True)
+    out = CONTENT_ROADMAP / "index.md"
+    out.write_text(banner("blygger-spec/ROADMAP.md") + text + footer(spec_repo_sha()), "utf-8")
+    print(f"  wrote {out.relative_to(ROOT)}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", nargs="?", default="latest", choices=["latest", "snapshot"])
@@ -479,6 +497,7 @@ def main() -> None:
 
     build_spec_index()
     sync_notes()
+    sync_roadmap()
 
 
 if __name__ == "__main__":
