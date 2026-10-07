@@ -1,6 +1,20 @@
 # Status — blygger-org
 
 ## Active
+- **Session 38 (2026-10-06, Opus) — deployed and pushed.** Talk recording
+  embedded (`video:`/`recording_page:` frontmatter; draft banner removed). Python-
+  Markdown made `#11 refuses…` an `<h1>`: headings now need a space (CommonMark),
+  fixing three bogus headings (two in TN-3, one in the 0.3 spec). Front page:
+  staleness pass (generation is disclosed on the wire since 0.3; Status names 0.3
+  current; spec link derived via `{{SPEC_LINK}}`/`{{SPEC_VERSION}}` in content),
+  then the lede rewritten around the talk's synchronic/diachronic argument.
+  `/contributors/` added (nav; `tabs.js` generic tabs). Ecosystem page is now a
+  bare index (drift alert on the console); join falls back to client name;
+  `retired` and `skip` in `projects.toml`; several entries corrected from live
+  manifests. Fable's eighth-revision deploy (17:10) went out after this one, from
+  the same checkout, so both are live. Later: **voice pass** — the site speaks for
+  the ecosystem, not "we" against "strangers"; goddinpotty described correctly
+  (Logseq, not Roam); Matthew Sweet named. Redeployed from a fresh build.
 - **Talk style is no longer maintained here** (2026-09-20): `talk-theme.css` and
   `talk-content-guide.md` are synced copies owned by `Code/talk-kit/` and are
   overwritten by its `sync.py`. Slides stay here. The deck was restyled
