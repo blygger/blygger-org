@@ -590,4 +590,4 @@ addressable authors, AI constructs on the wire, and content-addressed identity.
 
 ---
 
-*Published from [blygger/blygger-spec@a9e9408](https://github.com/blygger/blygger-spec/commit/a9e9408).*
+*Published from [blygger/blygger-spec@77a0618](https://github.com/blygger/blygger-spec/commit/77a0618).*
