@@ -181,6 +181,10 @@ then run `./deploy.sh --no-build` (or plain `./deploy.sh`) to publish it.
 
 See [`status.md`](status.md).
 
+## Release announcements on the blyg
+
+`publish_releases.py` announces blygger-studio releases on `blyg.blygger.org` (roadmap row 7, decision #66): one thread per **tagged** version, built from that version's `CHANGELOG.md` section, mapped in `blygger-spec/docs/blyg-releases.json`. `./publish_releases.py --dry-run` first; with an empty map, name the versions to announce. Shares auth and the client with `publish_blyg.py`. Third-party clients' releases are posted by hand. Not yet run live: the 0.35 announcement already on the blyg predates the map, so backfill from 0.35.1, not 0.35.0.
+
 ## Anthropic API key (changed 2026-10-07)
 
 This project's key is `ANTHROPIC_KEY_BLYGGER` in `Code/.env.keys`. `sync_ecosystem.py` reads `AI_PROVIDER_KEY` or `ANTHROPIC_API_KEY` from the **environment** (this repo has no `.env`), so export it for the run: `ANTHROPIC_API_KEY=<value of ANTHROPIC_KEY_BLYGGER>`. The production blyg Workers have their own keys (rotated 2026-10-07, separate from `ANTHROPIC_KEY_BLYGGER`): `blyg-venkateshrao` → `ANTHROPIC_KEY_BLYGS_VENKATESHRAO`, `blyg-blygger-org` → `ANTHROPIC_KEY_BLYGS_BLYGGER_ORG` (new — this Worker had no AI key before, so [TK] generation is now available there), `blyg-protocol-institute` → `ANTHROPIC_KEY_BLYGS_PI` (PI workspace). The secret name in every blyg Worker is `AI_PROVIDER_KEY` (per the studio's `models.json`). Registered in `Code/.env.keys`; rollout plan and rationale in `Code/anthropic-key-plan.md`. The old shared `ANTHROPIC_API_KEY` is being retired (disabled once every project is confirmed) — do not copy it into new files.
