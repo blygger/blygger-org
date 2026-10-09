@@ -1,6 +1,9 @@
 # Status — blygger-org
 
 ## Active
+- **Session 42 (2026-10-09, Opus):** `publish_releases.py` announced studio 0.37.0
+  and 0.38.0 on blyg.blygger.org (map in `blygger-spec/docs/blyg-releases.json`). No
+  site deploy; `ROADMAP.md` changes publish with the next `./deploy.sh`.
 - **Session 38 (2026-10-06, Opus) — deployed and pushed.** Talk recording
   embedded (`video:`/`recording_page:` frontmatter; draft banner removed). Python-
   Markdown made `#11 refuses…` an `<h1>`: headings now need a space (CommonMark),
