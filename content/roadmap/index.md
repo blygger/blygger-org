@@ -32,19 +32,16 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 
 | # | Item | Area | Est | Status | Open question | Link |
 |---|---|---|---|---|---|---|
-| 1 | Fresh source installs fail their first deploy: `npm run init` writes no `nodejs_compat` | studio | 1 | in review |  | [studio#46](https://github.com/blygger/blygger-studio/pull/46) |
-| 2 | A disclosure span at the very end of a post renders inline instead of as a block | studio | 2 | next |  |  |
+| 1 | Fresh source installs fail their first deploy: `npm run init` writes no `nodejs_compat` | studio | 1 | shipped: studio 0.37.0 |  | [studio#46](https://github.com/blygger/blygger-studio/pull/46) |
 | 3 | Settings page reorganised into sections | studio | 5 | next |  |  |
 | 4 | Custom theme with live preview, shareable as a file, plus a reading typeface | studio | 3 | in review |  | [studio#38](https://github.com/blygger/blygger-studio/issues/38) |
 | 5 | Links back to blygger.org and to public collections, each removable in settings | studio | 2 | next | Exactly which links: a footer link to blygger.org and a public collections menu? |  |
-| 6 | The blyg's author URL settable in settings (today it is always the blyg's own address) | studio | 2 | next |  |  |
-| 7 | Release announcements for every client on the official blyg | org | 3 | next |  |  |
-| 8 | Internal `[[id]]` links take a heading as their text when the target has one | studio | 2 | next |  |  |
+| 7 | Release announcements for every client on the official blyg | org | 3 | shipped: `publish_releases.py`; third-party clients by hand |  |  |
 | 9 | Stub editor: choose the quoted passage in the preview | studio | 5 | next |  |  |
 | 10 | Images resized in the browser before upload | studio | 5 | next |  |  |
-| 11 | Webmention receiver hardening: per-domain limits, a cap on pending checks | studio | 3 | next |  |  |
+| 11 | Webmention receiver hardening: per-domain limits, a cap on pending checks | studio | 3 | shipped: studio 0.36.1 |  |  |
 | 12 | Read state for imported items, then mark unread | studio | 3 | waiting: rebase |  | [studio#44](https://github.com/blygger/blygger-studio/pull/44), [#45](https://github.com/blygger/blygger-studio/pull/45) |
-| 13 | Templated surfaces (§16.6e) promoted to normative text | spec | 2 | waiting: Soapbox's confirmation |  | [spec#2](https://github.com/blygger/blygger-spec/issues/2) |
+| 13 | Templated surfaces (§16.6e) promoted to normative text | spec | 2 | ready: Soapbox confirmed 2026-10-07; Fable promotes with 0.4 (G8) |  | [spec#2](https://github.com/blygger/blygger-spec/issues/2) |
 | 14 | Technical note TN-2: identity practice | spec | 5 | next |  |  |
 | 15 | Full backup: download the whole blyg, every version and file, as one archive | studio | 13 | later | Must the archive restore into a fresh node, or is download enough at first? |  |
 | 16 | Mentions as a reading and discovery channel: read responses inline, subscribe in one click | studio | 13 | later |  |  |
@@ -66,7 +63,9 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 | 32 | Self-host template with `npm run upgrade` | studio | 20 | later |  |  |
 | 33 | A "you are behind" notice per listed node | com | 5 | later |  |  |
 | 34 | Passkey sign-in | studio | 13 | later |  |  |
-| 35 | A way to run UI experiments as extensions without changing the reference design | studio | ? | later |  |  |
+| 35 | A way to run UI experiments as extensions without changing the reference design | studio | 8 | shipped: studio 0.37.0; two (reading time, inspect) ship off in 0.38.0 |  | [studio#52](https://github.com/blygger/blygger-studio/pull/52) |
+| 49 | Lineage glyph on reading entries, as an operator-compiled extension | studio | 3 | in review: draft, needs a rebase |  | [studio#53](https://github.com/blygger/blygger-studio/pull/53) |
+| 50 | Autosave keeps one write in flight; shared item and hopper reads | studio | 3 | shipped: studio 0.37.0 |  | [studio#47](https://github.com/blygger/blygger-studio/pull/47), [#55](https://github.com/blygger/blygger-studio/pull/55) |
 | 36 | Technical note TN-4: a write surface | spec | 5 | later |  |  |
 | 37 | Reference agent and technical note TN-5: the contract between a blyg and an agent | spec | 40 | later |  |  |
 | 38 | YouTube links embed on public pages; a failed off-origin image shows as a link | studio | 3 | later |  | [studio#9](https://github.com/blygger/blygger-studio/issues/9) |
@@ -83,4 +82,4 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 
 ---
 
-*Published from [blygger/blygger-spec@3c245c9](https://github.com/blygger/blygger-spec/commit/3c245c9).*
+*Published from [blygger/blygger-spec@956c375](https://github.com/blygger/blygger-spec/commit/956c375).*

@@ -35,9 +35,17 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 ## Unidentified clients
 
 - `astro-gyoza/0.0.2` · live: [artlu.xyz](https://artlu.xyz/)
+- `blyxt/0.1.0` · live: [rslantonie.com/blyg](https://rslantonie.com/blyg/)
 - `my-garden-site/0.1.0` · live: [florianlohse.com/blyg](https://florianlohse.com/blyg/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
 
+<!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
+     then add or deliberately skip each one:
+       cchalc/site  (via name/desc/readme)
+       cyberscribe/soapbox-blyg  (via name/desc/readme)
+       rpasetes/blyxt  (via name/desc/readme)
+-->
+
 ---
 
-*Checked 2026-10-07.*
+*Checked 2026-10-09.*
