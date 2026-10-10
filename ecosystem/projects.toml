@@ -117,6 +117,21 @@ generator = "sig-p4b-blyg/0.1 (static, git-versioned)"
 live = "https://protocolsforbusiness.com/blyg/"
 submitted = "census 2026-09-28; repo found by sync_ecosystem.py search, confirmed 2026-10-06 (tools/build_blyg.py)"
 
+[[project]]
+repo = "rpasetes/blyxt"
+category = "client"
+generator = "blyxt/0.1.0"
+live = "https://rslantonie.com/blyg/"
+submitted = "Russell Antonie Pasetes on blygger-org#3, 2026-10-09"
+
+[[project]]
+repo = "cchalc/site"
+name = "cchalc-site"
+category = "client"
+generator = "cchalc-site/0.1.0"
+live = "https://featherandwire.dev/blyg/"
+submitted = "found by sync_ecosystem.py search 2026-10-09; generator from its manifest"
+
 # ─── Integrations — teach an existing system to emit a blyg ────────────────────
 
 [[project]]
@@ -132,6 +147,14 @@ category = "integration"
 generator = "hugo-blyg/0.2.0"
 live = "https://newschematic.org/blyg/"
 submitted = "Venkat 2026-09-28; generator matched 2026-10-06"
+
+[[project]]
+repo = "cyberscribe/soapbox-blyg"
+name = "Soapbox for Blygger"
+category = "integration"
+generator = "soapbox-blyg/0.1.1"
+live = "https://www.robertpeake.com/blyg/"
+submitted = "found by sync_ecosystem.py search 2026-10-09; Robert Peake's WordPress plugin (blygger-spec#2, gate G9)"
 
 [[project]]
 repo = "mtravers/goddinpotty"

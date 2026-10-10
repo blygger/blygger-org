@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-09T23:45:14+00:00",
+ "checked": "2026-10-09T23:59:16+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -301,7 +301,7 @@
    "license": "NOASSERTION",
    "stars": 1,
    "forks": 7,
-   "pushed_at": "2026-10-09T23:44:37Z",
+   "pushed_at": "2026-10-09T23:48:30Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -464,21 +464,50 @@
    "homepage": null,
    "topics": [],
    "default_branch": "master"
+  },
+  "rpasetes/blyxt": {
+   "repo": "rpasetes/blyxt",
+   "description": "A Telegram client for Blygger: publish from a group topic, follow other blygs in another",
+   "language": "TypeScript",
+   "license": null,
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-10-09T02:09:58Z",
+   "created_at": "2026-10-06T04:50:51Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "cchalc/site": {
+   "repo": "cchalc/site",
+   "description": "Christopher Chalcraft's personal site and blog: Astro, Markdown, xess design, and a Blygger blyg.",
+   "language": "CSS",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-10-09T07:53:49Z",
+   "created_at": "2022-02-01T08:11:44Z",
+   "archived": false,
+   "homepage": "https://featherandwire.dev",
+   "topics": [],
+   "default_branch": "main"
+  },
+  "cyberscribe/soapbox-blyg": {
+   "repo": "cyberscribe/soapbox-blyg",
+   "description": "WordPress plugin: publishes a site's posts as a blyg under the Blygger protocol",
+   "language": "PHP",
+   "license": "GPL-2.0",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-10-09T12:45:11Z",
+   "created_at": "2026-10-08T16:59:32Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
   }
  },
  "summaries": {},
- "discovered": [
-  {
-   "repo": "cchalc/site",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "cyberscribe/soapbox-blyg",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "rpasetes/blyxt",
-   "via": "name/desc/readme"
-  }
- ]
+ "discovered": []
 }

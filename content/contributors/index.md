@@ -108,6 +108,12 @@ Also builds [blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)
 - **djinna** — [@djinna](https://github.com/djinna). Asked for a way to size
   inline images
   ([blygger-studio#37](https://github.com/blygger/blygger-studio/issues/37)).
+- **Surya Kasturi** — [@ksurya](https://github.com/ksurya). Asked for passkeys
+  and a discard-draft button, and reported what it takes to put a blyg's MCP
+  server behind Cloudflare's MCP portals
+  ([blygger-studio#50](https://github.com/blygger/blygger-studio/issues/50),
+  [#54](https://github.com/blygger/blygger-studio/issues/54),
+  [#56](https://github.com/blygger/blygger-studio/issues/56)).
 
 </section>
 
@@ -123,8 +129,10 @@ the live blygs they serve.
   [Blynger](https://github.com/BradyDale/Blynger), an independent client on
   its own version line, publishing at [bradydale.com/blyg](https://bradydale.com/blyg/).
 - **Robert Peake** — [@cyberscribe](https://github.com/cyberscribe).
-  Soapbox, a WordPress plugin that publishes a blyg, in progress — the first
-  client built on the manifest-located surface proposed in blygger-spec#2.
+  [Soapbox](https://github.com/cyberscribe/soapbox-blyg), a WordPress plugin
+  that publishes a blyg — the first client built on the manifest-located
+  surface proposed in blygger-spec#2, publishing at
+  [robertpeake.com/blyg](https://www.robertpeake.com/blyg/).
 - **Aneesh Sathe** — [@aneeshsathe](https://github.com/aneeshsathe).
   [blygger-desktop](https://github.com/aneeshsathe/blygger-desktop), a native
   macOS studio for blygs in Rust.
@@ -157,6 +165,14 @@ the live blygs they serve.
   The Protocol Institute research group's own static client,
   [sig-p4b](https://github.com/protocolvision/sig-p4b), publishing at
   [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/).
+- **Russell Antonie Pasetes** — [@rpasetes](https://github.com/rpasetes).
+  [blyxt](https://github.com/rpasetes/blyxt), a Telegram client: messages in a
+  group topic publish as fragments, and another topic follows other blygs.
+  Publishing at [rslantonie.com/blyg](https://rslantonie.com/blyg/).
+- **Christopher Chalcraft** — [@cchalc](https://github.com/cchalc). His
+  [Astro site](https://github.com/cchalc/site) emits a static blyg of its
+  articles at [featherandwire.dev/blyg](https://featherandwire.dev/blyg/),
+  beside a Blygger Studio for short posts.
 
 ### Clients known only by their blygs
 
