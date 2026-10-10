@@ -200,6 +200,50 @@ def gh(path: str) -> object | None:
         return None
 
 
+# ── Studio extensions ──────────────────────────────────────────────────────────
+
+STUDIO_REPO = "blygger/blygger-studio"
+EXTENSIONS_DOC = f"https://github.com/{STUDIO_REPO}/blob/main/docs/extensions.md"
+# The extension object's own label and description (ui/index.tsx); entryActions
+# rows also carry `label`, but never one followed directly by `description`.
+EXT_META = re.compile(r"label:\s*'([^']*)',\s*description:\s*'((?:[^'\\]|\\.)*)'")
+
+
+def studio_extensions() -> list[dict] | None:
+    """Every extension in the Studio repo's `extensions/`, read from GitHub.
+
+    Venkat, session 44: the ecosystem page lists the extensions with a link to
+    how to write one. Read from the repo rather than curated, so the list cannot
+    go stale. `example` is the template and is not listed. None when GitHub is
+    unreachable (main() then reuses the cache).
+    """
+    listing = gh(f"repos/{STUDIO_REPO}/contents/extensions")
+    if not isinstance(listing, list):
+        return None
+    raw = f"https://raw.githubusercontent.com/{STUDIO_REPO}/main"
+    status, shipped_json = fetch(f"{raw}/extensions.json")
+    try:
+        shipped = set(json.loads(shipped_json).get("compile", [])) if status == 200 else set()
+    except ValueError:
+        shipped = set()
+    out = []
+    for entry in listing:
+        name = entry.get("name", "")
+        if entry.get("type") != "dir" or name == "example":
+            continue
+        status, src = fetch(f"{raw}/extensions/{name}/ui/index.tsx")
+        m = EXT_META.search(src) if status == 200 else None
+        if not m:
+            print(f"  ! extension {name}: no label/description found")
+            continue
+        tree = gh(f"repos/{STUDIO_REPO}/contents/extensions/{name}")
+        has_server = isinstance(tree, list) and any(f.get("name") == "server.ts" for f in tree)
+        out.append({"name": name, "label": m.group(1),
+                    "description": m.group(2).replace("\\'", "'"),
+                    "shipped": name in shipped, "server": has_server})
+    return sorted(out, key=lambda e: e["label"].lower())
+
+
 # ── The live census ────────────────────────────────────────────────────────────
 
 def census() -> dict:
@@ -375,7 +419,8 @@ def host_of(origin: str) -> str:
     return origin.split("//")[-1].rstrip("/")
 
 
-def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at: str) -> str:
+def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at: str,
+           extensions: list[dict] | None = None) -> str:
     """A bare index: every known project, segmented by category, with links.
 
     Venkat, session 38: "a bare index without editorial commentary. Just a
@@ -424,6 +469,22 @@ def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at
                 if len(origins) > len(shown):
                     line += f" and {len(origins) - len(shown)} more"
             A(line)
+        A("")
+
+    if extensions:
+        A("## Blygger Studio extensions")
+        A("")
+        A("Optional features for the reference client. Each is reviewed code in the "
+          "Studio repository: an operator compiles it into their build and the owner "
+          "turns it on in Settings. Nothing is installed or loaded at run time, and "
+          "an extension never changes what a blyg publishes. "
+          f"**[How to write one]({EXTENSIONS_DOC})**.")
+        A("")
+        for e in extensions:
+            src = f"https://github.com/{STUDIO_REPO}/tree/main/extensions/{e['name']}"
+            how = ("in every release" if e["shipped"]
+                   else "needs your own build" if e["server"] else "compile in to use")
+            A(f"- **[{e['label']}]({src})** — {md_text(e['description'])} · {how}")
         A("")
 
     if uncredited:
@@ -523,15 +584,21 @@ def main() -> int:
 
     report_drift(projects, cen)
 
+    extensions = None if offline else studio_extensions()
+    if extensions is None:
+        extensions = cache.get("extensions", [])
+        if not offline:
+            print("  ! studio extensions unavailable, using cache")
+
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(render(projects, cen, discovered, generated_at))
+    OUT.write_text(render(projects, cen, discovered, generated_at, extensions))
     print(f"  wrote {OUT.relative_to(ROOT)}")
 
     CACHE.write_text(json.dumps(
         {"checked": datetime.now(timezone.utc).isoformat(timespec="seconds"),
          "census": cen, "repos": repo_cache, "summaries": summary_cache,
-         "discovered": discovered}, indent=1, default=list) + "\n")
+         "discovered": discovered, "extensions": extensions}, indent=1, default=list) + "\n")
     print(f"  wrote {CACHE.relative_to(ROOT)}")
     return 0
 

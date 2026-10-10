@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-09T23:59:16+00:00",
+ "checked": "2026-10-10T17:02:39+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -31,29 +31,29 @@
     "0.3"
    ]
   },
-  "blygger-studio/0.36.1": {
-   "generator": "blygger-studio/0.36.1",
+  "blygger-studio/0.39.0": {
+   "generator": "blygger-studio/0.39.0",
    "nodes": [
     {
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.3",
-     "updated": "2026-10-09T22:30:35Z",
-     "generator_seen": "blygger-studio/0.36.1"
+     "updated": "2026-10-10T07:21:12Z",
+     "generator_seen": "blygger-studio/0.39.0"
     },
     {
-     "origin": "https://blyg.jdbb.net/",
-     "title": "[jdbb] studio blyg",
+     "origin": "https://blyg.protocol-institute.org/",
+     "title": "Protocol Institute Blyg",
      "protocol": "0.3",
-     "updated": "2026-10-07T12:46:21Z",
-     "generator_seen": "blygger-studio/0.36.1"
+     "updated": "2026-10-08T14:07:21Z",
+     "generator_seen": "blygger-studio/0.39.0"
     },
     {
-     "origin": "https://blyg.suryakasturi.com/",
-     "title": "Surya Kasturi's Blyg",
+     "origin": "https://venkateshrao.com/blyg/",
+     "title": "Venkatesh Rao's Blyg",
      "protocol": "0.3",
-     "updated": "2026-10-09T20:59:59Z",
-     "generator_seen": "blygger-studio/0.36.1"
+     "updated": "2026-10-10T15:43:56Z",
+     "generator_seen": "blygger-studio/0.39.0"
     }
    ],
    "protocols": [
@@ -67,8 +67,23 @@
      "origin": "https://blyg.bricolage.io/",
      "title": "Kyle's blyg",
      "protocol": "0.3",
-     "updated": "2026-10-09T15:51:17Z",
+     "updated": "2026-10-10T01:46:23Z",
      "generator_seen": "blygger-studio/0.34.0"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
+  "blygger-studio/0.38.0": {
+   "generator": "blygger-studio/0.38.0",
+   "nodes": [
+    {
+     "origin": "https://blyg.jdbb.net/",
+     "title": "[jdbb] studio blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-07T12:46:21Z",
+     "generator_seen": "blygger-studio/0.38.0"
     }
    ],
    "protocols": [
@@ -84,28 +99,6 @@
      "protocol": "0.3",
      "updated": "2026-10-08T05:41:01Z",
      "generator_seen": "blygger-studio/0.26.0"
-    }
-   ],
-   "protocols": [
-    "0.3"
-   ]
-  },
-  "blygger-studio/0.38.0": {
-   "generator": "blygger-studio/0.38.0",
-   "nodes": [
-    {
-     "origin": "https://blyg.protocol-institute.org/",
-     "title": "Protocol Institute Blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-08T14:07:21Z",
-     "generator_seen": "blygger-studio/0.38.0"
-    },
-    {
-     "origin": "https://venkateshrao.com/blyg/",
-     "title": "Venkatesh Rao's Blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-09T20:35:07Z",
-     "generator_seen": "blygger-studio/0.38.0"
     }
    ],
    "protocols": [
@@ -142,6 +135,21 @@
     "0.3"
    ]
   },
+  "blygger-studio/0.36.1": {
+   "generator": "blygger-studio/0.36.1",
+   "nodes": [
+    {
+     "origin": "https://blyg.suryakasturi.com/",
+     "title": "Surya Kasturi's Blyg",
+     "protocol": "0.3",
+     "updated": "2026-10-10T16:50:12Z",
+     "generator_seen": "blygger-studio/0.36.1"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
   "Blynger/0.9.34": {
    "generator": "Blynger/0.9.34",
    "nodes": [
@@ -164,7 +172,7 @@
      "origin": "https://caseyjr.org/blyg/",
      "title": "Mike Casey's blyg",
      "protocol": "0.3",
-     "updated": "2026-10-06T23:21:48Z",
+     "updated": "2026-10-10T00:00:50Z",
      "generator_seen": "blygger-studio/0.20.2"
     }
    ],
@@ -209,7 +217,7 @@
      "origin": "https://newschematic.org/blyg/",
      "title": "New Schematic",
      "protocol": "0.2",
-     "updated": "2026-10-09T13:54:42Z",
+     "updated": "2026-10-10T13:34:44Z",
      "generator_seen": "hugo-blyg/0.2.0"
     }
    ],
@@ -254,7 +262,7 @@
      "origin": "https://rslantonie.com/blyg/",
      "title": "mundane stem",
      "protocol": "0.3",
-     "updated": "2026-10-09T05:10:49Z",
+     "updated": "2026-10-10T07:00:27Z",
      "generator_seen": "blyxt/0.1.0"
     }
    ],
@@ -284,7 +292,7 @@
      "origin": "https://www.msweet.net/notes/",
      "title": "Notes | Matthew McDowell-Sweet",
      "protocol": "0.3",
-     "updated": "2026-10-09T19:12:29Z",
+     "updated": "2026-10-10T07:55:24Z",
      "generator_seen": "msn-build/0.1"
     }
    ],
@@ -301,7 +309,7 @@
    "license": "NOASSERTION",
    "stars": 1,
    "forks": 7,
-   "pushed_at": "2026-10-09T23:48:30Z",
+   "pushed_at": "2026-10-10T16:59:11Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -357,7 +365,7 @@
    "license": "MIT",
    "stars": 3,
    "forks": 2,
-   "pushed_at": "2026-10-09T16:11:51Z",
+   "pushed_at": "2026-10-10T07:06:18Z",
    "created_at": "2026-09-25T15:44:30Z",
    "archived": false,
    "homepage": "https://aneeshsathe.github.io/blygger-desktop/",
@@ -402,7 +410,7 @@
    "license": "MIT",
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-10-05T19:12:59Z",
+   "pushed_at": "2026-10-10T00:50:18Z",
    "created_at": "2026-10-04T00:56:46Z",
    "archived": false,
    "homepage": null,
@@ -430,7 +438,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-10-09T11:44:50Z",
+   "pushed_at": "2026-10-10T16:26:04Z",
    "created_at": "2026-09-25T11:01:47Z",
    "archived": false,
    "homepage": null,
@@ -509,5 +517,28 @@
   }
  },
  "summaries": {},
- "discovered": []
+ "discovered": [],
+ "extensions": [
+  {
+   "name": "inspect",
+   "label": "Inspect",
+   "description": "Adds \u201cinspect\u201d to each reading entry\u2019s \u22ef sheet: the record this Studio holds for it \u2014 ids, versions, references, hashes \u2014 and its JSON.",
+   "shipped": true,
+   "server": false
+  },
+  {
+   "name": "lineage-glyph",
+   "label": "Lineage glyph",
+   "description": "A glyph in each reading byline for what a post draws on and what draws on it here, opening a hex view that shows what stub, quote, fork, link, history and open would each make.",
+   "shipped": false,
+   "server": true
+  },
+  {
+   "name": "reading-time",
+   "label": "Reading time",
+   "description": "Shows an estimated reading time and word count at the end of each reading entry\u2019s byline.",
+   "shipped": true,
+   "server": false
+  }
+ ]
 }
