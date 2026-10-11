@@ -48,6 +48,10 @@ def sections() -> dict:
 
 
 def announcement(version: str, date: str, body: str, model: str) -> str:
+    # The item is one impyrt scope, so a literal [TK] in the changelog reads as a
+    # nested scope and publishing fails, even inside backticks (the nesting check
+    # in blygger-studio src/tk.ts does not skip code spans; session 45).
+    body = body.replace("[TK]", "TK")
     link = f"[v{version} on GitHub]({RELEASES}v{version})"
     head = f"# Blygger Studio {version}\n\n*Released {date}, the reference client. {link}.*\n\n"
     foot = ("*This announcement is drafted from the release's section of "
