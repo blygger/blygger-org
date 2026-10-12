@@ -11,15 +11,15 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 - **[Blynger](https://github.com/BradyDale/Blynger)** — [@BradyDale](https://github.com/BradyDale) · live: [bradydale.com/blyg](https://bradydale.com/blyg/)
 - **[blyxt](https://github.com/rpasetes/blyxt)** — [@rpasetes](https://github.com/rpasetes) · live: [rslantonie.com/blyg](https://rslantonie.com/blyg/)
 - **[caseyjr-blyg](https://caseyjr.org/blyg/)** · retired
-- **[cchalc-site](https://github.com/cchalc/site)** — [@cchalc](https://github.com/cchalc) · live: [featherandwire.dev/blyg](https://featherandwire.dev/blyg/)
-- **[msn](https://github.com/msmsim/msn)** — [@msmsim](https://github.com/msmsim) · live: [www.msweet.net/notes](https://www.msweet.net/notes/)
 - **[sachin-blyg](https://blyg.sachinbenny.xyz/)** · live: [blyg.sachinbenny.xyz](https://blyg.sachinbenny.xyz/)
-- **[sig-p4b-blyg](https://github.com/protocolvision/sig-p4b)** — [@protocolvision](https://github.com/protocolvision) · live: [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/)
 - **[thinking.drwip.com's client](https://thinking.drwip.com/blyg/)** · live: [thinking.drwip.com/blyg](https://thinking.drwip.com/blyg/)
 
 ## Bespoke builds
 
 - **[Ben Mayhew's blyg](https://github.com/Allethrin/benmayhew.com)** — [@Allethrin](https://github.com/Allethrin) · live: [benmayhew.com/blyg](https://benmayhew.com/blyg/)
+- **[cchalc-site](https://github.com/cchalc/site)** — [@cchalc](https://github.com/cchalc) · live: [featherandwire.dev/blyg](https://featherandwire.dev/blyg/)
+- **[msn](https://github.com/msmsim/msn)** — [@msmsim](https://github.com/msmsim) · live: [www.msweet.net/notes](https://www.msweet.net/notes/)
+- **[sig-p4b-blyg](https://github.com/protocolvision/sig-p4b)** — [@protocolvision](https://github.com/protocolvision) · live: [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/)
 
 ## Integrations
 
@@ -45,6 +45,7 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 - **[Inspect](https://github.com/blygger/blygger-studio/tree/main/extensions/inspect)** — Adds “inspect” to each reading entry’s ⋯ sheet: the record this Studio holds for it — ids, versions, references, hashes — and its JSON. · in every release
 - **[Lineage glyph](https://github.com/blygger/blygger-studio/tree/main/extensions/lineage-glyph)** — A glyph in each reading byline for what a post draws on and what draws on it here, opening a hex view that shows what stub, quote, fork, link, history and open would each make. · needs your own build
+- **[Pinned-first home page](https://github.com/blygger/blygger-studio/tree/main/extensions/feed-example)** — Adds a home page order with pinned items at the top. Choose it under Settings → home page once enabled. · needs your own build
 - **[Reading time](https://github.com/blygger/blygger-studio/tree/main/extensions/reading-time)** — Shows an estimated reading time and word count at the end of each reading entry’s byline. · in every release
 
 ## Unidentified clients

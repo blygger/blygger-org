@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-12T18:29:21+00:00",
+ "checked": "2026-10-12T19:36:43+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -64,24 +64,10 @@
      "generator_seen": "blygger-studio/0.41.1"
     },
     {
-     "origin": "https://blyg.protocol-institute.org/",
-     "title": "Protocol Institute Blyg",
-     "protocol": "0.4",
-     "updated": "2026-10-10T17:37:04Z",
-     "generator_seen": "blygger-studio/0.41.1"
-    },
-    {
      "origin": "https://blyg.suryakasturi.com/",
      "title": "Surya Kasturi's Blyg",
      "protocol": "0.4",
      "updated": "2026-10-11T16:14:29Z",
-     "generator_seen": "blygger-studio/0.41.1"
-    },
-    {
-     "origin": "https://venkateshrao.com/blyg/",
-     "title": "Venkatesh Rao's Blyg",
-     "protocol": "0.4",
-     "updated": "2026-10-11T22:08:37Z",
      "generator_seen": "blygger-studio/0.41.1"
     }
    ],
@@ -102,6 +88,28 @@
    ],
    "protocols": [
     "0.3"
+   ]
+  },
+  "blygger-studio/0.42.0": {
+   "generator": "blygger-studio/0.42.0",
+   "nodes": [
+    {
+     "origin": "https://blyg.protocol-institute.org/",
+     "title": "Protocol Institute Blyg",
+     "protocol": "0.4",
+     "updated": "2026-10-10T17:37:04Z",
+     "generator_seen": "blygger-studio/0.42.0"
+    },
+    {
+     "origin": "https://venkateshrao.com/blyg/",
+     "title": "Venkatesh Rao's Blyg",
+     "protocol": "0.4",
+     "updated": "2026-10-11T22:08:37Z",
+     "generator_seen": "blygger-studio/0.42.0"
+    }
+   ],
+   "protocols": [
+    "0.4"
    ]
   },
   "sachin-blyg/0.2.0": {
@@ -231,7 +239,7 @@
      "origin": "https://rafael.fyi/blyg/",
      "title": "Rafael Fern\u00e1ndez",
      "protocol": "0.3",
-     "updated": "2026-10-06T09:08:22Z",
+     "updated": "2026-10-12T18:53:29Z",
      "generator_seen": "rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)"
     }
    ],
@@ -293,7 +301,7 @@
    "license": "NOASSERTION",
    "stars": 2,
    "forks": 7,
-   "pushed_at": "2026-10-11T00:44:27Z",
+   "pushed_at": "2026-10-12T19:09:45Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -533,6 +541,13 @@
    "name": "lineage-glyph",
    "label": "Lineage glyph",
    "description": "A glyph in each reading byline for what a post draws on and what draws on it here, opening a hex view that shows what stub, quote, fork, link, history and open would each make.",
+   "shipped": false,
+   "server": true
+  },
+  {
+   "name": "feed-example",
+   "label": "Pinned-first home page",
+   "description": "Adds a home page order with pinned items at the top. Choose it under Settings \u2192 home page once enabled.",
    "shipped": false,
    "server": true
   },

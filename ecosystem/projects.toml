@@ -11,8 +11,8 @@
 #   url       Homepage, if there is no repo or the homepage is the better link.
 #   category  client | bespoke | tool | integration | mod | reader | library
 #               client       publishes a blyg of its own; has a `generator`
-#               bespoke      one owner's blyg from their own one-off generator
-#                            (often private); listed for the blyg, not the code
+#               bespoke      one owner's blyg from their own one-off generator,
+#                            public or private; listed for the blyg (session 46)
 #               tool         authors into an existing blyg
 #               integration  teaches an existing publishing system to emit a blyg
 #               mod          a modified copy of blygger-studio
@@ -104,35 +104,11 @@ submitted = "census 2026-09-28"
 summary = "The first independent implementation, and the first blyg on a path mount rather than a subdomain — its manifest predates the September 2026 talk. Publishes protocol 0.2. Source not located."
 
 [[project]]
-repo = "msmsim/msn"
-name = "msn"
-category = "client"
-generator = "msn-build/0.1"
-live = "https://www.msweet.net/notes/"
-submitted = "census 2026-09-28; repo from its manifest's generator_url 2026-10-06"
-
-[[project]]
-repo = "protocolvision/sig-p4b"
-name = "sig-p4b-blyg"
-category = "client"
-generator = "sig-p4b-blyg/0.1 (static, git-versioned)"
-live = "https://protocolsforbusiness.com/blyg/"
-submitted = "census 2026-09-28; repo found by sync_ecosystem.py search, confirmed 2026-10-06 (tools/build_blyg.py)"
-
-[[project]]
 repo = "rpasetes/blyxt"
 category = "client"
 generator = "blyxt/0.1.0"
 live = "https://rslantonie.com/blyg/"
 submitted = "Russell Antonie Pasetes on blygger-org#3, 2026-10-09"
-
-[[project]]
-repo = "cchalc/site"
-name = "cchalc-site"
-category = "client"
-generator = "cchalc-site/0.1.0"
-live = "https://featherandwire.dev/blyg/"
-submitted = "found by sync_ecosystem.py search 2026-10-09; generator from its manifest"
 
 # ─── Bespoke builds — one owner's blyg from their own generator ────────────────
 
@@ -143,6 +119,30 @@ category = "bespoke"
 generator = "benmayhew-blyg/0.1.0"
 live = "https://benmayhew.com/blyg/"
 submitted = "census 2026-10-11 (sync_ecosystem.py search); the repo holds generated output, the generator is private"
+
+[[project]]
+repo = "msmsim/msn"
+name = "msn"
+category = "bespoke"
+generator = "msn-build/0.1"
+live = "https://www.msweet.net/notes/"
+submitted = "census 2026-09-28; repo from its manifest's generator_url 2026-10-06"
+
+[[project]]
+repo = "protocolvision/sig-p4b"
+name = "sig-p4b-blyg"
+category = "bespoke"
+generator = "sig-p4b-blyg/0.1 (static, git-versioned)"
+live = "https://protocolsforbusiness.com/blyg/"
+submitted = "census 2026-09-28; repo found by sync_ecosystem.py search, confirmed 2026-10-06 (tools/build_blyg.py)"
+
+[[project]]
+repo = "cchalc/site"
+name = "cchalc-site"
+category = "bespoke"
+generator = "cchalc-site/0.1.0"
+live = "https://featherandwire.dev/blyg/"
+submitted = "found by sync_ecosystem.py search 2026-10-09; generator from its manifest"
 
 # ─── Integrations — teach an existing system to emit a blyg ────────────────────
 
