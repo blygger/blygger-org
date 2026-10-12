@@ -9,8 +9,10 @@
 #   repo      "owner/name" on GitHub. Optional — several clients have no located
 #             repo and are listed from their manifest alone.
 #   url       Homepage, if there is no repo or the homepage is the better link.
-#   category  client | tool | integration | mod | reader | library
+#   category  client | bespoke | tool | integration | mod | reader | library
 #               client       publishes a blyg of its own; has a `generator`
+#               bespoke      one owner's blyg from their own one-off generator
+#                            (often private); listed for the blyg, not the code
 #               tool         authors into an existing blyg
 #               integration  teaches an existing publishing system to emit a blyg
 #               mod          a modified copy of blygger-studio
@@ -131,6 +133,16 @@ category = "client"
 generator = "cchalc-site/0.1.0"
 live = "https://featherandwire.dev/blyg/"
 submitted = "found by sync_ecosystem.py search 2026-10-09; generator from its manifest"
+
+# ─── Bespoke builds — one owner's blyg from their own generator ────────────────
+
+[[project]]
+repo = "Allethrin/benmayhew.com"
+name = "Ben Mayhew's blyg"
+category = "bespoke"
+generator = "benmayhew-blyg/0.1.0"
+live = "https://benmayhew.com/blyg/"
+submitted = "census 2026-10-11 (sync_ecosystem.py search); the repo holds generated output, the generator is private"
 
 # ─── Integrations — teach an existing system to emit a blyg ────────────────────
 

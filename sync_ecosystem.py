@@ -151,9 +151,10 @@ def display_name(p: dict) -> str:
     return gen.rsplit("/", 1)[0] if "/" in gen else (gen or "—")
 
 
-CATEGORY_ORDER = ["client", "integration", "tool", "mod", "reader", "library"]
+CATEGORY_ORDER = ["client", "bespoke", "integration", "tool", "mod", "reader", "library"]
 CATEGORY_TITLE = {
     "client": "Clients",
+    "bespoke": "Bespoke builds",
     "integration": "Integrations",
     "tool": "Authoring tools",
     "mod": "Mods of Blygger Studio",
@@ -164,6 +165,8 @@ CATEGORY_BLURB = {
     "client": "Publish a blyg of their own, and so carry their own `generator` string. "
               "A client is discoverable the moment it publishes — this is the one "
               "category we can census without being told.",
+    "bespoke": "One person's blyg, built from the spec by its owner's own generator. "
+               "The generator may be private; the blyg is the public part.",
     "integration": "Teach an existing publishing system — Hugo, Obsidian, a "
                    "note-taking tool — to emit a conformant blyg.",
     "tool": "Author *into* a blyg that already exists, rather than producing one. "

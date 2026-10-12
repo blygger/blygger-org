@@ -17,6 +17,10 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 - **[sig-p4b-blyg](https://github.com/protocolvision/sig-p4b)** — [@protocolvision](https://github.com/protocolvision) · live: [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/)
 - **[thinking.drwip.com's client](https://thinking.drwip.com/blyg/)** · live: [thinking.drwip.com/blyg](https://thinking.drwip.com/blyg/)
 
+## Bespoke builds
+
+- **[Ben Mayhew's blyg](https://github.com/Allethrin/benmayhew.com)** — [@Allethrin](https://github.com/Allethrin) · live: [benmayhew.com/blyg](https://benmayhew.com/blyg/)
+
 ## Integrations
 
 - **[blyg-publisher](https://github.com/brndnpink/blyg-publisher)** — [@brndnpink](https://github.com/brndnpink) · live: [lightsong.ink/blyg](https://lightsong.ink/blyg/)
@@ -49,6 +53,11 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 - `my-garden-site/0.1.0` · live: [florianlohse.com/blyg](https://florianlohse.com/blyg/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
 
+<!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
+     then add or deliberately skip each one:
+       ananthsridhar281/blygger-reference-client  (via name/desc/readme)
+-->
+
 ---
 
-*Checked 2026-10-10.*
+*Checked 2026-10-12.*

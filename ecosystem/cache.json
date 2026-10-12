@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-10T23:03:47+00:00",
+ "checked": "2026-10-12T18:29:21+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -46,48 +46,47 @@
     "0.3"
    ]
   },
-  "blygger-studio/0.41.0": {
-   "generator": "blygger-studio/0.41.0",
+  "blygger-studio/0.41.1": {
+   "generator": "blygger-studio/0.41.1",
    "nodes": [
     {
      "origin": "https://blyg.bricolage.io/",
      "title": "Kyle's blyg",
      "protocol": "0.4",
-     "updated": "2026-10-10T01:46:23Z",
-     "generator_seen": "blygger-studio/0.41.0"
+     "updated": "2026-10-12T16:08:05Z",
+     "generator_seen": "blygger-studio/0.41.1"
+    },
+    {
+     "origin": "https://blyg.jdbb.net/",
+     "title": "[jdbb] studio blyg",
+     "protocol": "0.4",
+     "updated": "2026-10-12T16:38:49Z",
+     "generator_seen": "blygger-studio/0.41.1"
     },
     {
      "origin": "https://blyg.protocol-institute.org/",
      "title": "Protocol Institute Blyg",
      "protocol": "0.4",
      "updated": "2026-10-10T17:37:04Z",
-     "generator_seen": "blygger-studio/0.41.0"
+     "generator_seen": "blygger-studio/0.41.1"
+    },
+    {
+     "origin": "https://blyg.suryakasturi.com/",
+     "title": "Surya Kasturi's Blyg",
+     "protocol": "0.4",
+     "updated": "2026-10-11T16:14:29Z",
+     "generator_seen": "blygger-studio/0.41.1"
     },
     {
      "origin": "https://venkateshrao.com/blyg/",
      "title": "Venkatesh Rao's Blyg",
      "protocol": "0.4",
-     "updated": "2026-10-10T18:34:32Z",
-     "generator_seen": "blygger-studio/0.41.0"
+     "updated": "2026-10-11T22:08:37Z",
+     "generator_seen": "blygger-studio/0.41.1"
     }
    ],
    "protocols": [
     "0.4"
-   ]
-  },
-  "blygger-studio/0.38.0": {
-   "generator": "blygger-studio/0.38.0",
-   "nodes": [
-    {
-     "origin": "https://blyg.jdbb.net/",
-     "title": "[jdbb] studio blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-07T12:46:21Z",
-     "generator_seen": "blygger-studio/0.38.0"
-    }
-   ],
-   "protocols": [
-    "0.3"
    ]
   },
   "blygger-studio/0.26.0": {
@@ -97,7 +96,7 @@
      "origin": "https://blyg.pioneeringspirit.xyz/",
      "title": "Pioneering Spirit (Blyg)",
      "protocol": "0.3",
-     "updated": "2026-10-08T05:41:01Z",
+     "updated": "2026-10-12T16:50:57Z",
      "generator_seen": "blygger-studio/0.26.0"
     }
    ],
@@ -135,49 +134,34 @@
     "0.3"
    ]
   },
-  "blygger-studio/0.36.1": {
-   "generator": "blygger-studio/0.36.1",
-   "nodes": [
-    {
-     "origin": "https://blyg.suryakasturi.com/",
-     "title": "Surya Kasturi's Blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-10T17:07:51Z",
-     "generator_seen": "blygger-studio/0.36.1"
-    }
-   ],
-   "protocols": [
-    "0.3"
-   ]
-  },
-  "Blynger/0.9.34": {
-   "generator": "Blynger/0.9.34",
+  "Blynger/0.10.7": {
+   "generator": "Blynger/0.10.7",
    "nodes": [
     {
      "origin": "https://bradydale.com/blyg/",
      "title": "Brady Dale's blyg",
      "protocol": "0.3",
-     "updated": "2026-10-09T21:49:05Z",
-     "generator_seen": "Blynger/0.9.34"
+     "updated": "2026-10-12T17:52:50Z",
+     "generator_seen": "Blynger/0.10.7"
     }
    ],
    "protocols": [
     "0.3"
    ]
   },
-  "blygger-studio/0.20.2": {
-   "generator": "blygger-studio/0.20.2",
+  "blygger-studio/0.41.0": {
+   "generator": "blygger-studio/0.41.0",
    "nodes": [
     {
      "origin": "https://caseyjr.org/blyg/",
      "title": "Mike Casey's blyg",
-     "protocol": "0.3",
-     "updated": "2026-10-10T22:38:01Z",
-     "generator_seen": "blygger-studio/0.20.2"
+     "protocol": "0.4",
+     "updated": "2026-10-11T21:10:40Z",
+     "generator_seen": "blygger-studio/0.41.0"
     }
    ],
    "protocols": [
-    "0.3"
+    "0.4"
    ]
   },
   "my-garden-site/0.1.0": {
@@ -210,19 +194,19 @@
     "0.2"
    ]
   },
-  "hugo-blyg/0.2.0": {
-   "generator": "hugo-blyg/0.2.0",
+  "hugo-blyg/0.3.2": {
+   "generator": "hugo-blyg/0.3.2",
    "nodes": [
     {
      "origin": "https://newschematic.org/blyg/",
      "title": "New Schematic",
-     "protocol": "0.2",
-     "updated": "2026-10-10T13:34:44Z",
-     "generator_seen": "hugo-blyg/0.2.0"
+     "protocol": "0.3",
+     "updated": "2026-10-11T21:26:59Z",
+     "generator_seen": "hugo-blyg/0.3.2"
     }
    ],
    "protocols": [
-    "0.2"
+    "0.3"
    ]
   },
   "sig-p4b-blyg/0.1 (static, git-versioned)": {
@@ -232,7 +216,7 @@
      "origin": "https://protocolsforbusiness.com/blyg/",
      "title": "Protocols for Business",
      "protocol": "0.3",
-     "updated": "2026-10-08T09:10:54Z",
+     "updated": "2026-10-12T05:05:49Z",
      "generator_seen": "sig-p4b-blyg/0.1 (static, git-versioned)"
     }
    ],
@@ -262,7 +246,7 @@
      "origin": "https://rslantonie.com/blyg/",
      "title": "mundane stem",
      "protocol": "0.3",
-     "updated": "2026-10-10T22:38:40Z",
+     "updated": "2026-10-10T23:21:33Z",
      "generator_seen": "blyxt/0.1.0"
     }
    ],
@@ -292,7 +276,7 @@
      "origin": "https://www.msweet.net/notes/",
      "title": "Notes | Matthew McDowell-Sweet",
      "protocol": "0.3",
-     "updated": "2026-10-10T07:55:24Z",
+     "updated": "2026-10-11T20:38:02Z",
      "generator_seen": "msn-build/0.1"
     }
    ],
@@ -307,9 +291,9 @@
    "description": "Blygger Studio \u2014 the reference client for the Blygger protocol. Publish, subscribe, thread, transclude, respond. Cloudflare Worker + D1 + R2.",
    "language": "TypeScript",
    "license": "NOASSERTION",
-   "stars": 1,
+   "stars": 2,
    "forks": 7,
-   "pushed_at": "2026-10-10T18:02:53Z",
+   "pushed_at": "2026-10-11T00:44:27Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -348,7 +332,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-09-28T20:50:38Z",
+   "pushed_at": "2026-10-12T02:11:22Z",
    "created_at": "2026-09-27T16:28:39Z",
    "archived": false,
    "homepage": null,
@@ -396,7 +380,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-10-08T04:49:03Z",
+   "pushed_at": "2026-10-12T17:12:32Z",
    "created_at": "2026-09-25T22:53:42Z",
    "archived": false,
    "homepage": null,
@@ -438,7 +422,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-10-10T20:31:23Z",
+   "pushed_at": "2026-10-12T05:49:53Z",
    "created_at": "2026-09-25T11:01:47Z",
    "archived": false,
    "homepage": null,
@@ -480,7 +464,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-10-09T02:09:58Z",
+   "pushed_at": "2026-10-12T10:43:30Z",
    "created_at": "2026-10-06T04:50:51Z",
    "archived": false,
    "homepage": null,
@@ -514,10 +498,29 @@
    "homepage": null,
    "topics": [],
    "default_branch": "main"
+  },
+  "Allethrin/benmayhew.com": {
+   "repo": "Allethrin/benmayhew.com",
+   "description": null,
+   "language": "HTML",
+   "license": null,
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-10-12T01:15:04Z",
+   "created_at": "2026-10-11T13:48:39Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
   }
  },
  "summaries": {},
- "discovered": [],
+ "discovered": [
+  {
+   "repo": "ananthsridhar281/blygger-reference-client",
+   "via": "name/desc/readme"
+  }
+ ],
  "extensions": [
   {
    "name": "inspect",
