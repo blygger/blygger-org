@@ -32,11 +32,8 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 
 | # | Item | Area | Est | Status | Open question | Link |
 |---|---|---|---|---|---|---|
-| 3 | Settings page reorganised into sections | studio | 5 | next |  |  |
-| 55 | CI reliability and speed: parallel jobs, PR-scoped e2e and mutation suites, Release reusing main's green Check, one CI retry for e2e | studio | 5 | shipped: studio 0.41.1 (#67, #69) | Triage of 40 runs: the e2e flakes were mostly `compose-pwa:179` (fixed by #64); mutation failures were real catches. Split the auth-security worker half further only if it stays the floor. | [studio#67](https://github.com/blygger/blygger-studio/pull/67) |
-| 4 | Custom theme with live preview, shareable as a file, plus a reading typeface | studio | 3 | shipped: studio 0.40.0 (#58) |  | [studio#38](https://github.com/blygger/blygger-studio/issues/38) |
+| 3 | Settings page reorganised into sections: one page with a sidebar of anchors (General, Feed, Appearance, Links, AI, Network), each AI function's model beside its instructions | studio | 5 | shipped: studio 0.46.0 |  |  |
 | 5 | A links section on every public page, below the content or as a left or right sidebar: chosen threads, public collections, the owner's own links, and links to the blogroll OPML, blygger.org and blygger.com, each removable in settings | studio | 5 | shipped: studio 0.44.0 | Grew from "a footer link to blygger.org and a public Collections menu" (session 47). |  |
-| 7 | Release announcements for every client on the official blyg | org | 3 | shipped: `publish_releases.py`; third-party clients by hand |  |  |
 | 9 | Stub editor: choose the quoted passage in the preview | studio | 5 | next |  |  |
 | 10 | Images resized in the browser before upload | studio | 5 | next |  |  |
 | 13 | Templated surfaces (§16.6e) promoted to normative text | spec | 2 | ready: Soapbox confirmed 2026-10-07; Fable promotes with the 0.4 document (row 24) |  | [spec#2](https://github.com/blygger/blygger-spec/issues/2) |
@@ -47,6 +44,8 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 | 67 | Links written by [TK] generation come out as literal brackets: a generated paragraph ending `![[id]]` published as raw text ([example](https://venkateshrao.com/blyg/t/4tsyw2ccaps3h0w1dveqc1f35x/)) | studio | 3 | next | The grammar is inert inside generated output (studio#5) and only an own-line `![[id]]` there is a quote (0.20.1). Either render an inline `[[id]]`/`![[id]]` in generated text as a plain link to its target, or keep generation from emitting the grammar (prompt + strip). The first reads generated text as grammar, which studio#5 forbade, so it may need Fable. |  |
 | 68 | Links section: optionally list each blogroll entry as its own link, beside the OPML file | studio | 2 | next | A checkbox in Settings → links section, off by default. The home page's "Also reading" already lists them there. |  |
 | 69 | Reading view order: newest first or pace-layered, as a setting, like the home page | studio | 8 | next | Pace-layered reads only wire data (changelog, pins, quotes), so it can order subscriptions' items too; it needs their version histories from the imported changelog, and inbound weight across blygs waits on whether pins re-send mentions (Fable queue item 16). |  |
+| 70 | The owner's own posts in hoppers, beside what they read, shown on public hopper pages | studio | 3 | shipped: studio 0.45.0 | Membership uses the subscription marker `~own`; no migration. |  |
+| 71 | Autosave disabled publish and save draft while typing (reported by Venkat) | studio | 2 | shipped: studio 0.45.0 |  |  |
 | 15 | Full backup: download the whole blyg, every version and file, as one archive | studio | 5 | later |  |  |
 | 53 | Restore a full backup into a fresh node | studio | 8 | later | Waits on row 15. |  |
 | 16 | Mentions as a reading and discovery channel: read responses inline, subscribe in one click | studio | 13 | later |  |  |
@@ -68,19 +67,15 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 | 32 | Self-host template with `npm run upgrade` | studio | 20 | later |  |  |
 | 33 | A "you are behind" notice per listed node | com | 5 | later |  |  |
 | 34 | Passkey sign-in | studio | 13 | later |  | [studio#50](https://github.com/blygger/blygger-studio/issues/50) |
-| 49 | Lineage glyph on reading entries, as an operator-compiled extension | studio | 3 | shipped: studio 0.40.0 |  | [studio#53](https://github.com/blygger/blygger-studio/pull/53) |
 | 36 | Technical note TN-4: a write surface | spec | 5 | later |  |  |
 | 37 | Reference agent and technical note TN-5: the contract between a blyg and an agent | spec | 40 | later |  |  |
-| 38 | YouTube links embed on public pages; a failed off-origin image shows as a link | studio | 3 | shipped: studio 0.40.0 (#62) |  | [studio#9](https://github.com/blygger/blygger-studio/issues/9) |
 | 39 | Author-sized inline images | studio | 3 | needs ruling | The size has to be written in the post, so this is new syntax other clients will meet. | [studio#37](https://github.com/blygger/blygger-studio/issues/37) |
 | 40 | Pour-over links: paste a URL and bring the source into the draft | studio | 5 | later |  | [studio#17](https://github.com/blygger/blygger-studio/issues/17) |
-| 41 | TK generation through the Workers AI binding, with no API key | studio | 5 | shipped: studio 0.40.0 (#60), with OpenAI-compatible endpoints |  | [studio#8](https://github.com/blygger/blygger-studio/issues/8) |
 | 42 | Human-readable permalinks (`page` slugs) | studio | 8 | later |  | [studio#19](https://github.com/blygger/blygger-studio/issues/19) |
 | 43 | A richer editor without a vendored dependency | studio | 13 | later |  | [studio#16](https://github.com/blygger/blygger-studio/issues/16) |
 | 44 | Publishing patterns: six client affordances | studio | 20 | later | Probably splits into six rows once each is sized. | [studio#18](https://github.com/blygger/blygger-studio/issues/18) |
 | 45 | Tangling: publish a thread and its fragments together | studio | 13 | needs ruling | Proposes new syntax in posts. | [studio#20](https://github.com/blygger/blygger-studio/issues/20) |
 | 46 | Optional `cid` on pinned versions (IPFS mirror and pin log) | spec | 8 | needs ruling |  | [spec#13](https://github.com/blygger/blygger-spec/issues/13) |
-| 48 | The official blyg at blyg.blygger.org, with RFCs and technical notes | org | 5 | shipped |  |  |
 | 51 | A discard-draft control in plain view, not only in the ⋯ menu | studio | 2 | next |  | [studio#56](https://github.com/blygger/blygger-studio/issues/56) |
 | 52 | Smart Feed: reading ordered by a scoring model the owner chooses | studio | ? | later | Which scoring models, and whether core or an extension. | [studio#57](https://github.com/blygger/blygger-studio/issues/57) |
 | 54 | The MCP server registers behind Cloudflare's MCP portals | studio | ? | in review: [studio#66](https://github.com/blygger/blygger-studio/pull/66), waiting on Kyle's rebase onto #67 | Whether the portal error was this omitted-resource failure: Surya retries after it ships. | [studio#54](https://github.com/blygger/blygger-studio/issues/54) |
@@ -95,4 +90,4 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 
 ---
 
-*Published from [blygger/blygger-spec@aad1ebe](https://github.com/blygger/blygger-spec/commit/aad1ebe).*
+*Published from [blygger/blygger-spec@7ac6ecb](https://github.com/blygger/blygger-spec/commit/7ac6ecb).*
