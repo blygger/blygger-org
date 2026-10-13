@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.bricolage.io](https://blyg.bricolage.io/), [blyg.jdbb.net](https://blyg.jdbb.net/) and 6 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.bricolage.io](https://blyg.bricolage.io/), [blyg.jdbb.net](https://blyg.jdbb.net/) and 5 more
 - **[Blynger](https://github.com/BradyDale/Blynger)** — [@BradyDale](https://github.com/BradyDale) · live: [bradydale.com/blyg](https://bradydale.com/blyg/)
 - **[blyxt](https://github.com/rpasetes/blyxt)** — [@rpasetes](https://github.com/rpasetes) · live: [rslantonie.com/blyg](https://rslantonie.com/blyg/)
 - **[caseyjr-blyg](https://caseyjr.org/blyg/)** · retired

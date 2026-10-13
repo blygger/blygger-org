@@ -40,12 +40,13 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 | 14 | Technical note TN-2: identity practice | spec | 5 | next |  |  |
 | 64 | Owner API under the mount: serve REST at `{mount}/api` and advertise only that; `/api` stays as an alias for two releases, OAuth accepts both resource identifiers meanwhile, root-mounted nodes unchanged. A mounted blyg then needs one route, `{host}/{mount}*` | studio | 5 | next | Whether the owner cookie can then be scoped to `{mount}` on shared domains (check its current `Path` first). `/api` at the host root was an accident of route ordering in session 11, not a design choice. | [studio#70](https://github.com/blygger/blygger-studio/issues/70) |
 | 65 | Static front page: a published thread at the mount root, as WordPress does; the latest items at `{mount}/posts/` (address settable, reserved names refused); set from Settings or a thread's ⋯ menu; a withdrawn front page falls back to the latest items | studio | 8 | shipped: studio 0.43.0 | Decision #69 (canonical to the root), Fable review pending. |  |
-| 66 | [[text \| id]]: a `[[id]]` link with author-chosen link text, instead of the target's heading or an excerpt | spec, studio | 3 | needs ruling | Adds a `content_md` grammar form, so Fable rules it first (#58, question 2). Which order: [[text \| id]] as asked, or Obsidian's [[id \| text]], which writers may already type? |  |
+| 66 | [[text \| id]]: a `[[id]]` link with author-chosen link text, instead of the target's heading or an excerpt | spec, studio | 3 | needs ruling: Fable queue item 17 | Adds a `content_md` grammar form, so Fable rules it first (#58, question 2). Which order: [[text \| id]] as asked, or Obsidian's [[id \| text]], which writers may already type? Ruled with row 45 (tangling claims `[[text]]`); the studio build is held for the ruling (session 48). Row 25 is the same request. |  |
 | 67 | Links written by [TK] generation come out as literal brackets: a generated paragraph ending `![[id]]` published as raw text ([example](https://venkateshrao.com/blyg/t/4tsyw2ccaps3h0w1dveqc1f35x/)) | studio | 3 | next | The grammar is inert inside generated output (studio#5) and only an own-line `![[id]]` there is a quote (0.20.1). Either render an inline `[[id]]`/`![[id]]` in generated text as a plain link to its target, or keep generation from emitting the grammar (prompt + strip). The first reads generated text as grammar, which studio#5 forbade, so it may need Fable. |  |
 | 68 | Links section: optionally list each blogroll entry as its own link, beside the OPML file | studio | 2 | next | A checkbox in Settings → links section, off by default. The home page's "Also reading" already lists them there. |  |
 | 69 | Reading view order: newest first or pace-layered, as a setting, like the home page | studio | 8 | next | Pace-layered reads only wire data (changelog, pins, quotes), so it can order subscriptions' items too; it needs their version histories from the imported changelog, and inbound weight across blygs waits on whether pins re-send mentions (Fable queue item 16). |  |
 | 70 | The owner's own posts in hoppers, beside what they read, shown on public hopper pages | studio | 3 | shipped: studio 0.45.0 | Membership uses the subscription marker `~own`; no migration. |  |
 | 71 | Autosave disabled publish and save draft while typing (reported by Venkat) | studio | 2 | shipped: studio 0.45.0 |  |  |
+| 72 | Publishing took up to a minute to show on public pages: the edge cache (studio#41) served the old copy and reloads validated against it (reported by Venkat) | studio | 2 | shipped: studio 0.46.1 | Cache key carries the public `change_state` revision. Hiding an inbound mention still waits out the 60 s: `mentions_in` has no change domain. |  |
 | 15 | Full backup: download the whole blyg, every version and file, as one archive | studio | 5 | later |  |  |
 | 53 | Restore a full backup into a fresh node | studio | 8 | later | Waits on row 15. |  |
 | 16 | Mentions as a reading and discovery channel: read responses inline, subscribe in one click | studio | 13 | later |  |  |
@@ -57,7 +58,7 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 | 22 | The directory runs the conformance toolkit daily | com | 8 | waiting: spec#11 |  | [com#1](https://github.com/blygger/blygger-com/issues/1) |
 | 23 | Remote generation sources: generation that draws on another blyg's items, with a `source` mention | studio | 20 | shipped: studio 0.41.0; exercised PI → venkateshrao 2026-10-10 (G8 open) |  |  |
 | 24 | The 0.4 spec document opened | spec | 8 | next: Fable opens it (G8 open) |  |  |
-| 25 | Author-chosen text for `[[id]]` links (new syntax in posts) | spec | ? | needs ruling |  |  |
+| 25 | Author-chosen text for `[[id]]` links (new syntax in posts) | spec | ? | needs ruling | Same request as row 66; merge once ruled. |  |
 | 26 | Unicode on the wire: normalization and origin comparison | spec | 8 | needs ruling |  | [spec#6](https://github.com/blygger/blygger-spec/issues/6) |
 | 27 | Open findings from the first conformance report (partial quotes, closure walk, watermark, required members, grammar edge cases) | spec | 8 | needs ruling |  | [spec#11](https://github.com/blygger/blygger-spec/pull/11) |
 | 28 | In-page anchors (footnotes) in imported HTML | studio | 5 | waiting: discussion |  | [studio#39](https://github.com/blygger/blygger-studio/issues/39) |
@@ -90,4 +91,4 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 
 ---
 
-*Published from [blygger/blygger-spec@7ac6ecb](https://github.com/blygger/blygger-spec/commit/7ac6ecb).*
+*Published from [blygger/blygger-spec@6187cf9](https://github.com/blygger/blygger-spec/commit/6187cf9).*
