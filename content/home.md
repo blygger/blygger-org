@@ -1,10 +1,23 @@
 # Blygger
 
-**A small update to blogging for writing that keeps changing: every post has an
-address and a history, any version can be frozen for good, and quoting another
-writer links your site to theirs.** Your writing lives in plain files on your
-own domain, readable by any feed reader. The sites that write this way, and
-the quotes and replies running between them, make up the [thicket](/thicket/).
+**Blygger is a decentralized social publishing and conversation protocol that
+cleanly synthesizes key features of blogs, microblogs, wikis and graph-like
+notebooks, in an AI-native, agent-friendly way.** Its core organizing principle
+is to braid two kinds of time together seamlessly: chronological feed time and
+version-history time (synchronic and diachronic).
+
+Blygger is designed to be highly backward compatible with existing protocols
+like RSS and [Webmention](https://www.w3.org/TR/webmention/), and supports many
+familiar patterns of use while also enabling radical new ones. Your writing
+lives on your own domain, readable by traditional RSS feed readers, but with
+clients designed for Blygger, much richer interactions and conversations become
+possible. The sites that write this way are called **blygs**, and the broader
+web of quotes and replies that emerges among them makes up what was first
+called the blygosphere, and is now called the [thicket](/thicket/). There is a
+growing [ecosystem](/ecosystem/) of clients and tools, and a growing number of
+[active blygs](https://blygger.com). Read either the
+[publishers](#publishers) or [developers](#developers) introduction below to
+get started.
 
 <div class="tabset" markdown="1">
 
@@ -14,8 +27,14 @@ the quotes and replies running between them, make up the [thicket](/thicket/).
 
 A **blyg** is a website, or a corner of one, where every post keeps its
 history. You can edit in public, freeze any version for good, and quote other
-people's posts in a way that stays accurate however they change later. That
-turns out to suit more kinds of writing than a blog does:
+people's posts in a way that stays accurate however they change later.
+
+*Blyg* is Swedish for *shy*, and one vowel from *blog*. *Blygger* tips its hat
+to Blogger, one of the first blogging tools, and its *ygg* nods to Yggdrasil,
+the Norse world tree, never finished, always still growing. Writing on a blyg
+is *blygging*, and someone who does it is a *blygger*.
+
+The format turns out to suit more kinds of writing than a blog does:
 
 - **A plain blog.** You post, you move on, and you rarely go back. Nothing about
   Blygger gets in the way: anyone with a feed reader can follow it.
@@ -92,6 +111,39 @@ promise.
 **Links and blogrolls.** You can also simply link to a post, which notifies
 nobody. And you can publish a blogroll, a list of the blygs and feeds you read.
 
+## Feeds: what you show and what you read
+
+A blyg has two feeds, and you control both.
+
+**The feed you publish** is your blyg's front page and its RSS feed. The RSS
+feed is always newest first, because that's what feed readers expect. Your
+front page can show either of two orders:
+
+- **Chronological**, newest first: the familiar blog and timeline view, about
+  what's happening now.
+- **Pace-layered**, the view about what lasts. Every post sinks as new ones
+  arrive, but at different speeds. Pinning a post, or having it quoted in
+  pinned posts, moves it into a slower layer; there are six, named after
+  Stewart Brand's pace layers from *fashion* down to *nature*. Revising a post
+  lifts it one place. A post you keep pinning and revising holds the top, so a
+  "pinned post" is something your blyg arrives at rather than a setting you
+  flip.
+
+Pace-layering is the project's recommended order for every client, being
+written up as an RFC so other clients can match it, and it works from public
+files alone, so a reader's client can show anyone's blyg this way. Blygger
+Studio uses it on new blygs' front pages, with chronological a setting away.
+
+**The feed you read** is equally yours. You choose what to subscribe to, from
+blygs or any ordinary RSS feed, privately; you can gather posts into
+collections by hand, browse other people's blogrolls, and order your reading
+however your client allows. There is no central timeline and no algorithm you
+didn't choose. Full clients such as Blygger Studio put the reader and the
+editor side by side, because in the thicket they're one activity: you read,
+quote, answer and get answered, and **thicketing** is that call and response.
+You can also be as solitary as you like. A blyg nobody quotes is still a
+perfectly good notebook, and reading without ever publishing is fine too.
+
 ## Why bother: the thicket
 
 All of this is more involved than a blog, and it's fair to ask what the
@@ -116,10 +168,9 @@ That makes for a different kind of place:
 - **Tangles, not streams.** Ideas grow by being quoted, answered, forked and
   quoted again, across sites. A short post can turn up in a dozen longer ones,
   each quoting the version it saw, and the trail back to it stays intact.
-- **Feeds you curate yourself.** What you read is your own selection: your
-  subscriptions, collections you gather by hand, and the blogrolls of people
-  you trust. Clients are starting to add personal ranking, which answers to
-  you, not to an advertiser.
+- **Feeds you curate yourself**, in what you read and in what you show
+  ([above](#feeds-what-you-show-and-what-you-read)). Clients are starting to
+  add personal ranking, which answers to you, not to an advertiser.
 - **No counts.** No likes, follower numbers or view counts. Several blyggers
   describe this as the point: you write for the work, not the metrics.
 
@@ -146,18 +197,51 @@ depending on where you put your words and how much you quote.
 
 Clients choose which of these shapes to put first. Blygger Studio has a single
 "stub" action that opens with the quote ready; Burrow calls the same act
-"Reply" and shows each post's lineage as a small glyph; a writer can show the
-stubs their posts received as a curated comments section. Under every one of
+"Reply" and shows each post's lineage as a small glyph. Under every one of
 those is the same stub.
 
-**Why there's no "mention" button.** On a platform, an @-mention pings someone
-whether or not you've said anything about their work. In Blygger the only way
-to notify someone is to cite them: quote them, stub them, fork them, or draw
-on their post when generating text. The notification is a side effect of
-publishing something that really refers to their work, and their blyg checks
-that before accepting it. Mentions by name, and plain links, notify nobody.
-So there's nothing to pile on with: attention arrives only as a citation, from
-someone who put their own name to a post.
+**To take part, you publish.** Anyone can read the thicket without a blyg: any
+feed reader can follow one, and every post is a public page. But the only way
+to join in socially is to publish a post of your own. There's no second tier of
+users who only comment.
+
+That doesn't rule out comments sections; it changes what they are. A writer
+can show the stubs their posts received underneath them, curated like any
+comments section. And a site that wants to host comments from people without a
+blyg can do it too: each comment is published as a real post, under the
+commenter's name, on a blyg the site runs for the purpose, with the site taking
+responsibility for what it hosts. To every other blyg, those comments are posts
+like any other. Comments become a feature a publisher chooses to build, not a
+lower class of participant built into the protocol. The approach is
+[RFC-2](https://blyg.blygger.org/t/2mzqh4jt3ye14xm6sr5gf32cah/), open for
+comment until 4 November 2026.
+
+**Mentions, and why the protocol stays out of identity.** On a platform, an
+@-mention is one company's account system pointing at another account in the
+same system. Blygger has no account system to point into. The only thing it
+authenticates is a blyg's own domain, and the people writing on blygs already
+have identities elsewhere: their own website, a fediverse account, a Bluesky
+handle, an Ethereum address. Rather than pick one, the protocol stays agnostic
+and lets them all ride along.
+
+The convention being proposed works like this. Your client keeps an address
+book; you type a short `@name`, and the published post carries an ordinary link
+to the person plus, in standard markup, the identifiers you know for them in
+each of those systems. A reader whose client speaks some of those systems can
+recognise the person, show them under the reader's own name for them, or open
+their profile where they actually live. A client that speaks none of them shows
+an ordinary link and loses nothing. Nobody has to adopt anyone else's identity
+system for mentions to work between the clients that share one.
+
+A mention doesn't notify anyone, though. In Blygger, notification is reserved
+for citation: quoting someone, stubbing them, forking them or drawing on their
+post when generating text sends their blyg a notice, which it checks against
+your published post before accepting. Naming someone, like linking to them,
+asserts nothing about their work that could be checked, so it sends nothing.
+Attention arrives only as a citation, from someone who put their own name to a
+post, so there's nothing to pile on with. The mention convention is
+[RFC-1](https://blyg.blygger.org/t/7eeh3bfzfcnhh90d5pkvkc2r1n/), open for
+comment on the official blyg until 4 November 2026.
 
 ## AI, with disclosure, and agents as co-authors
 
@@ -361,7 +445,13 @@ the current recommendation is that a person is a URL they control, proven by a
 reciprocal `rel="me"` link or a signature over an item's content hash. That
 practice belongs in non-normative technical notes and RFCs, so it can evolve
 without a protocol version: a note on groups is published, and one on
-identity is next on the roadmap.
+identity is next on the roadmap. The same agnosticism shapes @-mentions:
+[RFC-1](https://blyg.blygger.org/t/7eeh3bfzfcnhh90d5pkvkc2r1n/), open for
+comment, proposes that a mention carry the person's identifiers from whatever
+systems they use (an `https` URL, a fediverse `acct:`, a `did:` for ATProto or
+an Ethereum account) inside an ordinary link marked up as an h-card. Clients that
+share a scheme resolve the person; the rest render a link. Mentions add nothing
+to the wire beyond that HTML and notify nobody.
 
 **How to write into a blyg.** There is no normative write API, at this version
 or any foreseen one. Clients publish however they like; the reference client

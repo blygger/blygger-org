@@ -147,6 +147,15 @@ nowhere normative.
   the target, which the receiver checks by fetching it. Quotes, stubs, forks
   and generation sources send them; plain links do not (§15).
 
+**@-mention** *(client, proposed)*
+: A link to a person rather than to a post, carrying the identifiers you know
+  for them in other systems (their website, a fediverse account, a Bluesky DID,
+  an Ethereum address) so that clients sharing one of those systems can
+  recognise them; others show a plain link. The protocol stays out of identity,
+  so this is a convention between clients, proposed in
+  [RFC-1](https://blyg.blygger.org/t/7eeh3bfzfcnhh90d5pkvkc2r1n/). It notifies
+  nobody: in Blygger only citing someone's writing does that.
+
 ## Generation
 
 **Generation provenance**
