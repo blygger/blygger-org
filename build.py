@@ -249,8 +249,13 @@ if __name__ == "__main__":
     DIST.mkdir()
 
     print("Building HTML...")
+    # The tabbed front page (session 49) is drafted in content/home.md and
+    # replaces overview.md only with --new-home, so a routine deploy (the
+    # roadmap goes out this way every session) keeps the current page until
+    # the rewrite is approved. Switch the default and retire overview.md then.
+    home = "home.md" if "--new-home" in sys.argv else "overview.md"
     build_page(
-        ROOT / "content" / "overview.md",
+        ROOT / "content" / home,
         DIST / "index.html",
         title="Blygger — an AI-native, decentralized medium for writing in public",
         description="Blygger is a protocol for public writing: fragments, threads, "
@@ -292,6 +297,18 @@ if __name__ == "__main__":
         description="The people building the Blygger protocol and its reference "
                     "client, and the people building their own clients and tools.",
         prompt="~/blygger.org/contributors/",
+        rail_label="On this page",
+        numbered_rail=False,
+    )
+    # The Thicket (session 49): placeholder for a future explorer of the
+    # linking structure between blygs.
+    build_page(
+        ROOT / "content" / "thicket" / "index.md",
+        DIST / "thicket" / "index.html",
+        title="The Thicket — Blygger",
+        description="The thicket is the network of blygs, quoting, pinning and "
+                    "forking each other. An explorer for it is coming.",
+        prompt="~/blygger.org/thicket/",
         rail_label="On this page",
         numbered_rail=False,
     )
