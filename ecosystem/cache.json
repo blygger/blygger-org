@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-18T00:40:06+00:00",
+ "checked": "2026-10-18T02:05:13+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -98,20 +98,6 @@
      "protocol": "0.4",
      "updated": "2026-10-14T12:22:24Z",
      "generator_seen": "blygger-studio/0.46.3"
-    },
-    {
-     "origin": "https://blyg.protocol-institute.org/",
-     "title": "Protocol Institute Blyg",
-     "protocol": "0.4",
-     "updated": "2026-10-17T22:50:39Z",
-     "generator_seen": "blygger-studio/0.46.3"
-    },
-    {
-     "origin": "https://venkateshrao.com/blyg/",
-     "title": "Venkatesh Rao's Blyg",
-     "protocol": "0.4",
-     "updated": "2026-10-17T20:41:39Z",
-     "generator_seen": "blygger-studio/0.46.3"
     }
    ],
    "protocols": [
@@ -131,6 +117,28 @@
    ],
    "protocols": [
     "0.3"
+   ]
+  },
+  "blygger-studio/0.47.0": {
+   "generator": "blygger-studio/0.47.0",
+   "nodes": [
+    {
+     "origin": "https://blyg.protocol-institute.org/",
+     "title": "Protocol Institute Blyg",
+     "protocol": "0.4",
+     "updated": "2026-10-17T22:50:39Z",
+     "generator_seen": "blygger-studio/0.47.0"
+    },
+    {
+     "origin": "https://venkateshrao.com/blyg/",
+     "title": "Venkatesh Rao's Blyg",
+     "protocol": "0.4",
+     "updated": "2026-10-17T20:41:39Z",
+     "generator_seen": "blygger-studio/0.47.0"
+    }
+   ],
+   "protocols": [
+    "0.4"
    ]
   },
   "sachin-blyg/0.2.0": {
@@ -292,7 +300,7 @@
    "license": "NOASSERTION",
    "stars": 3,
    "forks": 7,
-   "pushed_at": "2026-10-17T23:04:27Z",
+   "pushed_at": "2026-10-18T01:15:39Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",

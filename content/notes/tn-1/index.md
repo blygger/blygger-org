@@ -104,4 +104,4 @@ Human-readable significance keeps its existing home: the changelog `note`
 
 ---
 
-*Published from [blygger/blygger-spec@2b51035](https://github.com/blygger/blygger-spec/commit/2b51035).*
+*Published from [blygger/blygger-spec@da5fa2f](https://github.com/blygger/blygger-spec/commit/da5fa2f).*
