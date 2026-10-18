@@ -51,6 +51,7 @@ That sequencing is the project's rule, not an oversight.
 <!-- spec-links:begin -->
 - **This version:** `https://blygger.org/spec/0.4/`
 - **Latest version:** `https://blygger.org/spec/0.4/`
+- **Previous version:** `https://blygger.org/spec/0.4/2026-10-18/`
 - **Living text:** [`blygger/blygger-spec`](https://github.com/blygger/blygger-spec/blob/main/docs/protocol-v0.4.md) — the editable document on `main`. Revisions land there first, so it may be ahead of this page.
 - **Supersedes:** `https://blygger.org/spec/0.3/`
 - **XML namespace:** `https://blygger.org/ns/0.1`

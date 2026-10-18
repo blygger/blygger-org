@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-17T23:38:38+00:00",
+ "checked": "2026-10-18T00:22:51+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -49,13 +49,6 @@
      "generator_seen": "blygger-studio/0.46.1"
     },
     {
-     "origin": "https://blyg.jdbb.net/",
-     "title": "[jdbb] studio blyg",
-     "protocol": "0.4",
-     "updated": "2026-10-14T12:22:24Z",
-     "generator_seen": "blygger-studio/0.46.1"
-    },
-    {
      "origin": "https://blyg.seanstevenson.org/",
      "title": "Sean Stevenson's Blyg",
      "protocol": "0.4",
@@ -96,24 +89,16 @@
     "0.4"
    ]
   },
-  "blygger-studio/0.26.0": {
-   "generator": "blygger-studio/0.26.0",
-   "nodes": [
-    {
-     "origin": "https://blyg.pioneeringspirit.xyz/",
-     "title": "Pioneering Spirit (Blyg)",
-     "protocol": "0.3",
-     "updated": "2026-10-16T05:42:21Z",
-     "generator_seen": "blygger-studio/0.26.0"
-    }
-   ],
-   "protocols": [
-    "0.3"
-   ]
-  },
   "blygger-studio/0.46.3": {
    "generator": "blygger-studio/0.46.3",
    "nodes": [
+    {
+     "origin": "https://blyg.jdbb.net/",
+     "title": "[jdbb] studio blyg",
+     "protocol": "0.4",
+     "updated": "2026-10-14T12:22:24Z",
+     "generator_seen": "blygger-studio/0.46.3"
+    },
     {
      "origin": "https://blyg.protocol-institute.org/",
      "title": "Protocol Institute Blyg",
@@ -133,6 +118,21 @@
     "0.4"
    ]
   },
+  "blygger-studio/0.26.0": {
+   "generator": "blygger-studio/0.26.0",
+   "nodes": [
+    {
+     "origin": "https://blyg.pioneeringspirit.xyz/",
+     "title": "Pioneering Spirit (Blyg)",
+     "protocol": "0.3",
+     "updated": "2026-10-16T05:42:21Z",
+     "generator_seen": "blygger-studio/0.26.0"
+    }
+   ],
+   "protocols": [
+    "0.3"
+   ]
+  },
   "sachin-blyg/0.2.0": {
    "generator": "sachin-blyg/0.2.0",
    "nodes": [
@@ -142,21 +142,6 @@
      "protocol": "0.3",
      "updated": "2026-10-17T19:23:43Z",
      "generator_seen": "sachin-blyg/0.2.0"
-    }
-   ],
-   "protocols": [
-    "0.3"
-   ]
-  },
-  "blyg-ref/0.3.0": {
-   "generator": "blyg-ref/0.3.0",
-   "nodes": [
-    {
-     "origin": "https://blyg.thoughtfolio.xyz/",
-     "title": "blyg",
-     "protocol": "0.3",
-     "updated": "2026-09-26T15:01:07Z",
-     "generator_seen": "blyg-ref/0.3.0"
     }
    ],
    "protocols": [

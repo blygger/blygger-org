@@ -19,6 +19,10 @@ Each protocol version has its own standalone-complete document. The highest-numb
 | 0.2 | SUPERSEDED — see [0.3](/spec/0.3/) | [/spec/0.2/](/spec/0.2/) |
 | 0.1 | SUPERSEDED — see [0.2](/spec/0.2/) | [/spec/0.1/](/spec/0.1/) |
 
+## 0.4 snapshots
+
+- [2026-10-18](/spec/0.4/2026-10-18/)
+
 ## 0.3 snapshots
 
 - [2026-09-28](/spec/0.3/2026-09-28/)
