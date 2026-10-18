@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.bricolage.io](https://blyg.bricolage.io/), [blyg.jdbb.net](https://blyg.jdbb.net/) and 5 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/), [blyg.bricolage.io](https://blyg.bricolage.io/) and 8 more
 - **[Blynger](https://github.com/BradyDale/Blynger)** — [@BradyDale](https://github.com/BradyDale) · live: [bradydale.com/blyg](https://bradydale.com/blyg/)
 - **[blyxt](https://github.com/rpasetes/blyxt)** — [@rpasetes](https://github.com/rpasetes) · live: [rslantonie.com/blyg](https://rslantonie.com/blyg/)
 - **[caseyjr-blyg](https://caseyjr.org/blyg/)** · retired
@@ -57,8 +57,9 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 <!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
      then add or deliberately skip each one:
        ananthsridhar281/blygger-reference-client  (via name/desc/readme)
+       ksurya/blyggerpress  (via name/desc/readme)
 -->
 
 ---
 
-*Checked 2026-10-13.*
+*Checked 2026-10-17.*

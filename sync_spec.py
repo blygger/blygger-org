@@ -40,12 +40,14 @@ CONTENT_NOTES = ROOT / "content" / "notes"
 SPEC_VERSIONS = {
     "0.1": ("SUPERSEDED", "0.2"),
     "0.2": ("SUPERSEDED", "0.3"),
-    "0.3": "DRAFT",
+    "0.3": ("SUPERSEDED", "0.4"),
+    "0.4": "DRAFT",
 }
 CANONICAL_FILES = {
     "0.1": SPEC_REPO / "docs" / "protocol-v0.1.md",
     "0.2": SPEC_REPO / "docs" / "protocol-v0.2.md",
     "0.3": SPEC_REPO / "docs" / "protocol-v0.3.md",
+    "0.4": SPEC_REPO / "docs" / "protocol-v0.4.md",
 }
 
 SITE_ORIGIN = "https://blygger.org"

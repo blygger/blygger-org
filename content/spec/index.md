@@ -14,7 +14,8 @@ Each protocol version has its own standalone-complete document. The highest-numb
 
 | Version | Status | Latest revision |
 |---|---|---|
-| 0.3 | DRAFT | [/spec/0.3/](/spec/0.3/) |
+| 0.4 | DRAFT | [/spec/0.4/](/spec/0.4/) |
+| 0.3 | SUPERSEDED — see [0.4](/spec/0.4/) | [/spec/0.3/](/spec/0.3/) |
 | 0.2 | SUPERSEDED — see [0.3](/spec/0.3/) | [/spec/0.2/](/spec/0.2/) |
 | 0.1 | SUPERSEDED — see [0.2](/spec/0.2/) | [/spec/0.1/](/spec/0.1/) |
 

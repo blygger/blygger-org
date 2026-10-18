@@ -6,6 +6,8 @@
 
 # The Blygger Protocol — Version 0.3
 
+> **Superseded by [version 0.4](https://blygger.org/spec/0.4/).** This document is no longer the living specification and receives no further revisions — the status line below is its final state. It stays permanently citable, and its dated snapshots are unchanged. Implementors should read [version 0.4](https://blygger.org/spec/0.4/), which is a standalone-complete superset of this text.
+
 **Status: DRAFT.** This document specifies protocol version 0.3 at conformance
 Level 2 — the publish side, the subscribe side, and the cross-client
 constructs that let one blyg quote, answer, and descend from another. **Every
@@ -2324,4 +2326,4 @@ before it.
 
 ---
 
-*Published from [blygger/blygger-spec@6187cf9](https://github.com/blygger/blygger-spec/commit/6187cf9).*
+*Published from [blygger/blygger-spec@d5deb5c](https://github.com/blygger/blygger-spec/commit/d5deb5c).*
