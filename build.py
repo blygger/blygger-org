@@ -300,6 +300,16 @@ if __name__ == "__main__":
         rail_label="On this page",
         numbered_rail=False,
     )
+    build_page(
+        ROOT / "content" / "glossary" / "index.md",
+        DIST / "glossary" / "index.html",
+        title="Glossary — Blygger",
+        description="The terms used in the Blygger spec, its clients and the thicket: "
+                    "blyg, origin, pin, transclusion, stub, mention and the rest.",
+        prompt="~/blygger.org/glossary/",
+        rail_label="On this page",
+        numbered_rail=False,
+    )
     # The Thicket (session 49): placeholder for a future explorer of the
     # linking structure between blygs.
     build_page(
