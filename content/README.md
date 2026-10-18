@@ -7,7 +7,9 @@ Source content for the blygger.org site, written session 7 (2026-08-03).
 
 | File | URL | Role |
 |---|---|---|
-| `overview.md` | `blygger.org/` | Human-readable high-level protocol overview — the landing-page content |
+| `home.md` | `blygger.org/` | The front page, two tabs: For Publishers (default) and For Developers (session 49; replaced `overview.md`, kept in `drafts/front-page/overview-2026-10.md`) |
+| `glossary/index.md` | `blygger.org/glossary/` | Glossary of protocol, client and community terms (session 49) |
+| `thicket/index.md` | `blygger.org/thicket/` | The thicket, and the explorer planned for blygger.com (session 49) |
 | `ns/0.1/index.md` | `blygger.org/ns/0.1` | Descriptive note on the `blyg:` XML namespace, for implementors who dereference the namespace URI found in a feed. Written session 15 (2026-09-11); its "Versioning of this namespace" section is the public face of locked decision #22 (namespace URI is permanent, never tracks the protocol version). |
 | `spec/index.md` | `blygger.org/spec/` | Generated index of all spec versions + dated snapshots |
 | `spec/{version}/index.md` | `blygger.org/spec/{version}/` | Generated: latest revision of that protocol version |

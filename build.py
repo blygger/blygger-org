@@ -249,13 +249,10 @@ if __name__ == "__main__":
     DIST.mkdir()
 
     print("Building HTML...")
-    # The tabbed front page (session 49) is drafted in content/home.md and
-    # replaces overview.md only with --new-home, so a routine deploy (the
-    # roadmap goes out this way every session) keeps the current page until
-    # the rewrite is approved. Switch the default and retire overview.md then.
-    home = "home.md" if "--new-home" in sys.argv else "overview.md"
+    # The front page (session 49): two tabs, For Publishers and For
+    # Developers. It replaced overview.md, kept in drafts/front-page/.
     build_page(
-        ROOT / "content" / home,
+        ROOT / "content" / "home.md",
         DIST / "index.html",
         title="Blygger — an AI-native, decentralized medium for writing in public",
         description="Blygger is a protocol for public writing: fragments, threads, "

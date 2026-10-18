@@ -105,8 +105,9 @@ ecosystem directory of community-built clients, tools, integrations and mods.
 
 ## Structure
 
-- `content/` — publishable site content (session 7): `overview.md` (landing-page
-  protocol overview, canonical here); `spec/` (session 11, 2026-08-09 —
+- `content/` — publishable site content (session 7): `home.md` (the front page,
+  two tabs, For Publishers and For Developers, session 49; it replaced `overview.md`),
+  `glossary/` and `thicket/` (session 49); `spec/` (session 11, 2026-08-09 —
   **entirely generated**, see below). Publish mapping + source-of-truth rule:
   `content/README.md`.
 - `templates/page.html`, `site.css`, `jump-links.js` — shared page shell +

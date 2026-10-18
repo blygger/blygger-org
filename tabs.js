@@ -39,12 +39,37 @@
     set.insertBefore(list, panels[0]);
     set.classList.add('tabbed');
 
+    // Section lists outside the tabset (the "On this page" rail and the
+    // Contents drawer) list every heading on the page. Show only the open
+    // panel's, renumbered from 01, so the list matches what is on screen.
+    var railItems = Array.prototype.slice.call(document.querySelectorAll('li'))
+      .map(function (li) {
+        var a = li.querySelector('a[href^="#"]');
+        var target = a && document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)));
+        var owner = target && panels.filter(function (p) { return p.contains(target); })[0];
+        return owner && !set.contains(li) ? { li: li, owner: owner, idx: li.querySelector('.idx') } : null;
+      })
+      .filter(Boolean);
+    function syncRail(open) {
+      var counts = new Map();
+      railItems.forEach(function (r) {
+        var off = r.owner !== open;
+        r.li.hidden = off;
+        r.li.style.display = off ? 'none' : ''; // the rail's CSS sets display on li
+        if (off || !r.idx) return;
+        var k = (counts.get(r.li.parentNode) || 0) + 1;
+        counts.set(r.li.parentNode, k);
+        r.idx.textContent = (k < 10 ? '0' : '') + k;
+      });
+    }
+
     function show(n, focus) {
       panels.forEach(function (p, i) {
         p.hidden = i !== n;
         tabs[i].setAttribute('aria-selected', i === n ? 'true' : 'false');
         tabs[i].tabIndex = i === n ? 0 : -1;
       });
+      if (railItems.length) syncRail(panels[n]);
       if (focus) tabs[n].focus();
     }
     function fromHash() {

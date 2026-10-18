@@ -1,41 +1,232 @@
 # Blygger
 
-<!-- SCAFFOLD (session 49, 2026-10-17). The tabbed front page that will replace
-overview.md. Built only with `build.py --new-home`; a plain build and deploy.sh
-still publish overview.md. Every section below is a placeholder: the italic
-line says what it is for. Copy is written after the raw-materials review
-(drafts/front-page/raw-materials.md) settles a rhetorical strategy.
-Link every use of "thicket" to /thicket/. -->
-
-*Placeholder lede, one or two sentences, read by both audiences before the
-tabs: what Blygger is, in a line.*
+**A small update to blogging for writing that keeps changing: every post has an
+address and a history, any version can be frozen for good, and quoting another
+writer links your site to theirs.** Your writing lives in plain files on your
+own domain, readable by any feed reader. The sites that write this way, and
+the quotes and replies running between them, make up the [thicket](/thicket/).
 
 <div class="tabset" markdown="1">
 
 <section class="tab-panel" data-tab="publishers" data-label="For Publishers" markdown="1">
 
-## What a blyg is
+## What people make with a blyg
 
-*Placeholder. For people who write online and might set up a site with an
-existing tool but won't customise much. Plain-language picture of a blyg and
-of the [thicket](/thicket/) it joins.*
+A **blyg** is a website, or a corner of one, where every post keeps its
+history. You can edit in public, freeze any version for good, and quote other
+people's posts in a way that stays accurate however they change later. That
+turns out to suit more kinds of writing than a blog does:
 
-## Where this comes from
+- **A plain blog.** You post, you move on, and you rarely go back. Nothing about
+  Blygger gets in the way: anyone with a feed reader can follow it.
+- **A book written in the open.** Chapters and sections are posts of their own,
+  revised as you go, and the book is a long post that quotes them in order. Each
+  time you finish a draft you freeze it as an edition, and readers can cite
+  edition two while you work on three.
+- **A constitution, a policy or a contract.** Text that changes rarely, where
+  every version that ever took effect is frozen and stays readable at its own
+  address, so nobody can argue about what it said.
+- **A shopping list or a packing list** that you edit all the time, with the
+  versions worth keeping frozen as variants: Thanksgiving, the camping trip,
+  the week the in-laws visit.
+- **A notebook**, Roam- or Obsidian-style: lots of short notes, revised often,
+  linking and quoting one another, with a few frozen when they settle.
+- **A draft in public**: an essay or a manifesto you keep developing, freezing
+  its stages so readers can see how it grew.
+- **A game or a challenge**: someone posts an aphorism and freezes it; others
+  copy it into their own blygs, change it and freeze their versions, and the
+  copies record where they came from.
 
-*Placeholder. Blygger in the history of online media: homepages, blogs and
-RSS, the platform era, and what was lost and kept along the way.*
+## Two dials: how often you revise, how much you freeze
 
-## What's different here
+Those uses differ along two dials. One is how often a post changes after you
+publish it. The other is how many of its versions you **pin**, that is,
+promise to keep online exactly as they were, forever.
 
-*Placeholder. What writing in a blyg is like, in the words of people doing it:
-small pieces with addresses, quoting by reference, editing in public, no
-replies, AI with disclosure.*
+| | **Few pins** | **Many pins** |
+|---|---|---|
+| **Few versions** | **The plain blog.** Publish once, move on. | **The document of record.** Stable text, every state on record: a constitution, a contract, a policy. |
+| **Many versions** | **The living document.** Always current, with a dated log of changes: a notebook, an evergreen page. | **The portfolio of variants.** Every state worth keeping is kept: a book's editions, a list's variants, a designer's drafts. |
 
-## Start a blyg
+You don't have to choose once. Each post sits wherever you put it, and most
+blygs have some of each.
 
-*Placeholder. The easiest routes in, from the [ecosystem](/ecosystem/) and
-[Build a blyg](/start/), with no code assumed. Then [blygger.com](https://blygger.com)
-to find blygs to read.*
+## The ideas, in plain terms
+
+**Two kinds of time.** Some media are about now: a social feed, where
+everything is current and nothing is revised. Others are about change: a
+book's editions, a project's history, where the record of the changing is the
+point. Blygger tries to do both. Your feed shows what's new, including new
+versions of old posts, and each post carries its own history.
+
+**Versions.** Editing a published post makes a new version. Readers see the
+latest one, plus a short log of when it changed and why. Older versions stay
+private unless you pin them.
+
+**Pins.** Pinning a version is a promise to keep that exact text online at its
+own address for good, even if you edit or withdraw the post later. Pins are
+editions: they're what makes it safe for someone to cite writing that's still
+changing.
+
+**Fragments and threads.** A fragment is a short post: a thought, a claim, a
+paragraph. A thread is a longer one, and threads can be built out of other
+posts.
+
+**Quoting by reference.** Instead of copying someone's words, you name their
+post, and a snapshot of it is built into yours, with a record of exactly which
+version you quoted and where it came from. If they edit later, your quote
+still shows what you responded to. You can quote a whole post or one passage.
+The technical name is **transclusion**.
+
+**Forks.** You can start a new post from a pinned version of someone else's,
+and change it into your own. The fork keeps a permanent note of where it came
+from.
+
+**Stubs.** A stub is a post that says "this is a response to that one". More
+on stubs below, because they're how conversation works here.
+
+**Withdrawing.** Nothing published is deleted, but you can withdraw a post,
+which tells other blygs to drop their copies. Pins stay up, because a pin is a
+promise.
+
+**Links and blogrolls.** You can also simply link to a post, which notifies
+nobody. And you can publish a blogroll, a list of the blygs and feeds you read.
+
+## Why bother: the thicket
+
+All of this is more involved than a blog, and it's fair to ask what the
+complexity buys. The answer is the **[thicket](/thicket/)**: the network of
+blygs, and of the quotes, pins, forks and replies that run between them. The
+name comes from Aneesh Sathe, who set the thicket's undergrowth against the
+platform's manicured garden.
+
+The platforms bundled everything: your identity, your archive, your audience,
+the conversation and the algorithm deciding who sees what. Leaving meant losing
+all of it. A blyg unbundles them. Your writing lives in files on your own
+domain. Your history is yours. And the connections between writers don't live
+on anyone's server: they're written into the posts themselves, as quotes and
+responses that point at exact versions, and any reader can follow them from
+one blyg to the next.
+
+That makes for a different kind of place:
+
+- **No public feed.** There's no central timeline and no algorithm. Each reader
+  follows the blygs they choose, privately, the way RSS has always worked, and
+  nobody sees who follows whom.
+- **Tangles, not streams.** Ideas grow by being quoted, answered, forked and
+  quoted again, across sites. A short post can turn up in a dozen longer ones,
+  each quoting the version it saw, and the trail back to it stays intact.
+- **Feeds you curate yourself.** What you read is your own selection: your
+  subscriptions, collections you gather by hand, and the blogrolls of people
+  you trust. Clients are starting to add personal ranking, which answers to
+  you, not to an advertiser.
+- **No counts.** No likes, follower numbers or view counts. Several blyggers
+  describe this as the point: you write for the work, not the metrics.
+
+The thicket is slower to walk than a feed, and that's part of what keeps it
+healthy: there's no aggregate for anyone to farm.
+
+## Responding without replies
+
+There is no reply button in the protocol, and there won't be one. There is
+one response act, the **stub**: a post of your own that says "this responds to
+that". It notifies the other writer, and they can check it's real, because
+their blyg reads your post and confirms it names theirs.
+
+A stub is like a stem cell: one act that can grow into the familiar shapes,
+depending on where you put your words and how much you quote.
+
+- Your words **above** a quote of their whole post: a *quote post*.
+- Your words **below** it: a *reply*.
+- Your words around **one passage** of theirs: *commentary*, or an *inline
+  reply*.
+- A quote with **no words** of your own: a *repost*.
+- Stubs of stubs: a **conversation**, carried across everyone's sites, each
+  turn on the blyg of the person who said it.
+
+Clients choose which of these shapes to put first. Blygger Studio has a single
+"stub" action that opens with the quote ready; Burrow calls the same act
+"Reply" and shows each post's lineage as a small glyph; a writer can show the
+stubs their posts received as a curated comments section. Under every one of
+those is the same stub.
+
+**Why there's no "mention" button.** On a platform, an @-mention pings someone
+whether or not you've said anything about their work. In Blygger the only way
+to notify someone is to cite them: quote them, stub them, fork them, or draw
+on their post when generating text. The notification is a side effect of
+publishing something that really refers to their work, and their blyg checks
+that before accepting it. Mentions by name, and plain links, notify nobody.
+So there's nothing to pile on with: attention arrives only as a citation, from
+someone who put their own name to a post.
+
+## AI, with disclosure, and agents as co-authors
+
+Blygger assumes you might write with AI, and it keeps the reader's side free of
+it: readers need no model and no account anywhere. The ways it's hooked in so
+far:
+
+- **Fill-in-the-blank drafting.** In the editor, mark a gap with an
+  instruction, `[TK]summarise the three quotes above[/TK]`, and your own model,
+  with your own key, writes that passage. TK is the old copy-desk mark for "to
+  come". The generated words are published marked as generated, and readers
+  can see which ones they are.
+- **Drawing on other people's posts.** When a model works from another
+  writer's post, the post is listed as a source and its writer is notified,
+  just as with a quote. A model's paraphrase is never a silent way to use
+  someone's words.
+- **Text written elsewhere.** Words you got from a chatbot somewhere else can be
+  pasted in and marked, so they publish disclosed too.
+- **Help around the edges.** Clients use models for chores like writing the
+  note that describes an edit, which is also marked, and for ranking your
+  reading, which is coming.
+
+Disclosure is the writer's own statement, like a byline: nobody can verify it,
+and the protocol doesn't pretend to.
+
+**Agents.** The protocol never asks whether a person or a program wrote
+something. An agent can run its own blyg, publish under its own name inside
+yours, or work as a tool you've given access to: Blygger Studio lets other
+apps and agents write into your blyg with permissions you grant and can
+revoke. What matters is the same for everyone: a stub should be a real
+response, not a machine re-posting a feed. Bylines for several authors on one
+blyg, people or agents, are being worked out in public as an open proposal.
+
+The [For Developers](#developers) tab explains the mechanics.
+
+## Get started
+
+**Starting from nothing.**
+
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** is the
+  reference client: a full blyg, with an editor, a reader and your settings,
+  running on your own Cloudflare account and domain. A setup walk-through
+  greets a fresh install. [Build a blyg](/start/) has the steps; an AI
+  assistant can take you through them.
+- Once it's running, write from wherever suits you:
+  [Burrow](https://github.com/aneeshsathe/blygger-desktop), a fast desktop app
+  for Mac and Windows; [drafts-blyg](https://github.com/miguelito4/drafts-blyg)
+  for quick posts from your phone; or [blyxt](https://github.com/rpasetes/blyxt),
+  from a Telegram group.
+- **[Blynger](https://github.com/BradyDale/Blynger)** is a Mac app that runs a
+  whole static personal website with a blyg built in.
+- Or build your own. Several blyggers had an AI assistant write theirs straight
+  from the [spec]({{SPEC_LINK}}), some without having written software before.
+
+**Starting from something you already have.**
+
+- **WordPress:** [Soapbox for Blygger](https://wordpress.org/plugins/soapbox-for-blygger/),
+  a plugin in the WordPress.org directory, publishes your posts as a blyg.
+- **Obsidian:** [blyg-publisher](https://github.com/brndnpink/blyg-publisher)
+  publishes a folder of your vault.
+- **Hugo:** [hugo-blyg](https://github.com/chrisbodhi/hugo-blyg). **Logseq-style
+  gardens:** [goddinpotty](https://github.com/mtravers/goddinpotty).
+- **Any blog with an RSS feed** can already be followed from a blyg, so
+  blyggers can read you before you set anything up.
+
+The [ecosystem index](/ecosystem/) lists every client, plugin, tool,
+extension and modified Studio, with the blygs each one runs. When your blyg is
+up, submit it to [blygger.com](https://blygger.com), where you'll also find the
+rest of the thicket to read.
 
 </section>
 
