@@ -1,6 +1,14 @@
 # Status — blygger-org
 
 ## Active
+- **Session 49 (2026-10-17, Opus) — deployed and pushed.** New front page
+  (`content/home.md`, two tabs: For Publishers default, For Developers; replaced
+  `overview.md`, kept in `drafts/front-page/`), a glossary and a Thicket page
+  (the explorer will live on blygger.com), all in the menu; Venkat's copy edits
+  (lede, the name, Feeds, publishing as participation, mentions and identity).
+  `tabs.js` filters the rail and drawer to the open tab. Raw materials from five
+  blyggers' corpora in `drafts/front-page/raw-materials.md`. Announcements and
+  the day's roundup published on blyg.blygger.org. Venkat reviews the copy.
 - **Session 43 (2026-10-09, Opus, admin):** ecosystem curation — blyxt and cchalc-site
   (clients) and Soapbox for Blygger (integration) added to `ecosystem/projects.toml`;
   contributors page gains Russell Antonie Pasetes, Christopher Chalcraft and Surya
