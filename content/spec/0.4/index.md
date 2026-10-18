@@ -2345,7 +2345,8 @@ before it. Version 0.3's own history is in its document, frozen at its
 eleventh revision.
 
 - **2026-10-17 (published)** — Initial draft and first published revision
-  (session 49, Fable 5.1); first snapshot cut the same day. Supersedes 0.3,
+  (session 49, Fable 5.1); first snapshot cut at publication, dated
+  `2026-10-18` by the snapshot clock (UTC). Supersedes 0.3,
   carrying its text forward with its section numbers. Promotes **remote
   generation sources** (0.3 §16.3 → §5.7 rules 1, 8 and 9; §15.4 step 4 and
   the relation set, now `stub`, `transclusion`, `fork`, `source`; §15.2;
@@ -2361,4 +2362,4 @@ eleventh revision.
 
 ---
 
-*Published from [blygger/blygger-spec@d5deb5c](https://github.com/blygger/blygger-spec/commit/d5deb5c).*
+*Published from [blygger/blygger-spec@4c03351](https://github.com/blygger/blygger-spec/commit/4c03351).*
