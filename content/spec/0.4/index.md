@@ -209,6 +209,8 @@ paths; the one fixed filename is the manifest's own. Neither changes what a
 - **Surface template** — a manifest's `item` or `pin` value (§6.1): where an
   origin serves its item documents and pinned-version documents when not at
   the default paths. New in 0.4.
+- **Maintenance republish** — a version whose `content_hash` equals the
+  version before it: a snapshot refresh or re-bake, no new words (§13.2).
 - **Label** — the optional `| text` after the id inside `[[…]]` or
   `![[…]]` (§10.1): the author's label for the target, ignored by resolution.
   New in 0.4.
@@ -390,6 +392,22 @@ Ground truth for one item. Example (a fragment):
 Threads additionally carry `transclusions` (§10.3) and MAY carry `stub_of`
 (§10.6). Any item MAY carry `forked_from` (§5.6) and `generated` (§5.7).
 
+**Members** (revision of 2026-10-17, decision #76 — the first explicit
+list, drawn from the sections below and checked against one document from
+every live blyg, all 22 of which already conform):
+
+| Member | Status | Where |
+|---|---|---|
+| `blyg`, `id`, `kind`, `origin`, `version`, `created`, `updated`, `content_md`, `content_html`, `content_hash`, `changelog` | REQUIRED | §3.1, §5.1, §5.2, §5.3 |
+| `media` | REQUIRED; an array, MAY be empty | §5.4 |
+| `page` | RECOMMENDED | §5.8 |
+| `author` | OPTIONAL; absent means no assertion | §5.5 |
+| `transclusions` | REQUIRED for threads, absent for fragments | §10.3 |
+| `stub_of`, `forked_from`, `generated` | OPTIONAL, present when the construct is | §10.6, §5.6, §5.7 |
+
+A withdrawal endcap (§9) keeps the REQUIRED members with empty content. Any
+other member is unknown and ignored (§13.1 rule 4).
+
 ### 5.1 Identity
 
 - `id` MUST be 128 random bits encoded as 26 characters of lowercase Crockford
@@ -440,6 +458,9 @@ Threads additionally carry `transclusions` (§10.3) and MAY carry `stub_of`
   above binds generated notes exactly as it binds authored ones. An entry
   then reads `{ "version": 3, "at": "2026-07-18T09:30:00Z", "note":
   "Sharpened the second paragraph's claim.", "generated": true }`.
+- Two further members on a **pinned** entry — `pinned_at`, when the promise
+  was made, and `cid`, an IPFS address of the pinned document's bytes — are
+  ruled shapes awaiting a build (§16.9), not yet normative.
 - `updated` MUST equal the latest changelog entry's `at`. All timestamps are
   self-asserted by the origin; readers order events per their own policy
   (§13.7).
@@ -865,6 +886,12 @@ maintenance status is a fact for directories to observe, never for the wire
 to assert. A registry MAY require a client source as a condition of
 *listing*; that is its business, not conformance.
 
+**Members** (revision of 2026-10-17, decision #76; checked against all 22
+live manifests, which conform): REQUIRED `blyg`, `title`, `updated`;
+RECOMMENDED `level`, `generator`, `generator_url`, `site`, `author`;
+OPTIONAL `feed`, `items`, `item`, `pin` (defaults below), `blogroll`,
+`webmention`. Unknown members are ignored (§13.1).
+
 **The manifest locates the surface** (new in 0.4; promoted from the 0.3
 text's §16.6e, adopted in a reshaped form from a public proposal,
 [blygger-spec#2](https://github.com/blygger/blygger-spec/issues/2)). `feed`
@@ -1166,13 +1193,17 @@ fetch.
 
 - A line consisting solely of `![[` + a 26-character item id + `]]`
   (surrounding whitespace allowed; a label allowed after the id, below)
-  is a **transclusion directive**: `![[7c9wk2mhq0v3xj8tn5rzfd41bg]]`
+  is a **transclusion directive**: `![[7c9wk2mhq0v3xj8tn5rzfd41bg]]`. The
+  grammar is line-based, and a line ends at LF or CRLF alike (revision of
+  2026-10-17, decision #76).
 - A transclusion directive immediately followed, with no blank line, by a
   markdown blockquote is a **partial transclusion** (revision of 2026-10-03,
   decision #49): the blockquote's text is the **selection**, and §10.2 says
-  what is checked and what is baked. A blank line detaches the blockquote,
-  so a whole transclusion followed by the author's own quotation stays
-  writable:
+  what is checked and what is baked. The blockquote's extent is
+  CommonMark's, lazy continuation included: a line that follows a `>` line
+  with no blank line between belongs to the selection even without its own
+  `>` (decision #76). A blank line detaches the blockquote, so a whole
+  transclusion followed by the author's own quotation stays writable:
 
   ```
   ![[7c9wk2mhq0v3xj8tn5rzfd41bg]]
@@ -1259,7 +1290,10 @@ anything**.
    nothing retained, and L0 rows are publish errors. **More than one imported
    match MUST be a publish error**, never a guess — the directive names an
    identity, and the publisher does not pick an origin on the author's
-   behalf.
+   behalf. A **local** id — a draft or a published item — never falls
+   through to step 2: an imported document with the same id as a local item
+   is the ambiguity §5.1 describes, and a directive naming it is a publish
+   error (decision #76).
 
 **The local snapshot is what gets baked — never a live fetch.** Resolution
 snapshots the target's latest version *as the publisher holds it*: its
@@ -1295,7 +1329,13 @@ selection MUST be a substring of the target snapshot's **text content** —
 its `content_html` with tags stripped, whitespace collapsed within a block,
 block boundaries kept as line breaks — at the version being baked; otherwise
 a publish error, as for an unresolvable directive. Any reader MAY re-check
-by the same test while the origin serves that version, live or pinned.
+by the same test while the origin serves that version, live or pinned. That
+window closes when the origin stops serving the version — a quote baked from
+a stale import can name one it never will again — and the quote then has
+the standing §14 gives every baked snapshot: the quoter's assertion. The
+check this protocol promises is the publisher's, at publish, against the
+snapshot it holds, and the way to keep a quote checkable is to quote a
+pinned version (decision #76, conformance finding F2).
 Misrepresentation by elision is not fixed by this and is not claimed to be;
 the second class below is what discloses that a quote is partial. There is
 **no cap** on a selection's length: a substring test does not care, and a
@@ -1335,8 +1375,13 @@ Consequences of the snapshot rule, all deliberate:
   nests them. Provenance (§10.3) records **direct** transclusions only;
   deeper layers are inspectable in the baked HTML's data attributes.
 - **One local closure check.** A thread MUST NOT transclude a local thread
-  whose transitive *local* transclusion closure (walked via stored
-  `transclusions[]`) contains the publishing thread's own id. This is cheap
+  whose transitive *local* transclusion closure contains the publishing
+  thread's own id. The closure is walked through the **versions actually
+  baked** — from each `transclusions[]` entry to that version's own
+  `transclusions[]`, which the publisher holds, since it holds its own
+  history — never through the targets' current documents, which would let a
+  thread contain itself once a quoted thread has republished without the
+  quote (decision #76, conformance finding F3). This is cheap
   and it stops the only genuinely silly case — a thread quoting a thread that
   quotes it — which snapshot semantics would otherwise permit as a finite
   but useless doubling. **Remote closures are not walked**: harmless by
@@ -1377,6 +1422,8 @@ version:
   is therefore a valid 0.3 document unchanged — and for remote sources is the
   subscription's identity origin (§12.2), never the source manifest's
   self-asserted `site`.
+- **One entry per directive**, in directive order: a target quoted twice has
+  two entries, and the array maps onto the directives (decision #76).
 - A partial transclusion's entry (§10.1, §10.2) additionally carries an
   OPTIONAL `selector` (revision of 2026-10-03, decision #49): `exact`
   REQUIRED — the selection, normalized by §10.2's text-content rule —
@@ -1457,6 +1504,10 @@ publisher's own, because a citation is absolute — or
 ```
 
 for a plain-web target: an L0 subscription's entry, or anything with a URL.
+An L0 wrapper's id (§13.6) is a reader-local name for someone's RSS entry,
+not an item at an origin, and the blyg-target shape MUST NOT name one; a
+response to an L0 entry is a `{url}` stub naming the entry's link (decision
+#76).
 
 Either shape MAY carry the `cited` object of §5.9 — the blyg-target shape
 since §5.9 named `stub_of` as a site, the `{url}` shape by the revision of
@@ -1494,8 +1545,11 @@ Rules:
    author who deletes the directive has still published a stub.)
 3. **Version agreement.** At publish, if the body transcludes the stub's
    target, `stub_of.version` MUST equal the version actually baked
-   (§10.3); otherwise it keeps the value set when the stub was created —
-   what the author saw. The two can never disagree on a published document.
+   (§10.3); otherwise it keeps the value it last had — at creation, what the
+   author saw; after a version that quoted the target, the version baked
+   then. The value is monotonic and never moves backwards (decision #76,
+   conformance finding F17). The two can never disagree on a published
+   document.
 4. `stub_of` lives on **versions**, like `transclusions`: a pinned version of
    a stub carries its own citation (§8), the live document reflects the
    latest, and a withdrawn stub's endcap omits it (§9) — which is precisely
@@ -1713,6 +1767,14 @@ most failure modes structurally:
 - The feed never mutates state directly: an interesting entry — including a
   withdrawal entry — triggers an item-document fetch, and **only the fetched
   document advances state**.
+- **A republish that changed no words is maintenance** (revision of
+  2026-10-17, decision #77). A fetched document whose `content_hash` equals
+  the one the reader holds for the version before it — a snapshot refresh, a
+  re-bake, a metadata-only republish — carries no new writing. Readers MAY
+  queue such versions at low priority and SHOULD NOT resurface them as new
+  (the reference client's *ignyr* queue); the version advances state as any
+  version does. Nothing on the wire marks it, by design — the counter stays
+  bare (§5.2) — because the hash already says it.
 
 A 404 on `items/index.json` from an otherwise-live blyg is a nonconforming
 publisher: readers SHOULD fall back to feed-window-only operation and surface
@@ -1755,6 +1817,12 @@ one instrument: the origin's pin. Local hoarding past withdrawal is
 nonconforming; asking the origin's author to pin is the protocol's answer.
 A pin-retained snapshot remains a valid transclusion source (§10.2); an
 unretained withdrawn item is not.
+
+**The watermark survives withdrawal** (decision #76, conformance finding
+F5). The endcap is itself a version, the highest, and a reader keeps it to
+show the item withdrawn; deleting the stored copy never deletes the version
+number. A document that arrives with a version at or below the endcap's is a
+replay under §13.3, not the item returning under §13.1 rule 3.
 
 ### 13.5 Curation display and re-emission
 
@@ -1948,6 +2016,11 @@ single mention for it; the receiver determines the relation (§15.4 step 4).
   re-sends everything on every republish is conformant but noisy; the
   reference client records the target version per outbound reference for
   this purpose.)
+- **A pin MAY re-send** the pinned version's remote mentions (decision
+  #73), so that a quoted origin can learn its words were frozen; the
+  receiver re-verifies as for any re-send and MAY record, from the changelog
+  of the document it fetched, that the source version is pinned. Nothing
+  requires either side to do this.
 - **Withdrawal re-sends once** for a withdrawn stub, so the receiver finds a
   document that no longer verifies and marks the mention gone (§15.4) — the
   W3C-blessed way to say "deleted".
@@ -2337,6 +2410,53 @@ version-significance markup (the counter stays bare; the pin is the
 significance primitive); content-addressed identity; metrics of any kind;
 a mention relation for links; and a normative write API.
 
+### 16.9 Pinned-entry members — `pinned_at` and `cid` (ruled 2026-10-17; awaiting a build)
+
+Two OPTIONAL members on a changelog entry that carries `"pinned": true`,
+ruled on the pace-layered feed (blygger-studio 0.42.0; RFC-3) and on
+[blygger-spec#13](https://github.com/blygger/blygger-spec/issues/13).
+Neither is normative until a client emits it and another reads it.
+
+- **`pinned_at`** (decision #73): an ISO 8601 UTC timestamp, the moment the
+  publisher made the promise — self-asserted like every timestamp here.
+  Absent means the time is unknown, and a consumer that needs one falls back
+  to the version's `at`, as the reference client's pace-layered order does
+  today. Present only beside `"pinned": true`.
+- **`cid`** (decision #74): an IPFS CID of **the pinned version document's
+  exact bytes as served** at `{origin}items/{id}/v{n}.json` — one file, not
+  a bundle. A publisher that emits it promises those bytes, `author`
+  included: a stronger promise than §8 rule 6, and opt-in. A reader MAY
+  fetch the pinned document from IPFS when the origin does not serve it, and
+  treats what it fetches as the origin's own pinned file. A third party that
+  mirrors pinned bytes is within §13.4 — the origin serves them forever, so
+  the mirror never exceeds the origin's promise — and MUST NOT mirror
+  unpinned versions. The CID profile (version, codec, chunking) and the
+  pin-log contract the proposal sketched belong in a technical note; media
+  addressing is not covered (§5.4's immutability lets a mirror fetch media
+  by URL).
+
+```json
+{ "version": 2, "at": "2026-07-17T21:12:00Z", "note": "typo",
+  "pinned": true, "pinned_at": "2026-07-19T08:00:00Z", "cid": "bafy…" }
+```
+
+Both are revisions by #43: a reader that ignores them is unaffected.
+
+### 16.10 Author-sized images (ruled 2026-10-17; awaiting a build)
+
+Ruled on [studio#37](https://github.com/blygger/blygger-studio/issues/37)
+under decision #75. If an image's size is written in `content_md`, it is
+written in the form markdown processors already share — Pandoc's link
+attributes, as markdown-it-attrs also reads them — restricted to `width`
+and `height`, each a bare integer (pixels) or a percentage:
+`![a diagram](https://example.com/blyg/media/x7f2.png){width=33%}`. The
+publisher bakes `width` and `height` attributes onto the `<img>` in
+`content_html`, so subscribers see the sized image; a client that does not
+know the form shows the attribute as literal text, exactly as it would an
+unknown label (§10.1). Nothing else from the attribute syntax is adopted. A
+size hint in the URL fragment was refused as an invented convention (#71),
+and a maximum height in a client's stylesheet needs no ruling.
+
 ## 17. Revision history (non-normative)
 
 One line per published change to this document, newest first. Snapshots are
@@ -2344,6 +2464,21 @@ cut at `blygger.org/spec/0.4/{date}/` and each carries a diff link to the one
 before it. Version 0.3's own history is in its document, frozen at its
 eleventh revision.
 
+- **2026-10-17, second revision** (Fable 5.1, session 49, the same
+  afternoon; on Aneesh Sathe's conformance findings F2, F3, F5, F14 and F17,
+  blygger-spec#11, and the queued questions from sessions 34 and 46) — §5
+  and §6.1 gain member tables, checked against all 22 live blygs (#76);
+  §10.1 says a line ends at LF or CRLF and that a partial quote's blockquote
+  has CommonMark's extent; §10.2 says a local id never falls through to an
+  import, when a partial quote's re-check window closes, and that the
+  closure check walks the baked versions; §10.3 one entry per directive;
+  §10.6 `stub_of` never names an L0 wrapper and its `version` is monotonic;
+  §13.4 the watermark survives withdrawal (all #76); §13.2 a same-hash
+  republish is maintenance and readers MAY queue it low (#77, no wire
+  member); §15.2 a pin MAY re-send its mentions (#73); §16.9 `pinned_at`
+  and `cid` on pinned entries (#73, #74) and §16.10 author-sized images
+  (#75) ruled as shapes awaiting builds; §2 gains *maintenance republish*.
+  No wire change. Not snapshotted.
 - **2026-10-17 (published)** — Initial draft and first published revision
   (session 49, Fable 5.1); first snapshot cut at publication, dated
   `2026-10-18` by the snapshot clock (UTC). Supersedes 0.3,
