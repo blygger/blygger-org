@@ -983,7 +983,13 @@ Rules:
 - **One `<item>` per publish event**, newest first. The window SHOULD be bounded
   (RECOMMENDED: 50 entries). An item edited twice recently may appear twice at
   different versions; that is correct. The feed is lossy by design — the archive
-  index (§6.2) is the lossless surface.
+  index (§6.2) is the lossless surface. A publisher that mints several items in
+  one authoring act — a document tangled into a thread and the fragments it
+  quotes, a draft chopped into fragments — publishes each as its own event;
+  there is no quiet publish, because an event the feed omits is content hidden
+  from subscribers, which the feed exists to prevent. A publisher SHOULD publish
+  the thread last, so that it is the newest entry, and readers MAY fold the
+  burst (§13.7; revision of 2026-10-17, decision #78).
 - **GUIDs are per-version**: `blyg:{id}:v{n}`, `isPermaLink="false"`. Plain RSS
   readers dedupe by guid, so per-version GUIDs make edits resurface as new
   entries — matching reverse-chron-by-update presentation. Blyg-aware readers
@@ -1880,6 +1886,20 @@ permanently dominate the display order. (The reference client sorts by
 `min(claimed updated, first observed locally)`: an item sorts no newer than
 when the reader actually saw it.)
 
+**Items published together MAY be shown together** (revision of 2026-10-17,
+decision #78). One authoring act can produce many items — a thread and the
+fragments it quotes, minted in one publish; a document chopped into
+fragments — and a reader that shows each as a separate arrival buries a
+week of other origins under one act. Nothing on the wire marks the burst,
+by design (§5.2: the counter stays bare, and §13.2's same-hash rule shows
+the pattern: the signal is derived, never declared). What a reader can see
+is enough: items from one origin whose `created` times fall within one
+publish, and, when a thread created with them names them in its
+`transclusions[]`, the thread that is their whole. A reader MAY present
+such a burst as one publication — the thread as its entry, its fragments
+beneath it or deferred to the low-priority queue of §13.2 — and MUST still
+import every item (§13.1), since folding is display, never omission.
+
 ## 14. Security and privacy considerations
 
 - **Withdrawal is cooperation, not erasure.** The protocol makes the honest
@@ -2464,6 +2484,13 @@ cut at `blygger.org/spec/0.4/{date}/` and each carries a diff link to the one
 before it. Version 0.3's own history is in its document, frozen at its
 eleventh revision.
 
+- **2026-10-17, third revision** (Fable 5.1, session 49, the same evening;
+  on the session-29 exploration *inline fragment authoring*, `plans/`, and
+  a live client that chops documents into fragments at authoring time) —
+  §7 says a multi-item authoring act publishes one event per item, with no
+  quiet publish and the thread last; §13.7 says readers MAY fold items
+  published together into one publication, the thread as its entry,
+  without omitting any (decision #78). No wire change. Not snapshotted.
 - **2026-10-17, second revision** (Fable 5.1, session 49, the same
   afternoon; on Aneesh Sathe's conformance findings F2, F3, F5, F14 and F17,
   blygger-spec#11, and the queued questions from sessions 34 and 46) — §5
@@ -2497,4 +2524,4 @@ eleventh revision.
 
 ---
 
-*Published from [blygger/blygger-spec@4c03351](https://github.com/blygger/blygger-spec/commit/4c03351).*
+*Published from [blygger/blygger-spec@2b51035](https://github.com/blygger/blygger-spec/commit/2b51035).*

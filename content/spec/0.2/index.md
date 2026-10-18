@@ -977,4 +977,4 @@ significance primitive), and content-addressed identity.
 
 ---
 
-*Published from [blygger/blygger-spec@4c03351](https://github.com/blygger/blygger-spec/commit/4c03351).*
+*Published from [blygger/blygger-spec@2b51035](https://github.com/blygger/blygger-spec/commit/2b51035).*
