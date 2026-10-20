@@ -1,6 +1,9 @@
 # Status — blygger-org
 
 ## Active
+- **Session 51 (2026-10-19, Opus):** draft paper "Blygger: A New Publishing Medium"
+  in `drafts/paper/` (markdown source + `.docx` for Google Docs), synthesized from the
+  talk and both front-page tabs. Awaiting Venkat's review; references incomplete.
 - **Session 49 (2026-10-17, Opus) — deployed and pushed.** New front page
   (`content/home.md`, two tabs: For Publishers default, For Developers; replaced
   `overview.md`, kept in `drafts/front-page/`), a glossary and a Thicket page
