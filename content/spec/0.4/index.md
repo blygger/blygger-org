@@ -28,7 +28,9 @@ make a generation source a reference that notifies its origin (§5.7, and the
 fourth mention relation `source` in §15.4); **the manifest-located surface**,
 which lets a manifest say where its files live, so that software that cannot
 serve fixed `.json` paths can publish a blyg (§4, §6.1, §12); and the
-**author's label `[[id | text]]`** on links and directives (§10.1). Version
+**author's label `[[id | text]]`** on links and directives (§10.1); from its
+fourth revision, **disclosed links** — `links[]` (§10.3a) and the mention
+relation `link` — and the **notice** class of verified mention (§15.5). Version
 0.3 stops receiving revisions when this document is published, and stays
 citable with its snapshots intact.
 
@@ -204,15 +206,23 @@ paths; the one fixed filename is the manifest's own. Neither changes what a
   items (§13.6).
 - **Remote reference** — a reference (§5.9) whose `origin` is not the
   publisher's own: a cross-origin `stub_of`, `transclusions[]` entry,
-  `forked_from` or, from 0.4, `generated[].sources[]` entry. Each SHOULD send
-  a mention (§15.2).
+  `forked_from` or, from 0.4, `generated[].sources[]` entry — and, from the
+  fourth revision, a `links[]` entry carrying an `origin` (§10.3a). Each
+  SHOULD send a mention (§15.2).
 - **Surface template** — a manifest's `item` or `pin` value (§6.1): where an
   origin serves its item documents and pinned-version documents when not at
   the default paths. New in 0.4.
 - **Maintenance republish** — a version whose `content_hash` equals the
   version before it: a snapshot refresh or re-bake, no new words (§13.2).
+  From the fourth revision, also a version that differs from its
+  predecessor by less than a reader-local threshold.
+- **Notice** — a verified mention that is not a response: relation `link`,
+  or a repost (§15.4, §15.5). Held apart from responses. New in 0.4.
+- **Repost** — a stub or transclusion whose source document has no words of
+  its own; classified by the receiver, never declared (§15.4). New in 0.4.
 - **Label** — the optional `| text` after the id inside `[[…]]` or
-  `![[…]]` (§10.1): the author's label for the target, ignored by resolution.
+  `![[…]]` (§10.1): the author's label for the target, ignored by resolution;
+  anchor text on a link, `data-blyg-label` on a baked transclusion (§10.2).
   New in 0.4.
 - **Text content** — an item's `content_html` with tags stripped, whitespace
   collapsed within a block and block boundaries kept as line breaks; what a
@@ -390,7 +400,8 @@ Ground truth for one item. Example (a fragment):
 ```
 
 Threads additionally carry `transclusions` (§10.3) and MAY carry `stub_of`
-(§10.6). Any item MAY carry `forked_from` (§5.6) and `generated` (§5.7).
+(§10.6). Any item MAY carry `forked_from` (§5.6), `generated` (§5.7) and `links`
+(§10.3a).
 
 **Members** (revision of 2026-10-17, decision #76 — the first explicit
 list, drawn from the sections below and checked against one document from
@@ -404,6 +415,7 @@ every live blyg, all 22 of which already conform):
 | `author` | OPTIONAL; absent means no assertion | §5.5 |
 | `transclusions` | REQUIRED for threads, absent for fragments | §10.3 |
 | `stub_of`, `forked_from`, `generated` | OPTIONAL, present when the construct is | §10.6, §5.6, §5.7 |
+| `links` | OPTIONAL; present when the version resolved at least one `[[id]]` (fourth revision) | §10.3a |
 
 A withdrawal endcap (§9) keeps the REQUIRED members with empty content. Any
 other member is unknown and ignored (§13.1 rule 4).
@@ -446,6 +458,12 @@ other member is unknown and ignored (§13.1 rule 4).
   is withheld — any reader can fetch both files — and a note may be as full
   as the author likes. Notes are the publisher's description, and like the
   feed `<title>` derived from them (§7) they may be machine-written.
+  **No word in a note has wire meaning** (revision of 2026-10-19, decision
+  #83): a note is prose, and clients MUST NOT treat any token in it — a
+  conventional word, a bracketed tag — as a marker of the version's
+  significance in either direction. Whether a version matters *less* is
+  derived by readers from what the wire already carries (§13.2); whether it
+  matters *more* is the pin.
 - **A changelog entry MAY carry `"generated": true`** (revision of
   2026-10-06, decision #40), meaning the publisher's client wrote the note,
   typically from the local diff between versions, rather than the author.
@@ -700,10 +718,11 @@ Rules:
    had itself baked are inspectable through it.
 9. **A remote source notifies** (new in 0.4). A `sources[]` entry carrying an
    `origin` is a remote reference and SHOULD send a mention (§15.2) whose
-   relation is `source` (§15.4). §10.1 keeps links silent because a link
-   carries none of the target's words; a generation source carries them,
-   transformed, and in this protocol notification tracks whether the
-   target's words are carried. An agent that draws on many remote items
+   relation is `source` (§15.4). A link carries none of the target's words
+   and notifies only as a notice (§10.1, §15.5, fourth revision); a
+   generation source carries them, transformed, and is a response: in this
+   protocol the class of a notification tracks whether the target's words
+   are carried. An agent that draws on many remote items
    sends many mentions, and that is legitimate: each says that a model at
    this origin used those words, and the item it points at has content
    (§10.6's anti-pattern is content-free stubbing, not disclosure). Nothing
@@ -1237,13 +1256,19 @@ fetch.
   ordinary anchor whose `href` is the **absolute** URL of the target's page
   (§5.8) — absolute because `content_html` travels to subscribers (§7); the
   anchor text is the label when the author wrote one (below), else the
-  publisher's choice. It is **silent on the wire**: no
-  `transclusions[]` entry (§10.3), no mention (§15), no relation (§15.4) —
-  a link asserts nothing on the target's behalf, so there is nothing for the
-  target to verify. An unresolvable link MUST be a publish error, like an
-  unresolvable directive. This deliberately preserves the one way to cite
-  without notifying: in a medium where every other citation form notifies,
-  that affordance is necessary, not accidental.
+  publisher's choice. It is **disclosed on the wire**
+  (revision of 2026-10-19, decision #79, which reverses #32): each resolved
+  link produces one `links[]` entry (§10.3a) and, when the target is remote,
+  SHOULD send a mention (§15.2) whose relation is `link` — a **notice**, the
+  lowest class of verified mention, never a response (§15.5). An
+  unresolvable link MUST be a publish error, like an unresolvable directive.
+  **The one way to cite without notifying is the ordinary markdown link**,
+  `[text](absolute page URL)`: it renders to the same anchor, produces no
+  `links[]` entry and no mention, and the protocol never inspects it. The
+  author chooses by spelling — the bracket form is this protocol's citation
+  and discloses; the plain URL is the web's and does not. Until this revision
+  the bracket form was silent (#32); a reader built on that reading loses
+  nothing, since it ignores an unknown member (§13.1).
 - **The label** (new in 0.4, decision #70). In either form the id MAY be
   followed by `|` and text:
   `[[7c9wk2mhq0v3xj8tn5rzfd41bg | the opening fragment]]`,
@@ -1259,16 +1284,22 @@ fetch.
   the **author's label for the target, and resolution ignores it**: the id
   alone names the target, and a publisher that does not know the form sees
   literal text, not a link. On a **link** the label is the anchor text the
-  publisher renders into `content_html`. On a **directive** it is a comment
-  for the author — a thread source made of bare ids is unreadable to the
-  person writing it — and nothing of it reaches the bake, `transclusions[]`
-  or the feed. There is no escape: a label cannot contain `]]`, and one that
+  publisher renders into `content_html`. On a **directive** it is the
+  author's name for the quoted item (revision of 2026-10-19, decision #81;
+  until then a comment that reached nothing): the publisher bakes it as the
+  `data-blyg-label` attribute of the transclusion's blockquote (§10.2), so
+  that any renderer — the publisher's own page, a subscriber, a fork
+  flattener — MAY use it as the anchor text of its attribution line. It
+  reaches nothing else: not `transclusions[]`, not the target. A reader MUST
+  NOT present it as the target item's title, or as anything but the quoter's
+  words (§5.3, decision #46). There is no escape: a label cannot contain `]]`, and one that
   would is rewritten. A client MAY tell the author when a label no longer
   resembles its target, as a courtesy; the protocol checks nothing, because
   a label is the author's words, not a claim about the target (compare
   `cited`, §5.9, frozen at the moment of reference for the same reason). The label changes
-  nothing about notification: a link with a label is still silent, a
-  directive with a label still quotes and discloses exactly as without one.
+  nothing about notification: a labelled link discloses exactly as an
+  unlabelled one, a labelled directive quotes and discloses exactly as
+  without one.
 - **Any other bracketed text is literal.** The two forms above, with or
   without a label, are the whole of the bracket grammar: brackets whose
   first 26 characters are not an id — alone, or before a pipe — enclose
@@ -1287,8 +1318,12 @@ anything**.
 **Resolution order.** Each directive MUST resolve, in this order, to:
 
 1. a **local**, currently-published item with that id — fragment or thread;
-2. otherwise an **imported** item with that id, from any subscribed origin,
-   whose local state is current — or withdrawn with a pin-retained snapshot
+2. otherwise an **imported** item with that id — a snapshot the publisher
+   holds, fetched from the item's identity origin by §12's rules, whether it
+   arrived by subscription polling or by a one-off fetch of one item
+   (revision of 2026-10-19, decision #82: subscription is a client-local
+   notion, §10.6 rule 7, and never a condition on the wire) — whose local
+   state is current — or withdrawn with a pin-retained snapshot
    (§13.4 retention is exactly what makes such a snapshot still quotable) —
    and which is a blyg item, not an L0 wrapper (§13.6: an L0 row is a wrapper
    around someone's RSS summary, not their item);
@@ -1321,7 +1356,10 @@ for own-origin sources, and for remote sources additionally
 ```
 
 `data-blyg-origin` appears **only** for remote sources, so a baked own-origin
-quote is byte-identical to its 0.2 form. The wrapper is a bare blockquote
+quote is byte-identical to its 0.2 form. A directive that carries a label
+(§10.1) additionally bakes `data-blyg-label="{label}"`, the label verbatim
+and HTML-escaped (revision of 2026-10-19, decision #81); a renderer MAY use it
+in its attribution line and MUST NOT give it any other meaning. The wrapper is a bare blockquote
 plus data attributes — **no link inside**; any provenance link or byline
 shown on an HTML page is presentation, not part of the published
 `content_html` (a byline, if shown, is the source's own `author` passed
@@ -1426,7 +1464,7 @@ version:
 
 - `origin` is **omitted for own-origin sources** — every 0.2 thread document
   is therefore a valid 0.3 document unchanged — and for remote sources is the
-  subscription's identity origin (§12.2), never the source manifest's
+  source's identity origin (§12.2), never the source manifest's
   self-asserted `site`.
 - **One entry per directive**, in directive order: a target quoted twice has
   two entries, and the array maps onto the directives (decision #76).
@@ -1451,13 +1489,47 @@ version:
 - Fragments omit the key entirely; threads always carry it (a withdrawn
   thread's endcap carries `[]`). Generation sources are disclosed separately
   and never appear here (§5.7), and a plain internal link (§10.1) produces
-  no entry: only copied words are disclosed.
+  no entry here but one in `links[]` (§10.3a): this array discloses copied
+  words.
 - A remote entry is a **remote reference** and SHOULD send a mention to its
   origin (§15.2), whose relation is `transclusion`.
 - Readers at L2 MUST scope a transclusion's `id` to its `origin` when
   present, and to the document's own origin when absent, before doing
   anything with it — the same origin-scoping rule as everywhere else
   (§13.1).
+
+### 10.3a Links — `links[]`
+
+*(New in 0.4; revision of 2026-10-19, decision #79.)* An item document whose
+`content_md` resolved at least one plain internal link (§10.1) carries a
+top-level `"links"` array, in document order, one entry per link:
+
+```json
+"links": [
+  { "id": "7c9wk2mhq0v3xj8tn5rzfd41bg" },
+  { "id": "1vgtgz0gq5b2c9k7d3m8r4n6xy",
+    "origin": "https://blyg.protocol-institute.org/" }
+]
+```
+
+- An entry is **not a reference** (§5.9): a link names a page, not a version.
+  It has `id`, `origin` under §10.3's rule — omitted for own-origin, else the
+  target's identity origin — and nothing else: no `version`, no `cited`, no
+  `selector`. A label is already in `content_md`.
+- Fragments and threads alike carry it when they have links; an item with
+  none omits the key, and an empty array is equivalent. A withdrawal endcap
+  omits it.
+- A remote entry is a **remote reference** for §15.2 and SHOULD send a
+  mention, whose relation is `link` (§15.4): a notice, never a response
+  (§15.5). Same-origin entries never generate mentions.
+- A markdown link to a blyg page is not an entry (§10.1): the array records
+  the bracket grammar and nothing else, and a publisher MUST NOT populate it
+  by inspecting HTML. The silent citation is a feature, not a gap.
+- Readers MUST scope `id` to `origin` as §13.1 requires, and MAY ignore the
+  array entirely; a 0.3 reader does.
+- A fork flattens the bracket form to a markdown link (§5.6 rule 6), so a
+  fork carries no entry for an inherited link: custody runs one hop
+  (decision #65), here as everywhere.
 
 ### 10.4 Snapshot independence
 
@@ -1781,6 +1853,17 @@ most failure modes structurally:
   (the reference client's *ignyr* queue); the version advances state as any
   version does. Nothing on the wire marks it, by design — the counter stays
   bare (§5.2) — because the hash already says it.
+- **A version that barely changed is maintenance too** (revision of
+  2026-10-19, decision #83). The reader holds the previous version's
+  `content_md` at reconciliation, before it overwrites it, so it can measure
+  the edit. A version whose text differs from its predecessor by less than a
+  **reader-local** threshold MAY be treated under the clause above — queued
+  low, not resurfaced as new, state advanced as for any version. The
+  threshold is never on the wire and never advertised, so that no author can
+  write to it; the author's own lever is to hold a small edit for the next
+  publish worth an event (draft saves are invisible, §5.2). Keep it small:
+  one word can negate a sentence, which is also why nothing is ever omitted,
+  only queued.
 
 A 404 on `items/index.json` from an otherwise-live blyg is a nonconforming
 publisher: readers SHOULD fall back to feed-window-only operation and surface
@@ -2010,8 +2093,9 @@ fetched from the origin it claims, names the target with a reference (§5.9).
 A publisher SHOULD send a mention for each **remote reference** in a newly
 published version: every blyg-target `stub_of` whose origin is not its own
 (§10.6), every `transclusions[]` entry carrying an `origin` (§10.3), a
-`forked_from` naming another origin (§5.6), and every `generated[].sources[]`
-entry carrying an `origin` (§5.7; new in 0.4). A `{url}` stub SHOULD send an
+`forked_from` naming another origin (§5.6), every `generated[].sources[]`
+entry carrying an `origin` (§5.7; new in 0.4), and every `links[]` entry
+carrying an `origin` (§10.3a; revision of 2026-10-19, decision #79). A `{url}` stub SHOULD send an
 ordinary Webmention to that URL. Same-origin references never generate
 mentions. A version that both quotes and draws on one target MAY send a
 single mention for it; the receiver determines the relation (§15.4 step 4).
@@ -2120,7 +2204,8 @@ protection, not a nicety (§14).
    `id` = target → `transclusion`; else `forked_from` naming a **pinned**
    version of the target → `fork`; else a `generated[].sources[]` entry
    (§5.7) with `origin` = this blyg and `id` = target → `source` (new in
-   0.4); else **failed** — the document exists but does not reference us. "This blyg" compares the document's asserted
+   0.4); else a `links[]` entry (§10.3a) with `origin` = this blyg and `id`
+   = target → `link` (revision of 2026-10-19, decision #79); else **failed** — the document exists but does not reference us. "This blyg" compares the document's asserted
    origin string against the receiver's own identity origin, normalized. The
    receiver is the only party that can say whether a version is pinned, so
    the fork check consults its own pins and fails a claim naming an unpinned
@@ -2137,14 +2222,33 @@ protection, not a nicety (§14).
    who withdraws and later republishes is recognized rather than treated as
    new.
 
-The relation set is exactly `stub`, `transclusion`, `fork`, `source` — one
-per wire construct that names a target — and nothing else at this version. A
-plain link is not a relation (§10.1). `source` is the relation 0.4 adds
+The relation set is exactly `stub`, `transclusion`, `fork`, `source`, `link`
+— one per wire construct that names a target — and nothing else at this
+version. `link` is the relation the revision of 2026-10-19 adds (decision
+#79, reversing #32); a markdown link is not a relation (§10.1), and a 0.3
+receiver reports `link` as **failed**, correctly for its version. `source` is the relation 0.4 adds
 (promoted from the 0.3 text's §16.3): a generation source is a wire construct
 that names a target and carries its words, transformed. A 0.3 receiver
 reports such a mention as **failed**, which is correct for it, and a sender
 SHOULD read that failure as the receiver's version, not as an error of its
 own.
+
+**Reposts** (revision of 2026-10-19, decision #80). After the relation is
+found, a receiver SHOULD classify a `stub` or `transclusion` mention whose
+source document carries **no words of its own** as a **repost**: strip from
+its `content_md` every transclusion directive line, each attached
+partial-selection blockquote (§10.1), labels and whitespace; if nothing
+remains, it is a repost. The relation is unchanged — stub-ness still comes
+from the marker and never from the body (§10.6 rule 2); only the mention's
+class changes (§15.5). The test runs on the document the receiver already
+fetched, costs no request, and is derived rather than declared, as §13.2's
+maintenance rule is: no wire marker says "repost", by the rule that
+significance is never declared (§5.2, decision #19). A thread of twenty
+directives and no words sends twenty notices, one per target; the same
+thread with a paragraph of its own sends one `stub` and nineteen
+`transclusion` responses. §10.6's misuse paragraph stands unchanged: the
+class exists so that a receiver can absorb content-free stubbing, not to
+bless it.
 
 ### 15.5 What a verified mention is, and is not
 
@@ -2156,6 +2260,17 @@ publicly — a "responses" list on a permalink page — and if it does, that is
 to the origin, publicity being a property of the list, never of the
 mention. Nothing in this protocol lets a stubber put words on the target's
 page.
+
+**Two classes** (revision of 2026-10-19, decisions #79 and #80). A verified
+mention is a **response** — relation `stub`, `transclusion`, `fork` or
+`source`, from a document with words of its own — or a **notice**: relation
+`link`, or a repost (§15.4). Notices are held apart: they MUST NOT appear in
+a responses list, MAY be shown as "linked from" or "reposted by" with
+attribution under §13.5 like any display, and SHOULD go to a low-priority
+queue rather than the response signal (the reference client's *ignyr*,
+§13.2). Nothing a sender writes moves a mention between the classes; the
+receiver derives both. A verified mention of either class remains a studio
+signal under the first paragraph of this section.
 
 ### 15.6 Plain mentions
 
@@ -2217,7 +2332,9 @@ Ruled 2026-09-28, rendered by blygger-studio 0.6.0 the same day, exercised
 across both live nodes (an inline link survived import into the other node's
 reading view intact, with no import error and no mention sent), and promoted
 into §10.1 in the first published revision, which replaced the sentence
-declaring `[[id]]` undefined. The normative text is there.
+declaring `[[id]]` undefined. The normative text is there. **Silence reversed
+in the fourth revision** (2026-10-19, decision #79): links are disclosed in
+`links[]` (§10.3a) and notify as notices; the markdown link is the silent form.
 
 ### 16.3 Remote generation sources (promoted to §5.7 and §15.4, 2026-10-17)
 
@@ -2477,12 +2594,49 @@ unknown label (§10.1). Nothing else from the attribute syntax is adopted. A
 size hint in the URL fragment was refused as an invented convention (#71),
 and a maximum height in a client's stylesheet needs no ruling.
 
+### 16.11 Responding from anywhere (ruled 2026-10-19; studio work and an RFC, no construct)
+
+Decision #82. Nothing on the wire ties a stub, a quote or a link to a
+subscription: §10.2 step 2 resolves against any snapshot the publisher holds
+from the item's identity origin, however obtained, and §10.6 rule 7 says
+stubs couple to no studio construct. A client MAY therefore take a URL from
+anywhere — a bookmarklet, a share sheet, a browser extension — resolve it
+(§12 for the origin, the page's JSON alternate for the item, §5.8), hold the
+item as a one-off snapshot with no subscription, and open a stub with the
+quote. The stubber then learns of no later version unless it subscribes,
+which is its choice. A plain-web URL opens a `{url}` stub with `cited`
+(§10.6). All of that is client behaviour. What is not the client's alone is
+a **client-agnostic affordance on a blyg page** — a "stub this" that must
+find a stranger's studio — because every client would have to agree on it;
+that is a convention, and conventions go through an RFC on the official blyg
+with a comment period before any client blesses a shape (the received
+pattern is a registered `web+` protocol handler, with a Mastodon-style
+remote-interaction dialog as the fallback). No wire change in either half.
+
 ## 17. Revision history (non-normative)
 
 One line per published change to this document, newest first. Snapshots are
 cut at `blygger.org/spec/0.4/{date}/` and each carries a diff link to the one
 before it. Version 0.3's own history is in its document, frozen at its
 eleventh revision.
+
+- **2026-10-19, fourth revision** (Fable 5.1, session 50; on Venkat's
+  report of demand for simple responses, and a parallel build that wanted a
+  significance token in changelog notes) — **plain internal links are
+  disclosed**: a `links[]` member (§10.3a, §5 member table), a fifth mention
+  relation `link` (§15.2, §15.4), and the markdown link as the one silent
+  citation (§10.1); decision #79 reverses #32. **Receivers classify
+  reposts** — a stub or transclusion from a document with no words of its
+  own — and §15.5 splits verified mentions into **responses** and
+  **notices** (#80). The directive **label is baked** as `data-blyg-label`
+  for attribution lines (§10.1, §10.2; #81). §10.2 step 2 no longer says
+  *subscribed*: any held snapshot from the identity origin resolves, and
+  §16.11 records how a client may respond from anywhere (#82). §5.2 says no
+  word in a note has wire meaning and §13.2 adds the reader-local
+  near-sameness rule beside the same-hash rule (#83). §2 gains *notice* and
+  *repost*. **One wire change**, additive: the `links[]` member and the
+  `data-blyg-label` attribute; readers that ignore both stay conformant. Not
+  snapshotted.
 
 - **2026-10-17, third revision** (Fable 5.1, session 49, the same evening;
   on the session-29 exploration *inline fragment authoring*, `plans/`, and
@@ -2524,4 +2678,4 @@ eleventh revision.
 
 ---
 
-*Published from [blygger/blygger-spec@da5fa2f](https://github.com/blygger/blygger-spec/commit/da5fa2f).*
+*Published from [blygger/blygger-spec@2991e9d](https://github.com/blygger/blygger-spec/commit/2991e9d).*
