@@ -2103,8 +2103,21 @@ single mention for it; the receiver determines the relation (§15.4 step 4).
 - **source** = the referencing item's absolute page (`origin` + `page`,
   §5.8).
 - **target** = for a blyg reference, the target's absolute page (`origin` +
-  the target's `page` if the sender holds it, else the reference
-  convention); for a `{url}` stub, that URL.
+  the target's `page`) when the sender holds it; otherwise the target's
+  **item document**, expanded from the target origin's `item` template or
+  the default `items/{id}.json` (§6.1) — an address every publisher serves
+  (§4), which the receiver resolves to the item under §15.3 step 1
+  (revision of 2026-10-20, decision #85, on
+  [blygger-spec#17](https://github.com/blygger/blygger-spec/issues/17)). A
+  sender MUST NOT construct a target from the reference permalink
+  convention (`f/{id}/`, `t/{id}/`): §4 calls those paths presentation, a
+  receiver that does not serve them refuses the guess correctly, and a blyg
+  with no HTML pages at all (§5.8) has no page to guess — its item document
+  is its only mentionable address. The sender already holds the target's
+  manifest, because endpoint discovery below reads it first. Until this
+  revision the text said "else the reference convention"; a sender built on
+  that reading lands only on receivers that happen to serve the convention
+  under the guessed kind. For a `{url}` stub, the target is that URL.
 - **Endpoint discovery**, in order: the target origin's manifest
   `webmention` key (one conditional GET of `blyg.json`, which a subscriber
   already holds); otherwise W3C discovery on the target URL — a `Link`
@@ -2634,6 +2647,17 @@ cut at `blygger.org/spec/0.4/{date}/` and each carries a diff link to the one
 before it. Version 0.3's own history is in its document, frozen at its
 eleventh revision.
 
+- **2026-10-20, sixth revision** (Fable 5.1, session 52, the same
+  afternoon; on Robert Peake's follow-up to blygger-spec#17) — §15.2's
+  **fallback target is the item document, never the permalink
+  convention**: a sender that does not hold the target's `page` names
+  `{origin}items/{id}.json` through the target's `item` template, an address
+  every publisher serves and every receiver resolves under the fifth
+  revision's §15.3; the old "else the reference convention" guessed a
+  presentation path §4 already called non-normative, and a blyg with no
+  pages (§5.8) has nothing to guess (decision #85). Sender-side only; no
+  wire or receiver change. Not snapshotted.
+
 - **2026-10-20, fifth revision** (Fable 5.1, session 52; on Robert Peake's
   [blygger-spec#17](https://github.com/blygger/blygger-spec/issues/17)) —
   §15.3 step 1's **target check is membership, not location**: the target
@@ -2704,4 +2728,4 @@ eleventh revision.
 
 ---
 
-*Published from [blygger/blygger-spec@3d98ee6](https://github.com/blygger/blygger-spec/commit/3d98ee6).*
+*Published from [blygger/blygger-spec@24b9770](https://github.com/blygger/blygger-spec/commit/24b9770).*
