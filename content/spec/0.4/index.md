@@ -2138,12 +2138,26 @@ The endpoint contract is the W3C's: `POST`, body
 `application/x-www-form-urlencoded`, `source` and `target`.
 
 1. **Syntactic checks → 400.** Both MUST be absolute `http(s)` URLs; `source`
-   MUST differ from `target`; `target` MUST lie within this blyg's own origin — the full base URL
-   (§12.2), not merely its host — and MUST name a published item — by
-   `page`, or as its item document's URL (the receiver's own `item`
-   template or the default `items/{id}.json`, §6.1). An unknown item is 400, not 404: the endpoint
-   exists, the claim is bad. A withdrawn target is accepted (people may
-   respond to a withdrawal).
+   MUST differ from `target`; `target` MUST resolve, by the receiver's own
+   published data, to one of this blyg's items (revision of 2026-10-20,
+   decision #84, on [blygger-spec#17](https://github.com/blygger/blygger-spec/issues/17)):
+   an address the receiver itself serves for that item — its `page` (§5.8),
+   its item document (the receiver's own `item` template or the default
+   `items/{id}.json`, §6.1), or a pinned version's document or page (§8; the
+   `pin` template or the default). **Location is not the test.** An absolute
+   `page` or a relocated surface puts an item's addresses outside the base
+   URL, and they are no less this blyg's; a URL under the base URL that
+   names nothing published is a bad claim. The test is membership because
+   the receiver is the one party that knows its own items — the mirror of
+   step 2 in §15.4, where a stranger's document is known only by where it
+   was served. Two blygs on one host stay apart by the same test: a target
+   is one blyg's item or it is not. Until this revision the text said the
+   target must lie within the base URL, a reading under which a templated
+   blyg rejected every target it itself names; a receiver whose surface is
+   never relocated and that accepts only addresses under its mount is
+   conformant by accident, not by rule. An unknown item is 400, not 404:
+   the endpoint exists, the claim is bad. A withdrawn target is accepted
+   (people may respond to a withdrawal).
 2. **Rate limit → 429.** RECOMMENDED: more than 60 mentions from one source
    host in an hour. Cheap — but not, on its own, enough to bound the queue:
    a sender that controls a wildcard DNS zone has unlimited hosts, and every
@@ -2620,6 +2634,18 @@ cut at `blygger.org/spec/0.4/{date}/` and each carries a diff link to the one
 before it. Version 0.3's own history is in its document, frozen at its
 eleventh revision.
 
+- **2026-10-20, fifth revision** (Fable 5.1, session 52; on Robert Peake's
+  [blygger-spec#17](https://github.com/blygger/blygger-spec/issues/17)) —
+  §15.3 step 1's **target check is membership, not location**: the target
+  MUST resolve, by the receiver's own published data, to one of its items —
+  its `page`, its item document or a pinned version's document or page,
+  wherever the manifest or an absolute `page` puts them. The previous text
+  required the target to lie within the base URL, which a templated blyg's
+  own targets never do; the wording had been carried over from §15.4 step
+  2's source check (#61), which answers a different question and is
+  unchanged (decision #84). No wire change; the one receiver change is to
+  accept a pinned version's address as a target. Not snapshotted.
+
 - **2026-10-19, fourth revision** (Fable 5.1, session 50; on Venkat's
   report of demand for simple responses, and a parallel build that wanted a
   significance token in changelog notes) — **plain internal links are
@@ -2678,4 +2704,4 @@ eleventh revision.
 
 ---
 
-*Published from [blygger/blygger-spec@48db790](https://github.com/blygger/blygger-spec/commit/48db790).*
+*Published from [blygger/blygger-spec@3d98ee6](https://github.com/blygger/blygger-spec/commit/3d98ee6).*

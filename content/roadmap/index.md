@@ -54,6 +54,7 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 | 86 | Optional change classifier on a decision model (Clef, Jev): typo / minor / major in the publish dialog, as words in the note (#83) | studio | 5 | shipped: studio 0.48.0 (Aneesh Sathe, studio#77) |  |  |
 | 87 | The changelog AI call also judges trivial / minor / major and leads the note with it, for nodes with no decision model (Venkat; replaces ignyr-in-changelog after #83) | studio | 2 | next |  |  |
 | 82 | Held revisions for small edits, and the near-sameness maintenance rule in the updates tab beside same-hash (#83, spec §13.2) | studio | 5 | next | The threshold, documented in the studio, never on the wire. |  |
+| 88 | A Webmention target is one of the receiver's own items by membership, not by location: `page`, item document or pinned-version address, wherever the manifest or an absolute `page` puts them (Robert Peake; #84, spec §15.3 step 1) | spec | 1 | ruled: decision #84, fifth revision of 0.4; shipped: studio 0.48.1; next: deploy the spec to blygger.org and the studio to the nodes | None; the receiver owns its data. | [spec#17](https://github.com/blygger/blygger-spec/issues/17) |
 | 76 | blygger.org front page in two tabs (For Publishers, For Developers), a glossary, and a Thicket page describing the explorer planned for blygger.com | org | 5 | shipped: blygger.org (session 49) | Venkat reviews the copy; the explorer itself is a blygger.com item, not yet planned. |  |
 | 15 | Full backup: download the whole blyg, every version and file, as one archive | studio | 5 | later |  |  |
 | 53 | Restore a full backup into a fresh node | studio | 8 | later | Waits on row 15. |  |
@@ -98,4 +99,4 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 
 ---
 
-*Published from [blygger/blygger-spec@48db790](https://github.com/blygger/blygger-spec/commit/48db790).*
+*Published from [blygger/blygger-spec@3d98ee6](https://github.com/blygger/blygger-spec/commit/3d98ee6).*

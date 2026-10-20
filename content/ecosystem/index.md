@@ -53,6 +53,7 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 - `astro-gyoza/0.0.2` · live: [artlu.xyz](https://artlu.xyz/)
 - `my-garden-site/0.1.0` · live: [florianlohse.com/blyg](https://florianlohse.com/blyg/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
+- `soapbox-for-blygger/0.1.3` · live: [www.robertpeake.com/blyg](https://www.robertpeake.com/blyg/)
 
 <!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
      then add or deliberately skip each one:
