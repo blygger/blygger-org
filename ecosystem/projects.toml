@@ -65,10 +65,10 @@ summary = "The reference client. A Cloudflare Worker that publishes a blyg, subs
 repo = "BradyDale/Blynger"
 name = "Blynger"
 category = "client"
-generator = "Blynger/0.9.31"
+generator = "Blynger/0.12.0"
 # Every version a live node has been seen reporting. Blynger bumps often, so
 # each new release needs its old string added here or it reads as unidentified.
-generator_aliases = ["Blynger/0.9.21", "Blynger/0.8.2"]
+generator_aliases = ["Blynger/0.9.31", "Blynger/0.9.21", "Blynger/0.8.2"]
 live = "https://bradydale.com/blyg/"
 submitted = "census 2026-09-28; repo from Brady Dale, blygger-org#2 (2026-10-04)"
 summary = "Brady Dale's independent client, on its own version line. Publishes protocol 0.3. Its robot badge for generated text is the convention Blygger Studio adopted in 0.27.0."
@@ -149,14 +149,16 @@ submitted = "found by sync_ecosystem.py search 2026-10-09; generator from its ma
 [[project]]
 repo = "brndnpink/blyg-publisher"
 category = "integration"
-generator = "blyg-publisher/0.0.1"
+generator = "blyg-publisher/0.3.2"
+generator_aliases = ["blyg-publisher/0.0.1"]
 live = "https://lightsong.ink/blyg/"
 submitted = "Venkat 2026-09-28"
 
 [[project]]
 repo = "chrisbodhi/hugo-blyg"
 category = "integration"
-generator = "hugo-blyg/0.2.0"
+generator = "hugo-blyg/0.3.2"
+generator_aliases = ["hugo-blyg/0.2.0"]
 live = "https://newschematic.org/blyg/"
 submitted = "Venkat 2026-09-28; generator matched 2026-10-06"
 
@@ -208,3 +210,20 @@ category = "mod"
 live = "https://blyg.pioneeringspirit.xyz/"
 submitted = "search 2026-09-28; classified 2026-10-06 from its README and upstream.json"
 summary = "Runs Pioneering Spirit as a blyg: Blygger Studio vendored verbatim at a pinned release, with a server extension and the old Paragraph archive served alongside at its original addresses."
+
+[[project]]
+repo = "ananthsridhar281/blygger-reference-client"
+name = "blygger-reference-client"
+category = "client"
+generator = "blygger-ref/0.1"
+generator_aliases = ["blygger-web/0.1"]
+summary = "Pure-stdlib Python client for 0.3 (L1 + blogroll, static), with a second browser-only JS client in webapp/ that publishes to GitHub Pages. blygger-web/* is the webapp's generator."
+submitted = "found by sync_ecosystem.py search; added session 52 (2026-10-20) — an independent implementation, not a studio deployment"
+
+[[project]]
+repo = "ksurya/blyggerpress"
+name = "BlyggerPress"
+category = "client"
+generator = "BlyggerPress/0.0.0"
+summary = "Surya Kasturi's local-first studio for 0.3 blygs, with pinned-spec contracts, JSON Schemas and 141 conformance fixtures. Surya's own blyg runs Blygger Studio, so no live BlyggerPress node yet."
+submitted = "found by sync_ecosystem.py search; added session 52 (2026-10-20) — an independent implementation, not a studio deployment"

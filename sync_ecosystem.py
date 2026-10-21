@@ -522,10 +522,41 @@ def report_drift(projects: list[dict], cen: dict) -> None:
         if not current:
             continue
         nodes = project_nodes(p, cen)
-        behind = [n for n in nodes if n.get("generator_seen") and n["generator_seen"] != current]
+        # Compare versions, not strings (session 52): a node newer than `current`
+        # is not behind — it means the curated generator is stale, because the
+        # project cuts no tags we read. A different client name (a pre-rename
+        # alias) counts as behind.
+        behind, ahead = [], []
+        for n in nodes:
+            seen = n.get("generator_seen")
+            if not seen or seen == current:
+                continue
+            order = compare_generators(seen, current)
+            (ahead if order > 0 else behind).append(n)
         if behind:
             print(f"  ~ {display_name(p)}: {len(behind)} of {len(nodes)} live node(s) behind {current}: "
                   + ", ".join(f"{host_of(n['origin'])} ({n['generator_seen']})" for n in behind))
+        if ahead:
+            print(f"  ? {display_name(p)}: curated generator {current} is older than what "
+                  + ", ".join(f"{host_of(n['origin'])} runs ({n['generator_seen']})" for n in ahead)
+                  + " — update `generator` in ecosystem/projects.toml")
+
+
+def compare_generators(seen: str, current: str) -> int:
+    """-1 if `seen` is older than `current`, 1 if newer, 0 if not comparable or
+    equal. Generators are `name/version`; different names compare as older."""
+    def split(g: str) -> tuple[str, tuple[int, ...] | None]:
+        name, _, ver = g.partition("/")
+        nums = re.findall(r"\d+", ver)
+        return name.lower(), tuple(int(x) for x in nums) if nums else None
+    (sn, sv), (cn, cv) = split(seen), split(current)
+    if sn != cn:
+        return -1
+    if sv is None or cv is None:
+        return 0
+    width = max(len(sv), len(cv))
+    sv, cv = sv + (0,) * (width - len(sv)), cv + (0,) * (width - len(cv))
+    return (sv > cv) - (sv < cv)
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
