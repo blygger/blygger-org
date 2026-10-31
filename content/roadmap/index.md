@@ -32,7 +32,7 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 
 | # | Item | Area | Est | Status | Open question | Link |
 |---|---|---|---|---|---|---|
-| 9 | Stub editor: choose the quoted passage in the preview | studio | 5 | next |  |  |
+| 9 | Stub editor: choose the quoted passage in the preview | studio | 5 | shipped: studio 0.49.0 |  |  |
 | 10 | Images resized in the browser before upload | studio | 5 | next |  |  |
 | 13 | Templated surfaces (§16.6e) promoted to normative text | spec | 2 | shipped: spec 0.4 (§4, §5.8, §6.1, §12, §15.3–15.4; session 49) |  | [spec#2](https://github.com/blygger/blygger-spec/issues/2) |
 | 14 | Technical note TN-2: identity practice | spec | 5 | next |  |  |
@@ -96,7 +96,14 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 | 61 | Setup walk-through: every setting, one step at a time, beside its default, with reset; greets a fresh install, re-runnable from Settings | studio | 5 | shipped: studio 0.42.0 |  |  |
 | 62 | Pace-layered ordering recommended to other clients (RFC-3), with worked fixtures to check against | spec | 3 | ruled: decision #73; next: Opus drafts RFC-3, Fable edits, publishes on blyg.blygger.org | Constants are reference values. `pinned_at` on pinned changelog entries is a ruled shape (§16.9) the studio can emit now. |  |
 | 63 | Bespoke builds: document and encourage n=1 blygs, built from the spec by their owner's own generator. Agentic coding makes a one-person site cheap, and this end of the ecosystem should flourish: a guide on blygger.org (the spec, the conformance toolkit, what a minimal L2 static blyg needs), and the ecosystem page's "Bespoke builds" section pointing to it | org | 3 | next | The section exists (session 46): Ben Mayhew's blyg, plus `msn`, `sig-p4b-blyg` and `cchalc-site` moved from Clients. What is left is the guide. |  |
+| 89 | Browse the thicket from the reader: every quoted layer at any depth and every link that names a blyg item opens in the reader, items of unsubscribed blygs are read from their origin at `/peek` with a subscribe alert, back retraces the descent, links that are not blyg items open in a new tab | studio | 8 | shipped: studio 0.49.0 (migration 0033) |  |  |
+| 90 | Browsing history: a private log of the walk (a tree, `browse_log`) and a history pane beside the reader | studio | 3 | shipped: studio 0.49.0 |  |  |
+| 91 | Public pages name every nested quote: a provenance line with a link on quotes inside quotes, at any depth | studio | 2 | shipped: studio 0.49.0 | The link for a layer from a blyg we do not hold falls back to the `f/`·`t/` convention, as the direct line does |  |
+| 92 | Withdrawn posts are background: the Background lens lists them, every other lens leaves them out | studio | 2 | shipped: studio 0.49.0 | Background was the placeholder for procedural updates (ignyr); those would need another home |  |
+| 93 | A revised post leads with its latest changelog entry in the feed (`V3: note`, or `V3: No changelog entry available`) | studio | 2 | shipped: studio 0.49.0 | Shows for every imported post past v1; narrowing it to posts updated since read is one condition. Own posts are not covered |  |
+| 94 | The studio title in the top bar links to the reading page | studio | 1 | shipped: studio 0.49.1 | Kyle Mathews' PR |  | [studio#86](https://github.com/blygger/blygger-studio/pull/86) |
+| 95 | Route loaders complete the hover and focus preload; TanStack Query's native 15 s polling replaces the custom `Polling` scheduler; reader links are router links; `AGENTS.md` is the instructions file (`CLAUDE.md` a symlink) | studio | 5 | shipped: studio 0.49.1 | Kyle Mathews' PR. DB and React DB move to 1.0.0-rc.1, a prerelease in a production dependency |  | [studio#85](https://github.com/blygger/blygger-studio/pull/85) |
 
 ---
 
-*Published from [blygger/blygger-spec@cdca128](https://github.com/blygger/blygger-spec/commit/cdca128).*
+*Published from [blygger/blygger-spec@a8bc63d](https://github.com/blygger/blygger-spec/commit/a8bc63d).*

@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/), [blyg.bricolage.io](https://blyg.bricolage.io/) and 9 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 11 more
 - **[blygger-reference-client](https://github.com/ananthsridhar281/blygger-reference-client)** — [@ananthsridhar281](https://github.com/ananthsridhar281)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
 - **[Blynger](https://github.com/BradyDale/Blynger)** — [@BradyDale](https://github.com/BradyDale) · live: [bradydale.com/blyg](https://bradydale.com/blyg/)
@@ -53,16 +53,20 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 ## Unidentified clients
 
 - `astro-gyoza/0.0.2` · live: [artlu.xyz](https://artlu.xyz/)
+- `dfnet-blyg/0.1` · live: [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
 - `soapbox-for-blygger/0.1.5` · live: [www.robertpeake.com/blyg](https://www.robertpeake.com/blyg/)
 
 <!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
      then add or deliberately skip each one:
        EricLortie/liminal-blyg  (via name/desc/readme)
+       akashtattva/blyg  (via name/desc/readme)
+       ananth1100/blygger-reference-client  (via name/desc/readme)
+       chrisbodhi/blygd  (via name/desc/readme)
        halcyonic-systems/blyg-watch  (via name/desc/readme)
        patwater/blyg-caster  (via name/desc/readme)
 -->
 
 ---
 
-*Checked 2026-10-29.*
+*Checked 2026-10-31.*
