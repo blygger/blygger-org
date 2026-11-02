@@ -84,8 +84,10 @@ def main() -> None:
         if v in done: print(f"{v}: already announced ({done[v]['id']})"); continue
         date, body = secs[v]
         if dry: print(f"{v}: would announce ({len(body)} chars of changelog)"); continue
-        item = blyg.api("POST", "/items", {"kind": "thread", "content_md": announcement(v, date, body, model)})["id"]
-        ver = blyg.api("POST", f"/items/{item}/publish", {"note": f"Studio {v} released."})["version"]
+        # Studio 0.49 (contract 5.0.0): camelCase bodies; publish names the observed revision.
+        draft = blyg.api("POST", "/items", {"kind": "thread", "contentMd": announcement(v, date, body, model)})
+        item = draft["id"]
+        ver = blyg.api("POST", f"/items/{item}/publish", {"note": f"Studio {v} released.", "expectedRevision": draft["revision"]})["version"]
         done[v] = {"id": item, "version": ver, "source_sha256": hashlib.sha256(body.encode()).hexdigest()}
         MAP.write_text(json.dumps(entries, indent=2) + "\n")
         print(f"{v}: published v{ver} -> {pb.BASE}/t/{item}/")

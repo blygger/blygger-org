@@ -88,17 +88,21 @@ def main() -> None:
         if not e.get("id"):
             if dry:
                 print(f"{e['file']}: would create"); continue
-            e["id"] = blyg.api("POST", "/items", {"kind": "thread", "content_md": text})["id"]
+            e["id"] = blyg.api("POST", "/items", {"kind": "thread", "contentMd": text})["id"]
             print(f"{e['file']}: created draft {e['id']}")
         if create_only or e.get("source_sha256") == sha:
             continue
         if dry:
             print(f"{e['file']}: would publish"); continue
-        blyg.api("PATCH", f"/items/{e['id']}", {"content_md": text})
+        # Studio 0.49 (contract 5.0.0): camelCase bodies, and every write names
+        # the revision it observed, so each call passes on the one it returned.
+        rev = blyg.api("GET", f"/items/{e['id']}")["revision"]
+        rev = blyg.api("PATCH", f"/items/{e['id']}", {"contentMd": text, "expectedRevision": rev})["revision"]
         note = e["notes"]["first" if not e.get("version") else "revision"]
-        v = blyg.api("POST", f"/items/{e['id']}/publish", {"note": note})["version"]
+        pub = blyg.api("POST", f"/items/{e['id']}/publish", {"note": note, "expectedRevision": rev})
+        v = pub["version"]
         if e.get("pin"):
-            blyg.api("PUT", f"/items/{e['id']}/versions/{v}/pin")
+            blyg.api("PUT", f"/items/{e['id']}/versions/{v}/pin", {"expectedRevision": pub["revision"]})
         e.update(version=v, source_sha256=sha)
         print(f"{e['file']}: published v{v}{' (pinned)' if e.get('pin') else ''} -> {BASE}/t/{e['id']}/")
     if not dry:
