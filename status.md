@@ -1,6 +1,14 @@
 # Status — blygger-org
 
 ## Active
+- **Session 57 (2026-11-01, Opus) — deployed and pushed.** Contributors page refreshed
+  (six new contributors, stale "in review" credits fixed) and ecosystem list updated
+  (blygd, blygcaster, blyg-watch; akashtattva/blyg skipped; generator strings current).
+  `publish_blyg.py`/`publish_releases.py` fixed for studio 0.49's API (`contentMd`,
+  `expectedRevision`); `publish_blyg.py` gained `<!-- quote: id -->` markers. Two posts on
+  blyg.blygger.org (tangling heads-up; the 1 November update, quoting World Machines), and
+  the official blyg now subscribes to `blyg.worldmachines.org`. blygger.org deployed twice
+  (spec footers, roadmap, eighth 0.4 revision).
 - **Session 51 (2026-10-19, Opus):** draft paper "Blygger: A New Publishing Medium"
   in `drafts/paper/` (markdown source + `.docx` for Google Docs), synthesized from the
   talk and both front-page tabs. Awaiting Venkat's review; references incomplete.
