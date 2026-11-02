@@ -38,6 +38,7 @@
 # stops reporting them. Each needs a reason.
 skip = [
   "chrisbodhi/newschematic",  # a site built with hugo-blyg (listed), not a project
+  "akashtattva/blyg",  # the exported tree of a vanilla Blygger Studio (listing rule, session 57)
 ]
 
 # ─── Ours ──────────────────────────────────────────────────────────────────────
@@ -65,10 +66,10 @@ summary = "The reference client. A Cloudflare Worker that publishes a blyg, subs
 repo = "BradyDale/Blynger"
 name = "Blynger"
 category = "client"
-generator = "Blynger/0.12.0"
+generator = "Blynger/0.15.8"
 # Every version a live node has been seen reporting. Blynger bumps often, so
 # each new release needs its old string added here or it reads as unidentified.
-generator_aliases = ["Blynger/0.9.31", "Blynger/0.9.21", "Blynger/0.8.2"]
+generator_aliases = ["Blynger/0.12.0", "Blynger/0.9.31", "Blynger/0.9.21", "Blynger/0.8.2"]
 live = "https://bradydale.com/blyg/"
 submitted = "census 2026-09-28; repo from Brady Dale, blygger-org#2 (2026-10-04)"
 summary = "Brady Dale's independent client, on its own version line. Publishes protocol 0.3. Its robot badge for generated text is the convention Blygger Studio adopted in 0.27.0."
@@ -106,7 +107,8 @@ summary = "The first independent implementation, and the first blyg on a path mo
 [[project]]
 repo = "rpasetes/blyxt"
 category = "client"
-generator = "blyxt/0.1.0"
+generator = "blyxt/0.2.0"
+generator_aliases = ["blyxt/0.1.0"]
 live = "https://rslantonie.com/blyg/"
 submitted = "Russell Antonie Pasetes on blygger-org#3, 2026-10-09"
 
@@ -166,7 +168,8 @@ submitted = "Venkat 2026-09-28; generator matched 2026-10-06"
 repo = "cyberscribe/soapbox-blyg"
 name = "Soapbox for Blygger"
 category = "integration"
-generator = "soapbox-blyg/0.1.1"
+generator = "soapbox-for-blygger/0.1.5"
+generator_aliases = ["soapbox-blyg/0.1.1"]  # client string renamed; seen in the census session 57
 live = "https://www.robertpeake.com/blyg/"
 submitted = "found by sync_ecosystem.py search 2026-10-09; Robert Peake's WordPress plugin (blygger-spec#2, gate G9)"
 
@@ -212,7 +215,7 @@ submitted = "search 2026-09-28; classified 2026-10-06 from its README and upstre
 summary = "Runs Pioneering Spirit as a blyg: Blygger Studio vendored verbatim at a pinned release, with a server extension and the old Paragraph archive served alongside at its original addresses."
 
 [[project]]
-repo = "ananthsridhar281/blygger-reference-client"
+repo = "ananth1100/blygger-reference-client"  # renamed from ananthsridhar281 (GitHub redirects; seen session 57)
 name = "blygger-reference-client"
 category = "client"
 generator = "blygger-ref/0.1"
@@ -227,3 +230,22 @@ category = "client"
 generator = "BlyggerPress/0.0.0"
 summary = "Surya Kasturi's local-first studio for 0.3 blygs, with pinned-spec contracts, JSON Schemas and 141 conformance fixtures. Surya's own blyg runs Blygger Studio, so no live BlyggerPress node yet."
 submitted = "found by sync_ecosystem.py search; added session 52 (2026-10-20) — an independent implementation, not a studio deployment"
+
+[[project]]
+repo = "chrisbodhi/blygd"
+category = "client"
+summary = "A headless Blygger studio as one Go binary over Postgres: multi-tenant, path-mounted origins, scoped-token API, speaks 0.4. No live node located yet."
+submitted = "found by sync_ecosystem.py search; added session 57 (2026-11-01) — an independent implementation"
+
+[[project]]
+repo = "patwater/blyg-caster"
+name = "blygcaster"
+category = "mod"
+summary = "Blygger Studio plus Farcaster: reads casts beside blygs, stubs them with a {url} stub_of, and optionally cross-posts on publish."
+submitted = "found by sync_ecosystem.py search; added session 57 (2026-11-01) from its README"
+
+[[project]]
+repo = "halcyonic-systems/blyg-watch"
+category = "reader"
+summary = "Watches the network as a system: crawls blygger.com's list to measure concentration (clients, hosts, unpinned quotes) without publishing counts."
+submitted = "found by sync_ecosystem.py search; added session 57 (2026-11-01) from its README"
