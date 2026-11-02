@@ -21,7 +21,7 @@ Usage:
 Auth: the blyg's owner password, BLYG_BLYGGER_ORG_OWNER_PASSWORD in
 Code/.env.keys. Stdlib only.
 """
-import hashlib, http.cookiejar, json, sys, urllib.error, urllib.parse, urllib.request
+import hashlib, http.cookiejar, json, re, sys, urllib.error, urllib.parse, urllib.request
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -50,11 +50,26 @@ def footer(entry: dict) -> str:
             "is a counter-proposal.*")
 
 
+QUOTE = re.compile(r"^<!-- quote: ([0-9a-hjkmnp-tv-z]{26}) -->\n((?:>.*\n?)*)", re.M)
+
+
 def content(entry: dict) -> str:
     body = (SPEC / entry["file"]).read_text("utf-8")
+    # A `<!-- quote: id -->` line becomes an own-line `![[id]]` between impyrt
+    # scopes, never inside one: a quote is the author's act, not generated
+    # text (decision #60), and the item must already be held by the blyg.
+    # `>` lines directly under the marker stay attached: a partial quote.
+    out, at = [], 0
+    for m in QUOTE.finditer(body):
+        if body[at:m.start()].strip():
+            out.append(wrap(entry["model"], body[at:m.start()]))
+        out.append(f"![[{m.group(1)}]]\n{m.group(2)}".rstrip())
+        at = m.end()
+    if body[at:].strip():
+        out.append(wrap(entry["model"], body[at:]))
     # No trailing newline: blygger-studio 0.34.0 renders a final impyrt scope
     # followed by a single newline as an inline span instead of a block.
-    return wrap(entry["model"], body) + "\n\n" + wrap(FOOTER_MODEL, footer(entry))
+    return "\n\n".join(out) + "\n\n" + wrap(FOOTER_MODEL, footer(entry))
 
 
 class Blyg:
