@@ -40,20 +40,61 @@ def tagged() -> set:
     return {t[1:] for t in out.split() if re.fullmatch(r"v\d+\.\d+\.\d+", t)}
 
 
+def tag_date(version: str) -> str:
+    """The tagged commit's date, for entries whose heading carries a title instead."""
+    return subprocess.run(["git", "-C", str(STUDIO), "log", "-1", "--format=%cs", f"v{version}"],
+                          capture_output=True, text=True, check=True).stdout.strip()
+
+
 def sections() -> dict:
-    """version -> (date, body) from CHANGELOG.md."""
+    """version -> (date, title, body) from CHANGELOG.md.
+
+    Headings are `## X.Y.Z — YYYY-MM-DD` up to 0.49.6 and `## X.Y.Z — Title` since
+    0.49.7. Matching only the dated form silently dropped every titled release
+    (0.49.12–0.52.0, found session 59). A titled release's date is its tag's.
+    """
     text = (STUDIO / "CHANGELOG.md").read_text("utf-8")
-    parts = re.split(r"^## (\d+\.\d+\.\d+) — (\d{4}-\d{2}-\d{2})\s*$", text, flags=re.M)
-    return {parts[i]: (parts[i + 1], parts[i + 2].strip().rstrip("-").strip()) for i in range(1, len(parts), 3)}
+    parts = re.split(r"^## (\d+\.\d+\.\d+) — (.+?)\s*$", text, flags=re.M)
+    out = {}
+    for i in range(1, len(parts), 3):
+        version, label, body = parts[i], parts[i + 1], parts[i + 2].strip().rstrip("-").strip()
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", label):
+            out[version] = (label, None, body)
+        else:
+            out[version] = (None, label, body)
+    return out
 
 
-def announcement(version: str, date: str, body: str, model: str) -> str:
+def shipped(version: str, secs: dict, tags: set) -> str:
+    """The body to announce: this version's section, plus the sections of any
+    untagged versions it is the first release of, newest first. 0.49.12 shipped
+    0.49.2–0.49.11 (never released on their own), whose sections carry migrations
+    0034–0036; announcing 0.49.12's own section alone said "Migrations: none"
+    (found session 59)."""
+    earlier = [t for t in tags if vkey(t) < vkey(version)]
+    floor = max(earlier, key=vkey) if earlier else None
+    between = sorted((v for v in secs if vkey(v) < vkey(version) and v not in tags
+                      and (floor is None or vkey(v) > vkey(floor))), key=vkey, reverse=True)
+    body = secs[version][2]
+    if not between:
+        return body
+    parts = [body, f"### Also in this release\n\n{version} is the first release since {floor}, so it also "
+             f"ships {', '.join(between)}, which were never released on their own. Their notes follow; "
+             "read their **Migrations** lines before upgrading."]
+    for v in between:
+        date, title, text = secs[v]
+        parts.append(f"### {v} — {title or date}\n\n" + re.sub(r"^## ", "#### ", re.sub(r"^### ", "#### ", text, flags=re.M), flags=re.M))
+    return "\n\n".join(parts)
+
+
+def announcement(version: str, date: str, title: str | None, body: str, model: str) -> str:
     # The item is one impyrt scope, so a literal [TK] in the changelog reads as a
     # nested scope and publishing fails, even inside backticks (the nesting check
     # in blygger-studio src/tk.ts does not skip code spans; session 45).
     body = body.replace("[TK]", "TK")
     link = f"[v{version} on GitHub]({RELEASES}v{version})"
-    head = f"# Blygger Studio {version}\n\n*Released {date}, the reference client. {link}.*\n\n"
+    name = f"Blygger Studio {version}" + (f": {title}" if title else "")
+    head = f"# {name}\n\n*Released {date}, the reference client. {link}.*\n\n"
     foot = ("*This announcement is drafted from the release's section of "
             "[`CHANGELOG.md`](https://github.com/blygger/blygger-studio/blob/main/CHANGELOG.md), "
             "which is where it is maintained. To comment, respond to this item from your own blyg.*")
@@ -82,10 +123,12 @@ def main() -> None:
         if v not in tags: print(f"{v}: not tagged in blygger-studio; skipped"); continue
         if v not in secs: print(f"{v}: no CHANGELOG section; skipped"); continue
         if v in done: print(f"{v}: already announced ({done[v]['id']})"); continue
-        date, body = secs[v]
-        if dry: print(f"{v}: would announce ({len(body)} chars of changelog)"); continue
+        date, title, _ = secs[v]
+        date = date or tag_date(v)
+        body = shipped(v, secs, tags)
+        if dry: print(f"{v}: would announce ({len(body)} chars of changelog), released {date}" + (f", \"{title}\"" if title else "")); continue
         # Studio 0.49 (contract 5.0.0): camelCase bodies; publish names the observed revision.
-        draft = blyg.api("POST", "/items", {"kind": "thread", "contentMd": announcement(v, date, body, model)})
+        draft = blyg.api("POST", "/items", {"kind": "thread", "contentMd": announcement(v, date, title, body, model)})
         item = draft["id"]
         ver = blyg.api("POST", f"/items/{item}/publish", {"note": f"Studio {v} released.", "expectedRevision": draft["revision"]})["version"]
         done[v] = {"id": item, "version": ver, "source_sha256": hashlib.sha256(body.encode()).hexdigest()}
