@@ -1,11 +1,15 @@
 // Renders each marketing/*.html source to a PNG of the same name at its body size.
 // Run from blygger-studio, which has Playwright installed:
 //   node ../blygger-org/marketing/render.mjs
-import { chromium } from 'playwright';
+import { createRequire } from 'node:module';
 import { readdirSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
+// Playwright is resolved from the directory you run this in (blygger-studio),
+// since this repo has no node_modules of its own.
+const playwright = await import(pathToFileURL(createRequire(join(process.cwd(), '/')).resolve('playwright')).href);
+const { chromium } = playwright.default ?? playwright;
 const dir = dirname(fileURLToPath(import.meta.url));
 const browser = await chromium.launch({ channel: 'chrome' }); // the installed Chrome; no Playwright download needed
 for (const name of readdirSync(dir).filter(f => f.endsWith('.html'))) {
