@@ -207,6 +207,7 @@ def gh(path: str) -> object | None:
 
 STUDIO_REPO = "blygger/blygger-studio"
 EXTENSIONS_DOC = f"https://github.com/{STUDIO_REPO}/blob/main/docs/extensions.md"
+MODS_DOC = f"https://github.com/{STUDIO_REPO}/blob/main/docs/mods.md"
 # The extension object's own label and description (ui/index.tsx); entryActions
 # rows also carry `label`, but never one followed directly by `description`.
 EXT_META = re.compile(r"label:\s*'([^']*)',\s*description:\s*'((?:[^'\\]|\\.)*)'")
@@ -481,7 +482,8 @@ def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at
           "Studio repository: an operator compiles it into their build and the owner "
           "turns it on in Settings. Nothing is installed or loaded at run time, and "
           "an extension never changes what a blyg publishes. "
-          f"**[How to write one]({EXTENSIONS_DOC})**.")
+          f"**[How to write one]({EXTENSIONS_DOC})**. Where a mod can live, and "
+          f"which hooks the Studio will add for one: **[Modding the Studio]({MODS_DOC})**.")
         A("")
         for e in extensions:
             src = f"https://github.com/{STUDIO_REPO}/tree/main/extensions/{e['name']}"
