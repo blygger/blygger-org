@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 14 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 15 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -55,6 +55,7 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 - **[Lineage glyph](https://github.com/blygger/blygger-studio/tree/main/extensions/lineage-glyph)** — A glyph in each reading byline for what a post draws on and what draws on it here, opening a hex view that shows what stub, quote, fork, link, history and open would each make. · needs your own build
 - **[Pinned-first home page](https://github.com/blygger/blygger-studio/tree/main/extensions/feed-example)** — Adds a home page order with pinned items at the top. Choose it under Settings → home page once enabled. · needs your own build
 - **[Reading time](https://github.com/blygger/blygger-studio/tree/main/extensions/reading-time)** — Shows an estimated reading time and word count at the end of each reading entry’s byline. · in every release
+- **[Word count](https://github.com/blygger/blygger-studio/tree/main/extensions/word-count)** — Shows each entry’s word count at the end of its byline, published and in draft, and for a thread whose list of links forms an outline, such as a table of contents, the words in the whole document under it. · needs your own build
 
 ## Unidentified clients
 
@@ -72,4 +73,4 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ---
 
-*Checked 2026-11-04.*
+*Checked 2026-11-05.*
