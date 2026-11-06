@@ -22,7 +22,9 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 - **[Ben Mayhew's blyg](https://github.com/Allethrin/benmayhew.com)** — [@Allethrin](https://github.com/Allethrin) · live: [benmayhew.com/blyg](https://benmayhew.com/blyg/)
 - **[cchalc-site](https://github.com/cchalc/site)** — [@cchalc](https://github.com/cchalc) · live: [featherandwire.dev/blyg](https://featherandwire.dev/blyg/)
 - **[msn](https://github.com/msmsim/msn)** — [@msmsim](https://github.com/msmsim) · live: [www.msweet.net/notes](https://www.msweet.net/notes/)
+- **[Notion Parallax](https://github.com/notionparallax/blog)** — [@notionparallax](https://github.com/notionparallax) · live: [notionparallax.co.uk](https://notionparallax.co.uk/)
 - **[sig-p4b-blyg](https://github.com/protocolvision/sig-p4b)** — [@protocolvision](https://github.com/protocolvision) · live: [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/)
+- **[The Liminal](https://github.com/EricLortie/liminal-blyg)** — [@EricLortie](https://github.com/EricLortie) · live: [ericlortie.github.io/liminal-blyg](https://ericlortie.github.io/liminal-blyg/)
 
 ## Integrations
 
@@ -61,15 +63,7 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 - `astro-gyoza/0.0.2` · live: [artlu.xyz](https://artlu.xyz/)
 - `dfnet-blyg/0.1` · live: [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/)
-- `notionparallax-blyg/0.1.0` · live: [notionparallax.co.uk](https://notionparallax.co.uk/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
-
-<!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
-     then add or deliberately skip each one:
-       EricLortie/liminal-blyg  (via name/desc/readme)
-       notionparallax/blog  (via code: blyg.json)
-       vgururao/newnature  (via name/desc/readme)
--->
 
 ---
 

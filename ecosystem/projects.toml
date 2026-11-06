@@ -39,6 +39,7 @@
 skip = [
   "chrisbodhi/newschematic",  # a site built with hugo-blyg (listed), not a project
   "akashtattva/blyg",  # the exported tree of a vanilla Blygger Studio (listing rule, session 57)
+  "vgururao/newnature",  # a book project on a vanilla Blygger Studio node (listing rule, session 60)
 ]
 
 # ─── Ours ──────────────────────────────────────────────────────────────────────
@@ -121,6 +122,24 @@ category = "bespoke"
 generator = "benmayhew-blyg/0.1.0"
 live = "https://benmayhew.com/blyg/"
 submitted = "census 2026-10-11 (sync_ecosystem.py search); the repo holds generated output, the generator is private"
+
+[[project]]
+repo = "notionparallax/blog"
+name = "Notion Parallax"
+category = "bespoke"
+generator = "notionparallax-blyg/0.1.0"
+live = "https://notionparallax.co.uk/"
+summary = "A Jekyll blog with its own Python generator (`_blyg/blyg.py`) that publishes the site as a static blyg."
+submitted = "census 2026-11-05 (sync_ecosystem.py search); listed from its repo and manifest"
+
+[[project]]
+repo = "EricLortie/liminal-blyg"
+name = "The Liminal"
+category = "bespoke"
+generator = "liminal-publication/0.1.0"
+live = "https://ericlortie.github.io/liminal-blyg/"
+summary = "A development journal published as a static blyg by its own generator, on GitHub Pages."
+submitted = "census 2026-11-05 (sync_ecosystem.py search); listed from its repo and manifest"
 
 [[project]]
 repo = "msmsim/msn"

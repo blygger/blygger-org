@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-05T23:38:02+00:00",
+ "checked": "2026-11-05T23:59:41+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -184,7 +184,7 @@
      "origin": "https://blyg.pioneeringspirit.xyz/",
      "title": "Pioneering Spirit (Blyg)",
      "protocol": "0.4",
-     "updated": "2026-11-05T21:51:13Z",
+     "updated": "2026-11-05T23:57:50Z",
      "generator_seen": "blygger-studio/0.52.0"
     }
    ],
@@ -746,23 +746,38 @@
    "homepage": null,
    "topics": [],
    "default_branch": "main"
+  },
+  "notionparallax/blog": {
+   "repo": "notionparallax/blog",
+   "description": null,
+   "language": "HTML",
+   "license": null,
+   "stars": 0,
+   "forks": 1,
+   "pushed_at": "2026-11-03T06:39:57Z",
+   "created_at": "2016-01-19T08:40:20Z",
+   "archived": false,
+   "homepage": "https://notionparallax.co.uk",
+   "topics": [],
+   "default_branch": "gh-pages"
+  },
+  "EricLortie/liminal-blyg": {
+   "repo": "EricLortie/liminal-blyg",
+   "description": "The Liminal development journal: official articles and a Blygger-compatible feed.",
+   "language": "HTML",
+   "license": null,
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-01T20:29:23Z",
+   "created_at": "2026-10-26T18:42:09Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
   }
  },
  "summaries": {},
- "discovered": [
-  {
-   "repo": "EricLortie/liminal-blyg",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "notionparallax/blog",
-   "via": "code: blyg.json"
-  },
-  {
-   "repo": "vgururao/newnature",
-   "via": "name/desc/readme"
-  }
- ],
+ "discovered": [],
  "extensions": [
   {
    "name": "inspect",
