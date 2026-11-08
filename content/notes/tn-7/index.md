@@ -560,4 +560,4 @@ Matthew McDowell-Sweet linked the RFC in passing in
 
 ---
 
-*Published from [blygger/blygger-spec@0bb8d3a](https://github.com/blygger/blygger-spec/commit/0bb8d3a).*
+*Published from [blygger/blygger-spec@3e986e3](https://github.com/blygger/blygger-spec/commit/3e986e3).*
