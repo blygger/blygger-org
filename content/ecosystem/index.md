@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 14 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 13 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -55,9 +55,10 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 - **[Inspect](https://github.com/blygger/blygger-studio/tree/main/extensions/inspect)** — Adds “inspect” to each reading entry’s ⋯ sheet: the record this Studio holds for it — ids, versions, references, hashes — and its JSON. · in every release
 - **[Lineage glyph](https://github.com/blygger/blygger-studio/tree/main/extensions/lineage-glyph)** — A glyph in each reading byline for what a post draws on and what draws on it here, opening a hex view that shows what stub, quote, fork, link, history and open would each make. · needs your own build
+- **[Main menu example](https://github.com/blygger/blygger-studio/tree/main/extensions/menu-example)** — Adds a page to the main menu, above compose. For trying the main-menu entry. · compile in to use
 - **[Pinned-first home page](https://github.com/blygger/blygger-studio/tree/main/extensions/feed-example)** — Adds a home page order with pinned items at the top. Choose it under Settings → home page once enabled. · needs your own build
 - **[Reading time](https://github.com/blygger/blygger-studio/tree/main/extensions/reading-time)** — Shows an estimated reading time and word count at the end of each reading entry’s byline. · in every release
-- **[Word count](https://github.com/blygger/blygger-studio/tree/main/extensions/word-count)** — Shows each entry’s word count at the end of its byline, published and in draft, and for a thread whose list of links forms an outline, such as a table of contents, the words in the whole document under it. · needs your own build
+- **[Word count](https://github.com/blygger/blygger-studio/tree/main/extensions/word-count)** — Shows each entry’s word count at the end of its byline and beside the character count while writing, published and in draft, and for a thread whose list of links forms an outline, such as a table of contents, the words in the whole document under it. · needs your own build
 
 ## Unidentified clients
 
@@ -65,6 +66,11 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 - `dfnet-blyg/0.1` · live: [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
 
+<!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
+     then add or deliberately skip each one:
+       florianlohse/blyg-obsidian  (via topic:blygger)
+-->
+
 ---
 
-*Checked 2026-11-06.*
+*Checked 2026-11-08.*

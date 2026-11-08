@@ -15,6 +15,8 @@ Usage:
   ./publish_releases.py                   announce tagged versions newer than the newest in the map
   ./publish_releases.py 0.35.1 0.36.0     announce exactly these (backfill; must be tagged)
   ./publish_releases.py --dry-run [...]   report what would be announced
+  ./publish_releases.py --batch [...]     one thread for every version announced in this run,
+                                          newest first; each version maps to that one item
   ./publish_releases.py --model ID        model credited in the item's generated[] (default below)
 
 Auth and the Blyg client are shared with publish_blyg.py. Stdlib only.
@@ -101,9 +103,29 @@ def announcement(version: str, date: str, title: str | None, body: str, model: s
     return pb.wrap(model, head + body) + "\n\n" + pb.wrap(pb.FOOTER_MODEL, foot)
 
 
+def batch_announcement(rows: list, model: str) -> str:
+    """One thread for several releases (Venkat, session 61): newest first, each under
+    its own heading with its date, its GitHub link and its whole section, Migrations
+    line included, so an operator reading one post sees every upgrade step."""
+    newest, oldest = rows[0][0], rows[-1][0]
+    head = (f"# Blygger Studio {oldest} to {newest}\n\n*{len(rows)} releases of the reference client, "
+            "newest first. Read each one's **Migrations** line before upgrading.*\n\n")
+    parts = []
+    for v, date, title, body in rows:
+        body = body.replace("[TK]", "TK")
+        body = re.sub(r"^## ", "#### ", re.sub(r"^### ", "#### ", body, flags=re.M), flags=re.M)
+        parts.append(f"## {v}" + (f": {title}" if title else "") +
+                     f"\n\n*Released {date}. [v{v} on GitHub]({RELEASES}v{v}).*\n\n{body}")
+    foot = ("*This announcement is drafted from the releases' sections of "
+            "[`CHANGELOG.md`](https://github.com/blygger/blygger-studio/blob/main/CHANGELOG.md), "
+            "which is where they are maintained. To comment, respond to this item from your own blyg.*")
+    return pb.wrap(model, head + "\n\n".join(parts)) + "\n\n" + pb.wrap(pb.FOOTER_MODEL, foot)
+
+
 def main() -> None:
     args = sys.argv[1:]
     dry = "--dry-run" in args
+    batch = "--batch" in args
     model = DEFAULT_MODEL
     if "--model" in args:
         i = args.index("--model"); model = args[i + 1]; del args[i:i + 2]
@@ -119,6 +141,7 @@ def main() -> None:
     else:
         sys.exit("map is empty: name the versions to announce (e.g. ./publish_releases.py 0.35.1)")
     blyg = None if dry else pb.Blyg()
+    rows = []
     for v in versions:
         if v not in tags: print(f"{v}: not tagged in blygger-studio; skipped"); continue
         if v not in secs: print(f"{v}: no CHANGELOG section; skipped"); continue
@@ -126,6 +149,9 @@ def main() -> None:
         date, title, _ = secs[v]
         date = date or tag_date(v)
         body = shipped(v, secs, tags)
+        if batch:
+            rows.append((v, date, title, body))
+            continue
         if dry: print(f"{v}: would announce ({len(body)} chars of changelog), released {date}" + (f", \"{title}\"" if title else "")); continue
         # Studio 0.49 (contract 5.0.0): camelCase bodies; publish names the observed revision.
         draft = blyg.api("POST", "/items", {"kind": "thread", "contentMd": announcement(v, date, title, body, model)})
@@ -134,6 +160,20 @@ def main() -> None:
         done[v] = {"id": item, "version": ver, "source_sha256": hashlib.sha256(body.encode()).hexdigest()}
         MAP.write_text(json.dumps(entries, indent=2) + "\n")
         print(f"{v}: published v{ver} -> {pb.BASE}/t/{item}/")
+    if batch and rows:
+        rows.sort(key=lambda r: vkey(r[0]), reverse=True)
+        names = ", ".join(r[0] for r in rows)
+        content = batch_announcement(rows, model)
+        if dry:
+            print(f"batch: would announce {names} as one thread ({len(content)} chars)")
+            return
+        draft = blyg.api("POST", "/items", {"kind": "thread", "contentMd": content})
+        item = draft["id"]
+        ver = blyg.api("POST", f"/items/{item}/publish", {"note": f"Studio {rows[-1][0]} to {rows[0][0]} released.", "expectedRevision": draft["revision"]})["version"]
+        for v, _, _, body in rows:
+            done[v] = {"id": item, "version": ver, "source_sha256": hashlib.sha256(body.encode()).hexdigest(), "batch": [r[0] for r in rows]}
+        MAP.write_text(json.dumps(entries, indent=2) + "\n")
+        print(f"batch {names}: published v{ver} -> {pb.BASE}/t/{item}/")
 
 
 if __name__ == "__main__":

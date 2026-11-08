@@ -11,7 +11,9 @@ new version of the same item, never as a hand-edited copy.
 
 The map lives in blygger-spec at docs/blyg-published.json: file -> item id,
 model, whether to pin each published version (RFCs: the version under comment
-is pinned), and the SHA-256 of the source last published.
+is pinned), and the SHA-256 of the source last published. An entry with
+"footer": "post" is a post (docs/posts/), and gets a footer without the RFC's
+invitation to counter-propose.
 
 Usage:
   ./publish_blyg.py              publish every entry whose source changed
@@ -43,6 +45,10 @@ def footer(entry: dict) -> str:
     if entry.get("canonical"):
         return (f"*This note's canonical text is at [{entry['canonical'].removeprefix('https://')}]({entry['canonical']}), "
                 f"and its source is {link} in blygger-spec. The page there is what the spec cites. "
+                "To comment, respond to this item from your own blyg.*")
+    if entry.get("footer") == "post":
+        # A post, not an RFC: nothing is under comment as a proposal (session 61).
+        return (f"*Source: {link} in blygger-spec, which is where revisions are made. "
                 "To comment, respond to this item from your own blyg.*")
     return (f"*Source: {link} in blygger-spec, which is where revisions are made; each one is "
             "published here as a new version. To comment, respond to this item from your own blyg: "

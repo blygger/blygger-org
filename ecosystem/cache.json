@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-06T00:01:27+00:00",
+ "checked": "2026-11-08T02:45:28+00:00",
  "census": {
   "goddinpotty-blyg/0.1": {
    "generator": "goddinpotty-blyg/0.1",
@@ -8,7 +8,7 @@
      "origin": "https://ammdi.hyperphor.com/blyg/",
      "title": "AMMDI Blyg",
      "protocol": "0.3",
-     "updated": "2026-11-05T09:02:50Z",
+     "updated": "2026-11-07T19:20:33Z",
      "generator_seen": "goddinpotty-blyg/0.1"
     }
    ],
@@ -53,22 +53,22 @@
     "0.4"
    ]
   },
-  "blygger-studio/0.51.0": {
-   "generator": "blygger-studio/0.51.0",
+  "blygger-studio/0.56.0": {
+   "generator": "blygger-studio/0.56.0",
    "nodes": [
     {
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.4",
-     "updated": "2026-11-04T18:14:28Z",
-     "generator_seen": "blygger-studio/0.51.0"
+     "updated": "2026-11-08T00:01:34Z",
+     "generator_seen": "blygger-studio/0.56.0"
     },
     {
-     "origin": "https://blyg.existingotherwise.org/",
-     "title": "Existing Otherwise",
+     "origin": "https://newnature.venkateshrao.com/",
+     "title": "New Nature",
      "protocol": "0.4",
-     "updated": "2026-11-04T15:58:59Z",
-     "generator_seen": "blygger-studio/0.51.0"
+     "updated": "2026-11-07T23:54:59Z",
+     "generator_seen": "blygger-studio/0.56.0"
     }
    ],
    "protocols": [
@@ -84,27 +84,6 @@
      "protocol": "0.4",
      "updated": "2026-11-02T23:03:15Z",
      "generator_seen": "blygger-studio/0.54.0"
-    },
-    {
-     "origin": "https://blyg.protocol-institute.org/",
-     "title": "Protocol Institute Blyg",
-     "protocol": "0.4",
-     "updated": "2026-10-29T19:46:22Z",
-     "generator_seen": "blygger-studio/0.54.0"
-    },
-    {
-     "origin": "https://newnature.venkateshrao.com/",
-     "title": "New Nature",
-     "protocol": "0.4",
-     "updated": "2026-11-03T04:36:47Z",
-     "generator_seen": "blygger-studio/0.54.0"
-    },
-    {
-     "origin": "https://venkateshrao.com/blyg/",
-     "title": "Venkatesh Rao's Blyg",
-     "protocol": "0.4",
-     "updated": "2026-11-05T03:01:09Z",
-     "generator_seen": "blygger-studio/0.54.0"
     }
    ],
    "protocols": [
@@ -118,14 +97,7 @@
      "origin": "https://blyg.bricolage.io/",
      "title": "Kyle's blyg",
      "protocol": "0.4",
-     "updated": "2026-11-04T02:47:45Z",
-     "generator_seen": "blygger-studio/0.53.0"
-    },
-    {
-     "origin": "https://vibhavbobade.xyz/blyg/",
-     "title": "Constructable Abstractables",
-     "protocol": "0.4",
-     "updated": "2026-11-04T23:41:20Z",
+     "updated": "2026-11-07T14:57:29Z",
      "generator_seen": "blygger-studio/0.53.0"
     }
    ],
@@ -133,15 +105,22 @@
     "0.4"
    ]
   },
-  "blygger-studio/0.49.1": {
-   "generator": "blygger-studio/0.49.1",
+  "blygger-studio/0.54.1": {
+   "generator": "blygger-studio/0.54.1",
    "nodes": [
+    {
+     "origin": "https://blyg.existingotherwise.org/",
+     "title": "Existing Otherwise",
+     "protocol": "0.4",
+     "updated": "2026-11-06T10:59:10Z",
+     "generator_seen": "blygger-studio/0.54.1"
+    },
     {
      "origin": "https://blyg.florianlohse.com/",
      "title": "florianlohse-blyg",
      "protocol": "0.4",
-     "updated": "2026-11-03T21:37:35Z",
-     "generator_seen": "blygger-studio/0.49.1"
+     "updated": "2026-11-07T15:31:23Z",
+     "generator_seen": "blygger-studio/0.54.1"
     }
    ],
    "protocols": [
@@ -162,8 +141,23 @@
      "origin": "https://caseyjr.org/blyg/",
      "title": "The Foxden \ud83e\udd8a",
      "protocol": "0.4",
-     "updated": "2026-11-05T23:05:39Z",
+     "updated": "2026-11-06T01:28:21Z",
      "generator_seen": "blygger-studio/0.50.0"
+    }
+   ],
+   "protocols": [
+    "0.4"
+   ]
+  },
+  "blygger-studio/0.57.0": {
+   "generator": "blygger-studio/0.57.0",
+   "nodes": [
+    {
+     "origin": "https://blyg.jdbb.net/",
+     "title": "[jdbb] studio blyg",
+     "protocol": "0.4",
+     "updated": "2026-11-05T12:55:33Z",
+     "generator_seen": "blygger-studio/0.57.0"
     }
    ],
    "protocols": [
@@ -177,8 +171,30 @@
      "origin": "https://blyg.pioneeringspirit.xyz/",
      "title": "Pioneering Spirit (Blyg)",
      "protocol": "0.4",
-     "updated": "2026-11-05T23:57:50Z",
+     "updated": "2026-11-07T20:58:33Z",
      "generator_seen": "blygger-studio/0.52.0"
+    }
+   ],
+   "protocols": [
+    "0.4"
+   ]
+  },
+  "blygger-studio/0.58.0": {
+   "generator": "blygger-studio/0.58.0",
+   "nodes": [
+    {
+     "origin": "https://blyg.protocol-institute.org/",
+     "title": "Protocol Institute Blyg",
+     "protocol": "0.4",
+     "updated": "2026-10-29T19:46:22Z",
+     "generator_seen": "blygger-studio/0.58.0"
+    },
+    {
+     "origin": "https://venkateshrao.com/blyg/",
+     "title": "Venkatesh Rao's Blyg",
+     "protocol": "0.4",
+     "updated": "2026-11-08T02:08:10Z",
+     "generator_seen": "blygger-studio/0.58.0"
     }
    ],
    "protocols": [
@@ -230,21 +246,6 @@
     "0.4"
    ]
   },
-  "blyg-ref/0.3.0": {
-   "generator": "blyg-ref/0.3.0",
-   "nodes": [
-    {
-     "origin": "https://blyg.thoughtfolio.xyz/",
-     "title": "blyg",
-     "protocol": "0.3",
-     "updated": "2026-09-26T15:01:07Z",
-     "generator_seen": "blyg-ref/0.3.0"
-    }
-   ],
-   "protocols": [
-    "0.3"
-   ]
-  },
   "Blynger/0.15.8": {
    "generator": "Blynger/0.15.8",
    "nodes": [
@@ -252,7 +253,7 @@
      "origin": "https://bradydale.com/blyg/",
      "title": "Brady Dale's blyg",
      "protocol": "0.4",
-     "updated": "2026-11-05T17:54:36Z",
+     "updated": "2026-11-07T21:16:58Z",
      "generator_seen": "Blynger/0.15.8"
     }
    ],
@@ -357,7 +358,7 @@
      "origin": "https://rslantonie.com/blyg/",
      "title": "mundane stem",
      "protocol": "0.4",
-     "updated": "2026-11-04T15:07:16Z",
+     "updated": "2026-11-07T01:02:17Z",
      "generator_seen": "blyxt/0.2.0"
     }
    ],
@@ -387,7 +388,7 @@
      "origin": "https://www.msweet.net/notes/",
      "title": "Notes | Matthew McDowell-Sweet",
      "protocol": "0.3",
-     "updated": "2026-11-05T17:57:41Z",
+     "updated": "2026-11-07T21:07:47Z",
      "generator_seen": "msn-build/0.1"
     }
    ],
@@ -419,7 +420,7 @@
    "license": "NOASSERTION",
    "stars": 8,
    "forks": 10,
-   "pushed_at": "2026-11-06T00:00:04Z",
+   "pushed_at": "2026-11-08T02:31:11Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -475,7 +476,7 @@
    "license": "MIT",
    "stars": 4,
    "forks": 3,
-   "pushed_at": "2026-11-04T05:35:10Z",
+   "pushed_at": "2026-11-08T00:10:44Z",
    "created_at": "2026-09-25T15:44:30Z",
    "archived": false,
    "homepage": "https://aneeshsathe.github.io/blygger-desktop/",
@@ -607,7 +608,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-11-04T01:19:10Z",
+   "pushed_at": "2026-11-06T08:14:56Z",
    "created_at": "2026-10-06T04:50:51Z",
    "archived": false,
    "homepage": null,
@@ -770,7 +771,12 @@
   }
  },
  "summaries": {},
- "discovered": [],
+ "discovered": [
+  {
+   "repo": "florianlohse/blyg-obsidian",
+   "via": "topic:blygger"
+  }
+ ],
  "extensions": [
   {
    "name": "inspect",
@@ -785,6 +791,13 @@
    "description": "A glyph in each reading byline for what a post draws on and what draws on it here, opening a hex view that shows what stub, quote, fork, link, history and open would each make.",
    "shipped": false,
    "server": true
+  },
+  {
+   "name": "menu-example",
+   "label": "Main menu example",
+   "description": "Adds a page to the main menu, above compose. For trying the main-menu entry.",
+   "shipped": false,
+   "server": false
   },
   {
    "name": "feed-example",
@@ -803,7 +816,7 @@
   {
    "name": "word-count",
    "label": "Word count",
-   "description": "Shows each entry\u2019s word count at the end of its byline, published and in draft, and for a thread whose list of links forms an outline, such as a table of contents, the words in the whole document under it.",
+   "description": "Shows each entry\u2019s word count at the end of its byline and beside the character count while writing, published and in draft, and for a thread whose list of links forms an outline, such as a table of contents, the words in the whole document under it.",
    "shipped": false,
    "server": true
   }
