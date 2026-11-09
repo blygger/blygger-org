@@ -67,10 +67,10 @@ summary = "The reference client. A Cloudflare Worker that publishes a blyg, subs
 repo = "BradyDale/Blynger"
 name = "Blynger"
 category = "client"
-generator = "Blynger/0.15.8"
+generator = "Blynger/0.15.9"
 # Every version a live node has been seen reporting. Blynger bumps often, so
 # each new release needs its old string added here or it reads as unidentified.
-generator_aliases = ["Blynger/0.12.0", "Blynger/0.9.31", "Blynger/0.9.21", "Blynger/0.8.2"]
+generator_aliases = ["Blynger/0.15.8", "Blynger/0.12.0", "Blynger/0.9.31", "Blynger/0.9.21", "Blynger/0.8.2"]
 live = "https://bradydale.com/blyg/"
 submitted = "census 2026-09-28; repo from Brady Dale, blygger-org#2 (2026-10-04)"
 summary = "Brady Dale's independent client, on its own version line. Publishes protocol 0.3. Its robot badge for generated text is the convention Blygger Studio adopted in 0.27.0."
@@ -223,6 +223,12 @@ submitted = "found by sync_ecosystem.py search 2026-10-06"
 repo = "miguelito4/static-to-studio"
 category = "tool"
 submitted = "search 2026-09-28; confirmed in use 2026-10-06"
+
+[[project]]
+repo = "florianlohse/blyg-obsidian"
+name = "Blyg for Obsidian"
+category = "tool"
+submitted = "found by sync_ecosystem.py (topic:blygger) 2026-11-09"
 
 # ─── Mods — a modified copy of blygger-studio ──────────────────────────────────
 
