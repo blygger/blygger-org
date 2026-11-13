@@ -56,11 +56,13 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 Optional features for the reference client. Each is reviewed code in the Studio repository: an operator compiles it into their build and the owner turns it on in Settings. Nothing is installed or loaded at run time, and an extension never changes what a blyg publishes. **[How to write one](https://github.com/blygger/blygger-studio/blob/main/docs/extensions.md)**. Where a mod can live, and which hooks the Studio will add for one: **[Modding the Studio](https://github.com/blygger/blygger-studio/blob/main/docs/mods.md)**.
 
+- **[Held-out paragraphs example](https://github.com/blygger/blygger-studio/tree/main/extensions/regions-example)** — Hides paragraphs that start with \[held\]: # in the full editor, read-only when shown. For trying editor regions. · compile in to use
 - **[Inspect](https://github.com/blygger/blygger-studio/tree/main/extensions/inspect)** — Adds “inspect” to each reading entry’s ⋯ sheet: the record this Studio holds for it — ids, versions, references, hashes — and its JSON. · in every release
 - **[Lineage glyph](https://github.com/blygger/blygger-studio/tree/main/extensions/lineage-glyph)** — A glyph in each reading byline for what a post draws on and what draws on it here, opening a hex view that shows what stub, quote, fork, link, history and open would each make. · needs your own build
 - **[Main menu example](https://github.com/blygger/blygger-studio/tree/main/extensions/menu-example)** — Adds a page to the main menu, above compose. For trying the main-menu entry. · compile in to use
 - **[Pinned-first home page](https://github.com/blygger/blygger-studio/tree/main/extensions/feed-example)** — Adds a home page order with pinned items at the top. Choose it under Settings → home page once enabled. · needs your own build
 - **[Reading time](https://github.com/blygger/blygger-studio/tree/main/extensions/reading-time)** — Shows an estimated reading time and word count at the end of each reading entry’s byline. · in every release
+- **[Top of the menu example](https://github.com/blygger/blygger-studio/tree/main/extensions/menu-top-example)** — Adds a page to the top of the main menu, above reading. For trying menu zones. · compile in to use
 - **[Word count](https://github.com/blygger/blygger-studio/tree/main/extensions/word-count)** — Shows each entry’s word count at the end of its byline and beside the character count while writing, published and in draft, and for a thread whose list of links forms an outline, such as a table of contents, the words in the whole document under it. · needs your own build
 
 ## Unidentified clients
