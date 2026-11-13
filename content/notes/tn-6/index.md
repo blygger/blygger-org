@@ -769,4 +769,4 @@ conclusion is unchanged.
 
 ---
 
-*Published from [blygger/blygger-spec@3e986e3](https://github.com/blygger/blygger-spec/commit/3e986e3).*
+*Published from [blygger/blygger-spec@23ba7c5](https://github.com/blygger/blygger-spec/commit/23ba7c5).*

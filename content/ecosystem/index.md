@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 15 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 14 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -23,6 +23,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 - **[cchalc-site](https://github.com/cchalc/site)** — [@cchalc](https://github.com/cchalc) · live: [featherandwire.dev/blyg](https://featherandwire.dev/blyg/)
 - **[msn](https://github.com/msmsim/msn)** — [@msmsim](https://github.com/msmsim) · live: [www.msweet.net/notes](https://www.msweet.net/notes/)
 - **[Notion Parallax](https://github.com/notionparallax/blog)** — [@notionparallax](https://github.com/notionparallax) · live: [notionparallax.co.uk](https://notionparallax.co.uk/)
+- **[Shingai Thornton's blyg](https://github.com/rsthornton/blyg)** — [@rsthornton](https://github.com/rsthornton) · live: [blyg.shingai.xyz](https://blyg.shingai.xyz/)
 - **[sig-p4b-blyg](https://github.com/protocolvision/sig-p4b)** — [@protocolvision](https://github.com/protocolvision) · live: [protocolsforbusiness.com/blyg](https://protocolsforbusiness.com/blyg/)
 - **[The Liminal](https://github.com/EricLortie/liminal-blyg)** — [@EricLortie](https://github.com/EricLortie) · live: [ericlortie.github.io/liminal-blyg](https://ericlortie.github.io/liminal-blyg/)
 
@@ -48,6 +49,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Readers and aggregators
 
+- **[blyg-atlas](https://github.com/Allethrin/blyg-atlas)** — [@Allethrin](https://github.com/Allethrin)
 - **[blyg-watch](https://github.com/halcyonic-systems/blyg-watch)** — [@halcyonic-systems](https://github.com/halcyonic-systems)
 
 ## Blygger Studio extensions
@@ -69,4 +71,4 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ---
 
-*Checked 2026-11-09.*
+*Checked 2026-11-13.*

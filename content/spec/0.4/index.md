@@ -270,6 +270,20 @@ and remains conformant (§15.7). A **reader** conforms at L1 by following the
 rules in §§12–13, and at L2 by additionally honouring the cross-origin
 provenance rules of §10.3.
 
+**What conformance costs** *(non-normative; revision of 2026-11-12, decision
+#103)*. A rule enters this document only if a **reader or receiver** can
+meet it with what a programming language's standard library provides — JSON,
+XML, HTTP, SHA-256, URL parsing, iteration over code points. A **publisher**
+is assumed to hold, in addition, what publishing already takes: a markdown
+renderer, and a URL library if it mounts at an internationalized address.
+Two habits follow, and later text is written to them: a rule states a
+**property of a value** (an origin string is ASCII) in preference to an
+algorithm that produces it (apply IDNA), so that checking costs nothing
+even where producing costs something; and **correctness is a MUST while
+quality is a SHOULD** (a truncation never yields an unpaired surrogate; it
+ought not to split a grapheme cluster, which takes a segmenter). This is a
+test applied to new rules, not a claim that every older sentence passes it.
+
 ### 3.1 The protocol version key
 
 Manifests and item documents carry a `"blyg"` key naming the spec version
@@ -441,6 +455,24 @@ other member is unknown and ignored (§13.1 rule 4).
 - `content_hash` MUST be `"sha256:" + hex(SHA-256(content_md as UTF-8))`,
   computed per published version. It covers `content_md` **only** — not
   `author`, not media bytes, not `content_html`.
+- **The hash is over the bytes served, and that is deliberate** (revision of
+  2026-11-12, decision #103). Two spellings of the same visible text — a
+  composed `é` and an `e` followed by a combining accent — are different
+  bytes and have different hashes; the hash says the bytes are the
+  publisher's, not that no other bytes would look the same. A publisher
+  SHOULD publish `content_md` in Unicode Normalization Form C, which is what
+  nearly every input path already produces, so that a quoted selection
+  (§10.2) and a search match what the eye sees. A reader MUST NOT normalize
+  an imported `content_md`: it would then hold bytes the hash does not
+  cover. Published versions are never renormalized after the fact, and a
+  pinned file (§8) is never rewritten.
+- **`content_md` is text** (same revision). A publisher MUST NOT publish a
+  `content_md` containing a C0 control character other than tab (U+0009),
+  line feed (U+000A) and carriage return (U+000D), or an unpaired surrogate,
+  and SHOULD NOT publish one containing U+FFFE or U+FFFF. None can appear in
+  well-formed XML, so one such character makes the publisher's whole
+  `feed.xml` (§7) unparseable for every subscriber with a strict parser. A
+  reader that meets one treats the document as malformed input (§13.2).
 - An id names an item, not an origin. Ids are generated with enough entropy
   that two origins producing the same id is not a real case; readers
   nonetheless scope every id to the origin it was learned from (§13.1), and a
@@ -459,8 +491,9 @@ other member is unknown and ignored (§13.1 rule 4).
 - Only the **latest** version's content is served in the item document. Older
   content is withheld — the publisher's history stays private by default —
   unless a version is pinned (§8). The `changelog` is metadata (version, time,
-  optional note, optional `"pinned": true`, optional `"generated": true`),
-  never diffs or content.
+  optional note, optional `"pinned": true`, optional `"generated": true`);
+  it has no member for a diff or for content, and the one rule about what a
+  note may say is the depth rule that follows.
   **A note describes a change — or, when the author chooses, the changes
   so far — and never reproduces withheld content** (revision of 2026-11-07,
   decision #95). A note that quotes the prior version's text is a diff by another name and
@@ -506,7 +539,15 @@ other member is unknown and ignored (§13.1 rule 4).
   into other origins' threads (§10.2). Readers MAY resolve a relative URL
   against the document's origin on import as a defensive measure and MUST
   NOT depend on one being present. `media[].url` (§5.4) is unaffected: it is
-  a structured field readers resolve.
+  a structured field readers resolve. **A relative URL the author wrote in
+  `content_md` resolves, by RFC 3986, against the item's identity origin**
+  (revision of 2026-11-12, decision #102) — the one base this protocol
+  defines, and the one `page` and `media[].url` already resolve against;
+  never the item's page or its document's address, which a publisher may
+  place anywhere (§5.8, §6.1). *(Non-normative: an origin-relative spelling,
+  `media/x.png`, follows the blyg if it moves; a host-rooted one,
+  `/blyg/media/x.png`, puts the mount inside the hashed source and does
+  not.)*
 
 ### 5.3 Kinds
 
@@ -516,7 +557,29 @@ other member is unknown and ignored (§13.1 rule 4).
 - Fragments: publishers SHOULD cap `content_md` at 2,000 characters
   (RECOMMENDED studio-enforced cap: 1,000). Enforcement is publisher-side only —
   readers MUST NOT reject long fragments.
-- Threads additionally carry `transclusions` (§10.3).
+- **A cap stated in characters counts Unicode code points** (revision of
+  2026-11-12, decision #103): the two above and the `cited.excerpt` cap
+  (§5.9). A **truncation** — to a cap, for a derived feed title (§7), for
+  an excerpt — MUST NOT produce an unpaired surrogate, and SHOULD NOT split
+  an extended grapheme cluster (UAX #29). The first is correctness and
+  costs a range check; the second is quality and takes a segmenter, and an
+  implementation without one conforms (§3). A client's visible counter may
+  count what its author sees; the cap is the conformance line.
+- Threads additionally carry `transclusions` (§10.3). A thread that quotes
+  nothing is a valid thread.
+- **An item's kind is fixed at its first publication** (revision of
+  2026-11-12, decision #100). A publisher MUST NOT publish a version of a
+  fragment as a thread, or of a thread as a fragment. Withdrawal (§9) is the
+  one change of kind, and reversing it returns the item to the kind it had.
+  A fragment is a statement that others build on: whoever quotes it gets one
+  layer, in one origin's words, of bounded length. If it could become a
+  thread, a quoting thread's next republish (§10.2) would bake in whatever
+  the former fragment had come to quote — words of third parties the quoting
+  author never chose, which that author's `transclusions[]` does not name. A
+  fragment that needs to quote or to outgrow the cap is quoted by a new
+  thread; a link (§10.1) brings no foreign bytes into anyone's bake and is
+  unaffected. A client that creates items on an author's behalf SHOULD
+  create threads, since only the author can say that an item is a leaf.
 - **Items are titleless.** No kind carries a title field, and none is
   reserved. The feed's `<title>` element is derived (§7); a leading markdown
   heading in `content_md` is content, not a title, and readers MUST NOT
@@ -669,7 +732,9 @@ reaches the wire. The hash covers exactly what readers read. What the wire
 gains is generation's **provenance shadow**: a publisher whose version
 contains machine-generated prose SHOULD disclose it via an OPTIONAL top-level
 `"generated"` array, parallel to `transclusions`, one entry per generated
-span in document order:
+span in document order (a span is one generation's output; a quote that
+interrupts it divides its wrapper in `content_html`, below, and not its
+entry):
 
 ```json
 "generated": [
@@ -700,8 +765,8 @@ Rules:
    authoring state — instructions are studio-private, permanently. Disclosure
    covers what was produced and from what, never how it was asked for.
 3. **A source is not a transclusion.** Drawn-upon material is woven into new
-   prose, not quoted: source references never appear in `transclusions` and
-   never produce a `blyg-transclusion` blockquote. Verbatim, visible, cited
+   prose, not quoted: a source reference MUST NOT appear in `transclusions`
+   and MUST NOT produce a `blyg-transclusion` blockquote. Verbatim, visible, cited
    quotation remains exclusively transclusion (§10). The two disclosures are
    disjoint by construction.
 4. The key is omitted entirely when the version involved no generation, and a
@@ -753,7 +818,16 @@ renderer MUST wrap each generated span in `content_html` as
 `content_html`, like `blyg-transclusion` (§10.2), and cannot be renamed. No
 data attributes are REQUIRED: span-level source mapping is deliberately not
 promised (the JSON provenance is version-level and robust; span-level claims
-would be brittle across the author's post-generation edits). Styling the
+would be brittle across the author's post-generation edits). **A baked
+quote is never inside the wrapper** (revision of 2026-11-12, decision
+#102). Generated output may carry a directive on a line of its own, which
+transcludes at publish like any other (§10.1); the publisher MUST close the
+`blyg-tk-gen` wrapper before the `blyg-transclusion` blockquote and reopen
+it after, so that no quoted word is marked as machine-generated — rule 3's
+disjointness, kept in the HTML as it is in the JSON. The span still has one
+`generated[]` entry: an entry is one generation, a wrapper is a run of its
+words, and nothing maps one to the other. Generated spans inside the quoted
+item's own HTML are that item's disclosure and are baked untouched. Styling the
 class is presentation, any client's free choice. A client that makes
 generated spans visible SHOULD say, wherever it explains the mark, that the
 disclosure is the publisher's own and unverified (rule 6); a tint that reads
@@ -772,7 +846,10 @@ human-readable permalink**, origin-relative and resolved against the origin
   presentation, and readers that built links to remote items had to guess at
   a convention. Readers SHOULD use `page` when present, and MAY fall back to
   the reference convention (`f/{id}/` for fragments, `t/{id}/` for threads)
-  when it is absent.
+  when it is absent. The fallback is for a reader's own interface, where a
+  wrong guess costs one click; nothing published is built from it — not a
+  mention's target (§15.2) and not a link's `href` (§10.1), which name the
+  item document instead.
 - The reference client always emits it. It is optional for conformance —
   a blyg with no HTML pages at all is still a blyg.
 - `page` is emitted for withdrawn items too (§9): the endcap's page is 200
@@ -824,7 +901,8 @@ Four constructs in this version name a version of an item at an origin —
   is defined.
 - The three members above are the whole of a reference's **machine-readable
   identity**, and they are the only members anything in this protocol
-  verifies or compares. A reference MAY additionally carry the human half of
+  verifies or compares. Origins are compared byte for byte, which is sound
+  because an origin string has one spelling (§12.2). A reference MAY additionally carry the human half of
   a citation, `cited`, defined next — and nothing else.
 
 **The human half of a citation — `cited` (new in 0.3).** A reference names a
@@ -1084,9 +1162,9 @@ Rules:
   `content_html`.)
 - When an item's `author.name` is present, the publisher SHOULD emit
   `<dc:creator>` (`xmlns:dc="http://purl.org/dc/elements/1.1/"`) with the
-  display name — the standard RSS byline. The opaque `author` object itself
-  never appears in the XML: the state plane is ground truth, the feed is a
-  signal.
+  display name — the standard RSS byline. A publisher SHOULD NOT serialize
+  the opaque `author` object itself into the XML: the state plane is ground
+  truth, the feed is a signal.
 - `pubDate`/`lastBuildDate` use RFC 822 format; `blyg:*` timestamps stay
   ISO 8601.
 - **`<blyg:manifest>` is the feed's upgrade hook**: it is what lets a plain
@@ -1098,7 +1176,8 @@ Rules:
   `0.1` inside it is part of the spelling, not a version claim, and it stays
   unchanged across protocol versions. Later versions add elements to this
   same namespace under the reader ignore rule (§13.1); the protocol version
-  signal is the manifest's `blyg` key (§3.1), never the namespace.
+  signal is the manifest's `blyg` key (§3.1), never the namespace: a reader
+  MUST NOT read the namespace URI as a version.
 
 ## 8. Pins — `items/{id}/v{n}.json`
 
@@ -1218,9 +1297,10 @@ draft is a hard delete — nothing was ever public.)
 Withdrawing publishes a permanent **endcap**: a version bump with
 `content_md` = `""`, `content_html` = `""`, `media` = `[]`, an optional note,
 `"kind": "withdrawn"`, `updated` set, and the changelog retained plus the endcap
-entry. For threads, the endcap also empties `transclusions` to `[]` (§10.4)
-and omits `stub_of` (§10.6); an endcap never carries a `generated` array
-(§5.7). **The endcap keeps `page` and `forked_from`**: the endcap empties
+entry. For threads, the endcap also empties `transclusions` to `[]` (§10.4).
+An endcap MUST NOT carry `stub_of` (§10.6) or a `generated` array (§5.7):
+mention verification relies on the first (§15.4), and neither describes a
+document with no words. **The endcap keeps `page` and `forked_from`**: the endcap empties
 what the item *said*, and where an item lives and where it came from are
 not what it said.
 
@@ -1256,7 +1336,25 @@ fetch.
   (surrounding whitespace allowed; a label allowed after the id, below)
   is a **transclusion directive**: `![[7c9wk2mhq0v3xj8tn5rzfd41bg]]`. The
   grammar is line-based, and a line ends at LF or CRLF alike (revision of
-  2026-10-17, decision #76).
+  2026-10-17, decision #76). **Where code is, is CommonMark's to say**
+  (revision of 2026-11-12, decision #102): a line inside a code block by
+  CommonMark's block structure — fenced, or indented by four columns or a
+  tab where that makes an indented code block — is not a directive, and
+  outside a code block leading and trailing whitespace of any amount is
+  ignored. A tab-indented directive line at the start of a document is
+  therefore code; the same line directly under a paragraph line, where
+  CommonMark makes no code block, is a directive.
+- **A directive belongs to a thread** (revision of 2026-11-12, decision
+  #102). A fragment carries no `transclusions` (§10.3) and can never become
+  a thread (§5.3), so a directive line in a fragment could be nothing but a
+  directive with no bake and no provenance — and the grammar would read
+  differently according to the document's kind. A publisher MUST NOT publish
+  a fragment whose `content_md` contains a directive line; it is a publish
+  error, as an unresolvable directive is. An author who means to quote
+  writes a thread; one who means to show the grammar writes it in code.
+  Fragments published before this revision that carry such a line are read
+  as they always were, as literal text (readers never resolve, §10.2), and
+  fail at their next republish.
 - A transclusion directive immediately followed, with no blank line, by a
   markdown blockquote is a **partial transclusion** (revision of 2026-10-03,
   decision #49): the blockquote's text is the **selection**, and §10.2 says
@@ -1282,7 +1380,10 @@ fetch.
   sequence is inert text.
 - `![[id@vN]]` (explicit version) is **reserved**: publishers at this
   version MUST reject it at publish time; readers MUST tolerate it as an
-  unknown construct.
+  unknown construct. The reservation is of the **directive**, a line of its
+  own, with or without a label: inline or inside code the sequence is inert
+  text exactly as the unversioned one is, and publishes (revision of
+  2026-11-12, decision #102).
 - The directive names an **identity**, not an origin: there is no origin
   spelling in the grammar, and none is planned. That is what lets a thread be
   moved, mirrored, or re-hosted without rewriting its source; which origin a
@@ -1296,7 +1397,13 @@ fetch.
   ordinary anchor whose `href` is the **absolute** URL of the target's page
   (§5.8) — absolute because `content_html` travels to subscribers (§7); the
   anchor text is the label when the author wrote one (below), else the
-  publisher's choice. It is **disclosed on the wire**
+  publisher's choice. When the publisher holds no `page` for the target, the
+  `href` is the absolute URL of the target's **item document**, through the
+  target's `item` template or the default (§6.1), and MUST NOT be built from
+  the permalink convention (revision of 2026-11-12, decision #102): the
+  document always exists, the conventional page may not, and a guess is
+  never baked into published bytes — the rule §15.2 already gives a mention
+  sender in the same position. It is **disclosed on the wire**
   (revision of 2026-10-19, decision #79, which reverses #32): each resolved
   link produces one `links[]` entry (§10.3a) and, when the target is remote,
   SHOULD send a mention (§15.2) whose relation is `link` — a **notice**, the
@@ -1332,7 +1439,10 @@ fetch.
   flattener — MAY use it as the anchor text of its attribution line. It
   reaches nothing else: not `transclusions[]`, not the target. A reader MUST
   NOT present it as the target item's title, or as anything but the quoter's
-  words (§5.3, decision #46). There is no escape: a label cannot contain `]]`, and one that
+  words (§5.3, decision #46). **A label is plain text in both forms**
+  (revision of 2026-11-12, decision #102): no markdown and no HTML in it is
+  interpreted, and the publisher escapes it wherever it bakes it — as a
+  link's anchor text exactly as in `data-blyg-label`. There is no escape: a label cannot contain `]]`, and one that
   would is rewritten. A client MAY tell the author when a label no longer
   resembles its target, as a courtesy; the protocol checks nothing, because
   a label is the author's words, not a claim about the target (compare
@@ -1353,7 +1463,10 @@ fetch.
 ### 10.2 Publish-time resolution
 
 Resolution happens in the studio at publish time; **readers never resolve
-anything**.
+anything**. A reader MUST NOT resolve a directive or a link in another
+origin's `content_md` in order to display the item: what a quote says is
+what its publisher baked (§10.4). The re-check of a partial quote below and
+the staleness check of §5.9 compare; they do not replace what is shown.
 
 **Resolution order.** Each directive MUST resolve, in this order, to:
 
@@ -1371,14 +1484,23 @@ anything**.
    nothing retained, and L0 rows are publish errors. **More than one imported
    match MUST be a publish error**, never a guess — the directive names an
    identity, and the publisher does not pick an origin on the author's
-   behalf. A **local** id — a draft or a published item — never falls
+   behalf. A **local** id — a draft or a published item — MUST NOT fall
    through to step 2: an imported document with the same id as a local item
    is the ambiguity §5.1 describes, and a directive naming it is a publish
    error (decision #76).
 
 **The local snapshot is what gets baked — never a live fetch.** Resolution
 snapshots the target's latest version *as the publisher holds it*: its
-rendered HTML is baked into the thread's `content_html`, wrapped as
+rendered HTML is baked into the thread's `content_html`. For an item
+withdrawn at its origin and pin-retained (step 2), that is the **retained
+version** — the highest pinned version the publisher holds — and it is that
+version's number the bake and its `transclusions[]` entry carry, never the
+endcap's, which has no words to quote (revision of 2026-11-12, decision
+#102). The held HTML is baked as it is, with one exception: a URL in it
+that is not absolute — the source was non-conformant, §5.2 — MUST be
+resolved against the **source's** identity origin before the bake, so that
+the baking item's own `content_html` meets §5.2 whoever failed it first.
+The bake is wrapped as
 
 ```html
 <blockquote class="blyg-transclusion"
@@ -1460,7 +1582,7 @@ Consequences of the snapshot rule, all deliberate:
   deeper layers are inspectable in the baked HTML's data attributes.
 - **One local closure check.** A thread MUST NOT transclude a local thread
   whose transitive *local* transclusion closure contains the publishing
-  thread's own id. The closure is walked through the **versions actually
+  thread's own id. The closure MUST be walked through the **versions actually
   baked** — from each `transclusions[]` entry to that version's own
   `transclusions[]`, which the publisher holds, since it holds its own
   history — never through the targets' current documents, which would let a
@@ -1521,7 +1643,8 @@ version:
                   "prefix": "is the whole point. ", "suffix": ", and the reason" } }
   ```
 
-  Mention verification (§15.4) ignores it, as it ignores `cited`; a reader
+  Mention verification (§15.4) MUST NOT consult it, as it does not consult
+  `cited`; a reader
   that ignores it entirely remains conformant, because readers display baked
   HTML and never resolve. The relation is `transclusion` and staleness is
   §5.9's check, unchanged — which is why this entered the 0.3 text as a
@@ -1561,7 +1684,8 @@ top-level `"links"` array, in document order, one entry per link:
   omits it.
 - A remote entry is a **remote reference** for §15.2 and SHOULD send a
   mention, whose relation is `link` (§15.4): a notice, never a response
-  (§15.5). Same-origin entries never generate mentions.
+  (§15.5). A sender SHOULD NOT send a mention for a same-origin entry, here
+  or for any other reference (§15.2): there is nobody to tell.
 - A markdown link to a blyg page is not an entry (§10.1): the array records
   the bracket grammar and nothing else, and a publisher MUST NOT populate it
   by inspecting HTML. The silent citation is a feature, not a gap.
@@ -1655,7 +1779,9 @@ Rules:
    is two stubs.
 2. **The body is the author's.** The protocol never requires the body to
    transclude the target. `stub_of` is the machine-readable response marker,
-   and readers rely on it, never on body inspection. A stub whose body
+   and readers and receivers MUST NOT infer a stub relation from the body,
+   in either direction (inspecting the body to class a verified mention as
+   a repost, §15.4, changes its class and never its relation). A stub whose body
    contains no quote of its target is a *response by link*, which is
    legitimate and verifies as a stub (§15.4). (The reference client's stub
    action always starts the body with `![[id]]` for a blyg target, because a
@@ -1665,7 +1791,7 @@ Rules:
    target, `stub_of.version` MUST equal the version actually baked
    (§10.3); otherwise it keeps the value it last had — at creation, what the
    author saw; after a version that quoted the target, the version baked
-   then. The value is monotonic and never moves backwards (decision #76,
+   then. The value is monotonic: it MUST NOT decrease (decision #76,
    conformance finding F17). The two can never disagree on a published
    document.
 4. `stub_of` lives on **versions**, like `transclusions`: a pinned version of
@@ -1825,13 +1951,30 @@ subscription `{ feed_url }` (L0), or failure with the list of URLs tried.
 
 ### 12.2 Subscription identity
 
+- **An origin string has one spelling, and origins are compared byte for
+  byte** (revision of 2026-11-12, decision #103). An origin written into any
+  document — a document's own `origin`, a reference (§5.9), `moved_from`, a
+  baked `data-blyg-origin` — MUST consist of ASCII characters only, with the
+  scheme and host in lowercase, an internationalized host in its A-label
+  (`xn--`) form, no default port, a path percent-encoded from its UTF-8
+  bytes with uppercase hexadecimal digits, a final `/`, and no query or
+  fragment. This is what a WHATWG URL parser serializes, and an
+  implementation without one MUST write the same string. The path's case is
+  significant and is never folded. The rule is stated as a property so that
+  checking it takes no library (§3); only a publisher that mounts at an
+  internationalized host or a non-ASCII path has anything to convert. A URL
+  taken from the network — a final fetch URL, a mention's source — is put
+  into this form before it is compared with a written origin (§15.4 step 2
+  names the same folding). Until this revision, that two readers of one blyg
+  write the same string was true of readers built on one URL library and
+  promised of all.
 - **Subscription identity is the final fetch origin**: the URL the manifest
   was actually fetched from, minus its last path segment — `blyg.json` at
   the default location — after following redirects. A publisher whose
   manifest is named at `/wp-json/blyg/v1/manifest` (and served at
   `/wp-json/blyg/v1/blyg.json` too, §12.1 step 4) has the identity origin
   `/wp-json/blyg/v1/`; every reference to it names that string (§5.9), and
-  so it must be as stable as any origin (new in 0.4: the 0.3 rule, stated
+  so changing it is a move like any origin's (§16.13) (new in 0.4: the 0.3 rule, stated
   without the filename). The manifest's self-asserted `site` is
   display-advisory only. If `site`
   disagrees with the fetch origin, the reader SHOULD surface the discrepancy
@@ -1913,8 +2056,8 @@ most failure modes structurally:
 - **Clock skew is irrelevant to correctness.** Rollup is driven by version
   numbers, never timestamps. Remote timestamps are display material.
 - **Malformed input degrades; it never corrupts.** An unparseable feed skips
-  the trigger and goes straight to an index diff. An unparseable *entry* is
-  skipped individually — the containing feed is not rejected (the §13.1
+  the trigger and goes straight to an index diff. An unparseable *entry*
+  SHOULD be skipped individually — the containing feed is not rejected (the §13.1
   ignore ethos, applied to syntax). Poll failures of any kind MUST NOT alter
   stored item state.
 - The feed never mutates state directly: an interesting entry — including a
@@ -1934,8 +2077,8 @@ most failure modes structurally:
   the edit. A version whose text differs from its predecessor by less than a
   **reader-local** threshold MAY be treated under the clause above — queued
   low, not resurfaced as new, state advanced as for any version. The
-  threshold is never on the wire and never advertised, so that no author can
-  write to it; the author's own lever is to hold a small edit for the next
+  threshold has no place on the wire, and a client SHOULD NOT advertise it
+  anywhere, so that no author can write to it; the author's own lever is to hold a small edit for the next
   publish worth an event (draft saves are invisible, §5.2). Keep it small:
   one word can negate a sentence, which is also why nothing is ever omitted,
   only queued.
@@ -1966,6 +2109,13 @@ The highest version ever observed per imported item is a monotonic
   without the version bump the protocol requires. Content ground truth wins:
   the reader SHOULD adopt the fetched content, but SHOULD record and surface
   the discrepancy. The watermark is unchanged.
+- A fetched document whose `kind` is `fragment` where local state holds a
+  thread, or `thread` where it holds a fragment, is a **change of kind**,
+  which §5.3 forbids (revision of 2026-11-12, decision #100). The reader
+  SHOULD record and surface the discrepancy and MAY decline to adopt the
+  version. A client re-resolving a quote of such an item at publish (§10.2)
+  SHOULD tell the author before baking it. A change to or from `withdrawn`
+  is not a discrepancy.
 - Readers SHOULD verify `content_hash` against `content_md` on import. A
   mismatch is a discrepancy signal, and the content is adopted anyway: the
   hash is the origin's own claim about its own bytes — a defect report, not a
@@ -2105,8 +2255,8 @@ publish, and, when a thread published with them names them in its
 `transclusions[]` — the thread version that first names them falling
 within the same publish, whenever the thread itself was first drafted
 (revision of 2026-11-03) — the thread that is their whole. A reader MAY present
-such a burst as one publication — the thread as its entry, its fragments
-beneath it or deferred to the low-priority queue of §13.2 — and MUST still
+such a burst as one publication — the thread as its entry, the items it
+names (of either kind) beneath it or deferred to the low-priority queue of §13.2 — and MUST still
 import every item (§13.1), since folding is display, never omission.
 
 ## 14. Security and privacy considerations
@@ -2189,6 +2339,23 @@ import every item (§13.1), since folding is display, never omission.
   therefore per-item curation (§15.5), never automatic.
 - **Media immutability** (§5.4) is a promise by the publisher, not a
   verifiable property at L1; `content_hash` covers markdown only.
+- **Text can reorder the text around it** (revision of 2026-11-12, decision
+  #103). `author.name`, a manifest `title`, `cited.source`, `cited.excerpt`,
+  a directive's label and `content_html` itself are one publisher's strings
+  shown beside another's. Bidirectional control characters (U+202A–U+202E,
+  U+2066–U+2069) change the order in which neighbouring text is displayed
+  without changing any stored byte, and a baked quote carries them into the
+  quoter's page. A reader SHOULD isolate every attributed string and every
+  baked quote directionally (`dir="auto"` on the element, or
+  `unicode-bidi: isolate`), so that what a stranger wrote cannot rearrange
+  what stands next to it. A publisher SHOULD NOT publish unpaired bidi
+  controls.
+- **Origins can look alike.** The origin is the only authenticated entity
+  here (§12.2), and two different hosts can be indistinguishable to the eye.
+  Identity is the origin string, always: a reader MUST NOT treat visual
+  similarity as identity, and SHOULD display an internationalized host in a
+  form that lets its owner tell it from its neighbours, with the A-label
+  form available.
 - **The write side is out of scope, and so is its security.** How an
   authoring tool authenticates to a studio, what it may do there, and how
   that access is revoked are the studio's concern (§16.6). The protocol's
@@ -2314,7 +2481,8 @@ The endpoint contract is the W3C's: `POST`, body
    of the source (the reference client groups by registrable domain, at a
    looser limit than the per-host one, because the grouping is a heuristic
    that can over-collect) and cap total accepted claims per hour regardless
-   of source. A claim refused by any cap is 429 and is never queued. The
+   of source. A claim refused by any cap MUST be answered 429 and SHOULD NOT
+   be queued. The
    numbers are the receiver's; the shape — per source, per source group,
    global — is the recommendation.
 3. **Accept → 202**, record the `(source, target)` pair as pending, and
@@ -2415,9 +2583,9 @@ bless it.
 
 ### 15.5 What a verified mention is, and is not
 
-Verified mentions are **studio signals**. They are never auto-published,
-never enter the feed, the archive index, or any item document, and add no
-manifest vocabulary. A publisher MAY display verified mentions of an item
+Verified mentions are **studio signals**. A receiver MUST NOT publish one
+automatically, and MUST NOT put one in the feed, the archive index, or any
+item document; they add no manifest vocabulary. A publisher MAY display verified mentions of an item
 publicly — a "responses" list on a permalink page — and if it does, that is
 **per-item curation** under §13.5: a shown list with attribution and links
 to the origin, publicity being a property of the list, never of the
@@ -2558,7 +2726,7 @@ it quotes has itself gone stale on something — the nested `data-blyg-*`
 attributes (§10.2) plus one fetch per layer are enough — but that is a
 reading aid, not staleness of the quoting document.
 
-### 16.6 The write surface (never normative; companion note planned)
+### 16.6 The write surface (never normative; the companion note is TN-4)
 
 Multiple authoring tools already write into blygs, and each does so through
 whatever interface its client happens to expose. **Ruled 2026-09-28: the
@@ -2586,6 +2754,10 @@ link on the studio page, and whatever metadata it points at lives under the
 mount. An MCP server over the same operations and scopes is a transport for
 the client's contract, not a second contract; text an agent writes through
 it is disclosed through `generated[]` like any other generated text (§5.7).
+
+**The note was written 2026-11-09**, once two third-party tools held scoped
+tokens: [TN-4](https://blygger.org/notes/tn-4/), `blygger-spec`
+`docs/notes/tn-4-the-write-surface.md`. It belongs to no protocol version.
 
 ### 16.6a Client source discovery — `generator_url` (promoted to §6.1, 2026-09-28)
 
@@ -2635,7 +2807,7 @@ would see a pinned version's frozen text instead of the latest, nobody has
 asked for that, and the observation that raised it was a reader working as
 designed. Parked on a measured need; not a 0.4 item.
 
-### 16.6d Discovery through references (ruled; no construct; one 0.4 candidate)
+### 16.6d Discovery through references (ruled; no construct; the one candidate stays closed)
 
 Everything a reader needs to discover origins *backward* from what it holds is
 already on the wire: nested transclusion layers carry their origins in the baked
@@ -2866,12 +3038,131 @@ declares `moved_from`; a pre-move reader's mention of a post-move item
 verifies; and one reader is offered the follow. Promotion into §6.1, §12.2,
 §15.3 and §15.4.
 
+### 16.14 Syndication — `syndication` (ruled 2026-11-09; awaiting a build)
+
+Decision #98, on
+[blygger-spec#30](https://github.com/blygger/blygger-spec/pull/30) (Patrick
+Atwater, from two clients that cross-post items to other networks: Blygger
+Desktop's cross-post extension and blygcaster). The exploration is
+`plans/syndication-proposal.md`; where it and this section differ, this
+section is the ruling.
+
+An item document MAY carry `syndication`, an array naming copies of the item
+that its publisher made on other networks:
+
+```json
+"syndication": [
+  { "url": "https://bsky.app/profile/did:plc:abcdexample234/post/3lzexample22", "version": 3 }
+]
+```
+
+1. **An entry is a URL and a version.** `url` is REQUIRED and MUST be an
+   absolute `https:` URL at which the copy can be read; it SHOULD be the
+   most stable URL the network offers. `version` is REQUIRED: the version
+   of this item the copy was made from. A publisher MUST NOT put counts,
+   replies or account data in an entry (§16.8); there is no network name.
+2. **It is the publisher's claim.** Self-asserted like `cited`, never in
+   `content_html`, outside `content_hash`, and not a reference (§5.9): it
+   sends no mention and §15.4 never reads it. Nothing is added to the feed.
+3. **It changes without a publish event.** The member describes versions
+   already published and changes nothing the item says or shows, so the
+   publisher rewrites the document in place, as it does when it pins a
+   version (`changelog[].pinned`, §8 rule 2). Entries are added, replaced
+   and removed as the copies are. A publisher SHOULD NOT publish a version
+   solely to record an entry: the version would send a feed entry with no
+   new writing to every plain RSS reader. A reader that fetched the
+   document before an entry landed sees it at its next fetch, and MAY
+   refetch a document it is showing.
+4. **Endcaps and pinned files omit it.** A withdrawal endcap omits the
+   member for §9's reason: a copy is a copy of what the item said. A pinned
+   file never carries it, because copies are replaced and deleted and a
+   frozen file would keep dead addresses; a fork therefore inherits nothing
+   (lineage points only at pins, §5.6).
+5. **Readers.** Ignoring the member is conformant (§13.1 rule 4). A reader
+   MAY show an entry as a link, presented as the publisher's claim, and MUST
+   NOT render a `url` that is not `https:` as a link. A reader MUST NOT hide
+   or merge another party's post on the strength of an entry, whether or
+   not that post links back to the item: anyone may link to an item, so a
+   link back does not make a post the publisher's copy. A reader MUST NOT
+   infer from an entry that the item's author is the account that posted
+   the copy (§5.5). Whether a reader that holds both the item and a post
+   from another network shows them as one piece of writing is its own
+   presentation, judged from the two texts it holds; this document gives no
+   rule for it.
+
+An additive OPTIONAL member; 0.4 text by #43. **Gate:** one client emits an
+entry for a real copy without spending a version on it, and a second client
+shows the link from an imported item without fetching the copy. Promotion
+into §5's member table and a new §5.10.
+
 ## 17. Revision history (non-normative)
 
 One line per published change to this document, newest first. Snapshots are
 cut at `blygger.org/spec/0.4/{date}/` and each carries a diff link to the one
 before it. Version 0.3's own history is in its document, frozen at its
 eleventh revision.
+
+- **2026-11-12, fifteenth revision** (Fable 5.2, session 67; decision
+  #103; blygger-spec#6) — **Unicode on the wire, and what conformance
+  costs**. §5.1: the hash is over the bytes served, on purpose; publishers
+  SHOULD publish `content_md` in NFC and readers MUST NOT normalize an
+  import; `content_md` MUST NOT contain C0 controls (tab, LF and CR aside)
+  or unpaired surrogates. §12.2: an origin string has one ASCII spelling
+  and origins are compared byte for byte (§5.9 points to it). §5.3: a cap in
+  characters counts code points; a truncation MUST NOT produce an unpaired
+  surrogate and SHOULD NOT split a grapheme cluster. §14: bidirectional
+  controls in attributed strings and baked quotes; look-alike origins. §3
+  states, non-normatively, the test the rules were written to: nothing asks
+  a reader or receiver for more than a standard library. A manifest `lang`
+  key was considered and parked. Measured against 1,836 live item documents
+  from 10 origins and the census's 36 hosts: nothing live fails any of it.
+  No new construct. Not snapshotted.
+
+- **2026-11-12, fourteenth revision** (Fable 5.2, session 67; decision
+  #102) — **the reader suite's nine open choices closed, and the clause
+  register's sole statements given their keywords** (blygger-spec#22, #23;
+  Aneesh Sathe). No new construct and nothing a reader must do differently.
+  *The nine:* a directive line in a fragment is a publish error (§10.1);
+  the `![[id@vN]]` reservation is of the own-line form, and inline it is
+  inert (§10.1); CommonMark's block structure says where code is, so a
+  tab-indented directive that makes a code block is code (§10.1); a label
+  is plain text in both forms (§10.1); a link to an item with no `page`
+  names its item document, never the permalink convention (§10.1, §5.8); a
+  relative URL the author wrote resolves against the item's identity origin
+  (§5.2); a relative URL in a non-conformant source's held HTML is resolved
+  against the source's origin before the bake, and a pin-retained bake
+  carries the retained version (§10.2); a baked quote is never inside a
+  `blyg-tk-gen` wrapper, which divides around it while the span keeps one
+  `generated[]` entry (§5.7). *Keywords, for rules that stood in prose
+  only:* §5.7 rule 3, §9 (endcap members), §10.2 (local ids, the closure
+  walk, readers do not resolve), §10.3 (`selector`), §10.3a and §7
+  (SHOULD NOT), §7 (the namespace is not a version), §10.6 rules 2 and 3,
+  §13.2, §15.3, §15.5. §5.2's "never diffs or content" and §12.2's
+  lowercase "must" were reworded as description, not given keywords;
+  §16.6d's heading corrected. Three publisher behaviours of the reference
+  client change (the fragment error, the link fallback, the wrapper), and
+  two live fragments and four live generated items fail the new text at
+  their next republish. Not snapshotted.
+
+- **2026-11-12, thirteenth revision** (Fable 5.2, session 66; decision
+  #100, with Venkat) — **an item's kind is fixed at its first publication**:
+  §5.3 says a publisher MUST NOT change an item between fragment and thread
+  (withdrawal aside), why (a fragment is a leaf others quote; as a thread it
+  would carry unchosen third-party words into a quoter's next bake), that a
+  thread quoting nothing is valid, and that a client creating items on an
+  author's behalf SHOULD create threads; §13.3 says what a reader does on
+  seeing a change of kind; §13.7's fold wording no longer assumes the folded
+  items are fragments. The reference client already refused the change, and
+  no item in the session-64 crawl shows one. No new construct. Not
+  snapshotted.
+
+- **2026-11-09, twelfth revision** (Fable 5.2, session 64; decision #98) —
+  no normative change: §16.14 records `syndication`, an OPTIONAL item
+  member naming copies the publisher made on other networks, as a ruled
+  shape awaiting its gate (in-place like the pin flag, never a version of
+  its own; omitted by endcaps and pinned files; an entry is never grounds
+  to hide another party's post or to infer an identity); §16.6 names TN-4,
+  the companion note on the write surface, now written. Not snapshotted.
 
 - **2026-11-05, tenth revision** (Fable 5.1, session 60; RFC-5's F1 and
   F5, decision #93) — two sentences and one correction, no new construct:
@@ -3018,4 +3309,4 @@ eleventh revision.
 
 ---
 
-*Published from [blygger/blygger-spec@3e986e3](https://github.com/blygger/blygger-spec/commit/3e986e3).*
+*Published from [blygger/blygger-spec@23ba7c5](https://github.com/blygger/blygger-spec/commit/23ba7c5).*

@@ -14,5 +14,6 @@ Notes are also published on the official blyg, [blyg.blygger.org](https://blyg.b
 |---|---|---|
 | [TN-1 — Versioning stays a bare counter: semver, editions, and the pin pattern](/notes/tn-1/) | 2026-08-10 | current |
 | [TN-3 — Groups need no new construct: N origins, one masthead, and the stubbing anti-pattern](/notes/tn-3/) | 2026-09-28 | current |
+| [TN-4 — The write surface: one client's owner API, and why the protocol has none](/notes/tn-4/) | 2026-11-09 | current |
 | [TN-6 — Mentions across identifier schemes: petnames in the studio, full identifiers on the wire](/notes/tn-6/) | 2026-11-05 | current |
 | [TN-7 — Comments sections: a curated display of responses, every comment a real item](/notes/tn-7/) | 2026-11-05 | current |

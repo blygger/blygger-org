@@ -165,6 +165,15 @@ generator = "cchalc-site/0.1.0"
 live = "https://featherandwire.dev/blyg/"
 submitted = "found by sync_ecosystem.py search 2026-10-09; generator from its manifest"
 
+[[project]]
+repo = "rsthornton/blyg"
+name = "Shingai Thornton's blyg"
+category = "bespoke"
+generator = "shingai-press/0.1"
+live = "https://blyg.shingai.xyz/"
+summary = "Obsidian notes stamped into protocol state by its own tool and built into a static spec-0.4 blyg on GitHub Pages."
+submitted = "census 2026-11-12 (sync_ecosystem.py search); listed from its repo and manifest; also on blygger.com since 2026-11-10"
+
 # ─── Integrations — teach an existing system to emit a blyg ────────────────────
 
 [[project]]
@@ -274,3 +283,11 @@ repo = "halcyonic-systems/blyg-watch"
 category = "reader"
 summary = "Watches the network as a system: crawls blygger.com's list to measure concentration (clients, hosts, unpinned quotes) without publishing counts."
 submitted = "found by sync_ecosystem.py search; added session 57 (2026-11-01) from its README"
+
+# ─── Readers — read blygs without publishing one ───────────────────────────────
+
+[[project]]
+repo = "Allethrin/blyg-atlas"
+category = "reader"
+summary = "A local map of the network grown from your own subscriptions: items placed by meaning and time, citations drawn between them, search and standing queries; runs on your machine only."
+submitted = "census 2026-11-12 (sync_ecosystem.py search); a new reader client, listed by the listing rule"
