@@ -184,6 +184,8 @@ See [`status.md`](status.md).
 
 ## Release announcements on the blyg
 
+**Blygger releases are announced on `blyg.blygger.org` and nowhere else** (Venkat, 2026-11-14): not on the PI blyg, not on venkateshrao, and not by hand through another node's studio. Sessions before this sometimes cross-posted to PI; that stopped here.
+
 `publish_releases.py` announces blygger-studio releases on `blyg.blygger.org` (roadmap row 7, decision #66): one thread per **tagged** version, built from that version's `CHANGELOG.md` section, mapped in `blygger-spec/docs/blyg-releases.json`. `./publish_releases.py --dry-run` first; with an empty map, name the versions to announce. Shares auth and the client with `publish_blyg.py`. Third-party clients' releases are posted by hand. Not yet run live: the 0.35 announcement already on the blyg predates the map, so backfill from 0.35.1, not 0.35.0.
 
 ## Anthropic API key (changed 2026-10-07)
