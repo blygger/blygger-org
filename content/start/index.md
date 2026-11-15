@@ -44,8 +44,9 @@ studio at `/studio`.
 - **Use a subdomain.** A path mount (`yourdomain.com/blyg/`) works, but the
   studio's `/studio` and `/api` sit at the host root and can collide with a site
   already there.
-- **Leaving is a command.** `npm run export` writes your whole blyg as static
-  files.
+- **Leaving is a command.** `npm run export` writes your public blyg as static
+  files. For a full backup, drafts, settings and subscriptions included, use
+  More → download backup in the studio, or `npm run backup` for a large blyg.
 - **List it, if you like,** at [blygger.com](https://blygger.com), which is how
   readers who don't know you yet find you. Nothing in the protocol needs a
   registry.
