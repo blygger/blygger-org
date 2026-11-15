@@ -75,4 +75,4 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ---
 
-*Checked 2026-11-14.*
+*Checked 2026-11-15.*
