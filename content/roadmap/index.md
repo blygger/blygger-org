@@ -19,8 +19,8 @@ happens on the linked issues, and this file only says where each item stands.
 - **Status**: `next` (up soon), `later`, `in review` (a contribution is waiting
   for review), `waiting` (on a person or a date, named in the row), `needs ruling`
   (a protocol question decided before any build), `shipped` (with the version;
-  shipped rows drop off after a release or two, and the changelogs are the
-  permanent record).
+  the changelogs are the permanent record). On blygger.org the list opens on
+  the items still open; Shipped and All are a click away.
 - **Open question** is anything to settle before the work starts. It is
   answered when the item is picked up, not in advance.
 
@@ -53,7 +53,7 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 | 13 | Templated surfaces (§16.6e) promoted to normative text | spec | 2 | shipped: spec 0.4 (§4, §5.8, §6.1, §12, §15.3–15.4; session 49) |  | [spec#2](https://github.com/blygger/blygger-spec/issues/2) |
 | 14 | Technical note TN-2: identity practice | spec | 5 | next |  |  |
 | 64 | Owner API under the mount: serve REST at `{mount}/api` and advertise only that; `/api` stays as an alias for two releases, OAuth accepts both resource identifiers meanwhile, root-mounted nodes unchanged. A mounted blyg then needs one route, `{host}/{mount}*` | studio | 5 | shipped: studio 0.49.12 (REST at `{mount}/api` from Kyle's #97; host-root alias with `Deprecation` and a successor `Link`, old audience accepted, for two releases; `/blyg` is one of the two recommended mounts) | Whether the owner cookie can then be scoped to `{mount}` on shared domains (check its current `Path` first). `/api` at the host root was an accident of route ordering in session 11, not a design choice. | [studio#70](https://github.com/blygger/blygger-studio/issues/70) |
-| 66 | `[[id \| text]]`: a `[[id]]` link or `![[id]]` directive with an author's label after the id | spec, studio | 3 | shipped: studio 0.47.0 (decision #70) | Ruled id-first, the double-bracket order of MediaWiki and Obsidian (`[[target\|label]]`), under decision #71: received conventions trump cosmetic preference. On a link the label is the anchor text; on a directive a comment. Studio: the three bracket regexes, the palette, *copy ID* emits the long form. Row 25 merged here. | [spec#16](https://github.com/blygger/blygger-spec/issues/16) |
+| 66 | `[[id | text]]`: a `[[id]]` link or `![[id]]` directive with an author's label after the id | spec, studio | 3 | shipped: studio 0.47.0 (decision #70) | Ruled id-first, the double-bracket order of MediaWiki and Obsidian (`[[target|label]]`), under decision #71: received conventions trump cosmetic preference. On a link the label is the anchor text; on a directive a comment. Studio: the three bracket regexes, the palette, *copy ID* emits the long form. Row 25 merged here. | [spec#16](https://github.com/blygger/blygger-spec/issues/16) |
 | 67 | Links written by [TK] generation come out as literal brackets: a generated paragraph ending `![[id]]` published as raw text ([example](https://venkateshrao.com/blyg/t/4tsyw2ccaps3h0w1dveqc1f35x/)) | studio | 3 | shipped: studio 0.47.0 | Settled (session 49, Fable): keep generation from emitting the grammar — prompt + strip. Generated text is not grammar (studio#5, #60). No ruling needed for the build. |  |
 | 68 | Links section: optionally list each blogroll entry as its own link, beside the OPML file | studio | 2 | next | A checkbox in Settings → links section, off by default. The home page's "Also reading" already lists them there. |  |
 | 69 | Reading view order: newest first or pace-layered, as a setting, like the home page | studio | 8 | next | Pace-layered reads only wire data (changelog, pins, quotes), so it can order subscriptions' items too; it needs their version histories from the imported changelog, and inbound weight across blygs waits on whether pins re-send mentions (Fable queue item 16). |  |
@@ -135,4 +135,4 @@ is a different document: [docs/roadmap.md](https://github.com/blygger/blygger-sp
 
 ---
 
-*Published from [blygger/blygger-spec@78f4813](https://github.com/blygger/blygger-spec/commit/78f4813).*
+*Published from [blygger/blygger-spec@b23275e](https://github.com/blygger/blygger-spec/commit/b23275e).*
