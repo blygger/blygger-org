@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 14 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 16 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -68,9 +68,11 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 ## Unidentified clients
 
 - `astro-gyoza/0.0.2` · live: [artlu.xyz](https://artlu.xyz/)
-- `dfnet-blyg/0.1` · live: [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/)
+- `blygpub/0.1.0` · live: [akkartik.name/bliki](https://akkartik.name/bliki/)
+- `dfnet-blyg/0.2` · live: [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
+- `ranganaut-make-blyg/0.1` · live: [www.ranganaut.com](https://www.ranganaut.com/)
 
 ---
 
-*Checked 2026-11-13.*
+*Checked 2026-11-14.*

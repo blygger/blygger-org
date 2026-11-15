@@ -15,12 +15,15 @@ Source content for the blygger.org site, written session 7 (2026-08-03).
 | `spec/{version}/index.md` | `blygger.org/spec/{version}/` | Generated: latest revision of that protocol version |
 | `spec/{version}/{date}/index.md` | `blygger.org/spec/{version}/{date}/` | Generated: immutable dated snapshot |
 | `notes/index.md` | `blygger.org/notes/` | Generated index of all technical notes |
+| `rfcs/index.md` | `blygger.org/rfcs/` | Generated index of every RFC, open or closed, from `blygger-spec/docs/blyg-published.json` and each RFC's header (session 70). The RFCs themselves live on blyg.blygger.org (#66) |
+| `roadmap/index.md` | `blygger.org/roadmap/` | Generated from `blygger-spec/ROADMAP.md` |
+| `start/index.md`, `contributors/index.md` | `blygger.org/start/`, `/contributors/` | Hand-written: how to build a blyg; who built what |
 | `ecosystem/index.md` | `blygger.org/ecosystem/` | Generated directory of community-built clients, tools, integrations and mods (session 26). Written by `sync_ecosystem.py` from `ecosystem/projects.toml` plus a live census of every blyg listed at blygger.com |
 | `notes/tn-{N}/index.md` | `blygger.org/notes/tn-{N}/` | Generated: technical note N, latest text from `main` (no dated snapshots — see `spec-publishing-plan.md` §5) |
 
 ## Source-of-truth rule
 
-**Everything under `spec/` and `notes/` is generated — `sync_spec.py` is the
+**Everything under `spec/`, `notes/`, `rfcs/` and `roadmap/` is generated — `sync_spec.py` is the
 only writer. Hand-editing is prohibited** (session 11, 2026-08-09 for
 `spec/`; retires the earlier hand-copy convention; extended to `notes/`
 session 16). The canonical spec lives in
@@ -44,7 +47,7 @@ but it never adds one — listing is an editorial act, as it is at blygger.com. 
 with no network, and `--summaries` regenerates README-derived summaries (needs
 `AI_PROVIDER_KEY`; without it, entries fall back to their own or GitHub's description).
 
-`overview.md` is canonical *here* — it is site copy, not protocol doctrine; the
+`home.md` and the other hand-written pages are canonical *here* — it is site copy, not protocol doctrine; the
 spec and `blygger-spec` docs win on any conflict. The same applies to
 `ns/0.1/index.md`: it restates wire constructs the spec defines normatively
 (feed elements, the GUID scheme) and says so on its face, so it must be

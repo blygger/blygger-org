@@ -5,245 +5,118 @@ may have done it already.
 
 ## 1. You might already be halfway in
 
-If your site has an **RSS or Atom feed**, blygs can subscribe to you today. No
-software to install, no change to your site, no cooperation required at your
-end — a blyg reader resolves your feed and imports your items the same way it
-imports another blyg's.
+If your site has an **RSS or Atom feed**, blygs can subscribe to you today, with
+nothing to install and no change to your site. What you don't get is being
+*quotable*: quoting by reference needs your side to publish the item documents
+a snapshot is made from. Readable is free; quotable is the upgrade.
 
-What you don't get, without going further, is being *quotable*: transclusion —
-someone baking a snapshot of your writing into their piece, with provenance
-recording exactly which version they quoted — needs your side to publish the
-item documents that make a snapshot possible.
-
-So: readable is free. Quotable is the upgrade.
-
-**Try it:** [submit your feed to the directory](https://blygger.com) and see
-what a blyg client makes of it. Submission runs the real resolution algorithm
-and tells you what it found.
+**Try it:** [submit your feed to blygger.com](https://blygger.com). Submission
+runs the real resolution algorithm and tells you what it found.
 
 ## 2. Host a blyg on Cloudflare
 
-**[Blygger Studio](https://github.com/blygger/blygger-studio)** is a small
-Cloudflare Worker — publishing, subscribing, blogrolls, curated lists, and
-instructed generation, with the published output as pure static files. It is the
-reference client, and it is one client among several (see §3).
-
-It lives in its own repository as of 2026-09-28, and was called `blyg-ref` before
-that. If you are running a node that reports `blyg-ref/0.3.0`, it is the same
-software under an older name and nothing about your deployment has changed.
-
-**Fifteen minutes, one command.** You need a Cloudflare account and a domain
-already on it.
+**[Blygger Studio](https://github.com/blygger/blygger-studio)** is the reference
+client: a Cloudflare Worker that publishes, subscribes, keeps collections and
+generates text with your own model, while the published output stays static
+files. You need a Cloudflare account and a domain on it. There are two install
+paths, a prebuilt Worker download or the source; the
+[README](https://github.com/blygger/blygger-studio#installation) has both. From
+source:
 
 ```
-git clone https://github.com/blygger/blygger-studio my-blyg
-cd my-blyg
-npm install --legacy-peer-deps
+git clone --branch vVERSION https://github.com/blygger/blygger-studio.git
+cd blygger-studio
+git switch -c my-blyg
+npm ci
+npx wrangler login
 npm run init
-```
-
-`init` asks which Cloudflare account to use — explicitly, even if you only have
-one, because a deploy to the wrong account succeeds silently — then provisions
-your database and media bucket, writes your config, applies the schema, and
-prompts for your password. It never sees that password: wrangler does the
-prompting. Your session signing key is generated for you rather than invented by
-you, which is the right way round.
-
-Then:
-
-```
 npm run deploy
 ```
 
-and your blyg is at `https://blyg.yourdomain.com/`, with the studio at
-`/studio`. Re-run `init` any time — it checks before it creates, so a second run
-after a failure picks up where it stopped rather than building a second
-database.
+`init` asks which Cloudflare account and domain to use, creates the database
+and media bucket, applies migrations and sets your secrets. It can resume after
+a failed step. Your blyg is then at `https://blyg.yourdomain.com/`, with the
+studio at `/studio`.
 
-**Staying current matters more than starting.** `npm run upgrade` fetches the
-new release, shows you what changed and whether any of it touches your database,
-merges while keeping your config, applies migrations, and runs the test suite
-*before* it offers to deploy. Pre-1.0 the wire format itself can change between
-releases, so this is not optional maintenance — it is how you stay legible to
-the blygs reading you. Every changelog entry states `Migrations:` on its own
-line, which is the one line to read before upgrading.
+- **Stay current.** Before 1.0 the wire format can change between releases, so
+  upgrading is how you stay legible to the blygs reading you. Each changelog
+  entry has a `Migrations:` line; read it before you upgrade.
+- **Use a subdomain.** A path mount (`yourdomain.com/blyg/`) works, but the
+  studio's `/studio` and `/api` sit at the host root and can collide with a site
+  already there.
+- **Leaving is a command.** `npm run export` writes your whole blyg as static
+  files.
+- **List it, if you like,** at [blygger.com](https://blygger.com), which is how
+  readers who don't know you yet find you. Nothing in the protocol needs a
+  registry.
 
-**When it looks the way you want, consider listing it at
-[blygger.com](https://blygger.com).** Suggested, not required, and worth being
-clear about why it is only a suggestion: nothing in the protocol needs a
-registry, and an unlisted blyg works exactly as well as a listed one — people
-reach it by its URL, its feed, and the blogrolls of people who read it.
-The directory is how readers who don't know you yet find you, and nothing else. It also runs the
-real resolution algorithm against your URL when you submit, so it doubles as a
-free conformance check on a blyg you have just stood up.
-
-**A path mount** (`yourdomain.com/blyg/`) is fully supported by the protocol and
-people run them — but `init` will not generate one, because `/studio` and `/api`
-are host-rooted whatever mount you choose, so a path mount on a domain already
-serving `/api` collides with it. Use a subdomain unless you know that path space
-is free; if you want a path, the config shape is in
-[`wrangler.jsonc`](https://github.com/blygger/blygger-studio/blob/main/wrangler.jsonc).
-
-**Leaving is a command, not a negotiation.** `npm run export` writes your entire
-blyg as static files. That is the answer to "what if Cloudflare goes away", and
-it works on day one rather than being promised for later.
-
-Something wrong with the client? [File it against
-Blygger Studio](https://github.com/blygger/blygger-studio/issues/new/choose) — not
+Something wrong with the client? [File it against Blygger
+Studio](https://github.com/blygger/blygger-studio/issues/new/choose), not
 against the spec, unless another client would have to change too.
 
 ## 3. Build a client
 
-**This is where most of the protocol's life now is.** Independent clients publish
-a large share of the live blygs — standalone clients like `Blynger` and the one
-behind `thinking.drwip.com`, which predates the September 2026 talk; integrations
-that teach Obsidian, Hugo and Logseq-based gardens to emit a blyg; and tools that
-author *into* an existing blyg, like a native desktop studio and a Drafts action.
-The [ecosystem index](/ecosystem/) lists every known one, with the blygs each
-serves.
-
-If you build one, **[add it to the index](https://github.com/blygger/blygger-org/issues/new/choose)**.
-Clients are written from the spec rather than forked from the reference client,
-so a new one is invisible to everyone else until its author says so.
-
-### Advisory: do not ship a generic default title
-
-**This is Blygger Studio's mistake, written up so other clients can skip it.** Studio shipped
-`"blyg"` as the default value of a blyg's title. It is the obvious placeholder,
-it reads fine in a settings form, and it is wrong — because a default that every
-deployment shares is a name that every deployment shares.
-
-By 2026-09-29 two unrelated live blygs were publishing `"title": "blyg"` in
-their manifests, neither operator having done anything but skip a form field.
-The directory at blygger.com listed both under that name, and briefly held a
-third submission as a suspected impersonation — a newcomer's blyg queued for
-review because of the reference client's default. `title` is the one identity field the protocol gives a
-blyg (§5.2), so a client that fills it with a constant has quietly decided that
-its users are indistinguishable.
-
-**What to do instead**, in rough order of preference:
-
-1. **Derive it from the deployment's own address.** It is already unique,
-   because domains are. `blyg.example.com` becomes `example.com`; dropping a
-   leading `blyg.` or `www.` is worth doing, since neither says whose it is.
-   This is what Blygger Studio does as of 0.8.3.
-2. **Ask at install time**, if your client has an install step. One prompt,
-   answered once.
-3. **Emit no `title` at all** rather than a shared one. Readers must already
-   cope with its absence, and a missing field is honest where a wrong one is
-   not.
-
-**What not to do:** invent a human-sounding name. "Example's Blyg" is the client
-asserting something its operator never said, and §5.3's rule against readers
-extracting titles they were not given is the same instinct pointed the other
-way.
-
-The general form, which applies past titles: **a default that is identical
-across installations is a default that destroys information.** Anywhere your
-client fills in a field the operator did not, ask whether the deployment already
-knows a truer answer — its own hostname usually is one.
-
-*Name collisions themselves are fine.* Two people may both call their blyg
-"Joe's blyg" and the domain tells them apart; blygger.com lists both without
-comment. The problem is never that two names match — it is a name nobody chose.
+**Most of the protocol's life is here.** Independent clients publish a large
+share of the live blygs: standalone clients, integrations that teach Obsidian,
+Hugo, WordPress and Logseq gardens to emit a blyg, and tools that write into an
+existing one. The [ecosystem index](/ecosystem/) lists every known one. If you
+build one, [add it to the
+index](https://github.com/blygger/blygger-org/issues/new/choose): clients are
+written from the spec, so a new one is invisible until its author says so.
 
 ### Which text to build against
 
-This is the question most likely to waste your afternoon, so it gets its own
-section. There are four things on this site that look like a specification, and
-only two of them are one.
+- **The living spec, [blygger.org/spec/](/spec/)**: the highest-numbered
+  version, standalone and complete. Build against this.
+- **A dated snapshot, `/spec/{version}/{date}/`**: immutable. Pin one when you
+  need the text to hold still, and say which one you built against. Each
+  snapshot links a diff to the one before.
+- **Not the spec:** the living document's last section, which holds constructs
+  decided but not yet built, and can still move; the plan documents; and the
+  reference client's source. When the client and the spec disagree, the client
+  has a bug.
 
-**1. The living spec — [blygger.org/spec/](/spec/).** The highest-numbered
-version. This is what to implement against. It is standalone and complete: a
-`/spec/{version}/` URL hands you one whole document, and you never chase deltas
-through a changelog. Revisions land here, so it can move under you — usually in
-the direction of saying more clearly what it already meant.
+Older versions stay conformant: levels are strict supersets and unknown
+constructs are ignored, so an older client lacks the newer constructs and
+nothing more.
 
-**2. A dated snapshot — `/spec/{version}/{date}/`.** Immutable, forever. **Pin
-here when you need the text to hold still**: while you are building, while you
-are testing conformance, or any time you want to be able to say *which* text you
-implemented. Each snapshot links a diff to the one before it, so catching up is
-a diff rather than a re-read. If you are shipping something other people depend
-on, pin.
+Building a decided-but-unbuilt construct early is the most useful thing an
+implementer can do, because that is how a wrong shape is found while it is
+cheap to change. Say which snapshot you built against, and [file what you
+find](https://github.com/blygger/blygger-spec/issues).
 
-**3. The living document's final section — not normative, and this is the trap.**
-Every living spec ends with a section carrying constructs that have been
-*decided* but not yet *built*. They are there on purpose and clearly labelled:
-rulings are written down before anyone implements them, so the reasoning is
-public while it can still be argued with. But a construct sitting there has not been
-exercised across two implementations yet, and its shape can still move.
-**Do not build from that section unless you mean to** — see below, because
-sometimes you should.
+### Do not ship a generic default title
 
-**4. The plan documents and the reference client's source — not the spec at
-all.** `v0.4-plan.md` is a work plan. `blygger-studio` is one implementation of
-the spec and is wrong about it from time to time; when the two disagree, the
-spec wins and the client has a bug. Neither is a normative source and neither
-carries any promise.
-
-**Superseded versions are still conformant.** Levels are strict supersets and
-unknown constructs are ignored rather than rejected, so a client implementing an
-older version is not broken — it simply lacks the newer constructs. There is no
-deadline and nothing stops working.
-
-### If you *want* to build against unfrozen text
-
-Please do, and say so. Implementing a decided-but-unbuilt construct before it
-freezes is the most useful thing any implementer can do: it is how a
-shape gets found to be wrong while changing it is still cheap. Two rules make it
-work rather than hurt:
-
-- **Pin the snapshot you built against and say which one**, in your README or
-  your manifest's `generator_url` target. "It broke" is hard to act on;
-  "it broke against the 2026-09-28 snapshot" is a bug report.
-- **File what you find**, at
-  [blygger-spec/issues](https://github.com/blygger/blygger-spec/issues). The
-  template asks which spec version and which implementation, because there are
-  now several of both. A construct that survives a second implementation is
-  ready to freeze; one that does not, needed you.
-
-**Pre-1.0, no version makes a wire promise** — including the living one. That is
-stated here rather than buried in a status page, because it is the thing you are
-actually deciding about.
+Blygger Studio once shipped `"blyg"` as every blyg's default title. Within
+weeks two unrelated blygs were publishing under that name, and blygger.com
+briefly held a newcomer's blyg as a suspected impersonation. A default every
+installation shares is a name nobody chose. Instead, derive the title from the
+deployment's own host (`blyg.example.com` becomes `example.com`, as Studio now
+does), ask at install time, or publish no title at all. The general rule: **a
+default identical across installations destroys information.**
 
 ### Also worth reading
 
-- **[Technical notes](/notes/)** — non-normative records of *why*, especially of
-  designs that were rejected.
-- **[The CSS contract](https://github.com/blygger/blygger-spec/blob/main/docs/css-contract.md)**
-  — which classes are visible on the wire and what any client owes them.
-- **Conformance levels L0–L3** are strict supersets, and unknown constructs are
-  ignored rather than rejected, so a partial implementation is a *conformant*
-  implementation.
+- **[Technical notes](/notes/)**: why things were decided, including the
+  rejected designs.
+- **[RFCs](/rfcs/)**: proposals open for comment.
+- **[The CSS contract](https://github.com/blygger/blygger-spec/blob/main/docs/css-contract.md)**:
+  which classes are visible on the wire and what any client owes them.
+- **[The conformance toolkit](https://github.com/blygger/blygger-spec/tree/main/conformance)**:
+  the clause register, JSON Schemas, a reader suite and a live crawler.
 
-**The open gap, and the 1.0 gate.** This section used to say there was exactly
-one implementation, and that one implementation is not a protocol but a program
-with a spec next to it. That stopped being true in September 2026: the gate it
-guarded has largely been met by independent implementations.
-
-What is still genuinely missing is a client on a deliberately different
-substrate: **local-first — a folder on a laptop, authoring on-device, deploying to
-a dumb static host**, with no server in the publishing path at all. The Obsidian
-and Hugo integrations are the closest anyone has come. That shape is the real test
-of the static-files-and-RSS claim, because it is the one where nothing dynamic
-exists to paper over a gap in the spec.
-
-A second thing now wanted, which the first version of this page could not have
-anticipated: **a conformance checker anyone can run.** With many implementations
-and live nodes split across protocol 0.2 and 0.3, "conformant" can no longer mean
-"passes the reference client's tests". One is in review:
-[blygger-spec#11](https://github.com/blygger/blygger-spec/pull/11).
+**Still wanted:** a client on a deliberately different substrate, **local-first**:
+a folder on a laptop, authoring on-device, deploying to a plain static host,
+with no server in the publishing path. That is the real test of the
+static-files-and-RSS claim, because nothing dynamic exists to paper over a gap
+in the spec.
 
 ## What you're signing up for
 
-**No version before 1.0 is stable, including the wire format.** Building clients
-is how this protocol gets tested, so the spec changes when building finds
-something — and with every new implementation, building finds more.
+**No version before 1.0 is stable, including the wire format.** Building
+clients is how this protocol gets tested, so the spec changes when building
+finds something. Read it, implement it, argue with it, but don't build
+something load-bearing on it yet.
 
-That is a real cost and it is stated here rather than buried: read it,
-implement it, argue with it, but don't build something load-bearing on it yet
-and expect the ground to hold still.
-
-What *is* stable, because it costs nothing to promise: every blyg feed is valid
-RSS, the published surface is static files, and nothing about the protocol
-requires a company in the middle.
+What *is* stable: every blyg feed is valid RSS, the published surface is static
+files, and nothing in the protocol requires a company in the middle.

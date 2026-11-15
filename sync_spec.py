@@ -456,6 +456,70 @@ def sync_notes() -> None:
     build_notes_index(notes)
 
 
+CONTENT_RFCS = ROOT / "content" / "rfcs"
+RFC_OPENED_RE = re.compile(r"^RFC-(\d+) open for comment until (\d{4}-\d{2}-\d{2})")
+RFC_ISSUE_RE = re.compile(r"blygger-spec#(\d+)\]\(https://github\.com/blygger/blygger-spec/issues/\d+\)")
+NOTE_NUMBER_RE = re.compile(r"docs/notes/tn-(\d+)-")
+
+
+def sync_rfcs() -> None:
+    """Write /rfcs/, the index of every RFC (decision #66: RFCs are published and
+    commented on at blyg.blygger.org; this page only lists them).
+
+    Read from what already records them, so the page cannot drift: the publish
+    map names each RFC's file and item, its first changelog note says the number
+    and the close date, and the file's own header names the comment issue. An RFC
+    whose file has moved to docs/notes/ was promoted to that note when its period
+    closed (#90)."""
+    if not BLYG_MAP.is_file():
+        return
+    today = datetime.now(timezone.utc).date().isoformat()
+    rows = []
+    for entry in json.loads(BLYG_MAP.read_text("utf-8")).get("items", []):
+        m = RFC_OPENED_RE.match(entry.get("notes", {}).get("first", ""))
+        if not (m and entry.get("id") and entry.get("version")):
+            continue
+        number, closes = int(m.group(1)), m.group(2)
+        text = (SPEC_REPO / entry["file"]).read_text("utf-8")
+        title = re.sub(r"^#\s*(RFC|TN)-\d+\s*[—-]\s*", "", text.splitlines()[0]).strip()
+        note = NOTE_NUMBER_RE.match(entry["file"])
+        if note:
+            status = f"closed {closes}; now [TN-{note.group(1)}](/notes/tn-{note.group(1)}/)"
+        elif closes >= today:
+            status = f"**open** until {closes}"
+        else:
+            status = f"closed {closes}; becomes a technical note"
+        issue = RFC_ISSUE_RE.search(text[:1500])
+        if issue and not note:
+            status += f" · [GitHub]({GITHUB_URL}/issues/{issue.group(1)})"
+        # Two columns, so a phone keeps the number and the dates whole.
+        rows.append((number, f"| [**RFC-{number}**: {title}]({BLYG_ORIGIN}/t/{entry['id']}/) | {status} |"))
+
+    lines = [
+        banner("blygger-spec/docs/blyg-published.json and docs/rfcs/").rstrip("\n"),
+        "",
+        "# Requests for comments",
+        "",
+        "An RFC proposes a convention or a design that more than one client would "
+        f"follow. Each is published on the official blyg, [blyg.blygger.org]({BLYG_ORIGIN}/), "
+        "with a comment period. Like a technical note, an RFC constrains nothing. "
+        "When its period closes it becomes a [technical note](/notes/).",
+        "",
+        "**To comment,** respond to the RFC from your own blyg. A stub is a comment, "
+        "a partial quote names the passage you are answering, and a fork of the "
+        "pinned version is a counter-proposal. Without a blyg, comment on the RFC's "
+        "GitHub issue.",
+        "",
+        "| RFC | Status |",
+        "|---|---|",
+        *[row for _, row in sorted(rows, reverse=True)],
+    ]
+    CONTENT_RFCS.mkdir(parents=True, exist_ok=True)
+    out = CONTENT_RFCS / "index.md"
+    out.write_text("\n".join(lines) + footer(spec_repo_sha()), "utf-8")
+    print(f"  wrote {out.relative_to(ROOT)}")
+
+
 ROADMAP_SRC = SPEC_REPO / "ROADMAP.md"
 CONTENT_ROADMAP = ROOT / "content" / "roadmap"
 
@@ -499,6 +563,7 @@ def main() -> None:
 
     build_spec_index()
     sync_notes()
+    sync_rfcs()
     sync_roadmap()
 
 

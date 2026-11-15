@@ -106,11 +106,11 @@ The protocol is specified in prose, versioned separately from this namespace
 name, at:
 
 - **[blygger.org/spec/](/spec/)** — all versions and dated snapshots
-- **[blygger.org/spec/0.1/](/spec/0.1/)** — current working draft
+- **[The living specification]({{SPEC_LINK}})** — the highest-numbered version
 
-Feed construction is specified in §7 of the spec; the manifest in §4; item
-documents in §5; reader conformance, including the ignore-unknowns rule
-above, in §11.
+Feed construction is specified in §7 of the spec; the surface in §4 and the
+manifest in §6.1; item documents in §5; reader conformance, including the
+ignore-unknowns rule above, in §13.
 
 Every specification version below 1.0 is a working draft, and the wire
 surface carries no stability promise until 1.0. Source, including the

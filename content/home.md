@@ -108,8 +108,9 @@ on stubs below, because they're how conversation works here.
 which tells other blygs to drop their copies. Pins stay up, because a pin is a
 promise.
 
-**Links and blogrolls.** You can also simply link to a post, which notifies
-nobody. And you can publish a blogroll, a list of the blygs and feeds you read.
+**Links and blogrolls.** You can also link to a post. Its writer gets a quiet
+notice, shown apart from responses; an ordinary web address sends nothing. And
+you can publish a blogroll, a list of the blygs and feeds you read.
 
 ## Feeds: what you show and what you read
 
@@ -122,27 +123,22 @@ front page can show either of two orders:
 - **Chronological**, newest first: the familiar blog and timeline view, about
   what's happening now.
 - **Pace-layered**, the view about what lasts. Every post sinks as new ones
-  arrive, but at different speeds. Pinning a post, or having it quoted in
-  pinned posts, moves it into a slower layer; there are six, named after
-  Stewart Brand's pace layers from *fashion* down to *nature*. Revising a post
-  lifts it one place. A post you keep pinning and revising holds the top, so a
-  "pinned post" is something your blyg arrives at rather than a setting you
-  flip.
+  arrive, but pinned posts, and posts quoted in pinned ones, sink more slowly.
+  A post you keep pinning and revising holds the top, so a "pinned post" is
+  something your blyg arrives at rather than a setting you flip.
 
-Pace-layering is the project's recommended order for every client, being
-written up as an RFC so other clients can match it, and it works from public
-files alone, so a reader's client can show anyone's blyg this way. Blygger
-Studio uses it on new blygs' front pages, with chronological a setting away.
+Pace-layering works from public files alone, so any client can show any blyg
+this way. It is proposed for every client in
+[RFC-3](https://blyg.blygger.org/t/28cm3qgpz1fa146yjvac97ba7c/), and Blygger
+Studio uses it on new blygs' front pages.
 
-**The feed you read** is equally yours. You choose what to subscribe to, from
-blygs or any ordinary RSS feed, privately; you can gather posts into
-collections by hand, browse other people's blogrolls, and order your reading
+**The feed you read** is equally yours. You subscribe privately, to blygs or
+any ordinary RSS feed, gather posts into collections, and order your reading
 however your client allows. There is no central timeline and no algorithm you
-didn't choose. Full clients such as Blygger Studio put the reader and the
-editor side by side, because in the thicket they're one activity: you read,
-quote, answer and get answered, and **thicketing** is that call and response.
-You can also be as solitary as you like. A blyg nobody quotes is still a
-perfectly good notebook, and reading without ever publishing is fine too.
+didn't choose. Full clients such as Blygger Studio put the reader beside the
+editor, because in the thicket reading, quoting and answering are one
+activity: **thicketing**. You can also be as solitary as you like; a blyg
+nobody quotes is still a perfectly good notebook.
 
 ## Why bother: the thicket
 
@@ -207,41 +203,23 @@ users who only comment.
 
 That doesn't rule out comments sections; it changes what they are. A writer
 can show the stubs their posts received underneath them, curated like any
-comments section. And a site that wants to host comments from people without a
-blyg can do it too: each comment is published as a real post, under the
-commenter's name, on a blyg the site runs for the purpose, with the site taking
-responsibility for what it hosts. To every other blyg, those comments are posts
-like any other. Comments become a feature a publisher chooses to build, not a
-lower class of participant built into the protocol. The approach is
-[RFC-2](https://blyg.blygger.org/t/2mzqh4jt3ye14xm6sr5gf32cah/), open for
-comment until 4 November 2026.
+comments section. A site can even host comments from people without a blyg, by
+publishing each one as a real post on a blyg it runs for the purpose
+([technical note 7](/notes/tn-7/)).
 
-**Mentions, and why the protocol stays out of identity.** On a platform, an
-@-mention is one company's account system pointing at another account in the
-same system. Blygger has no account system to point into. The only thing it
-authenticates is a blyg's own domain, and the people writing on blygs already
-have identities elsewhere: their own website, a fediverse account, a Bluesky
-handle, an Ethereum address. Rather than pick one, the protocol stays agnostic
-and lets them all ride along.
+**@-mentions, without an account system.** Blygger authenticates only a blyg's
+own domain, and people already have identities elsewhere: a website, a
+fediverse account, a Bluesky handle, an Ethereum address. So an `@name` from
+your client's address book publishes as an ordinary link to the person,
+carrying the identifiers you know for them. Clients that share one of those
+systems recognise the person; the rest show a link
+([technical note 6](/notes/tn-6/)).
 
-The convention being proposed works like this. Your client keeps an address
-book; you type a short `@name`, and the published post carries an ordinary link
-to the person plus, in standard markup, the identifiers you know for them in
-each of those systems. A reader whose client speaks some of those systems can
-recognise the person, show them under the reader's own name for them, or open
-their profile where they actually live. A client that speaks none of them shows
-an ordinary link and loses nothing. Nobody has to adopt anyone else's identity
-system for mentions to work between the clients that share one.
-
-A mention doesn't notify anyone, though. In Blygger, notification is reserved
-for citation: quoting someone, stubbing them, forking them or drawing on their
-post when generating text sends their blyg a notice, which it checks against
-your published post before accepting. Naming someone, like linking to them,
-asserts nothing about their work that could be checked, so it sends nothing.
-Attention arrives only as a citation, from someone who put their own name to a
-post, so there's nothing to pile on with. The mention convention is
-[RFC-1](https://blyg.blygger.org/t/7eeh3bfzfcnhh90d5pkvkc2r1n/), open for
-comment on the official blyg until 4 November 2026.
+A mention notifies nobody. In Blygger, notices go to writers whose posts you
+cite: quoting, stubbing, forking or linking to a post, or drawing on it when
+generating text, sends their blyg a notice, which it checks against your
+published post before accepting. Naming a person cites nothing, so there's
+nothing to pile on with.
 
 ## AI, with disclosure, and agents as co-authors
 
@@ -266,6 +244,17 @@ far:
 
 Disclosure is the writer's own statement, like a byline: nobody can verify it,
 and the protocol doesn't pretend to.
+
+## Coming next: sealed and paid posts
+
+Everything a blyg publishes today is public. The next protocol version is
+designed to change that without breaking any reader: a post can carry
+encrypted passages, or be encrypted whole, behind readable stand-in text, and
+the keys go to whoever the writer allows, by rule, by request or by payment.
+Two proposals are open for comment until 28 November 2026:
+[RFC-6, sealed content](https://blyg.blygger.org/t/194zwhh5036j2fxxk5b2hw3m81/),
+and [RFC-7, payments](https://blyg.blygger.org/t/2wcgk0vrwm3wknmdnxtrdh2ecd/)
+([a plain-language explainer](https://blyg.blygger.org/t/6em279j4r93c6t3tbc3dkpn05b/)).
 
 **Agents.** The protocol never asks whether a person or a program wrote
 something. An agent can run its own blyg, publish under its own name inside
@@ -359,12 +348,13 @@ publisher's local snapshot, never a live fetch, so a later edit or
 Responding works the same way, because there is no reply primitive. A **stub**
 is a thread that declares itself a response to exactly one target with
 `stub_of`. A **fork** starts from a pinned version of someone else's item and
-records its lineage with `forked_from`. Quotes, stubs, forks and generation
-sources each send a **mention**, a Webmention that the receiver verifies by
-fetching the sender's item document and checking that it really names the
-target. A plain inline link, `[[id]]` (with an optional **label**, `[[id |
-text]]`, from 0.4), is the one citation that notifies nobody. The network of
-blygs connected this way is the [thicket](/thicket/).
+records its lineage with `forked_from`. Quotes, stubs, forks, generation
+sources and inline links (`[[id]]`, optionally `[[id | label]]`) each send a
+**mention**, a Webmention that the receiver verifies by fetching the sender's
+item document and checking that it really names the target. Links and wordless
+reposts are classed as **notices**, kept apart from responses. An ordinary
+markdown link to a page is the one citation that notifies nobody. The network
+of blygs connected this way is the [thicket](/thicket/).
 
 ## Generation, inline and disclosed
 
@@ -398,7 +388,9 @@ plain RSS feed can be followed from a blyg as summary items.
 
 **Backward compatibility by design.** Conformance levels are strict supersets:
 **L0** is any RSS feed, **L1** a single blyg with versions, pins, withdrawal
-and its own threads, **L2** everything across origins. Readers ignore
+and its own threads, **L2** everything across origins, and **L3**, now being
+designed ([RFC-6](https://blyg.blygger.org/t/194zwhh5036j2fxxk5b2hw3m81/)),
+encrypted content. Readers ignore
 constructs they don't understand instead of rejecting the document, which lets
 levels and versions advance without breaking anyone: a valid 0.3 document is a
 valid 0.4 document unchanged. Nothing is promised before 1.0, but a breaking
@@ -426,16 +418,12 @@ reasons.
 The spec draws a line between the published files and everything a client
 does with them, and keeps a long list of decisions on the client's side of it.
 
-**Presentation.** How items, threads, quotes, stubs and forks look is up to
-the client. The spec fixes the routes and the promises (a pinned version stays
-fetchable), not the page. Ordering a reader's merged feed is the reader's own
-policy, since remote timestamps are self-asserted. The few presentation rules
-that do exist protect disclosure: three CSS classes are baked into published
-HTML, for whole quotes, partial quotes and generated spans, and a theme may
-style them freely but may not make them invisible or rewrite them (the [CSS
+**Presentation.** How everything looks is up to the client. The spec fixes
+the routes and the promises (a pinned version stays fetchable), not the page.
+The few presentation rules that exist protect disclosure: the classes baked
+into published HTML for quotes and generated text may be styled freely but not
+hidden or rewritten (the [CSS
 contract](https://github.com/blygger/blygger-spec/blob/main/docs/css-contract.md)).
-Themes, home-page orders, static front pages and reading views are all client
-territory.
 
 **Identity.** Beyond the origin, the protocol says nothing about who anyone
 is. The optional per-item `author` field is an opaque, unverified assertion,
@@ -443,15 +431,11 @@ like a masthead: a feed has one publisher but may have many authors. How to
 show that a person is who they say has been left to practice, not protocol:
 the current recommendation is that a person is a URL they control, proven by a
 reciprocal `rel="me"` link or a signature over an item's content hash. That
-practice belongs in non-normative technical notes and RFCs, so it can evolve
-without a protocol version: a note on groups is published, and one on
-identity is next on the roadmap. The same agnosticism shapes @-mentions:
-[RFC-1](https://blyg.blygger.org/t/7eeh3bfzfcnhh90d5pkvkc2r1n/), open for
-comment, proposes that a mention carry the person's identifiers from whatever
-systems they use (an `https` URL, a fediverse `acct:`, a `did:` for ATProto or
-an Ethereum account) inside an ordinary link marked up as an h-card. Clients that
-share a scheme resolve the person; the rest render a link. Mentions add nothing
-to the wire beyond that HTML and notify nobody.
+practice lives in non-normative [technical notes](/notes/) and [RFCs](/rfcs/),
+so it can evolve without a protocol version. @-mentions follow the same line
+([TN-6](/notes/tn-6/)): a mention is an ordinary link, marked up as an h-card,
+carrying the person's identifiers from whatever systems they use (an `https`
+URL, a fediverse `acct:`, a `did:`), and it notifies nobody.
 
 **How to write into a blyg.** There is no normative write API, at this version
 or any foreseen one. Clients publish however they like; the reference client
@@ -478,12 +462,14 @@ built on top: [blygger.com](https://blygger.com) is one.
 - **[Blygger Studio](https://github.com/blygger/blygger-studio)**, the
   MIT-licensed reference client on Cloudflare Workers, with its test suite, a
   documented API and SDK, and an extension mechanism. One client among many.
-- **A conformance toolkit**, in review as
-  [blygger-spec#11](https://github.com/blygger/blygger-spec/pull/11), so that
+- **The [conformance toolkit](https://github.com/blygger/blygger-spec/tree/main/conformance)**
+  in blygger-spec: a register of every MUST, SHOULD and MAY, JSON Schemas, a
+  reader suite of fixtures, and a crawler that checks live blygs, so that
   "conformant" means something anyone can check.
 - **The official blyg, [blyg.blygger.org](https://blyg.blygger.org/)**, which
-  carries release notes and RFCs. Proposed conventions are published there
-  with a comment period before any client adopts them; comment by stubbing.
+  carries release notes and [RFCs](/rfcs/). Proposed conventions are published
+  there with a comment period before any client adopts them; comment by
+  stubbing.
 - **Issues and proposals** go to the repository they concern, under
   [github.com/blygger](https://github.com/blygger); the issue templates say
   which.
@@ -494,12 +480,12 @@ A few habits that have saved implementers trouble:
   `generator_url` at its source if it has one. The ecosystem census reads
   them.
 - Don't ship a default title shared by every installation; derive it from the
-  deployment's own host ([why](/start/#advisory-do-not-ship-a-generic-default-title)).
+  deployment's own host ([why](/start/#do-not-ship-a-generic-default-title)).
 - Ignore what you don't understand, and carry `content_html` verbatim when you
   store or re-emit someone else's item.
 - Send a mention for every remote reference you publish; if you receive
   mentions, verify them structurally and rate-limit the endpoint, since it is
-  the one place a stranger can make your server fetch a URL.
+  the one place anyone on the internet can make your server fetch a URL.
 - Poll politely, and let the archive index heal what the feed misses.
 
 ## Where to start

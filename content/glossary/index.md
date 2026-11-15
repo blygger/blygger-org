@@ -117,9 +117,10 @@ nowhere normative.
 : A transclusion followed directly by a blockquote: only that passage is
   baked, after a check that it really is in the source (§10.1–§10.2).
 
-**Plain link**
-: `[[id]]` anywhere in text: an ordinary link to an item's page. Unlike
-  every other citation it notifies nobody, deliberately (§10.1).
+**Link**
+: `[[id]]` anywhere in text: a link to an item's page, listed in the item's
+  `links` and sent to the target's blyg as a **notice**. An ordinary markdown
+  link to a page is the one citation that notifies nobody (§10.1).
 
 **Label**
 : Optional text after the id, `[[id | text]]` or `![[id | text]]`. On a link
@@ -144,17 +145,21 @@ nowhere normative.
 **Mention**
 : A Webmention: a ping from one page to another saying "this cites you". A
   **verified mention** is one whose source item document structurally names
-  the target, which the receiver checks by fetching it. Quotes, stubs, forks
-  and generation sources send them; plain links do not (§15).
+  the target, which the receiver checks by fetching it. Quotes, stubs, forks,
+  generation sources and `[[id]]` links send them (§15).
 
-**@-mention** *(client, proposed)*
+**Response / notice**
+: The two classes of verified mention. A **response** has words of its own:
+  a stub, a quote, a fork, a generation source. A **notice** is a link or a
+  wordless repost, shown apart from responses and never counted as one
+  (§15.5).
+
+**@-mention** *(client)*
 : A link to a person rather than to a post, carrying the identifiers you know
-  for them in other systems (their website, a fediverse account, a Bluesky DID,
-  an Ethereum address) so that clients sharing one of those systems can
-  recognise them; others show a plain link. The protocol stays out of identity,
-  so this is a convention between clients, proposed in
-  [RFC-1](https://blyg.blygger.org/t/7eeh3bfzfcnhh90d5pkvkc2r1n/). It notifies
-  nobody: in Blygger only citing someone's writing does that.
+  for them in other systems (a website, a fediverse account, a Bluesky DID, an
+  Ethereum address), so clients sharing one of those systems recognise them.
+  A convention between clients, not protocol ([TN-6](/notes/tn-6/)). It
+  notifies nobody.
 
 ## Generation
 
@@ -202,9 +207,9 @@ nowhere normative.
   subscriptions gathered by hand, private or published as a page.
 
 **Pace-layered order** *(client)*
-: Blygger Studio's optional home-page order, the "diachronic view": items sink
-  as new ones arrive, and pins and pinned quotes slow the sinking. Computed
-  from public data only, so any client can reproduce it.
+: A home-page order, the "diachronic view": items sink as new ones arrive, and
+  pins and pinned quotes slow the sinking. Computed from public data only, so
+  any client can reproduce it; proposed for every client in [RFC-3](/rfcs/).
 
 ## Conformance and process
 
@@ -212,8 +217,9 @@ nowhere normative.
 : L0 is any plain RSS feed; L1 is a single blyg with versions, pins,
   withdrawal and same-origin threads; L2 adds everything across origins:
   transclusion, stubs, lineage, mentions, generation sources, surface
-  templates; L3 is reserved for encrypted content. Levels are strict
-  supersets, and readers ignore what they don't understand (§3).
+  templates; L3, being designed in [RFC-6 and RFC-7](/rfcs/), adds sealed
+  (encrypted) content and paid access. Levels are strict supersets, and
+  readers ignore what they don't understand (§3).
 
 **Generator**
 : The manifest key naming the client that published a blyg, such as
@@ -231,9 +237,16 @@ nowhere normative.
   such as identity or a write surface. At [blygger.org/notes/](/notes/).
 
 **RFC**
-: A proposed convention published on the official blyg,
+: A proposal published on the official blyg,
   [blyg.blygger.org](https://blyg.blygger.org/), with a comment period, before
-  any client adopts it.
+  any client adopts it. It becomes a technical note when the period closes.
+  Listed at [blygger.org/rfcs/](/rfcs/).
+
+**Sealed content** *(proposed)*
+: Encrypted words in an item, behind readable stand-in text the author writes
+  (a **cover**), so a reader without the key still sees a sensible post. Keys
+  are named by **lock**, never by reader, and handed out by the lock's
+  **home**. Proposed in RFC-6 for protocol 0.5.
 
 **Reference client**
 : [Blygger Studio](https://github.com/blygger/blygger-studio), the MIT-licensed

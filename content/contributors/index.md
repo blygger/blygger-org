@@ -52,6 +52,12 @@ Much of the reference client's current architecture:
   deployment mount, conditional item writes, bounded cursor pages, media
   addressed by digest, complete HTTP validators, and one set of operations
   shared by REST and MCP (0.49.1–0.49.12).
+- **Kept Studio fast as blygs grew**: optimistic writes and paged mentions,
+  batched collection reads, and read batches that survive malformed paths
+  ([#111](https://github.com/blygger/blygger-studio/pull/111),
+  [#114](https://github.com/blygger/blygger-studio/pull/114),
+  [#116](https://github.com/blygger/blygger-studio/pull/116)); SQLite full-text
+  search is in review ([#146](https://github.com/blygger/blygger-studio/pull/146)).
 
 Runs [blyg.bricolage.io](https://blyg.bricolage.io/).
 
@@ -66,11 +72,23 @@ systematically:
   against the spec, and formal models of the rules that turned up gaps
   worth ruling on. Since extended to 0.4 with **a reader suite**: 100
   fixtures, written from the spec text, that any client's renderer can run
-  ([blygger-spec#22](https://github.com/blygger/blygger-spec/pull/22)).
-- **Twenty-nine issues** across the spec and Studio, twenty-four of them
-  closed: grammar edge cases in transclusion and generation scopes, importer
-  and lineage bugs, and the question that made `[[id]]` links inert inside
-  code ([blygger-spec#4](https://github.com/blygger/blygger-spec/issues/4)).
+  ([blygger-spec#22](https://github.com/blygger/blygger-spec/pull/22)), and kept
+  current with the spec's revisions
+  ([blygger-spec#33](https://github.com/blygger/blygger-spec/pull/33), in review).
+- **Issues across the spec and Studio**: grammar edge cases in transclusion
+  and generation scopes, importer and lineage bugs, and the question that made
+  `[[id]]` links inert inside code
+  ([blygger-spec#4](https://github.com/blygger/blygger-spec/issues/4)).
+- **Fixes the suite turned up**, built in Studio: partial quotes that take
+  CommonMark's blockquote extent, own-line quotes in generated output, the
+  directive label baked as the quote's attribution, and hopper subscriptions
+  ([#106](https://github.com/blygger/blygger-studio/pull/106),
+  [#107](https://github.com/blygger/blygger-studio/pull/107),
+  [#136](https://github.com/blygger/blygger-studio/pull/136),
+  [#112](https://github.com/blygger/blygger-studio/pull/112)). The Shelf and
+  `syndication` are in review
+  ([#137](https://github.com/blygger/blygger-studio/pull/137),
+  [#148](https://github.com/blygger/blygger-studio/pull/148)).
   A suggestion of Aneesh's put public hoppers on pages of their own (0.24.0).
 - **Studio redesigned for the phone**
   ([#32](https://github.com/blygger/blygger-studio/pull/32),
@@ -104,7 +122,7 @@ Also builds [blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)
   that the manifest say where the rest of a blyg lives, so sites that cannot
   follow the file layout — WordPress, for one — can still publish one
   ([blygger-spec#2](https://github.com/blygger/blygger-spec/issues/2)). Ruled
-  in as decision #51 and scheduled for 0.4. Also found that the Webmention
+  in as decision #51; part of 0.4. Also found that the Webmention
   target check excluded pages and item documents that 0.4 lets live outside
   the base URL
   ([blygger-spec#17](https://github.com/blygger/blygger-spec/issues/17), decision #84).
@@ -238,8 +256,8 @@ the live blygs they serve.
   Published at [florianlohse.com/blyg](https://florianlohse.com/blyg/) with a
   client of their own, `my-garden-site`, before moving to Blygger Studio at
   [blyg.florianlohse.com](https://blyg.florianlohse.com/).
-- **Christopher Chalcraft** — [@cchalc](https://github.com/cchalc). His
-  [Astro site](https://github.com/cchalc/site) emits a static blyg of its
+- **Christopher Chalcraft** — [@cchalc](https://github.com/cchalc). An
+  [Astro site](https://github.com/cchalc/site) that emits a static blyg of its
   articles at [featherandwire.dev/blyg](https://featherandwire.dev/blyg/),
   beside a Blygger Studio for short posts.
 
@@ -254,6 +272,10 @@ a profile yet. If one is yours, [say so](https://github.com/blygger/blygger-org/
 - [artlu.xyz](https://artlu.xyz/) — `astro-gyoza`.
 - [rafael.fyi/blyg](https://rafael.fyi/blyg/) — `rafael-fyi-blyg`, adapted
   from Protocols for Business's client.
+- [akkartik.name/bliki](https://akkartik.name/bliki/) — `blygpub`, Kartik
+  Agaram's.
+- [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/) — `dfnet-blyg`.
+- [ranganaut.com](https://www.ranganaut.com/) — `ranganaut-make-blyg`.
 
 </section>
 
