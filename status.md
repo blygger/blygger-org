@@ -1,6 +1,10 @@
 # Status — blygger-org
 
 ## Active
+- **Session 71 (2026-11-14, Opus) — deployed and pushed.** /roadmap/ opens on open items
+  with Open / Shipped / All (`roadmap_filter` in `build.py`, `roadmap-filter.js`); code-span
+  `\|` fixed in `sync_roadmap`; /start/ says `npm run export` is the public site and points
+  to download backup / `npm run backup`. Studio 0.60.0 announced on blyg.blygger.org.
 - **Session 57 (2026-11-01, Opus) — deployed and pushed.** Contributors page refreshed
   (six new contributors, stale "in review" credits fixed) and ecosystem list updated
   (blygd, blygcaster, blyg-watch; akashtattva/blyg skipped; generator strings current).
