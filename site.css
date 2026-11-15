@@ -543,3 +543,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--rss); outline-o
 .tablist [role=tab]:hover { color: var(--rss); }
 .tablist [role=tab]:focus-visible { outline: 2px solid var(--rss); outline-offset: 2px; }
 .tab-panel > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
+/* Roadmap Open / Shipped / All switch (roadmap-filter.js); the tab look, no panels. */
+.roadmap-filter .tablist { margin-bottom: 1rem; }
+tr[hidden] { display: none; }
