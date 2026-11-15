@@ -532,6 +532,10 @@ def sync_roadmap() -> None:
         return
     text = ROADMAP_SRC.read_text("utf-8").rstrip("\n")
     text = re.sub(r"\]\((?!https?://|#)([^)]+)\)", lambda m: f"]({GITHUB_URL}/blob/main/{m.group(1)})", text)
+    # GitHub needs `\|` for a pipe inside code in a table cell, and prints it as
+    # `|`; Python-Markdown already keeps code-span pipes in the cell and would
+    # print the backslash (row 66 showed `[[id \| text]]`).
+    text = re.sub(r"`[^`\n]*`", lambda m: m.group(0).replace("\\|", "|"), text)
     CONTENT_ROADMAP.mkdir(parents=True, exist_ok=True)
     out = CONTENT_ROADMAP / "index.md"
     out.write_text(banner("blygger-spec/ROADMAP.md") + text + footer(spec_repo_sha()), "utf-8")
