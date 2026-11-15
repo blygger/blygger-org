@@ -342,4 +342,4 @@ Recorded because each will be re-proposed.
 
 ---
 
-*Published from [blygger/blygger-spec@f585e42](https://github.com/blygger/blygger-spec/commit/f585e42).*
+*Published from [blygger/blygger-spec@7039f6b](https://github.com/blygger/blygger-spec/commit/7039f6b).*
