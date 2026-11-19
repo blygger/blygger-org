@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 22 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 20 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -77,9 +77,10 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 <!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
      then add or deliberately skip each one:
+       miguelito4/blyg-claims  (via name/desc/readme)
        philippnagel/blygs  (via name/desc/readme)
 -->
 
 ---
 
-*Checked 2026-11-18.*
+*Checked 2026-11-19.*

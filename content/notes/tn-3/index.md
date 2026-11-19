@@ -195,8 +195,9 @@ the one field where the protocol has no defence but truthfulness.
 
 ### 6.2 It floods the only scarce inbound signal there is
 
-The protocol has no follower list, no follower count, no metrics, at any level,
-ever (#12, #13, §11). A publisher's entire inbound signal is verified mentions
+The protocol has no follower list, no follower count and no metrics on the wire,
+at any level, ever (#12, #13, §11; "on the wire" added 2026-11-16, decision #108:
+what a client's page shows is not the protocol's). A publisher's entire inbound signal is verified mentions
 (§15.5) — and #41 identifies it as the strongest discovery signal available,
 because someone who responded to you demonstrably read you.
 
@@ -342,4 +343,4 @@ Recorded because each will be re-proposed.
 
 ---
 
-*Published from [blygger/blygger-spec@7039f6b](https://github.com/blygger/blygger-spec/commit/7039f6b).*
+*Published from [blygger/blygger-spec@eadbead](https://github.com/blygger/blygger-spec/commit/eadbead).*
