@@ -19,6 +19,8 @@ Usage:
   ./publish_blyg.py              publish every entry whose source changed
   ./publish_blyg.py --create     only create drafts for entries without an id
   ./publish_blyg.py --dry-run    report what would change
+  ./publish_blyg.py --only FILE  act on that map entry alone (its `file`, e.g. docs/posts/x.md);
+                                 combines with the flags above
 
 Auth: the blyg's owner password, BLYG_BLYGGER_ORG_OWNER_PASSWORD in
 Code/.env.keys. Stdlib only.
@@ -101,9 +103,14 @@ class Blyg:
 
 def main() -> None:
     create_only, dry = "--create" in sys.argv, "--dry-run" in sys.argv
+    only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv[:-1] else None
     entries = json.loads(MAP.read_text())
+    if only and not any(e["file"] == only for e in entries["items"]):
+        sys.exit(f"--only {only}: no such entry in the map")
     blyg = None if dry else Blyg()
     for e in entries["items"]:
+        if only and e["file"] != only:
+            continue
         text = content(e)
         sha = hashlib.sha256((SPEC / e["file"]).read_bytes()).hexdigest()
         if not e.get("id"):
