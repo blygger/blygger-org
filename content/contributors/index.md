@@ -208,7 +208,9 @@ the live blygs they serve.
   [static-to-studio](https://github.com/miguelito4/static-to-studio), which
   moves a static blyg into Blygger Studio at the same address. Wrote a static
   client, `caseyjr-blyg`, before moving
-  [caseyjr.org/blyg](https://caseyjr.org/blyg/) into Studio with it.
+  [caseyjr.org/blyg](https://caseyjr.org/blyg/) into Studio with it. In
+  development: [blyg-claims](https://github.com/miguelito4/blyg-claims),
+  prediction journals scored from public files.
 - **Brandon Pink** — [@brndnpink](https://github.com/brndnpink).
   [blyg-publisher](https://github.com/brndnpink/blyg-publisher), an Obsidian
   plugin that publishes a blyg from a folder of your vault.
@@ -238,6 +240,9 @@ the live blygs they serve.
   [blyxt](https://github.com/rpasetes/blyxt), a Telegram client: messages in a
   group topic publish as fragments, and another topic follows other blygs.
   Publishing at [rslantonie.com/blyg](https://rslantonie.com/blyg/).
+- **djinna** — [@djinna](https://github.com/djinna). In development:
+  [Blyg for iPhone](https://github.com/djinna/blyg-ios), an app for reading
+  and posting to blygs.
 - **ananth** — [@ananth1100](https://github.com/ananth1100).
   [blygger-reference-client](https://github.com/ananth1100/blygger-reference-client),
   a pure-stdlib Python client for 0.3, with a second, browser-only client that

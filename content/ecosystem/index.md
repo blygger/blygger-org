@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 20 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 27 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -36,7 +36,9 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Authoring tools
 
+- **[Blyg for iPhone](https://github.com/djinna/blyg-ios)** — [@djinna](https://github.com/djinna) · in development
 - **[Blyg for Obsidian](https://github.com/florianlohse/blyg-obsidian)** — [@florianlohse](https://github.com/florianlohse)
+- **[blyg-claims](https://github.com/miguelito4/blyg-claims)** — [@miguelito4](https://github.com/miguelito4) · in development
 - **[blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)** — [@aneeshsathe](https://github.com/aneeshsathe)
 - **[blygger-desktop for Windows](https://github.com/patwater/burrow-blyg-windows-)** — [@patwater](https://github.com/patwater)
 - **[drafts-blyg](https://github.com/miguelito4/drafts-blyg)** — [@miguelito4](https://github.com/miguelito4)
@@ -67,18 +69,20 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ## Unidentified clients
 
+- `angadh-jekyll-blyg/1.0.0` · live: [angadh.com/blyg](https://angadh.com/blyg/)
 - `astro-gyoza/0.0.2` · live: [artlu.xyz](https://artlu.xyz/)
 - `blyg/0.1.0` · live: [bashful.se](https://bashful.se/)
 - `blygpub/0.1.0` · live: [akkartik.name/bliki](https://akkartik.name/bliki/)
 - `dfnet-blyg/0.2` · live: [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/)
+- `kinocomputing-build/0.1` · live: [www.kinocomputing.com](https://www.kinocomputing.com/)
 - `mt-blyg/0.1.0` · live: [monstroustimes.com/blyg](https://monstroustimes.com/blyg/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
 - `ranganaut-make-blyg/0.1` · live: [www.ranganaut.com](https://www.ranganaut.com/)
 - `symmetrybroken-hugo/0.170.0` · live: [www.symmetrybroken.com](https://www.symmetrybroken.com/)
+- `thirdmind-blyg/0.1` · live: [ammdi.hyperphor.com/blyg](https://ammdi.hyperphor.com/blyg/)
 
 <!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
      then add or deliberately skip each one:
-       miguelito4/blyg-claims  (via name/desc/readme)
        patwater/pothole-portolan  (via name/desc/readme)
        philippnagel/blygs  (via name/desc/readme)
 -->

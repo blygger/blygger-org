@@ -542,6 +542,35 @@ def sync_roadmap() -> None:
     print(f"  wrote {out.relative_to(ROOT)}")
 
 
+GUIDE_SRC = ROOT / ".." / "blygger-studio" / "docs" / "where-does-it-go.md"
+CONTENT_GUIDE = ROOT / "content" / "contribute"
+
+
+def studio_link(target: str) -> str:
+    """A link relative to blygger-studio/docs/, made absolute on GitHub."""
+    path = target[3:] if target.startswith("../") else f"docs/{target}"
+    return f"{STUDIO_URL}/blob/main/{path}"
+
+
+def sync_guide() -> None:
+    """Publish the contributor guide, blygger-studio/docs/where-does-it-go.md, at
+    /contribute/ (session 76, for the 2026 hackathon). The studio file stays the
+    source; its relative links become absolute GitHub links."""
+    if not GUIDE_SRC.is_file():
+        return
+    text = GUIDE_SRC.read_text("utf-8").rstrip("\n")
+    text = re.sub(r"\]\((?!https?://|#)([^)]+)\)", lambda m: f"]({studio_link(m.group(1))})", text)
+    sha = run("git", "rev-parse", "--short", "HEAD", cwd=GUIDE_SRC.parent)
+    CONTENT_GUIDE.mkdir(parents=True, exist_ok=True)
+    out = CONTENT_GUIDE / "index.md"
+    out.write_text(
+        banner("blygger-studio/docs/where-does-it-go.md") + text
+        + f"\n\n---\n\n*Published from [{STUDIO_REPO}@{sha}]({STUDIO_URL}/blob/{sha}/docs/where-does-it-go.md).*\n",
+        "utf-8",
+    )
+    print(f"  wrote {out.relative_to(ROOT)}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", nargs="?", default="latest", choices=["latest", "snapshot"])
@@ -569,6 +598,7 @@ def main() -> None:
     sync_notes()
     sync_rfcs()
     sync_roadmap()
+    sync_guide()
 
 
 if __name__ == "__main__":

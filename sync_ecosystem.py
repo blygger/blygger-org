@@ -467,6 +467,8 @@ def render(projects: list[dict], cen: dict, discovered: list[dict], generated_at
                 origins = [p["live"]]
             if p.get("retired"):
                 line += " · retired"
+            if p.get("in_development"):
+                line += " · in development"
             if origins:
                 shown = origins[:3]
                 line += " · live: " + ", ".join(f"[{host_of(o)}]({o})" for o in shown)

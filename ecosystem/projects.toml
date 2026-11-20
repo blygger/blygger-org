@@ -29,6 +29,9 @@
 #   ours      true for the three artifacts we maintain.
 #   submitted Who told us, and when. "census" means we found it in a manifest.
 #   retired   true for a client no live blyg runs any more; rendered as "retired".
+#   in_development
+#             true for a project announced but not yet usable; rendered as
+#             "in development". Remove it once the project works.
 #
 # The census join matches exact generator strings and aliases first, then any
 # generator with the same client name (the part before "/"), so a version bump
@@ -187,7 +190,7 @@ submitted = "Venkat 2026-09-28"
 [[project]]
 repo = "chrisbodhi/hugo-blyg"
 category = "integration"
-generator = "hugo-blyg/0.3.2"
+generator = "hugo-blyg/0.4.0"
 generator_aliases = ["hugo-blyg/0.2.0"]
 live = "https://newschematic.org/blyg/"
 submitted = "Venkat 2026-09-28; generator matched 2026-10-06"
@@ -238,6 +241,21 @@ repo = "florianlohse/blyg-obsidian"
 name = "Blyg for Obsidian"
 category = "tool"
 submitted = "found by sync_ecosystem.py (topic:blygger) 2026-11-09"
+
+[[project]]
+repo = "djinna/blyg-ios"
+name = "Blyg for iPhone"
+category = "tool"
+in_development = true
+submitted = "found by sync_ecosystem.py search 2026-11-20 (hackathon); added session 76"
+
+[[project]]
+repo = "miguelito4/blyg-claims"
+name = "blyg-claims"
+category = "tool"
+in_development = true
+summary = "Prediction journals: claims as items, resolutions as later versions, calibration scored from public files."
+submitted = "found by sync_ecosystem.py search 2026-11-20 (hackathon); added session 76"
 
 # ─── Mods — a modified copy of blygger-studio ──────────────────────────────────
 
