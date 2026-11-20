@@ -79,9 +79,10 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 <!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
      then add or deliberately skip each one:
        miguelito4/blyg-claims  (via name/desc/readme)
+       patwater/pothole-portolan  (via name/desc/readme)
        philippnagel/blygs  (via name/desc/readme)
 -->
 
 ---
 
-*Checked 2026-11-19.*
+*Checked 2026-11-20.*
