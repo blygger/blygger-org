@@ -65,7 +65,7 @@ Say which mod needs it and why rungs 3 and 4 do not reach.
 
 ### 6. A mod
 
-A mod is a kind of blyg, not a pile of settings. [blykker](https://github.com/blygger/blykker), the first, keeps a blyg arranged as a book. It began as a `book.json` and a script on the owner API, added extensions second, and proposed hooks upstream third. A mod keeps two promises ([`mods.md`](https://github.com/blygger/blygger-studio/blob/main/docs/mods.md#two-promises-a-mod-keeps)): the generator string stays `blygger-studio/x.y.z`, and it does not fork.
+A mod is a kind of blyg, not a pile of settings. [blykker](https://github.com/blygger/blykker), the first, keeps a blyg arranged as a book. It began as a `book.json` and a script on the owner API, added extensions second, and proposed hooks upstream third. A mod keeps three promises ([`mods.md`](https://github.com/blygger/blygger-studio/blob/main/docs/mods.md#three-promises-a-mod-keeps)): the generator string stays `blygger-studio/x.y.z`, model text it inserts is disclosed, and it does not fork.
 
 ### 7. A local patch
 
@@ -156,4 +156,4 @@ When an issue is accepted, it gets a row in the [public roadmap](https://blygger
 
 ---
 
-*Published from [blygger/blygger-studio@4a814b6](https://github.com/blygger/blygger-studio/blob/4a814b6/docs/where-does-it-go.md).*
+*Published from [blygger/blygger-studio@8718a7a](https://github.com/blygger/blygger-studio/blob/8718a7a/docs/where-does-it-go.md).*

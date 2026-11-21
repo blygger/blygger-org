@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 27 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 24 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -58,6 +58,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 Optional features for the reference client. Each is reviewed code in the Studio repository: an operator compiles it into their build and the owner turns it on in Settings. Nothing is installed or loaded at run time, and an extension never changes what a blyg publishes. **[How to write one](https://github.com/blygger/blygger-studio/blob/main/docs/extensions.md)**. Where a mod can live, and which hooks the Studio will add for one: **[Modding the Studio](https://github.com/blygger/blygger-studio/blob/main/docs/mods.md)**.
 
+- **[Editor bar example](https://github.com/blygger/blygger-studio/tree/main/extensions/bars-example)** — Adds a bar above the editor’s text box: insert a mark at the cursor, and show or hide held-out text. For trying editor bars. · compile in to use
 - **[Held-out paragraphs example](https://github.com/blygger/blygger-studio/tree/main/extensions/regions-example)** — Hides paragraphs that start with \[held\]: # in the full editor, read-only when shown. For trying editor regions. · compile in to use
 - **[Inspect](https://github.com/blygger/blygger-studio/tree/main/extensions/inspect)** — Adds “inspect” to each reading entry’s ⋯ sheet: the record this Studio holds for it — ids, versions, references, hashes — and its JSON. · in every release
 - **[Lineage glyph](https://github.com/blygger/blygger-studio/tree/main/extensions/lineage-glyph)** — A glyph in each reading byline for what a post draws on and what draws on it here, opening a hex view that shows what stub, quote, fork, link, history and open would each make. · needs your own build
@@ -89,4 +90,4 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ---
 
-*Checked 2026-11-20.*
+*Checked 2026-11-21.*
