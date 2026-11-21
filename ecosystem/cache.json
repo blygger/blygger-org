@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-21T01:44:31+00:00",
+ "checked": "2026-11-21T05:46:14+00:00",
  "census": {
   "blygpub/0.1.0": {
    "generator": "blygpub/0.1.0",
@@ -23,7 +23,7 @@
      "origin": "https://ammdi.hyperphor.com/blyg/",
      "title": "AMMDI Blyg",
      "protocol": "0.3",
-     "updated": "2026-11-20T18:16:29Z",
+     "updated": "2026-11-21T04:23:27Z",
      "generator_seen": "thirdmind-blyg/0.1"
     }
    ],
@@ -105,7 +105,7 @@
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.4",
-     "updated": "2026-11-21T01:19:27Z",
+     "updated": "2026-11-21T04:30:20Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -133,7 +133,7 @@
      "origin": "https://blyg.pioneeringspirit.xyz/",
      "title": "Pioneering Spirit (Blyg)",
      "protocol": "0.4",
-     "updated": "2026-11-20T05:58:25Z",
+     "updated": "2026-11-21T05:06:39Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -147,7 +147,7 @@
      "origin": "https://blyg.tejas.nyc/",
      "title": "tejas.nyc",
      "protocol": "0.4",
-     "updated": "2026-11-21T01:43:41Z",
+     "updated": "2026-11-21T05:45:31Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -218,7 +218,7 @@
      "origin": "https://caseyjr.org/blyg/",
      "title": "The Foxden \ud83e\udd8a",
      "protocol": "0.4",
-     "updated": "2026-11-20T22:43:32Z",
+     "updated": "2026-11-21T02:40:45Z",
      "generator_seen": "blygger-studio/0.62.0"
     },
     {
@@ -270,22 +270,22 @@
     "0.4"
    ]
   },
-  "blygger-studio/0.66.0": {
-   "generator": "blygger-studio/0.66.0",
+  "blygger-studio/0.67.0": {
+   "generator": "blygger-studio/0.67.0",
    "nodes": [
     {
      "origin": "https://blyg.protocol-institute.org/",
      "title": "Protocol Institute Blyg",
      "protocol": "0.4",
      "updated": "2026-11-18T20:21:53Z",
-     "generator_seen": "blygger-studio/0.66.0"
+     "generator_seen": "blygger-studio/0.67.0"
     },
     {
      "origin": "https://venkateshrao.com/blyg/",
      "title": "Venkatesh Rao's Blyg",
      "protocol": "0.4",
-     "updated": "2026-11-20T22:13:05Z",
-     "generator_seen": "blygger-studio/0.66.0"
+     "updated": "2026-11-21T05:15:33Z",
+     "generator_seen": "blygger-studio/0.67.0"
     }
    ],
    "protocols": [
@@ -494,7 +494,7 @@
      "origin": "https://rslantonie.com/blyg/",
      "title": "mundane stem",
      "protocol": "0.4",
-     "updated": "2026-11-21T00:35:30Z",
+     "updated": "2026-11-21T01:44:05Z",
      "generator_seen": "blyxt/0.2.0"
     }
    ],
@@ -601,7 +601,7 @@
    "license": "NOASSERTION",
    "stars": 9,
    "forks": 10,
-   "pushed_at": "2026-11-21T01:38:22Z",
+   "pushed_at": "2026-11-21T05:42:14Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -1026,7 +1026,7 @@
    "license": "MIT",
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-11-21T01:26:35Z",
+   "pushed_at": "2026-11-21T02:31:53Z",
    "created_at": "2026-11-19T01:05:07Z",
    "archived": false,
    "homepage": null,

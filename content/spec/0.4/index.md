@@ -3408,4 +3408,4 @@ eleventh revision.
 
 ---
 
-*Published from [blygger/blygger-spec@76066d2](https://github.com/blygger/blygger-spec/commit/76066d2).*
+*Published from [blygger/blygger-spec@d107af7](https://github.com/blygger/blygger-spec/commit/d107af7).*
