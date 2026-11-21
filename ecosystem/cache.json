@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-21T05:46:14+00:00",
+ "checked": "2026-11-21T18:17:56+00:00",
  "census": {
   "blygpub/0.1.0": {
    "generator": "blygpub/0.1.0",
@@ -23,7 +23,7 @@
      "origin": "https://ammdi.hyperphor.com/blyg/",
      "title": "AMMDI Blyg",
      "protocol": "0.3",
-     "updated": "2026-11-21T04:23:27Z",
+     "updated": "2026-11-21T17:47:06Z",
      "generator_seen": "thirdmind-blyg/0.1"
     }
    ],
@@ -38,7 +38,7 @@
      "origin": "https://angadh.com/blyg/",
      "title": "angadh.com",
      "protocol": "0.4",
-     "updated": "2026-11-20T16:40:14Z",
+     "updated": "2026-11-21T17:42:56Z",
      "generator_seen": "angadh-jekyll-blyg/1.0.0"
     }
    ],
@@ -105,7 +105,7 @@
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.4",
-     "updated": "2026-11-21T04:30:20Z",
+     "updated": "2026-11-21T06:51:30Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -133,21 +133,21 @@
      "origin": "https://blyg.pioneeringspirit.xyz/",
      "title": "Pioneering Spirit (Blyg)",
      "protocol": "0.4",
-     "updated": "2026-11-21T05:06:39Z",
+     "updated": "2026-11-21T06:28:19Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
      "origin": "https://blyg.rupingchen.com/",
      "title": "ru-ping's realm of rambles",
      "protocol": "0.4",
-     "updated": "2026-11-20T23:09:13Z",
+     "updated": "2026-11-21T09:37:39Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
      "origin": "https://blyg.tejas.nyc/",
      "title": "tejas.nyc",
      "protocol": "0.4",
-     "updated": "2026-11-21T05:45:31Z",
+     "updated": "2026-11-21T18:17:05Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -190,7 +190,7 @@
      "origin": "https://blyg.florianlohse.com/",
      "title": "florianlohse-blyg",
      "protocol": "0.4",
-     "updated": "2026-11-20T20:17:20Z",
+     "updated": "2026-11-21T12:38:53Z",
      "generator_seen": "blygger-studio/0.62.0"
     },
     {
@@ -218,7 +218,7 @@
      "origin": "https://caseyjr.org/blyg/",
      "title": "The Foxden \ud83e\udd8a",
      "protocol": "0.4",
-     "updated": "2026-11-21T02:40:45Z",
+     "updated": "2026-11-21T17:45:57Z",
      "generator_seen": "blygger-studio/0.62.0"
     },
     {
@@ -241,13 +241,6 @@
      "title": "Kyle's blyg",
      "protocol": "0.4",
      "updated": "2026-11-20T02:52:50Z",
-     "generator_seen": "blygger-studio/0.58.1"
-    },
-    {
-     "origin": "https://blyg.nedshed.dev/",
-     "title": "nedshed.dev",
-     "protocol": "0.4",
-     "updated": "2026-11-15T03:47:16Z",
      "generator_seen": "blygger-studio/0.58.1"
     }
    ],
@@ -274,18 +267,33 @@
    "generator": "blygger-studio/0.67.0",
    "nodes": [
     {
+     "origin": "https://blyg.nedshed.dev/",
+     "title": "nedshed.dev",
+     "protocol": "0.4",
+     "updated": "2026-11-21T07:28:24Z",
+     "generator_seen": "blygger-studio/0.67.0"
+    }
+   ],
+   "protocols": [
+    "0.4"
+   ]
+  },
+  "blygger-studio/0.68.0": {
+   "generator": "blygger-studio/0.68.0",
+   "nodes": [
+    {
      "origin": "https://blyg.protocol-institute.org/",
      "title": "Protocol Institute Blyg",
      "protocol": "0.4",
      "updated": "2026-11-18T20:21:53Z",
-     "generator_seen": "blygger-studio/0.67.0"
+     "generator_seen": "blygger-studio/0.68.0"
     },
     {
      "origin": "https://venkateshrao.com/blyg/",
      "title": "Venkatesh Rao's Blyg",
      "protocol": "0.4",
-     "updated": "2026-11-21T05:15:33Z",
-     "generator_seen": "blygger-studio/0.67.0"
+     "updated": "2026-11-21T17:47:00Z",
+     "generator_seen": "blygger-studio/0.68.0"
     }
    ],
    "protocols": [
@@ -367,15 +375,15 @@
     "0.4"
    ]
   },
-  "Blynger/0.15.9": {
-   "generator": "Blynger/0.15.9",
+  "Blynger/0.15.10": {
+   "generator": "Blynger/0.15.10",
    "nodes": [
     {
      "origin": "https://bradydale.com/blyg/",
      "title": "Brady Dale's blyg",
      "protocol": "0.4",
-     "updated": "2026-11-19T20:17:38Z",
-     "generator_seen": "Blynger/0.15.9"
+     "updated": "2026-11-21T06:30:58Z",
+     "generator_seen": "Blynger/0.15.10"
     }
    ],
    "protocols": [
@@ -494,7 +502,7 @@
      "origin": "https://rslantonie.com/blyg/",
      "title": "mundane stem",
      "protocol": "0.4",
-     "updated": "2026-11-21T01:44:05Z",
+     "updated": "2026-11-21T09:03:06Z",
      "generator_seen": "blyxt/0.2.0"
     }
    ],
@@ -524,7 +532,7 @@
      "origin": "https://www.kinocomputing.com/",
      "title": "Kinocomputing",
      "protocol": "0.3",
-     "updated": "2026-11-20T20:14:00Z",
+     "updated": "2026-11-21T15:21:01Z",
      "generator_seen": "kinocomputing-build/0.1"
     }
    ],
@@ -539,7 +547,7 @@
      "origin": "https://www.msweet.net/notes/",
      "title": "Notes | Matthew McDowell-Sweet",
      "protocol": "0.3",
-     "updated": "2026-11-20T22:41:21Z",
+     "updated": "2026-11-21T18:05:10Z",
      "generator_seen": "msn-build/0.1"
     }
    ],
@@ -601,7 +609,7 @@
    "license": "NOASSERTION",
    "stars": 9,
    "forks": 10,
-   "pushed_at": "2026-11-21T05:42:14Z",
+   "pushed_at": "2026-11-21T18:13:39Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -998,7 +1006,7 @@
    "license": "MIT",
    "stars": 1,
    "forks": 0,
-   "pushed_at": "2026-11-19T22:30:35Z",
+   "pushed_at": "2026-11-21T18:03:26Z",
    "created_at": "2026-11-10T15:40:15Z",
    "archived": false,
    "homepage": null,
@@ -1010,7 +1018,7 @@
    "description": "Blyg: an iPhone app for reading and posting to Blygger blygs",
    "language": "Swift",
    "license": "MIT",
-   "stars": 0,
+   "stars": 1,
    "forks": 0,
    "pushed_at": "2026-11-21T01:25:13Z",
    "created_at": "2026-11-20T17:55:23Z",
@@ -1026,7 +1034,7 @@
    "license": "MIT",
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-11-21T02:31:53Z",
+   "pushed_at": "2026-11-21T17:45:35Z",
    "created_at": "2026-11-19T01:05:07Z",
    "archived": false,
    "homepage": null,
@@ -1036,6 +1044,18 @@
  },
  "summaries": {},
  "discovered": [
+  {
+   "repo": "angadhn/botference",
+   "via": "name/desc/readme"
+  },
+  {
+   "repo": "chrisbodhi/hygercard",
+   "via": "name/desc/readme"
+  },
+  {
+   "repo": "msmsim/kinocomputing-lab",
+   "via": "name/desc/readme"
+  },
   {
    "repo": "patwater/pothole-portolan",
    "via": "name/desc/readme"

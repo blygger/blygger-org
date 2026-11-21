@@ -84,6 +84,9 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 <!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
      then add or deliberately skip each one:
+       angadhn/botference  (via name/desc/readme)
+       chrisbodhi/hygercard  (via name/desc/readme)
+       msmsim/kinocomputing-lab  (via name/desc/readme)
        patwater/pothole-portolan  (via name/desc/readme)
        philippnagel/blygs  (via name/desc/readme)
 -->

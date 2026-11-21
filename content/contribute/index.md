@@ -156,4 +156,4 @@ When an issue is accepted, it gets a row in the [public roadmap](https://blygger
 
 ---
 
-*Published from [blygger/blygger-studio@8718a7a](https://github.com/blygger/blygger-studio/blob/8718a7a/docs/where-does-it-go.md).*
+*Published from [blygger/blygger-studio@f023f48](https://github.com/blygger/blygger-studio/blob/f023f48/docs/where-does-it-go.md).*
