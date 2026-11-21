@@ -70,7 +70,7 @@ summary = "The reference client. A Cloudflare Worker that publishes a blyg, subs
 repo = "BradyDale/Blynger"
 name = "Blynger"
 category = "client"
-generator = "Blynger/0.15.9"
+generator = "Blynger/0.15.10"
 # Every version a live node has been seen reporting. Blynger bumps often, so
 # each new release needs its old string added here or it reads as unidentified.
 generator_aliases = ["Blynger/0.15.8", "Blynger/0.12.0", "Blynger/0.9.31", "Blynger/0.9.21", "Blynger/0.8.2"]

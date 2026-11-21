@@ -1,10 +1,18 @@
 <!--
   GENERATED FILE — do not edit directly.
-  Source: blygger-studio/docs/where-does-it-go.md
+  Source: blygger-spec/docs/notes/tn-8-where-does-my-change-belong.md
   Regenerate: blygger-org/sync_spec.py (see docs/spec-publishing-plan.md)
 -->
 
-# Where does my change belong?
+# TN-8 — Where does my change belong? A contributor's map
+
+**Technical note · non-normative · 2026-11-21 (session 78).** First written for the
+2026 hackathon as `blygger-studio/docs/where-does-it-go.md` (session 74, 2026-11-18) and
+published at [blygger.org/contribute/](https://blygger.org/contribute/); made a note so
+that it is numbered, cited and announced like the others (Venkat, session 78). It maps
+where a change belongs across the four repositories, with the Studio as the worked
+example: the protocol decides nothing here, and other clients may draw their own ladder.
+Revised as the Studio changes; the studio file is now a pointer to this one.
 
 You have an idea for a blyg: a feature, a fix, a tool, a different look. Before you write any code, decide where it goes. There are eight places, from a request for a protocol ruling to a client of your own. Each has a different cost to you and to everyone else, and a change built in the wrong place is usually rebuilt later.
 
@@ -19,8 +27,8 @@ Answer these questions in order and **stop at the first yes**.
 | 1 | Would it change the bytes another blyg or reader receives (an item document, the feed, `blyg.json`, `content_html`), or would another client have to change to work with it? | **A spec question.** Nothing is built until it is ruled | An issue on [blygger-spec](https://github.com/blygger/blygger-spec/issues/new/choose) |
 | 2 | Is it a bug, or something every blyg would want with no setting? | **A pull request to the Studio** | [blygger-studio](https://github.com/blygger/blygger-studio) |
 | 3 | Can it be done from outside, with a token, through `{mount}/api` and Settings, with no code inside the Studio? | **A tool or configuration** | Your own repository |
-| 4 | Is it interface for one owner, in the browser, in a slot that already exists? | **An extension** | This repository, or yours, vendored in |
-| 5 | Does it need a slot or setting the Studio lacks, in a form any blyg could use? | **A hook, proposed upstream** | A pull request here |
+| 4 | Is it interface for one owner, in the browser, in a slot that already exists? | **An extension** | [blygger-studio](https://github.com/blygger/blygger-studio), or your own repository, vendored in |
+| 5 | Does it need a slot or setting the Studio lacks, in a form any blyg could use? | **A hook, proposed upstream** | A pull request to [blygger-studio](https://github.com/blygger/blygger-studio) |
 | 6 | Is it several of 3 to 5 together, making a kind of blyg (a book, a course, a lab notebook)? | **A mod** | Its own repository |
 | 7 | Does it only make sense on your node (your branding, your infrastructure), with no general form? | **A local patch** | Your own deployment |
 | 8 | Does it need to change what the Studio is? | **Another client** | A fork with its own name |
@@ -156,4 +164,4 @@ When an issue is accepted, it gets a row in the [public roadmap](https://blygger
 
 ---
 
-*Published from [blygger/blygger-studio@f023f48](https://github.com/blygger/blygger-studio/blob/f023f48/docs/where-does-it-go.md).*
+*This is [TN-8](/notes/tn-8/), published from [blygger-spec@97c9471](https://github.com/blygger/blygger-spec/blob/97c9471/docs/notes/tn-8-where-does-my-change-belong.md).*

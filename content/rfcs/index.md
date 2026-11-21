@@ -21,4 +21,4 @@ An RFC proposes a convention or a design that more than one client would follow.
 
 ---
 
-*Published from [blygger/blygger-spec@8c848f2](https://github.com/blygger/blygger-spec/commit/8c848f2).*
+*Published from [blygger/blygger-spec@97c9471](https://github.com/blygger/blygger-spec/commit/97c9471).*

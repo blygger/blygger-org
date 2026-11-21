@@ -17,3 +17,4 @@ Notes are also published on the official blyg, [blyg.blygger.org](https://blyg.b
 | [TN-4 — The write surface: one client's owner API, and why the protocol has none](/notes/tn-4/) | 2026-11-09 | current |
 | [TN-6 — Mentions across identifier schemes: petnames in the studio, full identifiers on the wire](/notes/tn-6/) | 2026-11-05 | current |
 | [TN-7 — Comments sections: a curated display of responses, every comment a real item](/notes/tn-7/) | 2026-11-05 | current |
+| [TN-8 — Where does my change belong? A contributor's map](/notes/tn-8/) | 2026-11-21 | current |

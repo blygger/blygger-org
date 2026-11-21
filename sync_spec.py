@@ -542,30 +542,25 @@ def sync_roadmap() -> None:
     print(f"  wrote {out.relative_to(ROOT)}")
 
 
-GUIDE_SRC = ROOT / ".." / "blygger-studio" / "docs" / "where-does-it-go.md"
+GUIDE_SRC = SPEC_REPO / "docs" / "notes" / "tn-8-where-does-my-change-belong.md"
 CONTENT_GUIDE = ROOT / "content" / "contribute"
 
 
-def studio_link(target: str) -> str:
-    """A link relative to blygger-studio/docs/, made absolute on GitHub."""
-    path = target[3:] if target.startswith("../") else f"docs/{target}"
-    return f"{STUDIO_URL}/blob/main/{path}"
-
-
 def sync_guide() -> None:
-    """Publish the contributor guide, blygger-studio/docs/where-does-it-go.md, at
-    /contribute/ (session 76, for the 2026 hackathon). The studio file stays the
-    source; its relative links become absolute GitHub links."""
+    """Publish the contributor guide at /contribute/, the nav's link (session 76,
+    for the 2026 hackathon). Since session 78 the guide is TN-8, so this page is
+    the note's text again, saying where its canonical page is; the note itself
+    is synced to /notes/tn-8/ with the others."""
     if not GUIDE_SRC.is_file():
         return
     text = GUIDE_SRC.read_text("utf-8").rstrip("\n")
-    text = re.sub(r"\]\((?!https?://|#)([^)]+)\)", lambda m: f"]({studio_link(m.group(1))})", text)
-    sha = run("git", "rev-parse", "--short", "HEAD", cwd=GUIDE_SRC.parent)
+    sha = spec_repo_sha()
     CONTENT_GUIDE.mkdir(parents=True, exist_ok=True)
     out = CONTENT_GUIDE / "index.md"
+    rel = f"docs/notes/{GUIDE_SRC.name}"
     out.write_text(
-        banner("blygger-studio/docs/where-does-it-go.md") + text
-        + f"\n\n---\n\n*Published from [{STUDIO_REPO}@{sha}]({STUDIO_URL}/blob/{sha}/docs/where-does-it-go.md).*\n",
+        banner(f"blygger-spec/{rel}") + text
+        + f"\n\n---\n\n*This is [TN-8](/notes/tn-8/), published from [blygger-spec@{sha}](https://github.com/blygger/blygger-spec/blob/{sha}/{rel}).*\n",
         "utf-8",
     )
     print(f"  wrote {out.relative_to(ROOT)}")
