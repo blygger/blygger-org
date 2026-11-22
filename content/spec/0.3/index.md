@@ -2326,4 +2326,4 @@ before it.
 
 ---
 
-*Published from [blygger/blygger-spec@d57373b](https://github.com/blygger/blygger-spec/commit/d57373b).*
+*Published from [blygger/blygger-spec@fa11b56](https://github.com/blygger/blygger-spec/commit/fa11b56).*
