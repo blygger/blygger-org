@@ -189,4 +189,4 @@ spec, would record.
 
 ---
 
-*Published from [blygger/blygger-spec@6b7e8d3](https://github.com/blygger/blygger-spec/commit/6b7e8d3).*
+*Published from [blygger/blygger-spec@e94406a](https://github.com/blygger/blygger-spec/commit/e94406a).*
