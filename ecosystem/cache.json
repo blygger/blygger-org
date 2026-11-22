@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-21T22:10:37+00:00",
+ "checked": "2026-11-22T01:26:58+00:00",
  "census": {
   "blygpub/0.1.0": {
    "generator": "blygpub/0.1.0",
@@ -38,7 +38,7 @@
      "origin": "https://angadh.com/blyg/",
      "title": "angadh.com",
      "protocol": "0.4",
-     "updated": "2026-11-21T17:42:56Z",
+     "updated": "2026-11-21T23:48:10Z",
      "generator_seen": "angadh-jekyll-blyg/1.0.0"
     }
    ],
@@ -105,7 +105,7 @@
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.4",
-     "updated": "2026-11-21T21:11:55Z",
+     "updated": "2026-11-21T23:45:45Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -120,13 +120,6 @@
      "title": "jakesimonds.com",
      "protocol": "0.4",
      "updated": "2026-11-20T17:32:20Z",
-     "generator_seen": "blygger-studio/0.65.0"
-    },
-    {
-     "origin": "https://blyg.jdbb.net/",
-     "title": "[jdbb] studio blyg",
-     "protocol": "0.4",
-     "updated": "2026-11-20T23:54:42Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -147,7 +140,7 @@
      "origin": "https://blyg.tejas.nyc/",
      "title": "tejas.nyc",
      "protocol": "0.4",
-     "updated": "2026-11-21T22:09:49Z",
+     "updated": "2026-11-22T01:26:10Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -241,6 +234,42 @@
     "0.4"
    ]
   },
+  "blygger-studio/0.68.0": {
+   "generator": "blygger-studio/0.68.0",
+   "nodes": [
+    {
+     "origin": "https://blyg.jdbb.net/",
+     "title": "[jdbb] studio blyg",
+     "protocol": "0.4",
+     "updated": "2026-11-22T00:38:42Z",
+     "generator_seen": "blygger-studio/0.68.0"
+    },
+    {
+     "origin": "https://blyg.protocol-institute.org/",
+     "title": "Protocol Institute Blyg",
+     "protocol": "0.4",
+     "updated": "2026-11-18T20:21:53Z",
+     "generator_seen": "blygger-studio/0.68.0"
+    },
+    {
+     "origin": "https://caseyjr.org/blyg/",
+     "title": "The Foxden \ud83e\udd8a",
+     "protocol": "0.4",
+     "updated": "2026-11-21T17:45:57Z",
+     "generator_seen": "blygger-studio/0.68.0"
+    },
+    {
+     "origin": "https://venkateshrao.com/blyg/",
+     "title": "Venkatesh Rao's Blyg",
+     "protocol": "0.4",
+     "updated": "2026-11-22T00:25:43Z",
+     "generator_seen": "blygger-studio/0.68.0"
+    }
+   ],
+   "protocols": [
+    "0.4"
+   ]
+  },
   "blygger-studio/0.60.0": {
    "generator": "blygger-studio/0.60.0",
    "nodes": [
@@ -265,35 +294,6 @@
      "protocol": "0.4",
      "updated": "2026-11-21T07:28:24Z",
      "generator_seen": "blygger-studio/0.67.0"
-    }
-   ],
-   "protocols": [
-    "0.4"
-   ]
-  },
-  "blygger-studio/0.68.0": {
-   "generator": "blygger-studio/0.68.0",
-   "nodes": [
-    {
-     "origin": "https://blyg.protocol-institute.org/",
-     "title": "Protocol Institute Blyg",
-     "protocol": "0.4",
-     "updated": "2026-11-18T20:21:53Z",
-     "generator_seen": "blygger-studio/0.68.0"
-    },
-    {
-     "origin": "https://caseyjr.org/blyg/",
-     "title": "The Foxden \ud83e\udd8a",
-     "protocol": "0.4",
-     "updated": "2026-11-21T17:45:57Z",
-     "generator_seen": "blygger-studio/0.68.0"
-    },
-    {
-     "origin": "https://venkateshrao.com/blyg/",
-     "title": "Venkatesh Rao's Blyg",
-     "protocol": "0.4",
-     "updated": "2026-11-21T20:56:16Z",
-     "generator_seen": "blygger-studio/0.68.0"
     }
    ],
    "protocols": [
@@ -397,15 +397,15 @@
     "0.4"
    ]
   },
-  "dfnet-blyg/0.2": {
-   "generator": "dfnet-blyg/0.2",
+  "dfnet-blyg/0.3": {
+   "generator": "dfnet-blyg/0.3",
    "nodes": [
     {
      "origin": "https://dylanfitzgerald.net/blyg/",
      "title": "Ctrl+Shift",
      "protocol": "0.4",
      "updated": "2026-11-17T19:58:00Z",
-     "generator_seen": "dfnet-blyg/0.2"
+     "generator_seen": "dfnet-blyg/0.3"
     }
    ],
    "protocols": [
@@ -554,7 +554,7 @@
      "origin": "https://www.msweet.net/notes/",
      "title": "Notes | Matthew McDowell-Sweet",
      "protocol": "0.3",
-     "updated": "2026-11-21T20:00:50Z",
+     "updated": "2026-11-21T22:26:27Z",
      "generator_seen": "msn-build/0.1"
     }
    ],
@@ -616,7 +616,7 @@
    "license": "NOASSERTION",
    "stars": 9,
    "forks": 10,
-   "pushed_at": "2026-11-21T19:48:27Z",
+   "pushed_at": "2026-11-22T01:25:26Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -908,7 +908,7 @@
    "license": null,
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-11-20T19:47:01Z",
+   "pushed_at": "2026-11-22T00:08:31Z",
    "created_at": "2026-10-30T23:03:50Z",
    "archived": false,
    "homepage": "https://eurypos.com",
@@ -1041,7 +1041,7 @@
    "license": "MIT",
    "stars": 0,
    "forks": 0,
-   "pushed_at": "2026-11-21T21:07:40Z",
+   "pushed_at": "2026-11-22T00:13:37Z",
    "created_at": "2026-11-19T01:05:07Z",
    "archived": false,
    "homepage": null,
@@ -1073,6 +1073,13 @@
   }
  ],
  "extensions": [
+  {
+   "name": "claims",
+   "label": "Claims",
+   "description": "Forecasts anyone can check: a claim bar in the editor, a badge on posts with a claim, pinning and resolving from the post, and a Claims page with your score.",
+   "shipped": true,
+   "server": false
+  },
   {
    "name": "bars-example",
    "label": "Editor bar example",
