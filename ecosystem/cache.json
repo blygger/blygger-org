@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-22T05:57:40+00:00",
+ "checked": "2026-11-22T06:16:16+00:00",
  "census": {
   "blygpub/0.1.0": {
    "generator": "blygpub/0.1.0",
@@ -98,71 +98,43 @@
     "0.4"
    ]
   },
-  "blygger-studio/0.65.0": {
-   "generator": "blygger-studio/0.65.0",
+  "blygger-studio/0.68.0": {
+   "generator": "blygger-studio/0.68.0",
    "nodes": [
     {
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.4",
      "updated": "2026-11-22T05:41:14Z",
-     "generator_seen": "blygger-studio/0.65.0"
+     "generator_seen": "blygger-studio/0.68.0"
     },
     {
-     "origin": "https://blyg.existingotherwise.org/",
-     "title": "Existing Otherwise",
+     "origin": "https://blyg.bricolage.io/",
+     "title": "Kyle's blyg",
      "protocol": "0.4",
-     "updated": "2026-11-06T10:59:10Z",
-     "generator_seen": "blygger-studio/0.65.0"
+     "updated": "2026-11-20T02:52:50Z",
+     "generator_seen": "blygger-studio/0.68.0"
     },
     {
-     "origin": "https://blyg.jakesimonds.com/",
-     "title": "jakesimonds.com",
+     "origin": "https://blyg.jdbb.net/",
+     "title": "[jdbb] studio blyg",
      "protocol": "0.4",
-     "updated": "2026-11-20T17:32:20Z",
-     "generator_seen": "blygger-studio/0.65.0"
+     "updated": "2026-11-22T00:38:42Z",
+     "generator_seen": "blygger-studio/0.68.0"
     },
     {
-     "origin": "https://blyg.pioneeringspirit.xyz/",
-     "title": "Pioneering Spirit (Blyg)",
+     "origin": "https://caseyjr.org/blyg/",
+     "title": "The Foxden \ud83e\udd8a",
      "protocol": "0.4",
-     "updated": "2026-11-21T06:28:19Z",
-     "generator_seen": "blygger-studio/0.65.0"
+     "updated": "2026-11-21T17:45:57Z",
+     "generator_seen": "blygger-studio/0.68.0"
     },
     {
-     "origin": "https://blyg.rupingchen.com/",
-     "title": "ru-ping's realm of rambles",
+     "origin": "https://ryancquan.com/blyg/",
+     "title": "Inherited Priors",
      "protocol": "0.4",
-     "updated": "2026-11-21T09:37:39Z",
-     "generator_seen": "blygger-studio/0.65.0"
-    },
-    {
-     "origin": "https://blyg.tejas.nyc/",
-     "title": "tejas.nyc",
-     "protocol": "0.4",
-     "updated": "2026-11-22T05:56:49Z",
-     "generator_seen": "blygger-studio/0.65.0"
-    },
-    {
-     "origin": "https://burrow.aneeshsathe.com/",
-     "title": "Burrow - The first desktop blyg client",
-     "protocol": "0.4",
-     "updated": "2026-11-20T12:55:34Z",
-     "generator_seen": "blygger-studio/0.65.0"
-    },
-    {
-     "origin": "https://deguise.app/blyg/",
-     "title": "d\u00e9guise",
-     "protocol": "0.4",
-     "updated": "2026-11-22T01:52:40Z",
-     "generator_seen": "blygger-studio/0.65.0"
-    },
-    {
-     "origin": "https://newnature.venkateshrao.com/",
-     "title": "New Nature",
-     "protocol": "0.4",
-     "updated": "2026-11-21T00:44:52Z",
-     "generator_seen": "blygger-studio/0.65.0"
+     "updated": "2026-11-22T03:59:00Z",
+     "generator_seen": "blygger-studio/0.68.0"
     }
    ],
    "protocols": [
@@ -212,36 +184,64 @@
     "0.4"
    ]
   },
-  "blygger-studio/0.68.0": {
-   "generator": "blygger-studio/0.68.0",
+  "blygger-studio/0.65.0": {
+   "generator": "blygger-studio/0.65.0",
    "nodes": [
     {
-     "origin": "https://blyg.bricolage.io/",
-     "title": "Kyle's blyg",
+     "origin": "https://blyg.existingotherwise.org/",
+     "title": "Existing Otherwise",
      "protocol": "0.4",
-     "updated": "2026-11-20T02:52:50Z",
-     "generator_seen": "blygger-studio/0.68.0"
+     "updated": "2026-11-06T10:59:10Z",
+     "generator_seen": "blygger-studio/0.65.0"
     },
     {
-     "origin": "https://blyg.jdbb.net/",
-     "title": "[jdbb] studio blyg",
+     "origin": "https://blyg.jakesimonds.com/",
+     "title": "jakesimonds.com",
      "protocol": "0.4",
-     "updated": "2026-11-22T00:38:42Z",
-     "generator_seen": "blygger-studio/0.68.0"
+     "updated": "2026-11-20T17:32:20Z",
+     "generator_seen": "blygger-studio/0.65.0"
     },
     {
-     "origin": "https://caseyjr.org/blyg/",
-     "title": "The Foxden \ud83e\udd8a",
+     "origin": "https://blyg.pioneeringspirit.xyz/",
+     "title": "Pioneering Spirit (Blyg)",
      "protocol": "0.4",
-     "updated": "2026-11-21T17:45:57Z",
-     "generator_seen": "blygger-studio/0.68.0"
+     "updated": "2026-11-21T06:28:19Z",
+     "generator_seen": "blygger-studio/0.65.0"
     },
     {
-     "origin": "https://ryancquan.com/blyg/",
-     "title": "Inherited Priors",
+     "origin": "https://blyg.rupingchen.com/",
+     "title": "ru-ping's realm of rambles",
      "protocol": "0.4",
-     "updated": "2026-11-22T03:59:00Z",
-     "generator_seen": "blygger-studio/0.68.0"
+     "updated": "2026-11-21T09:37:39Z",
+     "generator_seen": "blygger-studio/0.65.0"
+    },
+    {
+     "origin": "https://blyg.tejas.nyc/",
+     "title": "tejas.nyc",
+     "protocol": "0.4",
+     "updated": "2026-11-22T06:15:26Z",
+     "generator_seen": "blygger-studio/0.65.0"
+    },
+    {
+     "origin": "https://burrow.aneeshsathe.com/",
+     "title": "Burrow - The first desktop blyg client",
+     "protocol": "0.4",
+     "updated": "2026-11-20T12:55:34Z",
+     "generator_seen": "blygger-studio/0.65.0"
+    },
+    {
+     "origin": "https://deguise.app/blyg/",
+     "title": "d\u00e9guise",
+     "protocol": "0.4",
+     "updated": "2026-11-22T01:52:40Z",
+     "generator_seen": "blygger-studio/0.65.0"
+    },
+    {
+     "origin": "https://newnature.venkateshrao.com/",
+     "title": "New Nature",
+     "protocol": "0.4",
+     "updated": "2026-11-21T00:44:52Z",
+     "generator_seen": "blygger-studio/0.65.0"
     }
    ],
    "protocols": [
@@ -270,7 +270,7 @@
      "origin": "https://blyg.nedshed.dev/",
      "title": "nedshed.dev",
      "protocol": "0.4",
-     "updated": "2026-11-21T07:28:24Z",
+     "updated": "2026-11-22T06:15:14Z",
      "generator_seen": "blygger-studio/0.67.0"
     }
    ],
@@ -672,7 +672,7 @@
    "license": "MIT",
    "stars": 4,
    "forks": 3,
-   "pushed_at": "2026-11-22T05:31:35Z",
+   "pushed_at": "2026-11-22T05:58:08Z",
    "created_at": "2026-09-25T15:44:30Z",
    "archived": false,
    "homepage": "https://aneeshsathe.github.io/blygger-desktop/",
