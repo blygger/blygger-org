@@ -94,6 +94,7 @@ def announcement(version: str, date: str, title: str | None, body: str, model: s
     # nested scope and publishing fails, even inside backticks (the nesting check
     # in blygger-studio src/tk.ts does not skip code spans; session 45).
     body = body.replace("[TK]", "TK")
+    title = title and title.replace("[TK]", "TK")  # titles too (0.70.0)
     link = f"[v{version} on GitHub]({RELEASES}v{version})"
     name = f"Blygger Studio {version}" + (f": {title}" if title else "")
     head = f"# {name}\n\n*Released {date}, the reference client. {link}.*\n\n"
@@ -113,6 +114,7 @@ def batch_announcement(rows: list, model: str) -> str:
     parts = []
     for v, date, title, body in rows:
         body = body.replace("[TK]", "TK")
+        title = title and title.replace("[TK]", "TK")
         body = re.sub(r"^## ", "#### ", re.sub(r"^### ", "#### ", body, flags=re.M), flags=re.M)
         parts.append(f"## {v}" + (f": {title}" if title else "") +
                      f"\n\n*Released {date}. [v{v} on GitHub]({RELEASES}v{v}).*\n\n{body}")
