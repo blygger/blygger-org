@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 28 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/), [blyg.artlu.xyz](https://blyg.artlu.xyz/) and 25 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -59,6 +59,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 Optional features for the reference client. Each is reviewed code in the Studio repository: an operator compiles it into their build and the owner turns it on in Settings. Nothing is installed or loaded at run time, and an extension never changes what a blyg publishes. **[How to write one](https://github.com/blygger/blygger-studio/blob/main/docs/extensions.md)**. Where a mod can live, and which hooks the Studio will add for one: **[Modding the Studio](https://github.com/blygger/blygger-studio/blob/main/docs/mods.md)**.
 
 - **[Claims](https://github.com/blygger/blygger-studio/tree/main/extensions/claims)** — Forecasts anyone can check: a claim bar in the editor, a badge on posts with a claim, pinning and resolving from the post, and a Claims page with your score. · in every release
+- **[Drafts in the picker example](https://github.com/blygger/blygger-studio/tree/main/extensions/picker-example)** — A “drafts” tab in the \[\[ picker, listing your drafts by every word of the query. For trying picker sources. · compile in to use
 - **[Editor bar example](https://github.com/blygger/blygger-studio/tree/main/extensions/bars-example)** — Adds a bar above the editor’s text box: insert a mark at the cursor, show or hide held-out text, and underline every TODO. For trying editor bars and marks. · compile in to use
 - **[Held-out paragraphs example](https://github.com/blygger/blygger-studio/tree/main/extensions/regions-example)** — Hides paragraphs that start with \[held\]: # in the full editor, read-only when shown. For trying editor regions. · compile in to use
 - **[Inspect](https://github.com/blygger/blygger-studio/tree/main/extensions/inspect)** — Adds “inspect” to each reading entry’s ⋯ sheet: the record this Studio holds for it — ids, versions, references, hashes — and its JSON. · in every release
@@ -96,4 +97,4 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ---
 
-*Checked 2026-11-22.*
+*Checked 2026-11-23.*
