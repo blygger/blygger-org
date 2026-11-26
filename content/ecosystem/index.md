@@ -7,7 +7,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 ## Clients
 
-- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.abhishek1point0.com](https://blyg.abhishek1point0.com/), [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/) and 30 more
+- **[Blygger Studio](https://github.com/blygger/blygger-studio)** — [@blygger](https://github.com/blygger) · live: [blyg.abhishek1point0.com](https://blyg.abhishek1point0.com/), [blyg.andrecomeau.xyz](https://blyg.andrecomeau.xyz/), [blyg.aneeshsathe.com](https://blyg.aneeshsathe.com/) and 27 more
 - **[blygd](https://github.com/chrisbodhi/blygd)** — [@chrisbodhi](https://github.com/chrisbodhi)
 - **[blygger-reference-client](https://github.com/ananth1100/blygger-reference-client)** — [@ananth1100](https://github.com/ananth1100)
 - **[BlyggerPress](https://github.com/ksurya/blyggerpress)** — [@ksurya](https://github.com/ksurya)
@@ -41,6 +41,7 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 - **[blyg-claims](https://github.com/miguelito4/blyg-claims)** — [@miguelito4](https://github.com/miguelito4) · in development
 - **[blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)** — [@aneeshsathe](https://github.com/aneeshsathe)
 - **[blygger-desktop for Windows](https://github.com/patwater/burrow-blyg-windows-)** — [@patwater](https://github.com/patwater)
+- **[botference](https://github.com/angadhn/botference)** — [@angadhn](https://github.com/angadhn) · live: [botference.com/blyg](https://botference.com/blyg/)
 - **[drafts-blyg](https://github.com/miguelito4/drafts-blyg)** — [@miguelito4](https://github.com/miguelito4)
 - **[static-to-studio](https://github.com/miguelito4/static-to-studio)** — [@miguelito4](https://github.com/miguelito4)
 
@@ -90,7 +91,6 @@ Optional features for the reference client. Each is reviewed code in the Studio 
        Fishbiscuit/blyggdrasil  (via name/desc/readme)
        Fishbiscuit/night-walk  (via name/desc/readme)
        Fishbiscuit/reverse-angle  (via name/desc/readme)
-       angadhn/botference  (via name/desc/readme)
        chrisbodhi/hygercard  (via topic:blygger)
        msmsim/kinocomputing-lab  (via name/desc/readme)
        patwater/pothole-portolan-blyg  (via name/desc/readme)
@@ -100,4 +100,4 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ---
 
-*Checked 2026-11-24.*
+*Checked 2026-11-26.*
