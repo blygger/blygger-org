@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-27T00:01:16+00:00",
+ "checked": "2026-11-27T06:37:54+00:00",
  "census": {
   "blygpub/0.1.0": {
    "generator": "blygpub/0.1.0",
@@ -38,7 +38,7 @@
      "origin": "https://angadh.com/blyg/",
      "title": "angadh.com",
      "protocol": "0.4",
-     "updated": "2026-11-26T18:47:47Z",
+     "updated": "2026-11-27T02:28:26Z",
      "generator_seen": "angadh-jekyll-blyg/1.0.0"
     }
    ],
@@ -112,7 +112,7 @@
      "origin": "https://blyg.aneeshsathe.com/",
      "title": "And Yet Here We Are \ud83d\ude80",
      "protocol": "0.4",
-     "updated": "2026-11-26T04:42:59Z",
+     "updated": "2026-11-27T00:04:45Z",
      "generator_seen": "blygger-studio/0.71.0"
     },
     {
@@ -188,17 +188,10 @@
      "generator_seen": "blygger-studio/0.72.3"
     },
     {
-     "origin": "https://blyg.protocol-institute.org/",
-     "title": "Protocol Institute Blyg",
+     "origin": "https://blyg.jdbb.net/",
+     "title": "[jdbb] studio blyg",
      "protocol": "0.4",
-     "updated": "2026-11-18T20:21:53Z",
-     "generator_seen": "blygger-studio/0.72.3"
-    },
-    {
-     "origin": "https://venkateshrao.com/blyg/",
-     "title": "Venkatesh Rao's Blyg",
-     "protocol": "0.4",
-     "updated": "2026-11-26T22:24:01Z",
+     "updated": "2026-11-26T16:33:20Z",
      "generator_seen": "blygger-studio/0.72.3"
     }
    ],
@@ -242,7 +235,7 @@
      "origin": "https://blyg.tejas.nyc/",
      "title": "tejas.nyc",
      "protocol": "0.4",
-     "updated": "2026-11-26T23:59:58Z",
+     "updated": "2026-11-27T05:14:55Z",
      "generator_seen": "blygger-studio/0.65.0"
     },
     {
@@ -266,21 +259,6 @@
      "protocol": "0.4",
      "updated": "2026-11-26T12:33:11Z",
      "generator_seen": "blygger-studio/0.69.0"
-    }
-   ],
-   "protocols": [
-    "0.4"
-   ]
-  },
-  "blygger-studio/0.72.1": {
-   "generator": "blygger-studio/0.72.1",
-   "nodes": [
-    {
-     "origin": "https://blyg.jdbb.net/",
-     "title": "[jdbb] studio blyg",
-     "protocol": "0.4",
-     "updated": "2026-11-26T16:33:20Z",
-     "generator_seen": "blygger-studio/0.72.1"
     }
    ],
    "protocols": [
@@ -326,6 +304,28 @@
      "protocol": "0.4",
      "updated": "2026-11-17T06:58:11Z",
      "generator_seen": "blygger-studio/0.62.0"
+    }
+   ],
+   "protocols": [
+    "0.4"
+   ]
+  },
+  "blygger-studio/0.73.1": {
+   "generator": "blygger-studio/0.73.1",
+   "nodes": [
+    {
+     "origin": "https://blyg.protocol-institute.org/",
+     "title": "Protocol Institute Blyg",
+     "protocol": "0.4",
+     "updated": "2026-11-18T20:21:53Z",
+     "generator_seen": "blygger-studio/0.73.1"
+    },
+    {
+     "origin": "https://venkateshrao.com/blyg/",
+     "title": "Venkatesh Rao's Blyg",
+     "protocol": "0.4",
+     "updated": "2026-11-26T22:24:01Z",
+     "generator_seen": "blygger-studio/0.73.1"
     }
    ],
    "protocols": [
@@ -616,7 +616,7 @@
      "origin": "https://www.kinocomputing.com/",
      "title": "Kinocomputing",
      "protocol": "0.3",
-     "updated": "2026-11-26T19:24:11Z",
+     "updated": "2026-11-27T02:28:54Z",
      "generator_seen": "kinocomputing-build/0.1"
     }
    ],
@@ -693,7 +693,7 @@
    "license": "NOASSERTION",
    "stars": 10,
    "forks": 10,
-   "pushed_at": "2026-11-26T23:37:06Z",
+   "pushed_at": "2026-11-27T04:42:50Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -1057,7 +1057,7 @@
    "license": "MIT",
    "stars": 3,
    "forks": 0,
-   "pushed_at": "2026-11-26T22:38:31Z",
+   "pushed_at": "2026-11-27T06:34:52Z",
    "created_at": "2026-11-04T08:38:00Z",
    "archived": false,
    "homepage": null,
@@ -1104,7 +1104,7 @@
    "license": "MIT",
    "stars": 2,
    "forks": 0,
-   "pushed_at": "2026-11-26T23:35:02Z",
+   "pushed_at": "2026-11-27T01:37:40Z",
    "created_at": "2026-11-20T17:55:23Z",
    "archived": false,
    "homepage": null,
@@ -1132,7 +1132,7 @@
    "license": "MIT",
    "stars": 20,
    "forks": 0,
-   "pushed_at": "2026-11-26T22:56:42Z",
+   "pushed_at": "2026-11-27T02:23:42Z",
    "created_at": "2026-03-30T15:37:48Z",
    "archived": false,
    "homepage": "https://botference.com",
