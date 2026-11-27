@@ -78,7 +78,7 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 - `astro-gyoza/0.0.2` · live: [artlu.xyz](https://artlu.xyz/)
 - `blyg/0.1.0` · live: [bashful.se](https://bashful.se/)
 - `blygpub/0.1.0` · live: [akkartik.name/bliki](https://akkartik.name/bliki/)
-- `dfnet-blyg/0.3` · live: [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/)
+- `dfnet-blyg/0.4` · live: [dylanfitzgerald.net/blyg](https://dylanfitzgerald.net/blyg/)
 - `kinocomputing-build/0.1` · live: [www.kinocomputing.com](https://www.kinocomputing.com/)
 - `mt-blyg/0.1.0` · live: [monstroustimes.com/blyg](https://monstroustimes.com/blyg/)
 - `rafael-fyi-blyg/0.1 (static, git-versioned; adapted from sig-p4b-blyg)` · live: [rafael.fyi/blyg](https://rafael.fyi/blyg/)
@@ -91,7 +91,9 @@ Optional features for the reference client. Each is reviewed code in the Studio 
        Fishbiscuit/blyggdrasil  (via name/desc/readme)
        Fishbiscuit/night-walk  (via name/desc/readme)
        Fishbiscuit/reverse-angle  (via name/desc/readme)
+       Marcobene97/blyg-agora  (via name/desc/readme)
        chrisbodhi/hygercard  (via topic:blygger)
+       hyperphor/thirdmind  (via name/desc/readme)
        msmsim/kinocomputing-lab  (via name/desc/readme)
        patwater/pothole-portolan-blyg  (via name/desc/readme)
        patwater/pothole-portolan-worker  (via name/desc/readme)
@@ -100,4 +102,4 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ---
 
-*Checked 2026-11-26.*
+*Checked 2026-11-27.*
