@@ -167,4 +167,4 @@ When an issue is accepted, it gets a row in the [public roadmap](https://blygger
 
 ---
 
-*Published from [blygger/blygger-spec@936c165](https://github.com/blygger/blygger-spec/commit/936c165).*
+*Published from [blygger/blygger-spec@abc92a7](https://github.com/blygger/blygger-spec/commit/abc92a7).*

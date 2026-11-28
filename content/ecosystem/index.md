@@ -103,4 +103,4 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 
 ---
 
-*Checked 2026-11-27.*
+*Checked 2026-11-28.*

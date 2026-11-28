@@ -165,4 +165,4 @@ When an issue is accepted, it gets a row in the [public roadmap](https://blygger
 
 ---
 
-*This is [TN-8](/notes/tn-8/), published from [blygger-spec@936c165](https://github.com/blygger/blygger-spec/blob/936c165/docs/notes/tn-8-where-does-my-change-belong.md).*
+*This is [TN-8](/notes/tn-8/), published from [blygger-spec@abc92a7](https://github.com/blygger/blygger-spec/blob/abc92a7/docs/notes/tn-8-where-does-my-change-belong.md).*
