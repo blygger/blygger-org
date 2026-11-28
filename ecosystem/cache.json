@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-28T00:25:36+00:00",
+ "checked": "2026-11-28T02:22:47+00:00",
  "census": {
   "blygpub/0.1.0": {
    "generator": "blygpub/0.1.0",
@@ -38,7 +38,7 @@
      "origin": "https://angadh.com/blyg/",
      "title": "angadh.com",
      "protocol": "0.4",
-     "updated": "2026-11-27T21:23:00Z",
+     "updated": "2026-11-28T00:38:20Z",
      "generator_seen": "angadh-jekyll-blyg/1.0.0"
     }
    ],
@@ -279,7 +279,7 @@
      "origin": "https://venkateshrao.com/blyg/",
      "title": "Venkatesh Rao's Blyg",
      "protocol": "0.4",
-     "updated": "2026-11-28T00:23:01Z",
+     "updated": "2026-11-28T01:59:49Z",
      "generator_seen": "blygger-studio/0.74.0"
     }
    ],
@@ -693,7 +693,7 @@
    "license": "NOASSERTION",
    "stars": 10,
    "forks": 10,
-   "pushed_at": "2026-11-28T00:14:58Z",
+   "pushed_at": "2026-11-28T02:20:49Z",
    "created_at": "2026-09-28T17:02:41Z",
    "archived": false,
    "homepage": "https://blygger.org",
@@ -1132,7 +1132,7 @@
    "license": "MIT",
    "stars": 20,
    "forks": 0,
-   "pushed_at": "2026-11-27T22:57:04Z",
+   "pushed_at": "2026-11-28T00:56:11Z",
    "created_at": "2026-03-30T15:37:48Z",
    "archived": false,
    "homepage": "https://botference.com",
@@ -1153,55 +1153,152 @@
     "web-annotation"
    ],
    "default_branch": "main"
+  },
+  "Fishbiscuit/blyggdrasil": {
+   "repo": "Fishbiscuit/blyggdrasil",
+   "description": "One tree for everywhere you post: connect a Blygger blyg with your accounts, prove each link, and keep it through a move. Plus Night Walk.",
+   "language": "JavaScript",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-26T19:51:34Z",
+   "created_at": "2026-11-24T17:45:43Z",
+   "archived": false,
+   "homepage": "https://fishbiscuit.me/blyggdrasil/",
+   "topics": [],
+   "default_branch": "main"
+  },
+  "Haml3t/logseq-blyg": {
+   "repo": "Haml3t/logseq-blyg",
+   "description": null,
+   "language": "Python",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-27T17:03:17Z",
+   "created_at": "2026-11-27T16:50:46Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "hyperphor/thirdmind": {
+   "repo": "hyperphor/thirdmind",
+   "description": "Add on smarts and publishing for your Personal Knowledge Graph",
+   "language": "Clojure",
+   "license": null,
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-27T07:12:55Z",
+   "created_at": "2026-11-26T08:58:48Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "chrisbodhi/hygercard": {
+   "repo": "chrisbodhi/hygercard",
+   "description": "Xanadu meets HyperCard, for blygging",
+   "language": "TypeScript",
+   "license": null,
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-25T21:48:57Z",
+   "created_at": "2026-11-21T14:12:31Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [
+    "blygger"
+   ],
+   "default_branch": "trunk"
+  },
+  "msmsim/kinocomputing-lab": {
+   "repo": "msmsim/kinocomputing-lab",
+   "description": null,
+   "language": "JavaScript",
+   "license": null,
+   "stars": 1,
+   "forks": 0,
+   "pushed_at": "2026-11-27T20:40:00Z",
+   "created_at": "2026-11-21T13:59:50Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "patwater/pothole-portolan-worker": {
+   "repo": "patwater/pothole-portolan-worker",
+   "description": "Pothole Portolan goes city by city around the world and assembles what is publicly known about potholes and pavement condition: 311 and Open311 service request data, published Pavement Condition Index (PCI) scores and their equivalents, pavement management reports, audits, budgets, and repair performance figures.",
+   "language": "HTML",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-26T19:42:21Z",
+   "created_at": "2026-11-16T20:50:30Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "Marcobene97/blyg-agora": {
+   "repo": "Marcobene97/blyg-agora",
+   "description": "Blyg Hackathon 2026",
+   "language": "Python",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-26T18:15:40Z",
+   "created_at": "2026-11-26T15:40:41Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "Fishbiscuit/night-walk": {
+   "repo": "Fishbiscuit/night-walk",
+   "description": "Walk through the live Blygger thicket at night. Every blyg is a house; every quote between blygs is a light strung between them.",
+   "language": "JavaScript",
+   "license": null,
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-24T05:17:16Z",
+   "created_at": "2026-11-24T02:32:40Z",
+   "archived": false,
+   "homepage": "https://fishbiscuit.github.io/night-walk/",
+   "topics": [],
+   "default_branch": "main"
+  },
+  "Fishbiscuit/reverse-angle": {
+   "repo": "Fishbiscuit/reverse-angle",
+   "description": "Photo replies across Blygger blogs, a contact sheet, and a walkable gallery",
+   "language": "JavaScript",
+   "license": null,
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-22T22:23:26Z",
+   "created_at": "2026-11-22T22:23:18Z",
+   "archived": false,
+   "homepage": null,
+   "topics": [],
+   "default_branch": "main"
+  },
+  "philippnagel/blygs": {
+   "repo": "philippnagel/blygs",
+   "description": null,
+   "language": "TypeScript",
+   "license": "MIT",
+   "stars": 0,
+   "forks": 0,
+   "pushed_at": "2026-11-15T16:17:29Z",
+   "created_at": "2026-11-15T16:17:23Z",
+   "archived": false,
+   "homepage": "https://www.blygs.com/",
+   "topics": [],
+   "default_branch": "main"
   }
  },
  "summaries": {},
- "discovered": [
-  {
-   "repo": "Fishbiscuit/blyggdrasil",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "Fishbiscuit/night-walk",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "Fishbiscuit/reverse-angle",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "Haml3t/logseq-blyg",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "Marcobene97/blyg-agora",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "chrisbodhi/hygercard",
-   "via": "topic:blygger"
-  },
-  {
-   "repo": "hyperphor/thirdmind",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "msmsim/kinocomputing-lab",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "patwater/pothole-portolan-blyg",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "patwater/pothole-portolan-worker",
-   "via": "name/desc/readme"
-  },
-  {
-   "repo": "philippnagel/blygs",
-   "via": "name/desc/readme"
-  }
- ],
+ "discovered": [],
  "extensions": [
   {
    "name": "claims",

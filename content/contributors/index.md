@@ -218,20 +218,29 @@ the live blygs they serve.
   [hugo-blyg](https://github.com/chrisbodhi/hugo-blyg), a blyg from a Hugo
   site, published at [newschematic.org/blyg](https://newschematic.org/blyg/),
   and [blygd](https://github.com/chrisbodhi/blygd), a headless, multi-tenant
-  studio in Go that speaks 0.4.
+  studio in Go that speaks 0.4. In development:
+  [hygercard](https://github.com/chrisbodhi/hygercard), an authoring prototype
+  that drags quotes from imported blygs into a thread draft.
 - **Mike Travers** — [@mtravers](https://github.com/mtravers). Taught
   [goddinpotty](https://github.com/mtravers/goddinpotty), a digital-garden
   generator for Logseq graphs, to emit a blyg:
-  [AMMDI](https://ammdi.hyperphor.com/blyg/).
+  [AMMDI](https://ammdi.hyperphor.com/blyg/). In development:
+  [ThirdMind](https://github.com/hyperphor/thirdmind), a side process for a
+  Logseq graph that answers tags, starting with `#blyg`.
 - **Patrick Atwater** — [@patwater](https://github.com/patwater).
   [pioneering-spirit-blyg](https://github.com/patwater/pioneering-spirit-blyg),
   Blygger Studio extended to run [Pioneering Spirit](https://blyg.pioneeringspirit.xyz/)
   beside its old archive, and
   [a Windows port](https://github.com/patwater/burrow-blyg-windows-) of
   blygger-desktop, and [blygcaster](https://github.com/patwater/blyg-caster),
-  Studio extended to read Farcaster, stub casts and cross-post to it.
+  Studio extended to read Farcaster, stub casts and cross-post to it, and
+  [Pothole Portolan](https://github.com/patwater/pothole-portolan-worker), an
+  autonomous researcher that writes a dossier per city on public pavement data.
 - **Matthew Sweet** — [@msmsim](https://github.com/msmsim). [msn](https://github.com/msmsim/msn),
-  an independent client, publishing at [msweet.net/notes](https://www.msweet.net/notes/).
+  an independent client, publishing at [msweet.net/notes](https://www.msweet.net/notes/),
+  and the [Kinocomputing lab](https://github.com/msmsim/kinocomputing-lab), a
+  research agent that publishes a nightly notebook to
+  [kinocomputing.com](https://www.kinocomputing.com/).
 - **Protocols for Business** — [@protocolvision](https://github.com/protocolvision).
   The Protocol Institute research group's own static client,
   [sig-p4b](https://github.com/protocolvision/sig-p4b), publishing at
@@ -265,6 +274,25 @@ the live blygs they serve.
   [Astro site](https://github.com/cchalc/site) that emits a static blyg of its
   articles at [featherandwire.dev/blyg](https://featherandwire.dev/blyg/),
   beside a Blygger Studio for short posts.
+- **Angadh Nanjangud** — [@angadhn](https://github.com/angadhn).
+  [botference](https://github.com/angadhn/botference), a browser extension:
+  discuss a passage with an AI and publish the thread as a response that
+  quotes by reference, at [angadh.com/blyg](https://angadh.com/blyg/).
+- **Hum Qing Ze** — [@Fishbiscuit](https://github.com/Fishbiscuit).
+  [Blyggdrasil](https://github.com/Fishbiscuit/blyggdrasil), which links a blyg
+  to your other accounts and proves each link;
+  [Night Walk](https://github.com/Fishbiscuit/night-walk), the thicket as a
+  village at night; and [Reverse Angle](https://github.com/Fishbiscuit/reverse-angle),
+  photo replies across blygs as a walkable gallery.
+- **David Sugarman** — [@Haml3t](https://github.com/Haml3t). In development:
+  [logseq-blyg](https://github.com/Haml3t/logseq-blyg), which publishes chosen
+  Logseq blocks as blyg posts, at [powerfantasy.xyz/blyg](https://powerfantasy.xyz/blyg/).
+- **Marco** — [@Marcobene97](https://github.com/Marcobene97).
+  [Grove](https://github.com/Marcobene97/blyg-agora), a reader that grows a
+  blyg into a 3D tree of its themes.
+- **Philipp Nagel** — [@philippnagel](https://github.com/philippnagel).
+  [Blygs Explorer](https://www.blygs.com/), a read-only explorer of the
+  thicket with a JSON API and an MCP server.
 
 ### Clients known only by their blygs
 

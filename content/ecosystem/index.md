@@ -39,11 +39,17 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 - **[Blyg for iPhone](https://github.com/djinna/blyg-ios)** — [@djinna](https://github.com/djinna) · in development
 - **[Blyg for Obsidian](https://github.com/florianlohse/blyg-obsidian)** — [@florianlohse](https://github.com/florianlohse)
 - **[blyg-claims](https://github.com/miguelito4/blyg-claims)** — [@miguelito4](https://github.com/miguelito4) · in development
+- **[Blyggdrasil](https://github.com/Fishbiscuit/blyggdrasil)** — [@Fishbiscuit](https://github.com/Fishbiscuit)
 - **[blygger-desktop](https://github.com/aneeshsathe/blygger-desktop)** — [@aneeshsathe](https://github.com/aneeshsathe)
 - **[blygger-desktop for Windows](https://github.com/patwater/burrow-blyg-windows-)** — [@patwater](https://github.com/patwater)
 - **[botference](https://github.com/angadhn/botference)** — [@angadhn](https://github.com/angadhn) · live: [botference.com/blyg](https://botference.com/blyg/)
 - **[drafts-blyg](https://github.com/miguelito4/drafts-blyg)** — [@miguelito4](https://github.com/miguelito4)
+- **[hygercard](https://github.com/chrisbodhi/hygercard)** — [@chrisbodhi](https://github.com/chrisbodhi) · in development
+- **[Kinocomputing lab](https://github.com/msmsim/kinocomputing-lab)** — [@msmsim](https://github.com/msmsim) · live: [www.kinocomputing.com](https://www.kinocomputing.com/)
+- **[logseq-blyg](https://github.com/Haml3t/logseq-blyg)** — [@Haml3t](https://github.com/Haml3t) · in development · live: [powerfantasy.xyz/blyg](https://powerfantasy.xyz/blyg/)
+- **[Pothole Portolan](https://github.com/patwater/pothole-portolan-worker)** — [@patwater](https://github.com/patwater)
 - **[static-to-studio](https://github.com/miguelito4/static-to-studio)** — [@miguelito4](https://github.com/miguelito4)
+- **[ThirdMind](https://github.com/hyperphor/thirdmind)** — [@hyperphor](https://github.com/hyperphor) · in development
 
 ## Mods of Blygger Studio
 
@@ -54,6 +60,10 @@ Every known project that implements or extends Blygger. Listing is not endorseme
 
 - **[blyg-atlas](https://github.com/Allethrin/blyg-atlas)** — [@Allethrin](https://github.com/Allethrin)
 - **[blyg-watch](https://github.com/halcyonic-systems/blyg-watch)** — [@halcyonic-systems](https://github.com/halcyonic-systems)
+- **[Blygs Explorer](https://github.com/philippnagel/blygs)** — [@philippnagel](https://github.com/philippnagel)
+- **[Grove](https://github.com/Marcobene97/blyg-agora)** — [@Marcobene97](https://github.com/Marcobene97)
+- **[Night Walk](https://github.com/Fishbiscuit/night-walk)** — [@Fishbiscuit](https://github.com/Fishbiscuit)
+- **[Reverse Angle](https://github.com/Fishbiscuit/reverse-angle)** — [@Fishbiscuit](https://github.com/Fishbiscuit)
 
 ## Blygger Studio extensions
 
@@ -85,21 +95,6 @@ Optional features for the reference client. Each is reviewed code in the Studio 
 - `ranganaut-make-blyg/0.1` · live: [www.ranganaut.com](https://www.ranganaut.com/)
 - `symmetrybroken-hugo/0.170.0` · live: [www.symmetrybroken.com](https://www.symmetrybroken.com/)
 - `thirdmind-blyg/0.1` · live: [ammdi.hyperphor.com/blyg](https://ammdi.hyperphor.com/blyg/)
-
-<!-- Discovered on GitHub and NOT in ecosystem/projects.toml. Triage these,
-     then add or deliberately skip each one:
-       Fishbiscuit/blyggdrasil  (via name/desc/readme)
-       Fishbiscuit/night-walk  (via name/desc/readme)
-       Fishbiscuit/reverse-angle  (via name/desc/readme)
-       Haml3t/logseq-blyg  (via name/desc/readme)
-       Marcobene97/blyg-agora  (via name/desc/readme)
-       chrisbodhi/hygercard  (via topic:blygger)
-       hyperphor/thirdmind  (via name/desc/readme)
-       msmsim/kinocomputing-lab  (via name/desc/readme)
-       patwater/pothole-portolan-blyg  (via name/desc/readme)
-       patwater/pothole-portolan-worker  (via name/desc/readme)
-       philippnagel/blygs  (via name/desc/readme)
--->
 
 ---
 

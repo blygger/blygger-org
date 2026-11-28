@@ -42,7 +42,8 @@
 skip = [
   "chrisbodhi/newschematic",  # a site built with hugo-blyg (listed), not a project
   "akashtattva/blyg",  # the exported tree of a vanilla Blygger Studio (listing rule, session 57)
-  "vgururao/newnature",  # a book project on a vanilla Blygger Studio node (listing rule, session 60)
+  "vgururao/newnature",
+  "patwater/pothole-portolan-blyg",  # the vanilla Blygger Studio node Pothole Portolan publishes to; the agent is listed (listing rule, session 92)  # a book project on a vanilla Blygger Studio node (listing rule, session 60)
 ]
 
 # ─── Ours ──────────────────────────────────────────────────────────────────────
@@ -265,6 +266,53 @@ in_development = true
 summary = "Prediction journals: claims as items, resolutions as later versions, calibration scored from public files."
 submitted = "found by sync_ecosystem.py search 2026-11-20 (hackathon); added session 76"
 
+[[project]]
+repo = "Fishbiscuit/blyggdrasil"
+name = "Blyggdrasil"
+category = "tool"
+summary = "Links a blyg to your X, Bluesky, Mastodon and GitHub accounts, proves each link with one posted line, and keeps them through a move with a key you hold."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
+[[project]]
+repo = "Haml3t/logseq-blyg"
+name = "logseq-blyg"
+category = "tool"
+live = "https://powerfantasy.xyz/blyg/"
+in_development = true
+summary = "Publishes chosen Logseq blocks and pages as blyg posts that stay current as the notes change; a single-user hackathon script."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
+[[project]]
+repo = "hyperphor/thirdmind"
+name = "ThirdMind"
+category = "tool"
+in_development = true
+summary = "A side process and store for a Logseq graph that answers tags; its first handler logs blocks tagged #blyg."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
+[[project]]
+repo = "chrisbodhi/hygercard"
+name = "hygercard"
+category = "tool"
+in_development = true
+summary = "An interaction prototype for a native client: drag text from imported blygs into a thread draft, which writes transclusion directives."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
+[[project]]
+repo = "msmsim/kinocomputing-lab"
+name = "Kinocomputing lab"
+category = "tool"
+live = "https://www.kinocomputing.com/"
+summary = "An automated research agent that works a nightly shift on GitHub Actions and publishes its notebook to the kinocomputing blyg."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
+[[project]]
+repo = "patwater/pothole-portolan-worker"
+name = "Pothole Portolan"
+category = "tool"
+summary = "An autonomous researcher of public pothole and pavement data that writes one checkable dossier per city."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
 # ─── Mods — a modified copy of blygger-studio ──────────────────────────────────
 
 [[project]]
@@ -317,3 +365,31 @@ repo = "Allethrin/blyg-atlas"
 category = "reader"
 summary = "A local map of the network grown from your own subscriptions: items placed by meaning and time, citations drawn between them, search and standing queries; runs on your machine only."
 submitted = "census 2026-11-12 (sync_ecosystem.py search); a new reader client, listed by the listing rule"
+
+[[project]]
+repo = "Marcobene97/blyg-agora"
+name = "Grove"
+category = "reader"
+summary = "Grows a blyg into a 3D tree of themes and threads, with bridges between themes and the blygs it quotes on the outer ring."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
+[[project]]
+repo = "Fishbiscuit/night-walk"
+name = "Night Walk"
+category = "reader"
+summary = "Walk the thicket at night: each listed blyg is a house, each quote between blygs a light strung between them."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
+[[project]]
+repo = "Fishbiscuit/reverse-angle"
+name = "Reverse Angle"
+category = "reader"
+summary = "Shows photo replies across blygs as a contact sheet, a match cut and a walkable gallery."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
+
+[[project]]
+repo = "philippnagel/blygs"
+name = "Blygs Explorer"
+category = "reader"
+summary = "A read-only explorer of the thicket at blygs.com: verifies each quote, pin, fork, stub and mention edge and serves the graph as pages, a JSON API and an MCP server."
+submitted = "found by sync_ecosystem.py search; added session 92 (2026-11-27)"
