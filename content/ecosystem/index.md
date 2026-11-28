@@ -91,6 +91,7 @@ Optional features for the reference client. Each is reviewed code in the Studio 
        Fishbiscuit/blyggdrasil  (via name/desc/readme)
        Fishbiscuit/night-walk  (via name/desc/readme)
        Fishbiscuit/reverse-angle  (via name/desc/readme)
+       Haml3t/logseq-blyg  (via name/desc/readme)
        Marcobene97/blyg-agora  (via name/desc/readme)
        chrisbodhi/hygercard  (via topic:blygger)
        hyperphor/thirdmind  (via name/desc/readme)
